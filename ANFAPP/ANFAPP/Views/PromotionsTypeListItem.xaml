@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	           xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	           xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	           xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	           xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+             x:Class="ANFAPP.Views.PromotionsTypeListItem">
+
+
+  <ContentView.Content>
+    <Grid  Grid.RowSpacing="0" Grid.ColumnSpacing="0"
+      VerticalOptions="Start"
+      BackgroundColor="White">
+
+      <Grid.ColumnDefinitions>
+        <!--0 Left Margin-->
+        <ColumnDefinition Width="15" />
+        <!--1-->
+        <ColumnDefinition Width="120" />
+        <!--2-->
+        <ColumnDefinition Width="15" />
+        <!--3-->
+        <ColumnDefinition Width="*" />
+        <!--4 Right Margin-->
+        <ColumnDefinition Width="15" />
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <!--0 Top Margin-->
+        <RowDefinition Height="5"/>
+        <!--1 Title-->
+        <RowDefinition Height="auto"/>
+        <!--2 Margin-->
+        <RowDefinition Height="5"/>
+        <!--3 Image and Lead-->
+        <RowDefinition Height="auto"/>
+        <!--4 Margin-->
+        <RowDefinition Height="5"/>
+        <!--5 Date and Button-->
+        <RowDefinition Height="auto"/>
+        <!--6 Bottom Margin-->
+        <RowDefinition Height="10"/>
+      </Grid.RowDefinitions>
+
+			 <Grid.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnPromotionSelect" />
+          </Grid.GestureRecognizers>
+
+      <!-- Promotions Type 1 -->
+			
+      <common:CustomImage x:Name="PromoType1Image" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
+                            HeightRequest="136" WidthRequest="437"
+                            Source="{Binding FullPathImage}"
+                            IsVisible="{Binding Promo1IsActive}"></common:CustomImage>
+
+      <common:CustomLabel x:Name="PromoType1Date" Grid.Row="3" Grid.Column="1"
+                          HeightRequest="23" WidthRequest="250"
+                          FontSize="10"
+                          Text="{Binding DateLabel}"
+                          TextColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+                          IsVisible="{Binding Promo1IsActive}"></common:CustomLabel>
+
+      <common:CustomButton x:Name="PromoType1Button" Grid.Row="3" Grid.Column="3"
+                           HeightRequest="30" WidthRequest="150"
+                           Text="{Binding ButtonLabel}" BackgroundColor="White"
+                           HorizontalOptions="EndAndExpand"
+                           BorderWidth="2"
+                           BorderRadius="1"
+                           FontSize="10"
+							             Clicked="OnPromotionSelect"
+                           BorderColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+                           TextColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+                           IsVisible="{Binding Promo1IsActive}"></common:CustomButton>
+
+      <!-- Promotions Type 2 -->
+      <common:CustomLabel x:Name="PromoType2Title" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
+                          HeightRequest="26"
+                          Text="{Binding Title}"
+                          TextColor="Black" FontSize="20"
+                          IsVisible="{Binding Promo2IsActive}"/>
+      <common:CustomLabel x:Name="PromoType2Description" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3"
+                          HeightRequest="110"
+                          Text="{Binding Lead}"
+                          TextColor="Black"
+                          FontSize="12"
+                          HorizontalOptions="StartAndExpand"
+                          IsVisible="{Binding Promo2IsActive}"/>
+      <common:CustomLabel x:Name="PromoType2Date" Grid.Row="5" Grid.Column="1"
+                          HeightRequest="23" WidthRequest="250"
+                          FontSize="10"
+                          Text="{Binding DateLabel}"
+                          TextColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+                          IsVisible="{Binding Promo2IsActive}"/>
+
+      <common:CustomButton x:Name="PromoType2Button" Grid.Row="5" Grid.Column="3"
+                           Text="{Binding ButtonLabel}" FontSize="10"
+                           BackgroundColor="White"
+                           HeightRequest="30" WidthRequest="150"
+                           HorizontalOptions="EndAndExpand"
+                           BorderWidth="2"
+                           BorderRadius="1"
+						               Clicked="OnPromotionSelect"
+                           BorderColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+                           TextColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+                           IsVisible="{Binding Promo2IsActive}"/>
+
+      <!-- Promotions Type 3 -->
+      <common:CustomLabel x:Name="PromoType3Title" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
+                          HeightRequest="26" WidthRequest="437"
+                          Text="{Binding Title}"
+                          TextColor="Black" FontSize="20"
+                          IsVisible="{Binding Promo3IsActive}"></common:CustomLabel>
+      <common:CustomImage x:Name="PromoType3Image" Grid.Row="3" Grid.Column="1"
+                          HeightRequest="110"
+                          VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+                          Source="{Binding FullPathImage}"
+                          IsVisible="{Binding Promo3IsActive}"></common:CustomImage>
+      <common:CustomLabel x:Name="PromoType3Description" Grid.Row="3" Grid.Column="3"
+                          FontSize="12"
+                          TextColor="Black"
+                          Text="{Binding Lead}"
+                          IsVisible="{Binding Promo3IsActive}"></common:CustomLabel>
+      <common:CustomLabel x:Name="PromoType3Date" Grid.Row="5" Grid.Column="1"
+                          HeightRequest="23" WidthRequest="250"
+                          FontSize="10"
+                          Text="{Binding DateLabel}"
+                          TextColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+                          IsVisible="{Binding Promo3IsActive}"></common:CustomLabel>
+
+      <common:CustomButton x:Name="PromoType3Button" Grid.Row="5" Grid.Column="3"
+                           HeightRequest="30" WidthRequest="150"
+                           HorizontalOptions="EndAndExpand"
+                           Text="{Binding ButtonLabel}" FontSize="10"
+                           BackgroundColor="White"
+                           BorderWidth="2"
+                           BorderRadius="1"
+						               Clicked="OnPromotionSelect"
+                           BorderColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+                           TextColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+                           IsVisible="{Binding Promo3IsActive}"></common:CustomButton>
+
+      <!-- Promotions Type 4 -->
+      <common:CustomLabel x:Name="PromoType4Title" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
+                          HeightRequest="136" WidthRequest="437"
+                          Text="{Binding Title}"
+                          TextColor="Black" FontSize="20"
+                          IsVisible="{Binding Promo4IsActive}"></common:CustomLabel>
+      <common:CustomLabel x:Name="PromoType4Date" Grid.Row="3" Grid.Column="1"
+                          HeightRequest="23" WidthRequest="250"
+                          FontSize="10"
+                          Text="{Binding DateLabel}"
+                          TextColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+                          IsVisible="{Binding Promo4IsActive}"></common:CustomLabel>
+
+      <common:CustomButton x:Name="PromoType4Button" Grid.Row="3" Grid.Column="3"
+                           HeightRequest="30" WidthRequest="150"
+                           Text="{Binding ButtonLabel}" BackgroundColor="White"
+                           HorizontalOptions="EndAndExpand"
+                           BorderWidth="2"
+                           BorderRadius="1"
+                           FontSize="10"
+                           Clicked="OnPromotionSelect"
+                           BorderColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+                           TextColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+                           IsVisible="{Binding Promo4IsActive}"></common:CustomButton>
+
+    </Grid>
+  </ContentView.Content>
+
+</ContentView>

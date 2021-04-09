@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+  x:Class="ANFAPP.Views.StoreSearchFilterOrderWidget">
+
+  <ContentView.Content>
+
+    <StackLayout x:Name="MainContainer"
+			Padding="15, 0"
+			Spacing="10"
+			Orientation="Vertical">
+    
+    <Grid Grid.ColumnSpacing="12" RowSpacing="0" IsVisible="{Binding FiltersEnabled}">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="39" />
+        <RowDefinition Height="1" />
+      </Grid.RowDefinitions>
+
+      <!-- Filter Button -->
+				<!--<common:CustomButton x:Name="FilterButton" HeightRequest="40"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="Start"
+					FontSize="13"
+					BorderRadius="0"
+					BorderWidth="0"
+					TextAlignment="Left"
+					AccessoryImage="ic_filter.png"
+					Clicked="FilterButtonClicked"
+					Text="{x:Static app:AppResources.StoreSearchWidgetFilterLabel}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					BorderColor="{x:Static resources:ColorResources.APPBackgroundDark}"
+					BackgroundColor="White" />-->
+				
+      <StackLayout Orientation="Horizontal" x:Name="FilterButton" Spacing="10">
+        <common:CustomImage Source="ic_filter.png" InputTransparent="true" />
+        <common:CustomLabel
+          CustomMargin="15, 0"
+          HorizontalOptions="StartAndExpand"
+          VerticalOptions="CenterAndExpand"
+          FontSize="13"
+          Text="{x:Static app:AppResources.StoreSearchWidgetFilterLabel}"
+          CustomFont="{x:Static resources:FontResources.RegularFont}"
+          TextColor="{x:Static resources:ColorResources.TextColorDark}"
+          InputTransparent="True"/>
+        <common:CustomImage Source="arrow_black_down.png" InputTransparent="true" HorizontalOptions="End" VerticalOptions="Center" WidthRequest="14" HeightRequest="7" />
+        <StackLayout.GestureRecognizers>
+          <TapGestureRecognizer Tapped="FilterButtonClicked" />
+        </StackLayout.GestureRecognizers>
+      </StackLayout>
+      <BoxView Grid.Row="1" BackgroundColor="{x:Static resources:ColorResources.TextColorDark}" />
+
+      <!-- Order Button-->
+				<!--<common:CustomButton x:Name="OrderButton" HeightRequest="40" Grid.Column="1"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="Start"
+					FontSize="13"
+					BorderRadius="0"
+					BorderWidth="0"
+					TextAlignment="Left"
+					Clicked="OrderButtonClicked"
+					AccessoryImage="ic_order.png"
+					Text="{x:Static app:AppResources.StoreSearchWidgetOrderLabel}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					BorderColor="{x:Static resources:ColorResources.APPBackgroundDark}"
+					BackgroundColor="White" />-->
+				 
+      <StackLayout Orientation="Horizontal" x:Name="OrderButton" Spacing="10" Grid.Column="1">
+        <common:CustomImage Source="ic_order.png" InputTransparent="true" />
+        <common:CustomLabel
+          CustomMargin="15, 0"
+          HorizontalOptions="StartAndExpand"
+          VerticalOptions="CenterAndExpand"
+          FontSize="13"
+          Text="{x:Static app:AppResources.StoreSearchWidgetOrderLabel}"
+          CustomFont="{x:Static resources:FontResources.RegularFont}"
+          TextColor="{x:Static resources:ColorResources.TextColorDark}"
+          InputTransparent="True"/>
+        <common:CustomImage Source="arrow_black_down.png" InputTransparent="true" HorizontalOptions="End" VerticalOptions="Center" WidthRequest="14" HeightRequest="7" />
+        <StackLayout.GestureRecognizers>
+          <TapGestureRecognizer Tapped="OrderButtonClicked" />
+        </StackLayout.GestureRecognizers>
+      </StackLayout>
+      <BoxView Grid.Row="1" Grid.Column="1" BackgroundColor="{x:Static resources:ColorResources.TextColorDark}" />
+    </Grid>
+    </StackLayout>
+  </ContentView.Content>
+  
+</ContentView>

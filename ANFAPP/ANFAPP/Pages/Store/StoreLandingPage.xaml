@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFStorePage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages.Store;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.Store.StoreLandingPage">
+
+  <Grid RowSpacing="0" ColumnSpacing="0">
+    <Grid.RowDefinitions>
+      <!-- Application Bar -->
+      <RowDefinition Height="auto" />
+      <!-- Store Navigation Widget -->
+      <RowDefinition Height="auto" />
+      <!-- Store Filter Widget -->
+      <RowDefinition Height="auto" />
+      <!-- Page -->
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="auto" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+
+    <!-- Store Search Widget -->
+    <views:StoreSearchWidget Grid.Row="1" Grid.Column="1"
+			SearchParamsRefreshed="OnSearch"
+			FiltersEnabled="False"
+			Padding="0, 15" />
+
+    <!-- Store Navigation Widget -->
+    <views:StoreNavigationWidget Grid.Row="2" Grid.Column="1"
+      Padding="0,0,0, 15"
+      SelectedTab="LandingPage" />
+
+
+    <!--
+		IsVisible="{Binding Products, Converter={x:Static converters:ConverterResources.HasElements}"
+		-->
+    <!-- Page -->
+    <common:CustomListView x:Name="ProductsList" Grid.Row="3" Grid.Column="1"
+			HasUnevenRows="True"
+			IsGroupingEnabled="True"
+			ItemSelected="OnItemSelected"
+			VerticalOptions="FillAndExpand"
+			ItemsSource="{Binding Products}"
+			GroupDisplayBinding="{Binding Name}"
+			SeparatorColor="Transparent">
+      <!--SeparatorColor="{x:Static resources:ColorResources.LocatorSeparatorColorLight}">-->
+
+      <!-- Header Template -->
+      <common:CustomListView.GroupHeaderTemplate>
+        <DataTemplate>
+          <ViewCell Height="40">
+            <Grid Padding="15, 0" HeightRequest="40"
+							BackgroundColor="{x:Static resources:ColorResources.LocatorBGLightGray}">
+              <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="ProductsHeaderClicked" />
+              </Grid.GestureRecognizers>
+
+              <common:CustomLabel
+								FontSize="15"
+								Text="{Binding Name}"
+								VerticalOptions="Center"
+								InputTransparent="True"
+								CustomFont="{x:Static resources:FontResources.RegularFont}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+
+              <common:CustomImage
+								VerticalOptions="Center"
+								HorizontalOptions="End"
+								InputTransparent="True"
+								Source="ic_button_arrow_black" />
+            </Grid>
+          </ViewCell>
+        </DataTemplate>
+      </common:CustomListView.GroupHeaderTemplate>
+
+      <!-- Product Template -->
+      <common:CustomListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <views:StoreProductListItem
+							SeeGenericsClicked="SeeRelatedGenericsClicked" />
+          </ViewCell>
+        </DataTemplate>
+      </common:CustomListView.ItemTemplate>
+      <!-- Remove trailing lines. -->
+      <common:CustomListView.Footer>
+        <ContentView HeightRequest="0" />
+      </common:CustomListView.Footer>
+    </common:CustomListView>
+
+    <!-- No Results Label 
+		IsVisible="{Binding HasResults, Converter={x:Static converters:ConverterResources.InverseBool}"
+		-->
+    <common:CustomLabel Grid.Row="3" Grid.Column="1" x:Name="NoResultsLabel"
+			FontSize="16"
+			XAlign="Center"
+			VerticalOptions="Start"
+			InputTransparent="True"
+			HorizontalOptions="FillAndExpand"
+			IsVisible="False"
+			Text="Não existem produtos em destaque."
+			CustomFont="{x:Static resources:FontResources.RegularFont}"
+			TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+
+    <!-- MenuItem -->
+    <views:MenuView x:Name="MenuView" Grid.Row="1" Grid.RowSpan="3" />
+
+    <!-- Application Bar -->
+    <views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+    <!-- Loading Container -->
+    <Grid x:Name="LoadingView" Grid.RowSpan="4" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+      <!-- Loading Indicator -->
+      <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <common:CustomActivityIndicator
+					HorizontalOptions="CenterAndExpand"
+					VerticalOptions="CenterAndExpand"
+					IsRunning="True"
+					Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+
+        <ContentView HeightRequest="16" />
+
+        <Frame x:Name="LoadingMessage" IsVisible="False">
+          <common:CustomLabel
+						HeightRequest="16"
+						FontSize="13"
+						Text="A adicionar ao seu carrinho"
+						VerticalOptions="EndAndExpand"
+						HorizontalOptions="CenterAndExpand"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+        </Frame>
+      </StackLayout>
+    </Grid>
+  </Grid>
+</pages:ANFStorePage>

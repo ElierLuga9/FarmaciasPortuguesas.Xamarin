@@ -1,0 +1,244 @@
+<<<<<<< HEAD
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+  xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+  xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+  xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+  xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+  xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+  x:Class="ANFAPP.Pages.UserLogin.AppIntroPage">
+
+	<Grid>
+		<!-- Background Image -->
+		<common:CustomImage x:Name="ImageTest"
+		  HorizontalOptions="End"
+		  VerticalOptions="End"
+		  Source="bg_app_intro.png" />
+
+		<!-- Background Image -->
+		<common:CustomImage x:Name="ImageTest2"
+		  HorizontalOptions="End"
+		  VerticalOptions="Start"
+		Scale="0.9"
+		Opacity="0"
+		  Source="bg_app_intro.png" />
+
+		<!-- Page -->
+		<Grid RowSpacing="0" ColumnSpacing="0"
+			VerticalOptions="FillAndExpand">
+
+			<!-- Idiom Specific Params -->
+			<Grid.HorizontalOptions>
+				<OnIdiom x:TypeArguments="LayoutOptions">
+					<OnIdiom.Phone>FillAndExpand</OnIdiom.Phone>
+					<OnIdiom.Tablet>Center</OnIdiom.Tablet>
+				</OnIdiom>
+			</Grid.HorizontalOptions>
+			<Grid.WidthRequest>
+				<OnIdiom x:TypeArguments="x:Double">
+					<OnIdiom.Tablet>480</OnIdiom.Tablet>
+				</OnIdiom>
+			</Grid.WidthRequest>
+
+			<Grid.RowDefinitions>
+				<!-- Sauda Logo -->
+				<RowDefinition Height="135" />
+				<!-- Intro Header -->
+				<RowDefinition Height="auto" />
+				<!-- Spacing -->
+				<RowDefinition Height="28" />
+				<!-- Intro Text -->
+				<RowDefinition Height="auto" />
+				<!-- Spacing -->
+				<RowDefinition Height="28" />
+				<!-- Continue Button -->
+				<RowDefinition Height="40" />
+				<!-- Spacing -->
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<!-- Left Margin -->
+				<ColumnDefinition Width="15" />
+				<!-- Content -->
+				<ColumnDefinition Width="*" />
+				<!-- Right Margin -->
+				<ColumnDefinition Width="15" />
+			</Grid.ColumnDefinitions>
+
+			<!-- Sauda Logo -->
+			<common:CustomImage Grid.Column="1"
+			  HorizontalOptions="Center"
+			  VerticalOptions="Center"
+			  Source="ic_sauda_logo_large.png" />
+
+			<!-- Intro Header -->
+			<common:CustomLabel Grid.Row="1" Grid.Column="1"
+			  FontSize="15"
+			  XAlign="Center"
+			  Text="{x:Static app:AppResources.AppIntroPageHeader}"
+			  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+			  CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+			<!-- Intro Text -->
+			<common:CustomLabel Grid.Row="3" Grid.Column="1"
+			  FontSize="15"
+			  XAlign="Center"
+			  Text="{x:Static app:AppResources.AppIntroPageText}"
+			  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+			  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+			<!-- Button -->
+			<common:CustomButton Grid.Row="5" Grid.Column="1"
+			  HorizontalOptions="FillAndExpand"
+			  VerticalOptions="FillAndExpand"
+			  FontSize="15"
+			  BorderRadius="2"
+			  Clicked="ContinueButton_Click"
+			  Text="{x:Static app:AppResources.OK}"
+			  TextColor="{x:Static resources:ColorResources.TextColorLight}"
+			  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+			  BackgroundColor="{x:Static resources:ColorResources.ANFGreen}" />
+
+		</Grid>
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView"
+		  IsVisible="False"
+		  VerticalOptions="FillAndExpand"
+		  HorizontalOptions="FillAndExpand"
+		  BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+			  HorizontalOptions="Center"
+			  VerticalOptions="Center"
+			  IsRunning="True"
+			  Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>
+=======
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+  xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+  xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+  xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+  xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+  xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+  x:Class="ANFAPP.Pages.UserLogin.AppIntroPage">
+
+	<Grid>
+		<!-- Background Image -->
+		<common:CustomImage x:Name="ImageTest"
+		  HorizontalOptions="End"
+		  VerticalOptions="End"
+		  Source="bg_app_intro.png" />
+
+		<!-- Background Image -->
+		<common:CustomImage x:Name="ImageTest2"
+		  HorizontalOptions="End"
+		  VerticalOptions="Start"
+		Scale="0.9"
+		Opacity="0"
+		  Source="bg_app_intro.png" />
+
+		<!-- Page -->
+		<Grid RowSpacing="0" ColumnSpacing="0"
+			VerticalOptions="FillAndExpand">
+
+			<!-- Idiom Specific Params -->
+			<Grid.HorizontalOptions>
+				<OnIdiom x:TypeArguments="LayoutOptions">
+					<OnIdiom.Phone>FillAndExpand</OnIdiom.Phone>
+					<OnIdiom.Tablet>Center</OnIdiom.Tablet>
+				</OnIdiom>
+			</Grid.HorizontalOptions>
+			<Grid.WidthRequest>
+				<OnIdiom x:TypeArguments="x:Double">
+					<OnIdiom.Tablet>480</OnIdiom.Tablet>
+				</OnIdiom>
+			</Grid.WidthRequest>
+
+			<Grid.RowDefinitions>
+				<!-- Sauda Logo -->
+				<RowDefinition Height="135" />
+				<!-- Intro Header -->
+				<RowDefinition Height="auto" />
+				<!-- Spacing -->
+				<RowDefinition Height="28" />
+				<!-- Intro Text -->
+				<RowDefinition Height="auto" />
+				<!-- Spacing -->
+				<RowDefinition Height="28" />
+				<!-- Continue Button -->
+				<RowDefinition Height="40" />
+				<!-- Spacing -->
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<!-- Left Margin -->
+				<ColumnDefinition Width="15" />
+				<!-- Content -->
+				<ColumnDefinition Width="*" />
+				<!-- Right Margin -->
+				<ColumnDefinition Width="15" />
+			</Grid.ColumnDefinitions>
+
+			<!-- Sauda Logo -->
+			<common:CustomImage Grid.Column="1"
+			  HorizontalOptions="Center"
+			  VerticalOptions="Center"
+			  Source="ic_sauda_logo_large.png" />
+
+			<!-- Intro Header -->
+			<common:CustomLabel Grid.Row="1" Grid.Column="1"
+			  FontSize="15"
+			  XAlign="Center"
+			  Text="{x:Static app:AppResources.AppIntroPageHeader}"
+			  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+			  CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+			<!-- Intro Text -->
+			<common:CustomLabel Grid.Row="3" Grid.Column="1"
+			  FontSize="15"
+			  XAlign="Center"
+			  Text="{x:Static app:AppResources.AppIntroPageText}"
+			  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+			  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+			<!-- Button -->
+			<common:CustomButton Grid.Row="5" Grid.Column="1"
+			  HorizontalOptions="FillAndExpand"
+			  VerticalOptions="FillAndExpand"
+			  FontSize="15"
+			  BorderRadius="2"
+			  Clicked="ContinueButton_Click"
+			  Text="{x:Static app:AppResources.OK}"
+			  TextColor="{x:Static resources:ColorResources.TextColorLight}"
+			  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+			  BackgroundColor="{x:Static resources:ColorResources.ANFGreen}" />
+
+		</Grid>
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView"
+		  IsVisible="False"
+		  VerticalOptions="FillAndExpand"
+		  HorizontalOptions="FillAndExpand"
+		  BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+			  HorizontalOptions="Center"
+			  VerticalOptions="Center"
+			  IsRunning="True"
+			  Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</ANFPage>
+>>>>>>> maintenance_phase5_azure_notification

@@ -1,0 +1,430 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.DosageScheduler.AddDosingSchedulePage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Form -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Add Form -->
+		<ScrollView Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+			<StackLayout IsVisible="false" x:Name="AddForm"
+				Padding="15" Spacing="12"
+				Orientation="Vertical" >
+
+				<!-- Description Label -->
+				<common:CustomLabel
+					FontSize="15"
+					Text="{x:Static app:AppResources.AddDosingScheduleDescriptionLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Description Input -->
+				<common:CustomEntry HeightRequest="40"
+					HorizontalOptions="FillAndExpand"
+					FontS="15"
+					CustomPadding="10, 0"
+					BackgroundResource="bg_input.png"
+					Text="{Binding Description, Mode=TwoWay}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Medicine Label -->
+				<common:CustomLabel HeightRequest="25"
+					YAlign="End"
+					FontSize="15"
+					Text="{x:Static app:AppResources.AddDosingScheduleMedicineLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Pick Medicine Button -->
+				<Grid Grid.RowSpacing="0" Grid.ColumnSpacing="0" HeightRequest="40"
+          			IsVisible="{Binding Medicine, Converter={x:Static converters:ConverterResources.Nullable}}" >
+					<Grid.ColumnDefinitions>
+						<!-- Icon -->
+						<ColumnDefinition Width="45" />
+						<!-- Text -->
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+
+					<!-- Button -->
+					<common:CustomButton Grid.ColumnSpan="2"
+            			BorderWidth="1"
+            			BorderRadius="1"
+            			Clicked="OnMedicineButtonClicked"
+            			BackgroundColor="Transparent"
+            			BorderColor="{x:Static resources:ColorResources.ANFDarkerBlue}"
+					/>
+
+					<!-- Icon -->
+					<common:CustomImage WidthRequest="14" HeightRequest="14"
+            			InputTransparent="True"
+            			HorizontalOptions="Center"
+            			VerticalOptions="Center"
+            			Source="ic_plus_blue.png" />
+
+					<!-- Label -->
+					<common:CustomLabel Grid.Column="1"
+            			FontSize="15"
+            			HorizontalOptions="Start"
+            			VerticalOptions="Center"
+            			InputTransparent="True"
+            			TextColor="{x:Static resources:ColorResources.ANFDarkerBlue}"
+            			CustomFont="{x:Static resources:FontResources.RegularFont}"
+            			Text="{x:Static app:AppResources.AddMedicineButtonCaps}" />
+				</Grid>
+
+				<!-- OLD CODE
+				<common:CustomButton HeightRequest="40"
+					HorizontalOptions="FillAndExpand"
+					FontSize="15"
+					BorderRadius="2"
+					TextAlignment="Left"
+					Clicked="OnMedicineButtonClicked"
+					Text="{x:Static app:AppResources.AddDosingScheduleMedicineButton}"
+					TextColor="{x:Static resources:ColorResources.TextColorLight}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					BackgroundColor="{x:Static resources:ColorResources.ANFLightBlue}"
+					IsVisible="{Binding Medicine, Converter={x:Static converters:ConverterResources.Nullable}}" /> -->
+
+				<!-- Switch Medicine Layout -->
+				<StackLayout Spacing="5" Orientation="Vertical"
+                     IsVisible="{Binding Medicine, Converter={x:Static converters:ConverterResources.NotNullable}}"
+					 >
+					<!-- Switch Medicine Button -->
+					<Grid Grid.RowSpacing="0" Grid.ColumnSpacing="0" HeightRequest="40">
+						<Grid.ColumnDefinitions>
+							<!-- Icon -->
+							<ColumnDefinition Width="45" />
+							<!-- Text -->
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+
+						<!-- Button -->
+						<common:CustomButton Grid.Column="0" Grid.ColumnSpan="2"
+							BorderWidth="1"
+							BorderRadius="1"
+							Clicked="OnMedicineButtonClicked"
+							BackgroundColor="Transparent"
+							BorderColor="{x:Static resources:ColorResources.ANFDarkerBlue}"
+              		/>
+
+						<!-- Icon -->
+						<common:CustomImage Grid.Column="0" WidthRequest="14" HeightRequest="14"
+							InputTransparent="True"
+							HorizontalOptions="Center"
+							VerticalOptions="Center"
+							Source="ic_switch_drug.png" />
+
+						<!-- Label -->
+						<common:CustomLabel Grid.Column="1"
+							FontSize="15"
+							HorizontalOptions="Start"
+							VerticalOptions="Center"
+							InputTransparent="True"
+							TextColor="{x:Static resources:ColorResources.ANFDarkerBlue}"
+							CustomFont="{x:Static resources:FontResources.RegularFont}"
+							Text="{x:Static app:AppResources.AddDosingScheduleSwitchMedicineButton}" />
+					</Grid>
+
+					<!-- Picked Medicine -->
+					<StackLayout Orientation="Horizontal" HeightRequest="40" BackgroundColor="{x:Static resources:ColorResources.ANFLightGrey}">
+						<!-- The awesome iOS 7 compatible padding -->
+						<ContentView WidthRequest="10" />
+
+						<common:CustomLabel
+							VerticalOptions="CenterAndExpand"
+							HorizontalOptions="FillAndExpand"
+							FontSize="15"
+							Text="{Binding Medicine.FullDescription}"
+							TextColor="{x:Static resources:ColorResources.TextColorDark}"
+							CustomFont="{x:Static resources:FontResources.RegularFont}" />
+					</StackLayout>
+				</StackLayout>
+
+				<!-- Date and Hour Inputs -->
+				<Grid HorizontalOptions="FillAndExpand"
+					Grid.RowSpacing="10" Grid.ColumnSpacing="10">
+
+					<Grid.RowDefinitions>
+						<RowDefinition Height="auto" />
+						<RowDefinition Height="auto" />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+
+					<!-- Date Label -->
+					<common:CustomLabel HeightRequest="25"
+						YAlign="End"
+						FontSize="15"
+						Text="{x:Static app:AppResources.AddDosingScheduleDateLabel}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+					<!-- Hour Label -->
+					<common:CustomLabel HeightRequest="25" Grid.Column="1"
+						YAlign="End"
+						FontSize="15"
+						Text="{x:Static app:AppResources.AddDosingScheduleHourLabel}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+					<!-- Date Input -->
+					<common:CustomDatePicker  Grid.Row="1"
+						HeightRequest="40"
+						FontSize="15"
+						CustomPadding="10, 0"
+						Format="dd/MM/yyyy"
+						BackgroundResource="bg_input.png"
+						HorizontalOptions="FillAndExpand"
+						Date="{Binding Date, Mode=TwoWay}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+					<!-- Hour Input -->
+					<common:CustomTimePicker Grid.Row="1" Grid.Column="1"
+						HeightRequest="40"
+						FontSize="15"
+						CustomPadding="10, 0"
+						BackgroundResource="bg_input.png"
+						HorizontalOptions="FillAndExpand"
+						Time="{Binding Time, Mode=TwoWay}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}" />
+				</Grid>
+
+				<!-- Interval Label -->
+				<common:CustomLabel HeightRequest="25"
+					YAlign="End"
+					FontSize="15"
+					IsVisible="{Binding ShowScheduleOptions}"
+					Text="{x:Static app:AppResources.AddDosingScheduleIntervalLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Interval Inputs -->
+				<StackLayout Orientation="Horizontal" Spacing="10"
+					IsVisible="{Binding ShowScheduleOptions}">
+					
+
+					<StackLayout Orientation="Horizontal" Spacing="10" HeightRequest="40">
+						<StackLayout.GestureRecognizers>
+							<TapGestureRecognizer Tapped="OnIntervalSwitchClicked" />
+						</StackLayout.GestureRecognizers>
+											
+						<!-- Days Label -->
+						<common:CustomLabel HeightRequest="25"
+							YAlign="End"
+							FontSize="15"
+							VerticalOptions="Center"
+							Text="{x:Static app:AppResources.AddDosingScheduleDaysLabel}"
+							TextColor="{x:Static resources:ColorResources.TextColorDark}"
+							CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+						<!-- Type Switch -->
+						<common:Toggler WidthRequest="45"
+							HeightRequest="25"
+							State="{Binding HourInterval}"
+							IsEnabled="False"
+							InputTransparent="True"
+							VerticalOptions="Center" />
+
+						<!-- Hours Label -->
+						<common:CustomLabel HeightRequest="25"
+							YAlign="End"
+							FontSize="15"
+							VerticalOptions="Center"
+							Text="{x:Static app:AppResources.AddDosingScheduleHoursLabel}"
+							TextColor="{x:Static resources:ColorResources.TextColorDark}"
+							CustomFont="{x:Static resources:FontResources.RegularFont}" />
+					</StackLayout>
+
+					<!-- Interval Input -->
+					<common:CustomEntry HeightRequest="40"
+						FontS="15"
+						MaxLength="3"
+						Keyboard="Numeric"
+						AllowDecimals="False"
+						CustomPadding="10, 0"
+						BackgroundResource="bg_input.png"
+						HorizontalOptions="FillAndExpand"
+						Text="{Binding Interval, Mode=TwoWay}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				</StackLayout>
+
+				<!-- Duration Label -->
+				<common:CustomLabel HeightRequest="25"
+					YAlign="End"
+					FontSize="15"
+					IsVisible="{Binding ShowScheduleOptions}"									
+					Text="{x:Static app:AppResources.AddDosingScheduleDurationLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Duration Inputs -->
+				<StackLayout Orientation="Horizontal" Spacing="10"
+					IsVisible="{Binding ShowScheduleOptions}">
+
+					<!-- Duration Input-->
+					<common:CustomEntry WidthRequest="75" HeightRequest="40"
+						FontS="15"
+						MaxLength="3"
+						Keyboard="Numeric"
+						AllowDecimals="False"
+						CustomPadding="10, 0"
+						BackgroundResource="bg_input.png"
+						Text="{Binding Duration, Mode=TwoWay}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}" /> 
+
+					<!-- Duration Type -->
+					<common:BindablePicker HeightRequest="40"
+						HorizontalOptions="FillAndExpand"
+						FontS="15"
+						CustomPadding="10, 0"
+						AutoSelectFirst="True"
+						BackgroundResource="bg_input.png"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						SelectedItem="{Binding DurationType, Mode=TwoWay}"
+						ItemsSource="{Binding DurationTypes}" />
+
+				</StackLayout>
+
+				<!-- Quantity Label -->
+				<common:CustomLabel HeightRequest="25"
+					YAlign="End"
+					FontSize="15"
+					IsVisible="{Binding ShowScheduleOptions}"
+					Text="{x:Static app:AppResources.AddDosingScheduleQuantityLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Quantity Input -->
+				<StackLayout Orientation="Horizontal" Spacing="10"
+					IsVisible="{Binding ShowScheduleOptions}">
+
+					<!-- Quantity Input -->
+					<common:CustomEntry WidthRequest="75" HeightRequest="40"
+						FontS="15"
+						MaxLength="3"
+						Keyboard="Numeric"
+						CustomPadding="10, 0"
+						BackgroundResource="bg_input.png"
+						Text="{Binding Quantity, Mode=TwoWay}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+					<!-- Quantity Unit 
+					<common:CustomEntry HeightRequest="40"
+						IsEnabled="False"
+						FontS="15"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						CustomPadding="10, 0"
+						Text="{Binding Medicine.PharmaceuticalUnit}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						/>-->
+				</StackLayout>
+
+				<!-- Notes Label -->
+				<common:CustomLabel HeightRequest="25"
+					YAlign="End"
+					FontSize="15"
+					Text="{x:Static app:AppResources.AddDosingScheduleNotesLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Notes Input -->
+				<common:CustomEditor HeightRequest="80"
+					FontSize="15" 
+					CustomPadding="10, 10"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					BackgroundResource="bg_input.png"
+					Text="{Binding Notes, Mode=TwoWay}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					CustomBorderColor="{x:Static resources:ColorResources.APPBackgroundDark}" />
+
+				<Grid HorizontalOptions="FillAndExpand" Grid.ColumnSpacing="10"
+					Padding="0, 10, 0, 0">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+
+					<!-- Cancel Button -->
+					<common:CustomButton HeightRequest="40"
+						HorizontalOptions="FillAndExpand"
+						FontSize="15"
+						BorderWidth="1"
+						BorderRadius="1"
+						Clicked="OnCancelButtonClicked"
+						Text="{x:Static app:AppResources.EditDosingScheduleCancelButton}"
+						BorderColor="{x:Static resources:ColorResources.ANFDarkerBlue}"
+						TextColor="{x:Static resources:ColorResources.ANFDarkerBlue}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						BackgroundColor="{x:Static resources:ColorResources.ANFWhite}" />
+
+					<!-- Submit Button -->
+					<common:CustomButton Grid.Column="1"
+						HeightRequest="40"
+						HorizontalOptions="FillAndExpand"
+						FontSize="15"
+						BorderWidth="1"
+            			BorderRadius="1"
+            			BorderColor="{x:Static resources:ColorResources.ANFDarkerBlue}"
+						Clicked="OnSubmitButtonClicked"
+						Text="{x:Static app:AppResources.AddDosingScheduleSubmitButton}"
+						TextColor="{x:Static resources:ColorResources.ANFWhite}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						BackgroundColor="{x:Static resources:ColorResources.ANFDarkerBlue}" />
+				</Grid>
+			</StackLayout>
+		</ScrollView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>

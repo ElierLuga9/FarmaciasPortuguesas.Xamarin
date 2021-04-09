@@ -1,0 +1,812 @@
+<<<<<<< HEAD
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+  xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+  xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+  xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Charts"
+  xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+  xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+  xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+  x:Class="ANFAPP.Pages.BiometricData.HeightPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<ScrollView Grid.Row="1" Grid.Column="1" Orientation="Vertical" IsClippedToBounds="False">
+
+			<Grid RowSpacing="0" ColumnSpacing="0">
+				<Grid.RowDefinitions>
+					<!-- Last Updated Title -->
+					<RowDefinition Height="auto" />
+					<!-- Last Updated Value -->
+					<RowDefinition Height="auto" />
+					<!-- Biometric Gauge -->
+					<RowDefinition Height="auto" />
+					<!-- Inputs Top Title -->
+					<RowDefinition Height="40" />
+					<!-- Inputs Top -->
+					<RowDefinition Height="40" />
+					<!-- Inputs Bottom Title -->
+					<RowDefinition Height="40" />
+					<!-- Inputs Bottom -->
+					<RowDefinition Height="40" />
+					<!-- Spacing -->
+					<RowDefinition Height="20" />
+					<!-- Send Button -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="20" />
+
+					<!-- Table/Graph Switch -->
+					<RowDefinition Height="50" />
+					<!-- Separator -->
+					<RowDefinition Height="5" />
+					<!-- Table/Graph -->
+					<RowDefinition Height="auto" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<!-- Left Margin -->
+					<ColumnDefinition Width="15" />
+					<!-- Left Row -->
+					<ColumnDefinition Width="*" />
+					<!-- Spacing -->
+					<ColumnDefinition Width="8" />
+					<!-- Right Row -->
+					<ColumnDefinition Width="*" />
+					<!-- Right Margin -->
+					<ColumnDefinition Width="15" />
+				</Grid.ColumnDefinitions>
+
+				<Grid Grid.Row="0" Grid.ColumnSpan="5" Padding="0, 17, 0, 0">
+
+					<!-- Last Updated Title -->
+					<common:CustomLabel
+					  FontSize="15"
+					  HorizontalOptions="Center"
+					  Text="{x:Static app:AppResources.BiometricLastUpdated}"
+					  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					  IsVisible="{Binding LastEntry, Converter={x:Static converters:ConverterResources.NotNullable}}" />
+				</Grid>
+				
+				<!-- Last Updated Value -->
+				<common:CustomLabel Grid.Row="1" Grid.ColumnSpan="5"
+				  FontSize="15"
+				  HorizontalOptions="Center"
+				  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  Text="{Binding LastEntry.CreationDate, Converter={x:Static converters:ConverterResources.StringToShortDate}}"
+				  IsVisible="{Binding LastEntry, Converter={x:Static converters:ConverterResources.NotNullable}}" />
+
+				<!-- Biometric Gauge -->
+				<views:BiometricGauge Grid.Row="2" Grid.ColumnSpan="5"
+				  BiometricValue="{Binding LastEntryValue}"
+				  BiometricUnit="{x:Static app:AppResources.HeightUnit}"
+				  BiometricEvaluator="{Binding EntryEvaluator}" />
+
+				<!-- Value Label -->
+				<common:CustomLabel Grid.Row="5" Grid.Column="1"
+				  VerticalOptions="Center"
+				  FontSize="15"
+				  Text="{x:Static app:AppResources.HeightValueLabel}"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+
+				<!-- Time Label -->
+				<common:CustomLabel Grid.Row="3" Grid.Column="3"
+				  VerticalOptions="Center"
+				  FontSize="15"
+				  Text="{x:Static app:AppResources.BiometricTimeLabel}"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+
+				<!-- Date Label -->
+				<common:CustomLabel Grid.Row="3" Grid.Column="1"
+				  VerticalOptions="Center"
+				  FontSize="15"
+				  Text="{x:Static app:AppResources.BiometricDateLabel}"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+
+				<!-- Value Input -->
+				<common:CustomEntry Grid.Row="6" Grid.Column="1" x:Name="ValueInput"
+				  HorizontalOptions="FillAndExpand"
+				  VerticalOptions="FillAndExpand"
+				  Keyboard="Numeric"
+				  MaxLength="6"
+				  FontSize="15"
+				  AllowDecimals="True"
+				  CustomPadding="10, 0"
+				  BackgroundResource="bg_input.png"
+				  Text="{Binding ValueInput, Mode=TwoWay, Converter={x:Static converters:ConverterResources.ZeroToNull}}"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Date Input -->
+				<common:CustomDatePicker Grid.Row="4" Grid.Column="1"
+				  HorizontalOptions="FillAndExpand"
+				  VerticalOptions="FillAndExpand"
+				  FontSize="15"
+				  CustomPadding="10, 0"
+				  BackgroundResource="bg_input.png"
+				  Date="{Binding DateInput, Mode=TwoWay}"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Time Input -->
+				<common:CustomTimePicker Grid.Row="4" Grid.Column="3"
+				  HorizontalOptions="FillAndExpand"
+				  VerticalOptions="FillAndExpand"
+				  FontSize="15"
+				  CustomPadding="10, 0"
+				  BackgroundResource="bg_input.png"
+				  Time="{Binding TimeInput, Mode=TwoWay}"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Submit Button -->
+				<common:CustomButton Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3"
+				  HorizontalOptions="FillAndExpand"
+				  VerticalOptions="FillAndExpand"
+				  FontSize="15"
+				  BorderRadius="2"
+					HeightRequest="40"
+				  Clicked="SubmitButton_Clicked"
+				  Text="{x:Static app:AppResources.BiometricSubmitButton}"
+				  TextColor="{x:Static resources:ColorResources.TextColorLight}"
+				  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+				  BackgroundColor="{x:Static resources:ColorResources.ANFGreen}" />
+
+				<!-- Table/Graph Switch -->
+				<StackLayout Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="3"
+				  Orientation="Horizontal" Spacing="11"
+				  VerticalOptions="Center"
+				  IsVisible="{Binding LastEntry, Converter={x:Static converters:ConverterResources.NotNullable}}" >
+
+					<!-- Table Label -->
+					<common:CustomLabel
+					  VerticalOptions="Center"
+					  FontSize="15"
+					  Text="{x:Static app:AppResources.BiometricTableLabel}"
+					  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+
+					<!-- Switch -->
+					<common:Toggler
+					  HorizontalOptions="Center"
+					  VerticalOptions="Center"
+							  WidthRequest="38"
+							  HeightRequest="24"
+					  State="{Binding IsGraphToggled}"/>
+
+					<!-- Graph Label -->
+					<common:CustomLabel
+					  VerticalOptions="Center"
+					  FontSize="15"
+					  Text="{x:Static app:AppResources.BiometricGraphLabel}"
+					  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+
+				</StackLayout>
+
+				<!-- Switch Button -->
+				<common:CustomButton Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="3"
+				  HorizontalOptions="FillAndExpand"
+				  BackgroundColor="Transparent"
+				  Clicked="OnSwitch_Clicked"/>
+
+				<!-- Separator -->
+				<BoxView Grid.Row="11" Grid.ColumnSpan="5"
+				  BackgroundColor="{x:Static resources:ColorResources.APPBackgroundDark}"
+				  IsVisible="{Binding LastEntry, Converter={x:Static converters:ConverterResources.NotNullable}}" />
+
+				<!-- Empty Space, so the page doesn't scroll up during the table/chart transition -->
+				<Grid Grid.Row="12" Grid.ColumnSpan="5"
+					HeightRequest="215"
+					IsVisible="{Binding HasData}" />
+
+				<!-- Table -->
+				<Grid Grid.Row="12" Grid.ColumnSpan="5"
+				  Grid.RowSpacing="0" Grid.ColumnSpacing="15"
+				  IsVisible="{Binding IsTableVisible}" >
+
+					<Grid.RowDefinitions>
+						<!-- Table Header -->
+						<RowDefinition Height="54" />
+						<!-- Separator -->
+						<RowDefinition Height="1" />
+						<!-- Table Contents -->
+						<RowDefinition Height="auto" />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<!-- Left Column -->
+						<ColumnDefinition Width="0" />
+						<!-- Date Column -->
+						<ColumnDefinition Width="*" />
+						<!-- Value Column -->
+						<ColumnDefinition Width="70" />
+						<!-- Remove Button -->
+						<ColumnDefinition Width="40" />
+					</Grid.ColumnDefinitions>
+
+					<!-- Date Label -->
+					<common:CustomLabel Grid.Column="1"
+					  HorizontalOptions="Start"
+					  VerticalOptions="Center"
+					  FontSize="12"
+					  Text="{x:Static app:AppResources.BiometricDataTableLabel}"
+					  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+
+					<!-- Value Label -->
+					<common:CustomLabel Grid.Column="2"
+					  HorizontalOptions="Start"
+					  VerticalOptions="Center"
+					  FontSize="12"
+					  Text="{x:Static app:AppResources.HeightUnit}"
+					  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+
+					<!-- Separator -->
+					<BoxView Grid.Row="1" Grid.ColumnSpan="4"
+					  BackgroundColor="{x:Static resources:ColorResources.APPBackgroundDark}"/>
+
+					<!-- Table -->
+					<common:ANFRepeaterView Grid.Row="2" Grid.ColumnSpan="4"
+					  ItemsSource="{Binding Entries}"
+					  IsVisible="{Binding IsTableVisible, Converter={x:Static converters:ConverterResources.NotNullable}}" >
+						<common:ANFRepeaterView.ItemTemplate>
+							<DataTemplate>
+								<Grid HeightRequest="48" Grid.RowSpacing="0" Grid.ColumnSpacing="15" Padding="15, 0, 0, 0"
+									BackgroundColor="{Binding Order, Converter={x:Static converters:ConverterResources.TableOrderBackground}}">
+									<Grid.ColumnDefinitions>
+										<!-- Date Column -->
+										<ColumnDefinition Width="auto" />
+										<!-- Source Column -->
+										<ColumnDefinition Width="16" />
+										<!-- Empty Spacing -->
+										<ColumnDefinition Width="*" />
+										<!-- Value Column -->
+										<ColumnDefinition Width="70" />
+										<!-- Remove Button -->
+										<ColumnDefinition Width="40" />
+									</Grid.ColumnDefinitions>
+
+									<!-- Date Label -->
+									<common:CustomLabel Grid.Column="0"
+									  HorizontalOptions="Start"
+									  VerticalOptions="Center"
+									  FontSize="15"
+									  Text="{Binding CreationDate, Converter={x:Static converters:ConverterResources.StringToMiniDate}}"
+									  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+
+									<common:CustomImage WidthRequest="16" HeightRequest="16" Grid.Column="1"
+									 HorizontalOptions="Center"
+									 VerticalOptions="Center"
+									 Source="ic_dosing_schedule_anf_item"
+									 IsVisible="{Binding PharmacyFlag}" />
+
+									<!-- Value Label -->
+									<common:CustomLabel Grid.Column="3"
+									  HorizontalOptions="Start"
+									  VerticalOptions="Center"
+									  FontSize="15"
+									  Text="{Binding Value}"
+									  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+
+									<!-- Delete Bin Image /hack -->
+									<common:CustomImage Grid.Column="4"
+									  VerticalOptions="Center"
+									  HorizontalOptions="Center"
+									  Source="bt_trashbin" />
+
+									<!-- Delete Bin -->
+									<common:CustomButton  Grid.Column="4"
+									  HorizontalOptions="FillAndExpand"
+									  VerticalOptions="FillAndExpand"
+									  BackgroundColor="Transparent"
+									  Clicked="RemoveEntry_Click" />
+
+								</Grid>
+							</DataTemplate>
+						</common:ANFRepeaterView.ItemTemplate>
+					</common:ANFRepeaterView>
+				</Grid>
+
+				<!-- Progress Chart -->
+				<Frame Grid.Row="12" Grid.ColumnSpan="5"
+				  HorizontalOptions="FillAndExpand"
+				  Padding="11, 17, 11, 17"
+				  HeightRequest="215"
+							HasShadow="False"
+				  IsVisible="{Binding IsGraphVisible}">
+
+					<ig:XFDataChart
+					  HorizontalOptions="FillAndExpand"
+					  VerticalOptions="FillAndExpand"
+					  HorizontalZoomable="True"
+					  VerticalZoomable="False" >
+
+						<ig:XFDataChart.Axes>
+
+							<ig:NumericYAxis x:Name="yAxis"
+							  MaximumValue="{Binding MaxValue}"
+							  MinimumValue="{Binding MinValue}"
+							  Interval="{Binding ValueInterval}"
+							  LabelTextColor="#A6A6A6"
+							  ActualMajorStroke="#A6A6A6"
+							  StrokeThickness="0"
+							  MinorStrokeThickness="0"
+							  MajorStrokeThickness="1"
+							  IsLogarithmic="False" />
+
+							<ig:CategoryXAxis x:Name="xAxis"
+							  FormatLabel="GraphDateTime_FormatLabel"
+							  ItemsSource="{Binding Entries}"
+							  Interval="{Binding DateInterval}"
+							  LabelMargin="0, 10, 10, 0"
+							  Label="CreationDate"
+							  LabelTextColor="#A6A6A6"
+							  Stroke="#A6A6A6"
+							  StrokeThickness="1"
+							  MinorStrokeThickness="0"
+							  MajorStrokeThickness="0"
+							  IsInverted="True" />
+
+						</ig:XFDataChart.Axes>
+						<ig:XFDataChart.Series>
+
+							<ig:LineSeries ItemsSource="{Binding Entries}"
+							  XAxis="{x:Reference xAxis}"
+							  YAxis="{x:Reference yAxis}"
+							  Brush="#76bd22"
+							  MarkerType="Unset"
+							  ValueMemberPath="Value"
+							  Thickness="5" />
+
+						</ig:XFDataChart.Series>
+					</ig:XFDataChart>
+				</Frame>
+			</Grid>
+		</ScrollView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>
+=======
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+  xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+  xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+  xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Charts"
+  xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+  xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+  xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+  x:Class="ANFAPP.Pages.BiometricData.HeightPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<ScrollView Grid.Row="1" Grid.Column="1" Orientation="Vertical" IsClippedToBounds="False">
+
+			<Grid RowSpacing="0" ColumnSpacing="0">
+				<Grid.RowDefinitions>
+					<!-- Last Updated Title -->
+					<RowDefinition Height="auto" />
+					<!-- Last Updated Value -->
+					<RowDefinition Height="auto" />
+					<!-- Biometric Gauge -->
+					<RowDefinition Height="auto" />
+					<!-- Inputs Top Title -->
+					<RowDefinition Height="40" />
+					<!-- Inputs Top -->
+					<RowDefinition Height="40" />
+					<!-- Inputs Bottom Title -->
+					<RowDefinition Height="40" />
+					<!-- Inputs Bottom -->
+					<RowDefinition Height="40" />
+					<!-- Spacing -->
+					<RowDefinition Height="20" />
+					<!-- Send Button -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="20" />
+
+					<!-- Table/Graph Switch -->
+					<RowDefinition Height="50" />
+					<!-- Separator -->
+					<RowDefinition Height="5" />
+					<!-- Table/Graph -->
+					<RowDefinition Height="auto" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<!-- Left Margin -->
+					<ColumnDefinition Width="15" />
+					<!-- Left Row -->
+					<ColumnDefinition Width="*" />
+					<!-- Spacing -->
+					<ColumnDefinition Width="8" />
+					<!-- Right Row -->
+					<ColumnDefinition Width="*" />
+					<!-- Right Margin -->
+					<ColumnDefinition Width="15" />
+				</Grid.ColumnDefinitions>
+
+				<Grid Grid.Row="0" Grid.ColumnSpan="5" Padding="0, 17, 0, 0">
+
+					<!-- Last Updated Title -->
+					<common:CustomLabel
+					  FontSize="15"
+					  HorizontalOptions="Center"
+					  Text="{x:Static app:AppResources.BiometricLastUpdated}"
+					  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					  IsVisible="{Binding LastEntry, Converter={x:Static converters:ConverterResources.NotNullable}}" />
+				</Grid>
+				
+				<!-- Last Updated Value -->
+				<common:CustomLabel Grid.Row="1" Grid.ColumnSpan="5"
+				  FontSize="15"
+				  HorizontalOptions="Center"
+				  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  Text="{Binding LastEntry.CreationDate, Converter={x:Static converters:ConverterResources.StringToShortDate}}"
+				  IsVisible="{Binding LastEntry, Converter={x:Static converters:ConverterResources.NotNullable}}" />
+
+				<!-- Biometric Gauge -->
+				<views:BiometricGauge Grid.Row="2" Grid.ColumnSpan="5"
+				  BiometricValue="{Binding LastEntryValue}"
+				  BiometricUnit="{x:Static app:AppResources.HeightUnit}"
+				  BiometricEvaluator="{Binding EntryEvaluator}" />
+
+				<!-- Value Label -->
+				<common:CustomLabel Grid.Row="5" Grid.Column="1"
+				  VerticalOptions="Center"
+				  FontSize="15"
+				  Text="{x:Static app:AppResources.HeightValueLabel}"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+
+				<!-- Time Label -->
+				<common:CustomLabel Grid.Row="3" Grid.Column="3"
+				  VerticalOptions="Center"
+				  FontSize="15"
+				  Text="{x:Static app:AppResources.BiometricTimeLabel}"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+
+				<!-- Date Label -->
+				<common:CustomLabel Grid.Row="3" Grid.Column="1"
+				  VerticalOptions="Center"
+				  FontSize="15"
+				  Text="{x:Static app:AppResources.BiometricDateLabel}"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+
+				<!-- Value Input -->
+				<common:CustomEntry Grid.Row="6" Grid.Column="1" x:Name="ValueInput"
+				  HorizontalOptions="FillAndExpand"
+				  VerticalOptions="FillAndExpand"
+				  Keyboard="Numeric"
+				  MaxLength="6"
+				  FontSize="15"
+				  AllowDecimals="True"
+				  CustomPadding="10, 0"
+				  BackgroundResource="bg_input.png"
+				  Text="{Binding ValueInput, Mode=TwoWay, Converter={x:Static converters:ConverterResources.ZeroToNull}}"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Date Input -->
+				<common:CustomDatePicker Grid.Row="4" Grid.Column="1"
+				  HorizontalOptions="FillAndExpand"
+				  VerticalOptions="FillAndExpand"
+				  FontSize="15"
+				  CustomPadding="10, 0"
+				  BackgroundResource="bg_input.png"
+				  Date="{Binding DateInput, Mode=TwoWay}"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Time Input -->
+				<common:CustomTimePicker Grid.Row="4" Grid.Column="3"
+				  HorizontalOptions="FillAndExpand"
+				  VerticalOptions="FillAndExpand"
+				  FontSize="15"
+				  CustomPadding="10, 0"
+				  BackgroundResource="bg_input.png"
+				  Time="{Binding TimeInput, Mode=TwoWay}"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Submit Button -->
+				<common:CustomButton Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3"
+				  HorizontalOptions="FillAndExpand"
+				  VerticalOptions="FillAndExpand"
+				  FontSize="15"
+				  BorderRadius="2"
+					HeightRequest="40"
+				  Clicked="SubmitButton_Clicked"
+				  Text="{x:Static app:AppResources.BiometricSubmitButton}"
+				  TextColor="{x:Static resources:ColorResources.TextColorLight}"
+				  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+				  BackgroundColor="{x:Static resources:ColorResources.ANFGreen}" />
+
+				<!-- Table/Graph Switch -->
+				<StackLayout Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="3"
+				  Orientation="Horizontal" Spacing="11"
+				  VerticalOptions="Center"
+				  IsVisible="{Binding LastEntry, Converter={x:Static converters:ConverterResources.NotNullable}}" >
+
+					<!-- Table Label -->
+					<common:CustomLabel
+					  VerticalOptions="Center"
+					  FontSize="15"
+					  Text="{x:Static app:AppResources.BiometricTableLabel}"
+					  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+
+					<!-- Switch -->
+					<common:Toggler
+					  HorizontalOptions="Center"
+					  VerticalOptions="Center"
+							  WidthRequest="38"
+							  HeightRequest="24"
+					  State="{Binding IsGraphToggled}"/>
+
+					<!-- Graph Label -->
+					<common:CustomLabel
+					  VerticalOptions="Center"
+					  FontSize="15"
+					  Text="{x:Static app:AppResources.BiometricGraphLabel}"
+					  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+
+				</StackLayout>
+
+				<!-- Switch Button -->
+				<common:CustomButton Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="3"
+				  HorizontalOptions="FillAndExpand"
+				  BackgroundColor="Transparent"
+				  Clicked="OnSwitch_Clicked"/>
+
+				<!-- Separator -->
+				<BoxView Grid.Row="11" Grid.ColumnSpan="5"
+				  BackgroundColor="{x:Static resources:ColorResources.APPBackgroundDark}"
+				  IsVisible="{Binding LastEntry, Converter={x:Static converters:ConverterResources.NotNullable}}" />
+
+				<!-- Empty Space, so the page doesn't scroll up during the table/chart transition -->
+				<Grid Grid.Row="12" Grid.ColumnSpan="5"
+					HeightRequest="215"
+					IsVisible="{Binding HasData}" />
+
+				<!-- Table -->
+				<Grid Grid.Row="12" Grid.ColumnSpan="5"
+				  Grid.RowSpacing="0" Grid.ColumnSpacing="15"
+				  IsVisible="{Binding IsTableVisible}" >
+
+					<Grid.RowDefinitions>
+						<!-- Table Header -->
+						<RowDefinition Height="54" />
+						<!-- Separator -->
+						<RowDefinition Height="1" />
+						<!-- Table Contents -->
+						<RowDefinition Height="auto" />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<!-- Left Column -->
+						<ColumnDefinition Width="0" />
+						<!-- Date Column -->
+						<ColumnDefinition Width="*" />
+						<!-- Value Column -->
+						<ColumnDefinition Width="70" />
+						<!-- Remove Button -->
+						<ColumnDefinition Width="40" />
+					</Grid.ColumnDefinitions>
+
+					<!-- Date Label -->
+					<common:CustomLabel Grid.Column="1"
+					  HorizontalOptions="Start"
+					  VerticalOptions="Center"
+					  FontSize="12"
+					  Text="{x:Static app:AppResources.BiometricDataTableLabel}"
+					  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+
+					<!-- Value Label -->
+					<common:CustomLabel Grid.Column="2"
+					  HorizontalOptions="Start"
+					  VerticalOptions="Center"
+					  FontSize="12"
+					  Text="{x:Static app:AppResources.HeightUnit}"
+					  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+
+					<!-- Separator -->
+					<BoxView Grid.Row="1" Grid.ColumnSpan="4"
+					  BackgroundColor="{x:Static resources:ColorResources.APPBackgroundDark}"/>
+
+					<!-- Table -->
+					<common:ANFRepeaterView Grid.Row="2" Grid.ColumnSpan="4"
+					  ItemsSource="{Binding Entries}"
+					  IsVisible="{Binding IsTableVisible, Converter={x:Static converters:ConverterResources.NotNullable}}" >
+						<common:ANFRepeaterView.ItemTemplate>
+							<DataTemplate>
+								<Grid HeightRequest="48" Grid.RowSpacing="0" Grid.ColumnSpacing="15" Padding="15, 0, 0, 0"
+									BackgroundColor="{Binding Order, Converter={x:Static converters:ConverterResources.TableOrderBackground}}">
+									<Grid.ColumnDefinitions>
+										<!-- Date Column -->
+										<ColumnDefinition Width="auto" />
+										<!-- Source Column -->
+										<ColumnDefinition Width="16" />
+										<!-- Empty Spacing -->
+										<ColumnDefinition Width="*" />
+										<!-- Value Column -->
+										<ColumnDefinition Width="70" />
+										<!-- Remove Button -->
+										<ColumnDefinition Width="40" />
+									</Grid.ColumnDefinitions>
+
+									<!-- Date Label -->
+									<common:CustomLabel Grid.Column="0"
+									  HorizontalOptions="Start"
+									  VerticalOptions="Center"
+									  FontSize="15"
+									  Text="{Binding CreationDate, Converter={x:Static converters:ConverterResources.StringToMiniDate}}"
+									  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+
+									<common:CustomImage WidthRequest="16" HeightRequest="16" Grid.Column="1"
+									 HorizontalOptions="Center"
+									 VerticalOptions="Center"
+									 Source="ic_dosing_schedule_anf_item"
+									 IsVisible="{Binding PharmacyFlag}" />
+
+									<!-- Value Label -->
+									<common:CustomLabel Grid.Column="3"
+									  HorizontalOptions="Start"
+									  VerticalOptions="Center"
+									  FontSize="15"
+									  Text="{Binding Value}"
+									  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+
+									<!-- Delete Bin Image /hack -->
+									<common:CustomImage Grid.Column="4"
+									  VerticalOptions="Center"
+									  HorizontalOptions="Center"
+									  Source="bt_trashbin" />
+
+									<!-- Delete Bin -->
+									<common:CustomButton  Grid.Column="4"
+									  HorizontalOptions="FillAndExpand"
+									  VerticalOptions="FillAndExpand"
+									  BackgroundColor="Transparent"
+									  Clicked="RemoveEntry_Click" />
+
+								</Grid>
+							</DataTemplate>
+						</common:ANFRepeaterView.ItemTemplate>
+					</common:ANFRepeaterView>
+				</Grid>
+
+				<!-- Progress Chart -->
+				<Frame Grid.Row="12" Grid.ColumnSpan="5"
+				  HorizontalOptions="FillAndExpand"
+				  Padding="11, 17, 11, 17"
+				  HeightRequest="215"
+							HasShadow="False"
+				  IsVisible="{Binding IsGraphVisible}">
+
+					<ig:XFDataChart
+					  HorizontalOptions="FillAndExpand"
+					  VerticalOptions="FillAndExpand"
+					  HorizontalZoomable="True"
+					  VerticalZoomable="False" >
+
+						<ig:XFDataChart.Axes>
+
+							<ig:NumericYAxis x:Name="yAxis"
+							  MaximumValue="{Binding MaxValue}"
+							  MinimumValue="{Binding MinValue}"
+							  Interval="{Binding ValueInterval}"
+							  LabelTextColor="#A6A6A6"
+							  ActualMajorStroke="#A6A6A6"
+							  StrokeThickness="0"
+							  MinorStrokeThickness="0"
+							  MajorStrokeThickness="1"
+							  IsLogarithmic="False" />
+
+							<ig:CategoryXAxis x:Name="xAxis"
+							  FormatLabel="GraphDateTime_FormatLabel"
+							  ItemsSource="{Binding Entries}"
+							  Interval="{Binding DateInterval}"
+							  LabelMargin="0, 10, 10, 0"
+							  Label="CreationDate"
+							  LabelTextColor="#A6A6A6"
+							  Stroke="#A6A6A6"
+							  StrokeThickness="1"
+							  MinorStrokeThickness="0"
+							  MajorStrokeThickness="0"
+							  IsInverted="True" />
+
+						</ig:XFDataChart.Axes>
+						<ig:XFDataChart.Series>
+
+							<ig:LineSeries ItemsSource="{Binding Entries}"
+							  XAxis="{x:Reference xAxis}"
+							  YAxis="{x:Reference yAxis}"
+							  Brush="#76bd22"
+							  MarkerType="Unset"
+							  ValueMemberPath="Value"
+							  Thickness="5" />
+
+						</ig:XFDataChart.Series>
+					</ig:XFDataChart>
+				</Frame>
+			</Grid>
+		</ScrollView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</ANFPage>
+>>>>>>> maintenance_phase5_azure_notification

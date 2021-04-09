@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFStorePage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages.Store;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.Store.StoreSearchPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Store Navigation Widget -->
+			<RowDefinition Height="auto" />
+			<!-- Store Filter Widget -->
+			<RowDefinition Height="auto" />
+      <!-- Store Filter Widget -->
+			<RowDefinition Height="auto" />
+			<!-- Page -->
+			<RowDefinition Height="*" />
+			<!-- Bottom Margin -->
+			<RowDefinition Height="0" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+    <!-- Store Search Widget -->
+    <views:StoreSearchWidget Grid.Row="1" Grid.Column="1"
+			SearchParamsRefreshed="OnSearch"
+			SearchValue="{Binding SearchValue, Mode=TwoWay}"
+			Padding="0, 15" />
+    
+		
+		<!-- Padding if the widget is hidden 
+		<ContentView Grid.Row="1" 
+			HeightRequest="15"
+			IsVisible="{Binding ShowNavigation, Converter={x:Static converters:ConverterResources.InverseBool}}"
+		/>
+		-->
+		
+    <!-- Store Navigation Widget -->
+    <views:StoreNavigationWidget Grid.Row="2" Grid.Column="1"
+      x:Name="NavWidget"
+      Padding="0,0,0, 15"/>
+
+    <!-- Store Search Filter Widget -->
+    <views:StoreSearchFilterOrderWidget Grid.Row="3" Grid.Column="1"
+			OrderButtonClickedEvent="OrderButtonClicked"
+			FilterButtonClickedEvent="FilterButtonClicked"
+			Padding="0, 15" />
+    
+		<!-- Page -->
+		<common:InfiniteListView x:Name="ProductsList" Grid.Row="4" Grid.Column="1"
+			HasUnevenRows="True"
+			IsGroupingEnabled="True"
+			ItemSelected="OnItemSelected"
+			VerticalOptions="FillAndExpand"
+			ItemsSource="{Binding SearchGroups}"
+			GroupDisplayBinding="{Binding Description}"
+			Footer="{Binding HasMore}"
+			SeparatorColor="Transparent">
+			<!--SeparatorColor="{x:Static resources:ColorResources.LocatorSeparatorColorLight}">-->
+
+			<!-- Header Template -->
+			<common:InfiniteListView.GroupHeaderTemplate>
+				<DataTemplate>
+					<ViewCell Height="55">
+						<Grid Padding="15, 0" HeightRequest="55" 
+							BackgroundColor="{x:Static resources:ColorResources.LocatorBGLightGray}">
+							
+							<StackLayout Spacing="-2" Orientation="Vertical" VerticalOptions="Center">
+								<common:CustomLabel
+									FontSize="15"
+									VerticalOptions="Center"
+									InputTransparent="True"
+									Text="{Binding Description}"
+									CustomFont="{x:Static resources:FontResources.RegularFont}"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+							
+								<common:CustomLabel
+									FontSize="10"
+									VerticalOptions="Center"
+									InputTransparent="True"
+									CustomFont="{x:Static resources:FontResources.RegularFont}"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									Text="{Binding Order, StringFormat='Ordem: {0}'}"
+									IsVisible="{Binding Order, Converter={x:Static converters:ConverterResources.NotNullable}}"/>
+							
+							</StackLayout>
+						</Grid>
+					</ViewCell>
+				</DataTemplate>
+			</common:InfiniteListView.GroupHeaderTemplate>
+
+			<!-- Product Template -->
+			<common:InfiniteListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<!-- This is required to render the cell with the correct height after the first page of results. -->
+						<ViewCell.Height>
+							<OnPlatform x:TypeArguments="x:Double" iOS="136" />
+						</ViewCell.Height>
+						<views:StoreProductListItem
+							CanDisplayGenerics="CanDisplayGenerics"
+							SeeGenericsClicked="SeeRelatedGenericsClicked" />
+					</ViewCell>
+				</DataTemplate>
+			</common:InfiniteListView.ItemTemplate>
+		
+			<common:InfiniteListView.FooterTemplate>
+				<DataTemplate>
+					<common:CustomActivityIndicator 
+						HorizontalOptions="CenterAndExpand"
+						VerticalOptions="CenterAndExpand"
+						IsRunning="{Binding .}"
+						Color="{x:Static resources:ColorResources.ANFGreen}" />
+				</DataTemplate>
+			</common:InfiniteListView.FooterTemplate>
+		</common:InfiniteListView>
+
+		<!-- No results -->
+		<Grid Grid.Row="3" Grid.Column="1" Padding="15, 60"
+			IsVisible="{Binding HasResults, Converter={x:Static converters:ConverterResources.InverseBool}"
+			InputTransparent="True">
+			<common:CustomLabel 
+				FontSize="16"
+				XAlign="Center"
+				VerticalOptions="Start"
+				HorizontalOptions="FillAndExpand"
+				Text="{x:Static app:AppResources.StoreSearchNoResultsMessage}"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+		</Grid>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" Grid.RowSpan="4" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="5" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+				<common:CustomActivityIndicator
+					HorizontalOptions="CenterAndExpand"
+					VerticalOptions="CenterAndExpand"
+					IsRunning="True"
+					Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+
+				<ContentView HeightRequest="16" />
+
+				<Frame x:Name="LoadingMessage" IsVisible="False">
+					<common:CustomLabel
+						HeightRequest="16"
+						FontSize="13"
+						Text="A adicionar ao seu carrinho"
+						VerticalOptions="EndAndExpand"
+						HorizontalOptions="CenterAndExpand"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+				</Frame>
+			</StackLayout>
+		</Grid>
+	</Grid>
+</pages:ANFStorePage>

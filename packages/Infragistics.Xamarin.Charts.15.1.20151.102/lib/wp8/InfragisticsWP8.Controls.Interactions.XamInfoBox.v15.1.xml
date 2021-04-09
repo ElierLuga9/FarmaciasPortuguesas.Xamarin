@@ -1,0 +1,248 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>InfragisticsWP8.Controls.Interactions.XamInfoBox.v15.1</name>
+    </assembly>
+    <members>
+        <member name="T:Infragistics.Controls.Interactions.XamInfoBox">
+            <summary>
+             Represents a control that can be used to show information pointers.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamInfoBox.ContentProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamInfoBox.Content"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamInfoBox.ContentTemplateProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamInfoBox.ContentTemplate"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamInfoBox.IsOpenProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamInfoBox.IsOpen"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamInfoBox.RelativeToElementProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamInfoBox.RelativeToElement"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamInfoBox.RelativeToElementPlacementProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamInfoBox.RelativeToElementPlacement"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamInfoBox.PointerBaseLengthProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamInfoBox.PointerBaseLength"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamInfoBox.PointerLengthProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamInfoBox.PointerLength"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamInfoBox.PointerOffsetProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamInfoBox.PointerOffset"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamInfoBox.IsClosedOnOutsideTapProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamInfoBox.IsClosedOnOutsideTap"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamInfoBox.IsClosedOnBackButtonProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamInfoBox.IsClosedOnBackButton"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamInfoBox.PointerBackgroundProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamInfoBox.PointerBackground"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamInfoBox.PointerBorderBrushProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamInfoBox.PointerBorderBrush"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamInfoBox.PointerBorderThicknessProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamInfoBox.PointerBorderThickness"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamInfoBox.CornerRadiusProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamInfoBox.CornerRadius"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamInfoBox.PointerShapeProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamInfoBox.PointerShape"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamInfoBox.DisconnectedPointerOffsetProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamInfoBox.DisconnectedPointerOffset"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamInfoBox.UseOpenAnimationProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamInfoBox.UseOpenAnimation"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamInfoBox.UseCloseAnimationProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamInfoBox.UseCloseAnimation"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamInfoBox.FloatingMarginProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamInfoBox.FloatingMargin"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamInfoBox.ShowAgainProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamInfoBox.ShowAgain"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamInfoBox.ForceShowAgainProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamInfoBox.ForceShowAgain"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamInfoBox.UniqueKeyProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamInfoBox.UniqueKey"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Interactions.XamInfoBox.#ctor">
+            <summary>
+            Initializes a default, empty XamInfoBox object.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamInfoBox.Content">
+            <summary>
+            Gets or sets the content of the InfoBox.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamInfoBox.ContentTemplate">
+            <summary>
+            Gets or sets the data template that is used to display the content of the InfoBox.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamInfoBox.IsOpen">
+            <summary>
+            Gets or sets a value indicating whether the InfoBox is open.
+            </summary>
+            <value><c>true</c> if the InfoBox is open; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamInfoBox.RelativeToElement">
+            <summary>
+            Gets or sets the name of the element in the visual tree relative to which the InfoBox will be shown.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamInfoBox.RelativeToElementPlacement">
+            <summary>
+            Gets or sets location of InfoBox relative to <see cref="P:Infragistics.Controls.Interactions.XamInfoBox.RelativeToElement"/>.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamInfoBox.PointerBaseLength">
+            <summary>
+            Gets or sets the length of the pointer base.
+            </summary>
+            <value>The length of the pointer base.</value>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamInfoBox.PointerLength">
+            <summary>
+            Gets or sets desired length of the pointer.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamInfoBox.PointerOffset">
+            <summary>
+            Gets or sets the offset between the pointer and the <see cref="P:Infragistics.Controls.Interactions.XamInfoBox.RelativeToElement"/>.
+            </summary>
+            <value>The pointer offset.</value>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamInfoBox.IsClosedOnOutsideTap">
+            <summary>
+            Gets or sets a value indicating whether the InfoBox is closed when the user tap outside.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamInfoBox.IsClosedOnBackButton">
+            <summary>
+            Gets or sets a value indicating whether the InfoBox is closed when the back button is pressed.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamInfoBox.PointerBackground">
+            <summary>
+            Gets or sets the Brush that specifies how to paint the InfoBox pointer.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamInfoBox.PointerBorderBrush">
+            <summary>
+            Gets or sets the Brush that specifies how the InfoBox pointer outline is painted.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamInfoBox.PointerBorderThickness">
+            <summary>
+            Gets or sets the width of the InfoBox pointer outline.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamInfoBox.CornerRadius">
+            <summary>
+            Gets or sets the radius for the corners of the InfoBox. 
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamInfoBox.PointerShape">
+            <summary>
+            Gets or sets the kind of pointer used.
+            </summary>
+            <value>The pointer shape.</value>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamInfoBox.DisconnectedPointerOffset">
+            <summary>
+            Gets or sets the offset between the pointer and the InfoBox when a disconnected pointer is used in <see cref="P:Infragistics.Controls.Interactions.XamInfoBox.PointerShape"/>.
+            </summary>
+            <value>The disconnected pointer offset.</value>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamInfoBox.UseOpenAnimation">
+            <summary>
+            Gets or sets a value indicating whether the animation will be shown or not, when the InfoBox is open.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamInfoBox.UseCloseAnimation">
+            <summary>
+            Gets or sets a value indicating whether the animation will be shown or not, when the InfoBox is closed.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamInfoBox.FloatingMargin">
+            <summary>
+             Gets or sets margin values (left,top,right,bottom) restricting position of the control on the screen.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamInfoBox.ShowAgain">
+            <summary>
+            Gets or sets the ShowAgain property value. When true, the window will be displayed the next time it is requested.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamInfoBox.ForceShowAgain">
+            <summary>
+            Gets or set the ForceShowAgain property value. When true, the window will be displayed the next time it is requested regardless the ShowAgain property value.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamInfoBox.UniqueKey">
+            <summary>
+            Gets or sets the UniqueKey property value, used to identify a specific ShowAgain user response.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamInfoBox.Storage">
+            <summary>
+            Gets or sets a class implementing the IXamWindowStorage interface. DefaultXamWindowStorage class is set by default.
+            </summary>
+        </member>
+    </members>
+</doc>

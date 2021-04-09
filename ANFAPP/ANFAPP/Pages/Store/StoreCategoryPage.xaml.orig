@@ -1,0 +1,294 @@
+<<<<<<< HEAD
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFStorePage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages.Store;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.Store.StoreCategoryPage">
+
+  <Grid RowSpacing="0" ColumnSpacing="0">
+    <Grid.RowDefinitions>
+      <!-- Application Bar -->
+      <RowDefinition Height="auto" />
+      <!-- Store Navigation Widget -->
+      <RowDefinition Height="auto" />
+      <!--
+			<RowDefinition Height="auto" />
+			-->
+      <!-- Buttons -->
+      <RowDefinition Height="50" />
+      <!-- Page -->
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="auto" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+
+    <!-- Store Search Widget -->
+    <views:StoreSearchWidget Grid.Row="1" Grid.Column="1"
+			SearchParamsRefreshed="OnSearch"
+			FiltersEnabled="False"
+			Padding="0, 15" />
+
+    <!-- Store Navigation Widget -->
+    <views:StoreNavigationWidget Grid.Row="2" Grid.Column="1"
+      Padding="0,0,0, 15"
+      SelectedTab="Categories" />
+    <!--
+		<StackLayout Orientation="Horizontal" Grid.Row="3" Spacing="15"
+			Padding="15, 0">
+			<common:CustomButton HeightRequest="30"
+				VerticalOptions="CenterAndExpand"
+				HorizontalOptions="FillAndExpand"
+				WidthRequest="150"
+				FontSize="12"
+				BorderWidth="1"
+				BorderRadius="0"
+				Text="DESTAQUES"
+				TextAlignment="Center"
+				BackgroundColor="White"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				TextColor="{x:Static resources:ColorResources.ANFOrange}"
+				BorderColor="{x:Static resources:ColorResources.ANFOrange}" />
+			<common:CustomButton HeightRequest="30"
+				VerticalOptions="CenterAndExpand"
+				HorizontalOptions="FillAndExpand"
+				WidthRequest="150"
+				FontSize="12"
+				BorderWidth="1"
+				BorderRadius="0"
+				Text="RECOMENDADOS"
+				TextAlignment="Center"
+				BackgroundColor="White"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				TextColor="{x:Static resources:ColorResources.ANFOrange}"
+				BorderColor="{x:Static resources:ColorResources.ANFOrange}" />
+		</StackLayout>
+		-->
+    <!-- Page 
+		Header="{Binding SelectedCategoryName}"
+		-->
+    <common:CustomListView x:Name="CategoryList" Grid.Row="3" Grid.Column="1"
+			RowHeight="51"
+			Header="{Binding SelectedCategoryName}"
+			ItemSelected="OnItemSelected"
+			VerticalOptions="FillAndExpand"
+			ItemsSource="{Binding Categories}"
+			SeparatorColor="White">
+
+      <!-- Header Template -->
+      <common:CustomListView.HeaderTemplate>
+        <DataTemplate>
+          <Grid HeightRequest="40"
+            ColumnSpacing="0"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            BackgroundColor="{x:Static resources:ColorResources.LocatorBGLightGray}">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="15" />
+              <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <common:CustomLabel Grid.Column="1"
+              FontSize="15"
+              Text="{Binding .}"
+              VerticalOptions="CenterAndExpand"
+              HorizontalOptions="FillAndExpand"
+              CustomFont="{x:Static resources:FontResources.RegularFont}"
+              TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+          </Grid>
+        </DataTemplate>
+      </common:CustomListView.HeaderTemplate>
+
+      <!-- Category Template -->
+      <common:CustomListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <views:StoreCategoryListItem />
+          </ViewCell>
+        </DataTemplate>
+      </common:CustomListView.ItemTemplate>
+
+      <!-- Remove trailing lines. -->
+      <common:CustomListView.Footer>
+        <ContentView HeightRequest="0" />
+      </common:CustomListView.Footer>
+    </common:CustomListView>
+
+    <!-- MenuItem -->
+    <views:MenuView x:Name="MenuView" Grid.Row="1" Grid.RowSpan="3" />
+
+    <!-- Application Bar -->
+    <views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+    <!-- Loading Container -->
+    <Grid x:Name="LoadingView" Grid.RowSpan="4" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+      <!-- Loading Indicator -->
+      <common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+    </Grid>
+  </Grid>
+</pages:ANFStorePage>
+=======
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ANFStorePage xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.Store.StoreCategoryPage">
+
+  <Grid RowSpacing="0" ColumnSpacing="0">
+    <Grid.RowDefinitions>
+      <!-- Application Bar -->
+      <RowDefinition Height="auto" />
+      <!-- Store Navigation Widget -->
+      <RowDefinition Height="auto" />
+      <!--
+			<RowDefinition Height="auto" />
+			-->
+      <!-- Buttons -->
+      <RowDefinition Height="50" />
+      <!-- Page -->
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="auto" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+
+    <!-- Store Search Widget -->
+    <views:StoreSearchWidget Grid.Row="1" Grid.Column="1"
+			SearchParamsRefreshed="OnSearch"
+			FiltersEnabled="False"
+			Padding="0, 15" />
+
+    <!-- Store Navigation Widget -->
+    <views:StoreNavigationWidget Grid.Row="2" Grid.Column="1"
+      Padding="0,0,0, 15"
+      SelectedTab="Categories" />
+    <!--
+		<StackLayout Orientation="Horizontal" Grid.Row="3" Spacing="15"
+			Padding="15, 0">
+			<common:CustomButton HeightRequest="30"
+				VerticalOptions="CenterAndExpand"
+				HorizontalOptions="FillAndExpand"
+				WidthRequest="150"
+				FontSize="12"
+				BorderWidth="1"
+				BorderRadius="0"
+				Text="DESTAQUES"
+				TextAlignment="Center"
+				BackgroundColor="White"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				TextColor="{x:Static resources:ColorResources.ANFOrange}"
+				BorderColor="{x:Static resources:ColorResources.ANFOrange}" />
+			<common:CustomButton HeightRequest="30"
+				VerticalOptions="CenterAndExpand"
+				HorizontalOptions="FillAndExpand"
+				WidthRequest="150"
+				FontSize="12"
+				BorderWidth="1"
+				BorderRadius="0"
+				Text="RECOMENDADOS"
+				TextAlignment="Center"
+				BackgroundColor="White"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				TextColor="{x:Static resources:ColorResources.ANFOrange}"
+				BorderColor="{x:Static resources:ColorResources.ANFOrange}" />
+		</StackLayout>
+		-->
+    <!-- Page 
+		Header="{Binding SelectedCategoryName}"
+		-->
+    <common:CustomListView x:Name="CategoryList" Grid.Row="3" Grid.Column="1"
+			RowHeight="51"
+			Header="{Binding SelectedCategoryName}"
+			ItemSelected="OnItemSelected"
+			VerticalOptions="FillAndExpand"
+			ItemsSource="{Binding Categories}"
+			SeparatorColor="White">
+
+      <!-- Header Template -->
+      <common:CustomListView.HeaderTemplate>
+        <DataTemplate>
+          <Grid HeightRequest="40"
+            ColumnSpacing="0"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            BackgroundColor="{x:Static resources:ColorResources.LocatorBGLightGray}">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="15" />
+              <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <common:CustomLabel Grid.Column="1"
+              FontSize="15"
+              Text="{Binding .}"
+              VerticalOptions="CenterAndExpand"
+              HorizontalOptions="FillAndExpand"
+              CustomFont="{x:Static resources:FontResources.RegularFont}"
+              TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+          </Grid>
+        </DataTemplate>
+      </common:CustomListView.HeaderTemplate>
+
+      <!-- Category Template -->
+      <common:CustomListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <views:StoreCategoryListItem />
+          </ViewCell>
+        </DataTemplate>
+      </common:CustomListView.ItemTemplate>
+
+      <!-- Remove trailing lines. -->
+      <common:CustomListView.Footer>
+        <ContentView HeightRequest="0" />
+      </common:CustomListView.Footer>
+    </common:CustomListView>
+
+    <!-- MenuItem -->
+    <views:MenuView x:Name="MenuView" Grid.Row="1" Grid.RowSpan="3" />
+
+    <!-- Application Bar -->
+    <views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+    <!-- Loading Container -->
+    <Grid x:Name="LoadingView" Grid.RowSpan="4" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+      <!-- Loading Indicator -->
+      <common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+    </Grid>
+  </Grid>
+</ANFStorePage>
+>>>>>>> maintenance_phase5_azure_notification

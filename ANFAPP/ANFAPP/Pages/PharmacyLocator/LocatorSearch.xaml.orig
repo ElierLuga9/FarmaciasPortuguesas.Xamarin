@@ -1,0 +1,400 @@
+<<<<<<< HEAD
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+  xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+  xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+  xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+  x:Class="ANFAPP.Pages.PharmacyLocator.LocatorSearch">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Search Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Separator -->
+			<RowDefinition Height="1" />
+			<!-- List -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+
+
+		<!---Search bar -->
+		<Grid Grid.Row="1" Grid.Column="1">
+			<Grid.RowDefinitions>
+				<RowDefinition Height = "50" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width = "10"/>
+				<ColumnDefinition Width = "*"/>
+				<ColumnDefinition Width = "50"/>
+			</Grid.ColumnDefinitions>
+
+			<common:CustomEntry Grid.Column="1" x:Name="SearchEntry"
+				VerticalOptions="FillAndExpand"
+				HorizontalOptions="FillAndExpand"
+				BackgroundResource="blank_image"
+				FontSize="15"
+				TextChanged="OnSearchTextChanged"
+				TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+			<!-- Clear Button -->
+			<ContentView Grid.Column="2"
+				Padding="0, 0, 15, 0"
+				VerticalOptions="FillAndExpand"
+				HorizontalOptions="FillAndExpand">
+
+				<common:CustomImage x:Name="SearchBarButtonImage"
+				Source="magnifier"
+				VerticalOptions="Center"
+				HorizontalOptions="End" />
+
+				<ContentView.GestureRecognizers>
+					<TapGestureRecognizer Tapped="ClearInputClick" />
+				</ContentView.GestureRecognizers>
+			</ContentView>
+		</Grid>
+
+		<!-- Separator -->
+		<BoxView Grid.Row="2" Grid.Column="1"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+
+		<!--- Search List -->
+		<common:CustomListView Grid.Row="3" Grid.Column="1" x:Name="ListView"
+			HasUnevenRows="True"
+			VerticalOptions="FillAndExpand"
+			ItemsSource="{Binding LocationsGroupedByName}"
+			IsGroupingEnabled="True"
+			ItemSelected="OnListItemSelected"
+			SeparatorColor="{x:Static resources:ColorResources.LocatorSeparatorColorLight}"
+			GroupDisplayBinding="{Binding Key}">
+
+			<common:CustomListView.Header>
+				<Grid x:Name="SeeAllButton" Padding="15, 0" HeightRequest="0" IsVisible="false">
+					<Grid.GestureRecognizers>
+						<TapGestureRecognizer Tapped="OnSeeAllButtonClicked" />
+					</Grid.GestureRecognizers>
+					
+					<Grid.ColumnDefinitions>
+						<!-- Label -->
+						<ColumnDefinition Width="*" />
+						<!-- Arrow -->
+						<ColumnDefinition Width="40" />
+					</Grid.ColumnDefinitions>
+
+					<common:CustomLabel Grid.Column="0"
+						FontSize="15"
+						VerticalOptions="Center"
+						LineBreakMode="WordWrap"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						Text="{x:Static app:AppResources.PharmacyLocatorSeeAllLabel}" />
+
+					<common:CustomImage Grid.Column="1"
+						Source = "acessory"
+						HorizontalOptions="End"
+						VerticalOptions="Center"/>
+				</Grid>
+			</common:CustomListView.Header>
+			
+			<common:CustomListView.GroupHeaderTemplate>
+				<DataTemplate>
+					<ViewCell Height="35">
+						<Grid
+							Padding="15, 0"
+							HeightRequest="35"
+							BackgroundColor="{x:Static resources:ColorResources.LocatorBGLightGray}">
+
+							<common:CustomLabel
+								FontSize="12"
+								Text="{Binding Key}"
+								VerticalOptions="Center"
+								CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+								TextColor="{x:Static resources:ColorResources.TextColorGrey}" />
+						</Grid>
+					</ViewCell>
+				</DataTemplate>
+			</common:CustomListView.GroupHeaderTemplate>
+
+			<common:CustomListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<StackLayout Orientation="Vertical" Spacing="0">
+							<Grid MinimumHeightRequest="50" Padding="15, 10">
+								<Grid.ColumnDefinitions>
+									<!-- Label -->
+									<ColumnDefinition Width="*" />
+									<!-- Arrow -->
+									<ColumnDefinition Width="40" />
+								</Grid.ColumnDefinitions>
+
+								<!--<common:CustomImage Grid.Column="0" x:Name="Img"
+								HeightRequest="32"
+								WidthRequest="32"
+								HorizontalOptions="Center"
+								VerticalOptions="Center"
+								Source="{Binding ImageName}">
+
+								<common:CustomImage.GestureRecognizers>
+									<TapGestureRecognizer Tapped="ImageAction"/>
+								</common:CustomImage.GestureRecognizers>
+							</common:CustomImage>-->
+
+								<common:CustomLabel Grid.Column="0"
+									FontSize="15"
+									VerticalOptions="Center"
+									Text="{Binding Description}"
+									LineBreakMode="WordWrap"
+									CustomFont="{x:Static resources:FontResources.RegularFont}"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"/>
+
+								<common:CustomImage Grid.Column="1"
+									Source = "acessory"
+									HorizontalOptions="End"
+									VerticalOptions="Center"/>
+							</Grid>
+
+							<Grid HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand">
+								<BoxView HorizontalOptions="FillAndExpand" HeightRequest="1"
+									Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+							</Grid>
+						</StackLayout>
+					</ViewCell>
+				</DataTemplate>
+			</common:CustomListView.ItemTemplate>
+		</common:CustomListView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" Grid.RowSpan="3" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="4" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+
+	</Grid>
+</pages:ANFPage>
+=======
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+  xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+  xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+  xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+  x:Class="ANFAPP.Pages.PharmacyLocator.LocatorSearch">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Search Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Separator -->
+			<RowDefinition Height="1" />
+			<!-- List -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+
+
+		<!---Search bar -->
+		<Grid Grid.Row="1" Grid.Column="1">
+			<Grid.RowDefinitions>
+				<RowDefinition Height = "50" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width = "10"/>
+				<ColumnDefinition Width = "*"/>
+				<ColumnDefinition Width = "50"/>
+			</Grid.ColumnDefinitions>
+
+			<common:CustomEntry Grid.Column="1" x:Name="SearchEntry"
+				VerticalOptions="FillAndExpand"
+				HorizontalOptions="FillAndExpand"
+				BackgroundResource="blank_image"
+				FontSize="15"
+				TextChanged="OnSearchTextChanged"
+				TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+			<!-- Clear Button -->
+			<ContentView Grid.Column="2"
+				Padding="0, 0, 15, 0"
+				VerticalOptions="FillAndExpand"
+				HorizontalOptions="FillAndExpand">
+
+				<common:CustomImage x:Name="SearchBarButtonImage"
+				Source="magnifier"
+				VerticalOptions="Center"
+				HorizontalOptions="End" />
+
+				<ContentView.GestureRecognizers>
+					<TapGestureRecognizer Tapped="ClearInputClick" />
+				</ContentView.GestureRecognizers>
+			</ContentView>
+		</Grid>
+
+		<!-- Separator -->
+		<BoxView Grid.Row="2" Grid.Column="1"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+
+		<!--- Search List -->
+		<common:CustomListView Grid.Row="3" Grid.Column="1" x:Name="ListView"
+			HasUnevenRows="True"
+			VerticalOptions="FillAndExpand"
+			ItemsSource="{Binding LocationsGroupedByName}"
+			IsGroupingEnabled="True"
+			ItemSelected="OnListItemSelected"
+			SeparatorColor="{x:Static resources:ColorResources.LocatorSeparatorColorLight}"
+			GroupDisplayBinding="{Binding Key}">
+
+			<common:CustomListView.Header>
+				<Grid x:Name="SeeAllButton" Padding="15, 0" HeightRequest="0" IsVisible="false">
+					<Grid.GestureRecognizers>
+						<TapGestureRecognizer Tapped="OnSeeAllButtonClicked" />
+					</Grid.GestureRecognizers>
+					
+					<Grid.ColumnDefinitions>
+						<!-- Label -->
+						<ColumnDefinition Width="*" />
+						<!-- Arrow -->
+						<ColumnDefinition Width="40" />
+					</Grid.ColumnDefinitions>
+
+					<common:CustomLabel Grid.Column="0"
+						FontSize="15"
+						VerticalOptions="Center"
+						LineBreakMode="WordWrap"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						Text="{x:Static app:AppResources.PharmacyLocatorSeeAllLabel}" />
+
+					<common:CustomImage Grid.Column="1"
+						Source = "acessory"
+						HorizontalOptions="End"
+						VerticalOptions="Center"/>
+				</Grid>
+			</common:CustomListView.Header>
+			
+			<common:CustomListView.GroupHeaderTemplate>
+				<DataTemplate>
+					<ViewCell Height="35">
+						<Grid
+							Padding="15, 0"
+							HeightRequest="35"
+							BackgroundColor="{x:Static resources:ColorResources.LocatorBGLightGray}">
+
+							<common:CustomLabel
+								FontSize="12"
+								Text="{Binding Key}"
+								VerticalOptions="Center"
+								CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+								TextColor="{x:Static resources:ColorResources.TextColorGrey}" />
+						</Grid>
+					</ViewCell>
+				</DataTemplate>
+			</common:CustomListView.GroupHeaderTemplate>
+
+			<common:CustomListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<StackLayout Orientation="Vertical" Spacing="0">
+							<Grid MinimumHeightRequest="50" Padding="15, 10">
+								<Grid.ColumnDefinitions>
+									<!-- Label -->
+									<ColumnDefinition Width="*" />
+									<!-- Arrow -->
+									<ColumnDefinition Width="40" />
+								</Grid.ColumnDefinitions>
+
+								<!--<common:CustomImage Grid.Column="0" x:Name="Img"
+								HeightRequest="32"
+								WidthRequest="32"
+								HorizontalOptions="Center"
+								VerticalOptions="Center"
+								Source="{Binding ImageName}">
+
+								<common:CustomImage.GestureRecognizers>
+									<TapGestureRecognizer Tapped="ImageAction"/>
+								</common:CustomImage.GestureRecognizers>
+							</common:CustomImage>-->
+
+								<common:CustomLabel Grid.Column="0"
+									FontSize="15"
+									VerticalOptions="Center"
+									Text="{Binding Description}"
+									LineBreakMode="WordWrap"
+									CustomFont="{x:Static resources:FontResources.RegularFont}"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"/>
+
+								<common:CustomImage Grid.Column="1"
+									Source = "acessory"
+									HorizontalOptions="End"
+									VerticalOptions="Center"/>
+							</Grid>
+
+							<Grid HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand">
+								<BoxView HorizontalOptions="FillAndExpand" HeightRequest="1"
+									Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+							</Grid>
+						</StackLayout>
+					</ViewCell>
+				</DataTemplate>
+			</common:CustomListView.ItemTemplate>
+		</common:CustomListView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" Grid.RowSpan="3" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="4" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+
+	</Grid>
+</ANFPage>
+>>>>>>> maintenance_phase5_azure_notification

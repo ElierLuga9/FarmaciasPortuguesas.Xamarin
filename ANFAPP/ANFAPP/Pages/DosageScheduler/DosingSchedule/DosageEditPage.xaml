@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.DosageScheduler.DosageEditPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Form -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<ScrollView Orientation="Vertical" Grid.Column="1" Grid.Row="1">
+			<StackLayout Orientation="Vertical" Spacing="12" Padding="15" IsClippedToBounds="False">
+
+				<!-- Name -->
+				<StackLayout Spacing="-4" Orientation="Vertical">
+
+					<!-- Name Label -->
+					<common:CustomLabel
+						FontSize="14"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						Text="{x:Static app:AppResources.DosingScheduleDetailNameLabel}" />
+					
+					<!-- Name Value-->
+					<common:CustomLabel
+						FontSize="20"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						Text="{Binding DosingSchedule.Description}" />
+				</StackLayout>
+
+				<!-- Separator -->
+				<BoxView HorizontalOptions="FillAndExpand" HeightRequest="1"
+					Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+
+				<!-- Date and Hour Inputs -->
+				<Grid HorizontalOptions="FillAndExpand"
+					Grid.RowSpacing="10" Grid.ColumnSpacing="10">
+
+					<Grid.RowDefinitions>
+						<RowDefinition Height="auto" />
+						<RowDefinition Height="auto" />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+
+					<!-- Date Label -->
+					<common:CustomLabel HeightRequest="25"
+						YAlign="End"
+						FontSize="15"
+						Text="{x:Static app:AppResources.AddDosingScheduleDateLabel}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+					<!-- Hour Label -->
+					<common:CustomLabel HeightRequest="25" Grid.Column="1"
+						YAlign="End"
+						FontSize="15"
+						Text="{x:Static app:AppResources.AddDosingScheduleHourLabel}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+					<!-- Date Input -->
+					<common:CustomDatePicker x:Name="DateInput" Grid.Row="1"
+						HeightRequest="40"
+						FontSize="15"
+						CustomPadding="10, 0"
+						Format="dd/MM/yyyy"
+						BackgroundResource="bg_input.png"
+						HorizontalOptions="FillAndExpand"
+						Date="{Binding Date, Mode=TwoWay}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+					<!-- Hour Input -->
+					<common:CustomTimePicker x:Name="TimeInput" Grid.Row="1" Grid.Column="1"
+						HeightRequest="40"
+						FontSize="15"
+						CustomPadding="10, 0"
+						BackgroundResource="bg_input.png"
+						HorizontalOptions="FillAndExpand"
+						Time="{Binding Time, Mode=TwoWay}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}" />
+				</Grid>
+
+				<!-- Quantity Label -->
+				<common:CustomLabel HeightRequest="25"
+					YAlign="End"
+					FontSize="15"
+					Text="{x:Static app:AppResources.AddDosingScheduleQuantityLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Quantity Input -->
+				<!--<common:CustomEntry HeightRequest="40"
+					HorizontalOptions="FillAndExpand"
+					FontSize="15"
+					CustomPadding="10, 0"
+					BackgroundResource="bg_input.png"
+					Text="{Binding Quantity, Mode=TwoWay}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}" />-->
+				<!-- Quantity Input -->
+				<StackLayout Orientation="Horizontal" Spacing="10">
+
+					<!-- Quantity Input -->
+					<common:CustomEntry x:Name="QuantityInput" 
+						WidthRequest="75" HeightRequest="40"
+						FontSize="15"
+						MaxLength="3"
+						Keyboard="Numeric"
+						CustomPadding="10, 0"
+						BackgroundResource="bg_input.png"
+						Text="{Binding Quantity, Mode=TwoWay}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}" />
+					
+					<!-- Quantity Unit -->
+					<common:CustomEntry HeightRequest="40"
+						IsEnabled="False"
+						FontSize="15"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						CustomPadding="10, 0"
+						Text="{Binding Medicine.PharmaceuticalUnitDescription}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"/>
+					<!--COMENTADO PARA MANTER INTEGRIDADE DE DESIGN - NÂO É EDITAVEL	BackgroundResource="bg_input" />-->
+				</StackLayout>
+
+				<Grid HorizontalOptions="FillAndExpand" Grid.ColumnSpacing="10"
+					Padding="0, 10, 0, 0">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+
+					<!-- Cancel Button -->
+					<common:CustomButton HeightRequest="40"
+						HorizontalOptions="FillAndExpand"
+						FontSize="15"
+						BorderWidth="1"
+						BorderRadius="1"
+						Clicked="CancelButtonClicked"
+						Text="{x:Static app:AppResources.AddDosingScheduleCancelButton}"
+						BorderColor="{x:Static resources:ColorResources.ANFDarkerBlue}"
+						TextColor="{x:Static resources:ColorResources.ANFDarkerBlue}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						BackgroundColor="White" />
+
+					<!-- Submit Button -->
+					<common:CustomButton Grid.Column="1"
+						HeightRequest="40"
+						HorizontalOptions="FillAndExpand"
+						FontSize="15"
+						BorderWidth="1"
+						BorderRadius="1"
+						Clicked="SaveButtonClicked"
+						Text="{x:Static app:AppResources.AddDosingScheduleSubmitButton}"
+						TextColor="{x:Static resources:ColorResources.ANFWhite}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						BackgroundColor="{x:Static resources:ColorResources.ANFDarkerBlue}" />
+				</Grid>
+			</StackLayout>
+		</ScrollView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>

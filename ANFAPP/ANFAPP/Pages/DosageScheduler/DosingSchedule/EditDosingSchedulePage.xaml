@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.DosageScheduler.EditDosingSchedulePage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Form -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<ScrollView Orientation="Vertical" Grid.Column="1" Grid.Row="1">
+			<StackLayout Orientation="Vertical" Spacing="12" Padding="15" IsClippedToBounds="False">
+				
+				<!-- Action Buttons -->
+				<Grid Padding="0, -10, 0, -5">
+					
+					<!-- Edit Button --><!--
+					<common:CustomButton
+						FontSize="14"
+						Opacity="0.3"
+						IsEnabled="False"
+						BackgroundColor="White"
+						HorizontalOptions="Start"
+						AccessoryImage="ic_edit_button.png"
+						TextColor="{x:Static resources:ColorResources.ANFDarkerBlue}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						Text="{x:Static app:AppResources.DosingScheduleDetailEditButton}" />
+
+					--><!-- Copy Schedule Button --><!--
+					<common:CustomButton
+						FontSize="14"
+						BackgroundColor="White"
+						AccessoryImage="ic_clone_button.png"
+						HorizontalOptions="End"
+						Clicked="OnCloneDosingScheduleButtonClicked"
+						TextColor="{x:Static resources:ColorResources.ANFDarkerBlue}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						Text="{x:Static app:AppResources.DosingScheduleDetailCopyButton}" />-->
+
+					<!-- Edit Button -->
+					<StackLayout Orientation="Horizontal"
+						HorizontalOptions="Start"
+						Opacity="0.3"
+						Padding="0, 0, 20, 0"
+						HeightRequest="50">
+
+						<common:CustomImage
+							Source="ic_edit_button.png"
+							VerticalOptions="Center"
+							InputTransparent="True" />
+
+						<common:CustomLabel
+							FontSize="14"
+							InputTransparent="True"
+							VerticalOptions="Center"
+							TextColor="{x:Static resources:ColorResources.ANFDarkerBlue}"
+							CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+							Text="{x:Static app:AppResources.DosingScheduleDetailEditButton}" />
+					</StackLayout>
+
+					<!-- Copy Schedule Button -->
+					<StackLayout Orientation="Horizontal"
+						HorizontalOptions="End"
+						Padding="20, 0, 0, 0"
+						HeightRequest="50">
+						<StackLayout.GestureRecognizers>
+							<TapGestureRecognizer Tapped="OnCloneDosingScheduleButtonClicked" />
+						</StackLayout.GestureRecognizers>
+
+						<common:CustomImage
+							Source="ic_clone_button.png"
+							VerticalOptions="Center"
+							InputTransparent="True" />
+
+						<common:CustomLabel
+							FontSize="14"
+							InputTransparent="True"
+							VerticalOptions="Center"
+							TextColor="{x:Static resources:ColorResources.ANFDarkerBlue}"
+							CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+							Text="{x:Static app:AppResources.DosingScheduleDetailCopyButton}" />
+					</StackLayout>
+				</Grid>
+
+				<!-- Description -->
+				<StackLayout Spacing="7" Orientation="Vertical">
+
+					<!-- Description Label -->
+					<common:CustomLabel
+						FontSize="15"
+						Text="{x:Static app:AppResources.DosingScheduleDetailNameLabel}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+					<!-- Description Input -->
+					<common:CustomEntry HeightRequest="40"
+						HorizontalOptions="FillAndExpand"
+						FontSize="15"
+						CustomPadding="10, 0"
+						BackgroundResource="bg_input.png"
+						Text="{Binding Description, Mode=TwoWay}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				</StackLayout>
+					
+				<!-- Medicine -->
+				<StackLayout Spacing="-1" Orientation="Vertical">
+					
+					<!-- Medicine Label -->
+					<common:CustomLabel
+						FontSize="14"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						Text="{x:Static app:AppResources.DosingScheduleDetailMedicineLabel}" />
+
+					<!-- Medicine Value-->
+					<common:CustomLabel
+						FontSize="15"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						Text="{Binding DosingSchedule.MedicineName}" />
+				</StackLayout>
+
+				<!-- Separator -->
+				<BoxView HorizontalOptions="FillAndExpand" HeightRequest="1"
+					Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+
+				<!-- Dosages Taken -->
+				<StackLayout Spacing="-2" Orientation="Vertical">
+
+					<!-- Dosages Taken Label -->
+					<common:CustomLabel
+						FontSize="14"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						Text="{x:Static app:AppResources.DosingScheduleDetailTakenAmountLabel}" />
+
+					<!-- Dosages Taken Value-->
+					<common:CustomLabel
+						FontSize="21"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						Text="{Binding DosagesTaken}" />
+				</StackLayout>
+
+				<!-- Separator -->
+				<BoxView HorizontalOptions="FillAndExpand" HeightRequest="1"
+					Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+
+				<!-- Notes -->
+				<StackLayout Spacing="7" Orientation="Vertical">
+
+					<!-- Notes Label -->
+					<common:CustomLabel HeightRequest="25"
+						YAlign="End"
+						FontSize="15"
+						Text="{x:Static app:AppResources.DosingScheduleDetailNotesLabel}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+					<!-- Notes Input -->
+					<common:CustomEditor x:Name="NotesInput" HeightRequest="80"
+						FontSize="15"
+						CustomPadding="10, 10"	 
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						BackgroundResource="bg_input.png"
+						Text="{Binding Notes, Mode=TwoWay}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						CustomBorderColor="{x:Static resources:ColorResources.APPBackgroundDark}" />
+					
+				</StackLayout>
+
+				<!-- Action Buttons -->
+				<Grid HorizontalOptions="FillAndExpand" Grid.ColumnSpacing="10"
+					Padding="0, 10, 0, 0">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+
+					<!-- Cancel Button -->
+					<common:CustomButton HeightRequest="40"
+						HorizontalOptions="FillAndExpand"
+						FontSize="15"
+						BorderWidth="1"
+						BorderRadius="1"
+						Clicked="CancelButtonClicked"
+						Text="{x:Static app:AppResources.EditDosingScheduleCancelButton}"
+						BorderColor="{x:Static resources:ColorResources.ANFDarkerBlue}"
+						TextColor="{x:Static resources:ColorResources.ANFDarkerBlue}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						BackgroundColor="White" />
+
+					<!-- Submit Button -->
+					<common:CustomButton Grid.Column="1"
+						HeightRequest="40"
+						HorizontalOptions="FillAndExpand"
+						FontSize="15"
+						BorderRadius="1"
+						Clicked="SaveButtonClicked"
+						Text="{x:Static app:AppResources.GenericSaveButton}"
+						TextColor="{x:Static resources:ColorResources.ANFWhite}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						BackgroundColor="{x:Static resources:ColorResources.ANFDarkerBlue}" />
+				</Grid>
+			</StackLayout>
+		</ScrollView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>

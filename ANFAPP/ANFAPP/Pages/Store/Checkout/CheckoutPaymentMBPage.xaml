@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.Store.Checkout.CheckoutPaymentMBPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0" x:Name="MainPage" >
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Page -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+
+		<!-- Content -->
+		<StackLayout Padding="0, 20" Orientation="Vertical" Spacing="20" Grid.Row="1" VerticalOptions="Start">
+
+			<!-- MB Image -->
+			<common:CustomImage Source="ic_atm_logo.png" HorizontalOptions="Center" />
+
+			<!-- MB References -->
+			<Grid Padding="15, 20" ColumnSpacing="20" RowSpacing="3"
+				VerticalOptions="Start"
+				BackgroundColor="{x:Static resources:ColorResources.ANFPaleGrey}">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				
+				<!-- Entity -->
+				<common:CustomLabel Grid.Row="0" Grid.Column="0"
+					FontSize="14"
+					Text="{x:Static app:AppResources.CheckoutPaymentMBEntityLabel}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+				<common:CustomLabel Grid.Row="0" Grid.Column="1"
+					FontSize="16"
+					Text="{Binding MBEntity}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+				
+				<!-- Reference -->
+				<common:CustomLabel Grid.Row="1" Grid.Column="0"
+					FontSize="14"
+				Text="{x:Static app:AppResources.CheckoutPaymentMBReferenceLabel}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+				<common:CustomLabel Grid.Row="1" Grid.Column="1"
+					FontSize="16"
+					Text="{Binding MBReference}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+				
+				<!-- Value -->
+				<common:CustomLabel Grid.Row="2" Grid.Column="0"
+					FontSize="14"
+				Text="{x:Static app:AppResources.CheckoutPaymentMBValueLabel}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+				<common:CustomLabel Grid.Row="2" Grid.Column="1"
+					FontSize="16"
+					Text="{Binding MBValueDescription}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}" />				
+			</Grid>
+
+			<!-- Continue Button -->
+			<StackLayout Padding="15, 0" Spacing="15" VerticalOptions="Start" Orientation="Vertical">
+
+				<!-- Disclaimer Text -->
+				<common:CustomLabel
+					FontSize="13"
+					HorizontalOptions="Start"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					Text="{x:Static app:AppResources.CheckoutMBPaymentDisclaimerLabel}" />
+
+				<common:CustomButton HeightRequest="40"
+					HorizontalOptions="FillAndExpand"
+					FontSize="15"
+					BorderRadius="2"
+					Clicked="OnContinueButtonClicked"
+					Text="{x:Static app:AppResources.CheckoutConfirmationContinueButton}"
+					TextColor="{x:Static resources:ColorResources.TextColorLight}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					BackgroundColor="{x:Static resources:ColorResources.ANFDarkOrange}" />
+			</StackLayout>
+		</StackLayout>
+		
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>

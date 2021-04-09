@@ -1,0 +1,1190 @@
+<<<<<<< HEAD
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.UserLogin.RegisterCardPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">		
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Content -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		
+		<!-- Content -->
+		<ScrollView Orientation="Vertical" 
+			HorizontalOptions="FillAndExpand"
+			Grid.Row="1" IsClippedToBounds="False">
+			
+			<Grid RowSpacing="0" ColumnSpacing="0">
+
+				<!-- Idiom Specific Params -->
+				<Grid.HorizontalOptions>
+					<OnIdiom x:TypeArguments="LayoutOptions">
+						<OnIdiom.Phone>FillAndExpand</OnIdiom.Phone>
+						<OnIdiom.Tablet>Center</OnIdiom.Tablet>
+					</OnIdiom>
+				</Grid.HorizontalOptions>
+				<Grid.WidthRequest>
+					<OnIdiom x:TypeArguments="x:Double">
+						<OnIdiom.Phone>-1</OnIdiom.Phone>
+						<OnIdiom.Tablet>480</OnIdiom.Tablet>
+					</OnIdiom>
+				</Grid.WidthRequest>
+				
+				<Grid.RowDefinitions>
+					<!-- User Data Header -->
+					<RowDefinition Height="35" />
+					<!-- Name Label -->
+					<RowDefinition Height="47" />
+					<!-- Name Input -->
+					<RowDefinition Height="40" />
+					<!-- Gender Label -->
+					<RowDefinition Height="50" />
+					<!-- Gender Picker -->
+					<RowDefinition Height="75" />
+					<!-- Birthday Label -->
+					<RowDefinition Height="47" />
+					<!-- Birthday DatePicker -->
+					<RowDefinition Height="40" />
+					<!-- Document Type Label -->
+					<RowDefinition Height="50" />
+					<!-- Document Type Picker -->
+					<RowDefinition Height="75" />
+					<!-- Document Number Label -->
+					<RowDefinition Height="47" />
+					<!-- Document Number Input -->
+					<RowDefinition Height="40" />
+					<!-- Family Size Label -->
+					<RowDefinition Height="47" />
+					<!-- Family Size Label Optional-->
+					<RowDefinition Height="20" />
+					<!-- Family Size Input -->
+					<RowDefinition Height="40" />
+					<!-- Spacing -->
+					<RowDefinition Height="22" />
+
+					<!-- Contacts Header -->
+					<RowDefinition Height="35" />
+					<!-- Address Label -->
+					<RowDefinition Height="47" />
+					<!-- Address Input -->
+					<RowDefinition Height="40" />
+					<!-- Locale Label -->
+					<RowDefinition Height="47" />
+					<!-- Locale Input -->
+					<RowDefinition Height="40" />
+					<!-- Postal Code Label -->
+					<RowDefinition Height="47" />
+					<!-- Postal Code Input -->
+					<RowDefinition Height="40" />
+					<!-- Phone Label -->
+					<RowDefinition Height="47" />
+					<!-- Phone Input -->
+					<RowDefinition Height="40" />
+					<!-- Spacing -->
+					<RowDefinition Height="22" />
+
+					<!-- Spacing -->
+					<RowDefinition Height="20" />
+					<!-- Terms Conditions Check-box -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="10" />
+					<!-- Allow Promotions Check-box -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="20" />
+					<!-- Submit Button -->
+					<RowDefinition Height="40" />
+					<!-- Spacing -->
+					<RowDefinition Height="17" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<!-- Left Margin -->
+					<ColumnDefinition Width="15" />
+					<!-- Content -->
+					<ColumnDefinition Width="*" />
+					<!-- Right Margin -->
+					<ColumnDefinition Width="15" />
+				</Grid.ColumnDefinitions>
+
+				<!-- User Data Header Background -->
+				<BoxView Grid.ColumnSpan="3"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					Color="{x:Static resources:ColorResources.LocatorBGLightGray}" />
+
+				<!-- User Data Header Label -->
+				<common:CustomLabel Grid.Column="1"
+					FontSize="12"
+					VerticalOptions="Center"
+					Text="{x:Static app:AppResources.RegisterCardUserDataHeader}"
+					TextColor="{x:Static resources:ColorResources.TextColorGrey}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Name Label -->
+				<common:CustomLabel Grid.Row="1" Grid.Column="1"
+					FontSize="15"
+					CustomMargin="0, 0, 0, 10"
+					VerticalOptions="End"
+					Text="{x:Static app:AppResources.RegisterCardNameLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Name Input -->
+				<common:CustomEntry Grid.Row="2" Grid.Column="1"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					FontSize="15"
+					CustomPadding="10, 0"
+					BackgroundResource="bg_input.png"
+					Text="{Binding Name, Mode=TwoWay}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Gender Label -->
+				<common:CustomLabel Grid.Row="3" Grid.Column="1"
+					FontSize="15"
+					CustomMargin="0, 0, 0, 10"
+					VerticalOptions="End"
+					Text="{x:Static app:AppResources.RegisterCardGenderLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Gender Picker -->
+				<Grid Grid.Row="4" Grid.Column="1" ColumnSpacing="1">
+					<Grid.ColumnDefinitions>
+						<!-- Left Column -->
+						<ColumnDefinition Width="*" />
+						<!-- <ColumnDefinition -->
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+
+					<!-- Male Button -->
+					<ContentView Grid.Column="0"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						BackgroundColor="{x:Static resources:ColorResources.APPBackgroundGrey}">
+
+						<common:CustomImage WidthRequest="32" HeightRequest="32"
+							HorizontalOptions="Center"
+							VerticalOptions="Center"
+							Source="{Binding IsMale, Converter={x:Static converters:ConverterResources.MaleSelectedImage}}" />
+
+						<ContentView.GestureRecognizers>
+							<TapGestureRecognizer Tapped="MaleButton_Clicked" />
+						</ContentView.GestureRecognizers>
+					</ContentView>
+
+					<!-- Female Button -->
+					<ContentView Grid.Column="1"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						BackgroundColor="{x:Static resources:ColorResources.APPBackgroundGrey}">
+						<common:CustomImage WidthRequest="32" HeightRequest="32"
+							HorizontalOptions="Center"
+							VerticalOptions="Center"
+							Source="{Binding IsFemale, Converter={x:Static converters:ConverterResources.FemaleSelectedImage}}" />
+
+						<ContentView.GestureRecognizers>
+							<TapGestureRecognizer Tapped="FemaleButton_Clicked" />
+						</ContentView.GestureRecognizers>
+					</ContentView>
+
+					<!-- Or Background -->
+					<common:CustomImage Grid.ColumnSpan="2"
+						HorizontalOptions="Center"
+						VerticalOptions="Center"
+						Source="bg_or_circle.png" />
+
+					<!-- Or Label -->
+					<common:CustomLabel Grid.ColumnSpan="2"
+						FontSize="15"
+						VerticalOptions="Center"
+						HorizontalOptions="Center"
+						Text="{x:Static app:AppResources.NewUserOrLabel}"
+						TextColor="{x:Static resources:ColorResources.TextColorLight}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+				</Grid>
+
+				<!-- Birthday Label -->
+				<common:CustomLabel Grid.Row="5" Grid.Column="1"
+					FontSize="15"
+					CustomMargin="0, 0, 0, 10"
+					VerticalOptions="End"
+					Text="{x:Static app:AppResources.RegisterCardBirthdayLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Birthday DatePicker -->
+				<common:CustomDatePicker Grid.Row="6" Grid.Column="1"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					FontSize="15"
+					CustomPadding="10, 0"
+					BackgroundResource="bg_input.png"
+					MinimumDate="{Binding MinDate}"
+					MaximumDate="{Binding MaxDate}"
+					Date="{Binding Birthday, Mode=TwoWay}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Document Type Label -->
+				<common:CustomLabel Grid.Row="7" Grid.Column="1"
+					FontSize="15"
+					CustomMargin="0, 0, 0, 10"
+					VerticalOptions="End"
+					Text="{x:Static app:AppResources.RegisterCardDocumentTypeLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Document Type Picker -->
+				<Grid Grid.Row="8" Grid.Column="1" ColumnSpacing="1">
+					<Grid.ColumnDefinitions>
+						<!-- Left Column -->
+						<ColumnDefinition Width="*" />
+						<!-- <ColumnDefinition -->
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+
+					<!-- ID Button -->
+					<common:CustomButton
+						VerticalOptions="FillAndExpand"
+						HorizontalOptions="FillAndExpand"
+						FontSize="15"
+						BorderRadius="0"
+						Clicked="IDButton_Clicked"
+						Text="{x:Static app:AppResources.AssociateCardIDButton}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						BackgroundColor="{x:Static resources:ColorResources.APPBackgroundGrey}"
+						IsEnabled="{Binding IsBISelected, Converter={x:Static converters:ConverterResources.InverseBool}}"
+						TextColor="{Binding IsBISelected, Converter={x:Static converters:ConverterResources.DocumentTypeColor}}" />
+
+					<!-- Passport -->
+					<common:CustomButton Grid.Column="1"
+						VerticalOptions="FillAndExpand"
+						HorizontalOptions="FillAndExpand"
+						FontSize="15"
+						BorderRadius="0"
+						Clicked="PassportButton_Clicked"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						Text="{x:Static app:AppResources.AssociateCardPassportButton}"
+						BackgroundColor="{x:Static resources:ColorResources.APPBackgroundGrey}"
+						IsEnabled="{Binding IsPassportSelected, Converter={x:Static converters:ConverterResources.InverseBool}}"
+						TextColor="{Binding IsPassportSelected, Converter={x:Static converters:ConverterResources.DocumentTypeColor}}" />
+
+					<!-- Or Background -->
+					<common:CustomImage Grid.ColumnSpan="2"
+						HorizontalOptions="Center"
+						VerticalOptions="Center"
+						Source="bg_or_circle.png" />
+
+					<!-- Or Label -->
+					<common:CustomLabel Grid.ColumnSpan="2"
+						FontSize="15"
+						VerticalOptions="Center"
+						HorizontalOptions="Center"
+						Text="{x:Static app:AppResources.NewUserOrLabel}"
+						TextColor="{x:Static resources:ColorResources.TextColorLight}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+				</Grid>
+
+				<!-- Document Number Label -->
+				<common:CustomLabel Grid.Row="9" Grid.Column="1"
+					FontSize="15"
+					CustomMargin="0, 0, 0, 10"
+					VerticalOptions="End"
+					Text="{x:Static app:AppResources.RegisterCardDocumentNumberLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Document Number Input -->
+				<common:CustomEntry Grid.Row="10" Grid.Column="1"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					FontSize="15"
+					CustomPadding="10, 0"
+					Keyboard="{Binding IDKeyboardType}"
+					BackgroundResource="bg_input.png"
+					Text="{Binding IDNumber, Mode=TwoWay}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Family Size Label -->
+				<common:CustomLabel Grid.Row="11" Grid.Column="1"
+					FontSize="15"
+					CustomMargin="0, 0, 0, 12"
+					VerticalOptions="End"
+					Text="{x:Static app:AppResources.RegisterCardFamilySizeLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Family Size Optional Label -->
+				<common:CustomLabel Grid.Row="12" Grid.Column="1"
+					FontSize="10"
+					CustomMargin="0, 0, 0, 2"
+					VerticalOptions="End"
+					Text="{x:Static app:AppResources.RegisterCardOptionalLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Family Size Input -->
+				<common:CustomEntry Grid.Row="13" Grid.Column="1"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					FontSize="15"
+					CustomPadding="10, 0"
+					Keyboard="Numeric"
+					MaxLength="2"
+					BackgroundResource="bg_input.png"
+					Text="{Binding FamilySize, Mode=TwoWay}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Contacts Header Background -->
+				<BoxView Grid.Row="15" Grid.ColumnSpan="3"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					Color="{x:Static resources:ColorResources.LocatorBGLightGray}" />
+
+				<!-- Contacts Header Label -->
+				<common:CustomLabel Grid.Row="15" Grid.Column="1"
+					FontSize="12"
+					VerticalOptions="Center"
+					Text="{x:Static app:AppResources.RegisterCardContactsHeader}"
+					TextColor="{x:Static resources:ColorResources.TextColorGrey}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Address Label -->
+				<common:CustomLabel Grid.Row="16" Grid.Column="1"
+					FontSize="15"
+					CustomMargin="0, 0, 0, 10"
+					VerticalOptions="End"
+					Text="{x:Static app:AppResources.RegisterCardAddressLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Address Input -->
+				<common:CustomEntry Grid.Row="17" Grid.Column="1"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					FontSize="15"
+					CustomPadding="10, 0"
+					BackgroundResource="bg_input.png"
+					Text="{Binding Address, Mode=TwoWay}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Locale Label -->
+				<common:CustomLabel Grid.Row="18" Grid.Column="1"
+					FontSize="15"
+					CustomMargin="0, 0, 0, 10"
+					VerticalOptions="End"
+					Text="{x:Static app:AppResources.RegisterCardLocaleLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Locale Input -->
+				<common:CustomEntry Grid.Row="19" Grid.Column="1"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					FontSize="15"
+					CustomPadding="10, 0"
+					BackgroundResource="bg_input.png"
+					Text="{Binding Locale, Mode=TwoWay}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Postal Code Label -->
+				<common:CustomLabel Grid.Row="20" Grid.Column="1"
+					FontSize="15"
+					CustomMargin="0, 0, 0, 10"
+					VerticalOptions="End"
+					Text="{x:Static app:AppResources.RegisterCardPostalCodeLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Postal Code Input -->
+				<Grid Grid.Row="21" Grid.Column="1" Grid.ColumnSpacing="10">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="112"/>
+						<ColumnDefinition Width="80"/>
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+
+					<!-- 4 Digits -->
+					<common:CustomEntry
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						FontSize="15"
+						MaxLength="4"
+						Keyboard="Numeric"
+						CustomPadding="10, 0"
+						BackgroundResource="bg_input.png"
+						Text="{Binding PostalCode4, Mode=TwoWay}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+					<!-- 3 Digits -->
+					<common:CustomEntry Grid.Column="1"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						FontSize="15"
+						MaxLength="3"
+						Keyboard="Numeric"
+						CustomPadding="10, 0"
+						BackgroundResource="bg_input.png"
+						Text="{Binding PostalCode3, Mode=TwoWay}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}" />
+				</Grid>
+
+				<!-- Phone Label -->
+				<common:CustomLabel Grid.Row="22" Grid.Column="1"
+					FontSize="15"
+					CustomMargin="0, 0, 0, 10"
+					VerticalOptions="End"
+					Text="{x:Static app:AppResources.RegisterCardPhoneLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Phone Input -->
+				<common:CustomEntry Grid.Row="23" Grid.Column="1"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					FontSize="15"
+					MaxLength="9"
+					Keyboard="Numeric"
+					CustomPadding="10, 0"
+					BackgroundResource="bg_input.png"
+					Text="{Binding Phone, Mode=TwoWay}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Terms and Condfitions Checkbox -->
+				<Grid Grid.Row="26" Grid.Column="1" Grid.ColumnSpacing="0" Grid.RowSpacing="-10">
+					<Grid.ColumnDefinitions>
+						<!-- Checkbox -->
+						<ColumnDefinition Width="auto" />
+						<!-- Spacing -->
+						<ColumnDefinition Width="10" />
+						<!-- Text and Button -->
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="auto" />
+						<RowDefinition Height="auto" />
+					</Grid.RowDefinitions>
+
+					<!-- CheckBox Image -->
+					<common:CustomImage WidthRequest="19" HeightRequest="19"
+						HorizontalOptions="Start"
+						VerticalOptions="Start"
+						Source="{Binding IsTermsChecked, Converter={x:Static converters:ConverterResources.CheckboxImage}" />
+
+					<!-- ChecBox Button -->
+					<common:CustomButton Grid.ColumnSpan="2"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						BackgroundColor="Transparent"
+						Clicked="TermsAndConditionsCheckbox_Clicked" />
+
+					<!-- Terms and Conditions Text -->
+					<common:CustomLabel Grid.Column="2"
+						FontSize="15"
+						IsUnderline="True"
+						CustomMargin="0, -3, 0, 0"
+						Text="{x:Static app:AppResources.RegisterCardTermsAndConditionsLabel}"
+						TextColor="{x:Static resources:ColorResources.ANFGreen}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+					<!-- Terms and Conditions Button -->
+					<common:CustomButton Grid.Column="2"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						BackgroundColor="Transparent"
+						Clicked="TermsAndConditionsButton_Clicked" />
+
+					<!-- Terms and Conditions Text 2 -->
+					<common:CustomLabel Grid.Column="2" Grid.Row="1"
+						FontSize="15"
+						Text="{x:Static app:AppResources.RegisterCardTermsAndConditionsLabel2}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				</Grid>
+
+				<!-- Allow Promotions Checkbox -->
+				<Grid Grid.Row="28" Grid.Column="1" Grid.ColumnSpacing="0">
+					<Grid.ColumnDefinitions>
+						<!-- Checkbox -->
+						<ColumnDefinition Width="auto" />
+						<!-- Spacing -->
+						<ColumnDefinition Width="10" />
+						<!-- Text and Button -->
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+
+					<!-- CheckBox Image -->
+					<common:CustomImage WidthRequest="19" HeightRequest="19"
+						HorizontalOptions="Start"
+						VerticalOptions="Start"
+						Source="{Binding AllowPromotions, Converter={x:Static converters:ConverterResources.CheckboxImage}" />
+
+					<!-- Allow Promotions Text -->
+					<common:CustomLabel Grid.Column="2"
+						FontSize="15"
+						CustomMargin="0, -3, 0, 0"
+						Text="{x:Static app:AppResources.RegisterCardAllowPromotionsLabel}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+					<!-- Terms and Conditions Button -->
+					<common:CustomButton Grid.ColumnSpan="3"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						BackgroundColor="Transparent"
+						Clicked="AllowPromotionsCheckbox_Clicked" />
+
+				</Grid>
+
+				<!-- Button -->
+				<common:CustomButton Grid.Row="30" Grid.Column="1"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					FontSize="16"
+					BorderRadius="2"
+					Clicked="SubmitButton_Clicked"
+					Text="{x:Static app:AppResources.RegisterCardSubmitButton}"
+					TextColor="{x:Static resources:ColorResources.TextColorLight}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					BackgroundColor="{x:Static resources:ColorResources.ANFGreen}" />
+
+			</Grid>
+		</ScrollView>
+
+		<!-- Application Bar -->
+		<!--<views:ApplicationBar x:Name="ApplicationBar"  />-->
+    <views:ApplicationBarUserCard x:Name="ApplicationBar" > </views:ApplicationBarUserCard>
+		
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView"
+			Grid.Row="1"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>
+=======
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.UserLogin.RegisterCardPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">		
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Content -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		
+		<!-- Content -->
+		<ScrollView Orientation="Vertical" 
+			HorizontalOptions="FillAndExpand"
+			Grid.Row="1" IsClippedToBounds="False">
+			
+			<Grid RowSpacing="0" ColumnSpacing="0">
+
+				<!-- Idiom Specific Params -->
+				<Grid.HorizontalOptions>
+					<OnIdiom x:TypeArguments="LayoutOptions">
+						<OnIdiom.Phone>FillAndExpand</OnIdiom.Phone>
+						<OnIdiom.Tablet>Center</OnIdiom.Tablet>
+					</OnIdiom>
+				</Grid.HorizontalOptions>
+				<Grid.WidthRequest>
+					<OnIdiom x:TypeArguments="x:Double">
+						<OnIdiom.Phone>-1</OnIdiom.Phone>
+						<OnIdiom.Tablet>480</OnIdiom.Tablet>
+					</OnIdiom>
+				</Grid.WidthRequest>
+				
+				<Grid.RowDefinitions>
+					<!-- User Data Header -->
+					<RowDefinition Height="35" />
+					<!-- Name Label -->
+					<RowDefinition Height="47" />
+					<!-- Name Input -->
+					<RowDefinition Height="40" />
+					<!-- Gender Label -->
+					<RowDefinition Height="50" />
+					<!-- Gender Picker -->
+					<RowDefinition Height="75" />
+					<!-- Birthday Label -->
+					<RowDefinition Height="47" />
+					<!-- Birthday DatePicker -->
+					<RowDefinition Height="40" />
+					<!-- Document Type Label -->
+					<RowDefinition Height="50" />
+					<!-- Document Type Picker -->
+					<RowDefinition Height="75" />
+					<!-- Document Number Label -->
+					<RowDefinition Height="47" />
+					<!-- Document Number Input -->
+					<RowDefinition Height="40" />
+					<!-- Family Size Label -->
+					<RowDefinition Height="47" />
+					<!-- Family Size Label Optional-->
+					<RowDefinition Height="20" />
+					<!-- Family Size Input -->
+					<RowDefinition Height="40" />
+					<!-- Spacing -->
+					<RowDefinition Height="22" />
+
+					<!-- Contacts Header -->
+					<RowDefinition Height="35" />
+					<!-- Address Label -->
+					<RowDefinition Height="47" />
+					<!-- Address Input -->
+					<RowDefinition Height="40" />
+					<!-- Locale Label -->
+					<RowDefinition Height="47" />
+					<!-- Locale Input -->
+					<RowDefinition Height="40" />
+					<!-- Postal Code Label -->
+					<RowDefinition Height="47" />
+					<!-- Postal Code Input -->
+					<RowDefinition Height="40" />
+					<!-- Phone Label -->
+					<RowDefinition Height="47" />
+					<!-- Phone Input -->
+					<RowDefinition Height="40" />
+					<!-- Spacing -->
+					<RowDefinition Height="22" />
+
+					<!-- Spacing -->
+					<RowDefinition Height="20" />
+					<!-- Terms Conditions Check-box -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="10" />
+					<!-- Allow Promotions Check-box -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="20" />
+					<!-- Submit Button -->
+					<RowDefinition Height="40" />
+					<!-- Spacing -->
+					<RowDefinition Height="17" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<!-- Left Margin -->
+					<ColumnDefinition Width="15" />
+					<!-- Content -->
+					<ColumnDefinition Width="*" />
+					<!-- Right Margin -->
+					<ColumnDefinition Width="15" />
+				</Grid.ColumnDefinitions>
+
+				<!-- User Data Header Background -->
+				<BoxView Grid.ColumnSpan="3"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					Color="{x:Static resources:ColorResources.LocatorBGLightGray}" />
+
+				<!-- User Data Header Label -->
+				<common:CustomLabel Grid.Column="1"
+					FontSize="12"
+					VerticalOptions="Center"
+					Text="{x:Static app:AppResources.RegisterCardUserDataHeader}"
+					TextColor="{x:Static resources:ColorResources.TextColorGrey}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Name Label -->
+				<common:CustomLabel Grid.Row="1" Grid.Column="1"
+					FontSize="15"
+					CustomMargin="0, 0, 0, 10"
+					VerticalOptions="End"
+					Text="{x:Static app:AppResources.RegisterCardNameLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Name Input -->
+				<common:CustomEntry Grid.Row="2" Grid.Column="1"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					FontSize="15"
+					CustomPadding="10, 0"
+					BackgroundResource="bg_input.png"
+					Text="{Binding Name, Mode=TwoWay}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Gender Label -->
+				<common:CustomLabel Grid.Row="3" Grid.Column="1"
+					FontSize="15"
+					CustomMargin="0, 0, 0, 10"
+					VerticalOptions="End"
+					Text="{x:Static app:AppResources.RegisterCardGenderLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Gender Picker -->
+				<Grid Grid.Row="4" Grid.Column="1" ColumnSpacing="1">
+					<Grid.ColumnDefinitions>
+						<!-- Left Column -->
+						<ColumnDefinition Width="*" />
+						<!-- <ColumnDefinition -->
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+
+					<!-- Male Button -->
+					<ContentView Grid.Column="0"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						BackgroundColor="{x:Static resources:ColorResources.APPBackgroundGrey}">
+
+						<common:CustomImage WidthRequest="32" HeightRequest="32"
+							HorizontalOptions="Center"
+							VerticalOptions="Center"
+							Source="{Binding IsMale, Converter={x:Static converters:ConverterResources.MaleSelectedImage}}" />
+
+						<ContentView.GestureRecognizers>
+							<TapGestureRecognizer Tapped="MaleButton_Clicked" />
+						</ContentView.GestureRecognizers>
+					</ContentView>
+
+					<!-- Female Button -->
+					<ContentView Grid.Column="1"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						BackgroundColor="{x:Static resources:ColorResources.APPBackgroundGrey}">
+						<common:CustomImage WidthRequest="32" HeightRequest="32"
+							HorizontalOptions="Center"
+							VerticalOptions="Center"
+							Source="{Binding IsFemale, Converter={x:Static converters:ConverterResources.FemaleSelectedImage}}" />
+
+						<ContentView.GestureRecognizers>
+							<TapGestureRecognizer Tapped="FemaleButton_Clicked" />
+						</ContentView.GestureRecognizers>
+					</ContentView>
+
+					<!-- Or Background -->
+					<common:CustomImage Grid.ColumnSpan="2"
+						HorizontalOptions="Center"
+						VerticalOptions="Center"
+						Source="bg_or_circle.png" />
+
+					<!-- Or Label -->
+					<common:CustomLabel Grid.ColumnSpan="2"
+						FontSize="15"
+						VerticalOptions="Center"
+						HorizontalOptions="Center"
+						Text="{x:Static app:AppResources.NewUserOrLabel}"
+						TextColor="{x:Static resources:ColorResources.TextColorLight}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+				</Grid>
+
+				<!-- Birthday Label -->
+				<common:CustomLabel Grid.Row="5" Grid.Column="1"
+					FontSize="15"
+					CustomMargin="0, 0, 0, 10"
+					VerticalOptions="End"
+					Text="{x:Static app:AppResources.RegisterCardBirthdayLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Birthday DatePicker -->
+				<common:CustomDatePicker Grid.Row="6" Grid.Column="1"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					FontSize="15"
+					CustomPadding="10, 0"
+					BackgroundResource="bg_input.png"
+					MinimumDate="{Binding MinDate}"
+					MaximumDate="{Binding MaxDate}"
+					Date="{Binding Birthday, Mode=TwoWay}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Document Type Label -->
+				<common:CustomLabel Grid.Row="7" Grid.Column="1"
+					FontSize="15"
+					CustomMargin="0, 0, 0, 10"
+					VerticalOptions="End"
+					Text="{x:Static app:AppResources.RegisterCardDocumentTypeLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Document Type Picker -->
+				<Grid Grid.Row="8" Grid.Column="1" ColumnSpacing="1">
+					<Grid.ColumnDefinitions>
+						<!-- Left Column -->
+						<ColumnDefinition Width="*" />
+						<!-- <ColumnDefinition -->
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+
+					<!-- ID Button -->
+					<common:CustomButton
+						VerticalOptions="FillAndExpand"
+						HorizontalOptions="FillAndExpand"
+						FontSize="15"
+						BorderRadius="0"
+						Clicked="IDButton_Clicked"
+						Text="{x:Static app:AppResources.AssociateCardIDButton}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						BackgroundColor="{x:Static resources:ColorResources.APPBackgroundGrey}"
+						IsEnabled="{Binding IsBISelected, Converter={x:Static converters:ConverterResources.InverseBool}}"
+						TextColor="{Binding IsBISelected, Converter={x:Static converters:ConverterResources.DocumentTypeColor}}" />
+
+					<!-- Passport -->
+					<common:CustomButton Grid.Column="1"
+						VerticalOptions="FillAndExpand"
+						HorizontalOptions="FillAndExpand"
+						FontSize="15"
+						BorderRadius="0"
+						Clicked="PassportButton_Clicked"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						Text="{x:Static app:AppResources.AssociateCardPassportButton}"
+						BackgroundColor="{x:Static resources:ColorResources.APPBackgroundGrey}"
+						IsEnabled="{Binding IsPassportSelected, Converter={x:Static converters:ConverterResources.InverseBool}}"
+						TextColor="{Binding IsPassportSelected, Converter={x:Static converters:ConverterResources.DocumentTypeColor}}" />
+
+					<!-- Or Background -->
+					<common:CustomImage Grid.ColumnSpan="2"
+						HorizontalOptions="Center"
+						VerticalOptions="Center"
+						Source="bg_or_circle.png" />
+
+					<!-- Or Label -->
+					<common:CustomLabel Grid.ColumnSpan="2"
+						FontSize="15"
+						VerticalOptions="Center"
+						HorizontalOptions="Center"
+						Text="{x:Static app:AppResources.NewUserOrLabel}"
+						TextColor="{x:Static resources:ColorResources.TextColorLight}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+				</Grid>
+
+				<!-- Document Number Label -->
+				<common:CustomLabel Grid.Row="9" Grid.Column="1"
+					FontSize="15"
+					CustomMargin="0, 0, 0, 10"
+					VerticalOptions="End"
+					Text="{x:Static app:AppResources.RegisterCardDocumentNumberLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Document Number Input -->
+				<common:CustomEntry Grid.Row="10" Grid.Column="1"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					FontSize="15"
+					CustomPadding="10, 0"
+					Keyboard="{Binding IDKeyboardType}"
+					BackgroundResource="bg_input.png"
+					Text="{Binding IDNumber, Mode=TwoWay}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Family Size Label -->
+				<common:CustomLabel Grid.Row="11" Grid.Column="1"
+					FontSize="15"
+					CustomMargin="0, 0, 0, 12"
+					VerticalOptions="End"
+					Text="{x:Static app:AppResources.RegisterCardFamilySizeLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Family Size Optional Label -->
+				<common:CustomLabel Grid.Row="12" Grid.Column="1"
+					FontSize="10"
+					CustomMargin="0, 0, 0, 2"
+					VerticalOptions="End"
+					Text="{x:Static app:AppResources.RegisterCardOptionalLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Family Size Input -->
+				<common:CustomEntry Grid.Row="13" Grid.Column="1"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					FontSize="15"
+					CustomPadding="10, 0"
+					Keyboard="Numeric"
+					MaxLength="2"
+					BackgroundResource="bg_input.png"
+					Text="{Binding FamilySize, Mode=TwoWay}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Contacts Header Background -->
+				<BoxView Grid.Row="15" Grid.ColumnSpan="3"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					Color="{x:Static resources:ColorResources.LocatorBGLightGray}" />
+
+				<!-- Contacts Header Label -->
+				<common:CustomLabel Grid.Row="15" Grid.Column="1"
+					FontSize="12"
+					VerticalOptions="Center"
+					Text="{x:Static app:AppResources.RegisterCardContactsHeader}"
+					TextColor="{x:Static resources:ColorResources.TextColorGrey}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Address Label -->
+				<common:CustomLabel Grid.Row="16" Grid.Column="1"
+					FontSize="15"
+					CustomMargin="0, 0, 0, 10"
+					VerticalOptions="End"
+					Text="{x:Static app:AppResources.RegisterCardAddressLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Address Input -->
+				<common:CustomEntry Grid.Row="17" Grid.Column="1"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					FontSize="15"
+					CustomPadding="10, 0"
+					BackgroundResource="bg_input.png"
+					Text="{Binding Address, Mode=TwoWay}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Locale Label -->
+				<common:CustomLabel Grid.Row="18" Grid.Column="1"
+					FontSize="15"
+					CustomMargin="0, 0, 0, 10"
+					VerticalOptions="End"
+					Text="{x:Static app:AppResources.RegisterCardLocaleLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Locale Input -->
+				<common:CustomEntry Grid.Row="19" Grid.Column="1"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					FontSize="15"
+					CustomPadding="10, 0"
+					BackgroundResource="bg_input.png"
+					Text="{Binding Locale, Mode=TwoWay}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Postal Code Label -->
+				<common:CustomLabel Grid.Row="20" Grid.Column="1"
+					FontSize="15"
+					CustomMargin="0, 0, 0, 10"
+					VerticalOptions="End"
+					Text="{x:Static app:AppResources.RegisterCardPostalCodeLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Postal Code Input -->
+				<Grid Grid.Row="21" Grid.Column="1" Grid.ColumnSpacing="10">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="112"/>
+						<ColumnDefinition Width="80"/>
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+
+					<!-- 4 Digits -->
+					<common:CustomEntry
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						FontSize="15"
+						MaxLength="4"
+						Keyboard="Numeric"
+						CustomPadding="10, 0"
+						BackgroundResource="bg_input.png"
+						Text="{Binding PostalCode4, Mode=TwoWay}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+					<!-- 3 Digits -->
+					<common:CustomEntry Grid.Column="1"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						FontSize="15"
+						MaxLength="3"
+						Keyboard="Numeric"
+						CustomPadding="10, 0"
+						BackgroundResource="bg_input.png"
+						Text="{Binding PostalCode3, Mode=TwoWay}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}" />
+				</Grid>
+
+				<!-- Phone Label -->
+				<common:CustomLabel Grid.Row="22" Grid.Column="1"
+					FontSize="15"
+					CustomMargin="0, 0, 0, 10"
+					VerticalOptions="End"
+					Text="{x:Static app:AppResources.RegisterCardPhoneLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Phone Input -->
+				<common:CustomEntry Grid.Row="23" Grid.Column="1"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					FontSize="15"
+					MaxLength="9"
+					Keyboard="Numeric"
+					CustomPadding="10, 0"
+					BackgroundResource="bg_input.png"
+					Text="{Binding Phone, Mode=TwoWay}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Terms and Condfitions Checkbox -->
+				<Grid Grid.Row="26" Grid.Column="1" Grid.ColumnSpacing="0" Grid.RowSpacing="-10">
+					<Grid.ColumnDefinitions>
+						<!-- Checkbox -->
+						<ColumnDefinition Width="auto" />
+						<!-- Spacing -->
+						<ColumnDefinition Width="10" />
+						<!-- Text and Button -->
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="auto" />
+						<RowDefinition Height="auto" />
+					</Grid.RowDefinitions>
+
+					<!-- CheckBox Image -->
+					<common:CustomImage WidthRequest="19" HeightRequest="19"
+						HorizontalOptions="Start"
+						VerticalOptions="Start"
+						Source="{Binding IsTermsChecked, Converter={x:Static converters:ConverterResources.CheckboxImage}" />
+
+					<!-- ChecBox Button -->
+					<common:CustomButton Grid.ColumnSpan="2"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						BackgroundColor="Transparent"
+						Clicked="TermsAndConditionsCheckbox_Clicked" />
+
+					<!-- Terms and Conditions Text -->
+					<common:CustomLabel Grid.Column="2"
+						FontSize="15"
+						IsUnderline="True"
+						CustomMargin="0, -3, 0, 0"
+						Text="{x:Static app:AppResources.RegisterCardTermsAndConditionsLabel}"
+						TextColor="{x:Static resources:ColorResources.ANFGreen}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+					<!-- Terms and Conditions Button -->
+					<common:CustomButton Grid.Column="2"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						BackgroundColor="Transparent"
+						Clicked="TermsAndConditionsButton_Clicked" />
+
+					<!-- Terms and Conditions Text 2 -->
+					<common:CustomLabel Grid.Column="2" Grid.Row="1"
+						FontSize="15"
+						Text="{x:Static app:AppResources.RegisterCardTermsAndConditionsLabel2}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				</Grid>
+
+				<!-- Allow Promotions Checkbox -->
+				<Grid Grid.Row="28" Grid.Column="1" Grid.ColumnSpacing="0">
+					<Grid.ColumnDefinitions>
+						<!-- Checkbox -->
+						<ColumnDefinition Width="auto" />
+						<!-- Spacing -->
+						<ColumnDefinition Width="10" />
+						<!-- Text and Button -->
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+
+					<!-- CheckBox Image -->
+					<common:CustomImage WidthRequest="19" HeightRequest="19"
+						HorizontalOptions="Start"
+						VerticalOptions="Start"
+						Source="{Binding AllowPromotions, Converter={x:Static converters:ConverterResources.CheckboxImage}" />
+
+					<!-- Allow Promotions Text -->
+					<common:CustomLabel Grid.Column="2"
+						FontSize="15"
+						CustomMargin="0, -3, 0, 0"
+						Text="{x:Static app:AppResources.RegisterCardAllowPromotionsLabel}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+					<!-- Terms and Conditions Button -->
+					<common:CustomButton Grid.ColumnSpan="3"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						BackgroundColor="Transparent"
+						Clicked="AllowPromotionsCheckbox_Clicked" />
+
+				</Grid>
+
+				<!-- Button -->
+				<common:CustomButton Grid.Row="30" Grid.Column="1"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					FontSize="16"
+					BorderRadius="2"
+					Clicked="SubmitButton_Clicked"
+					Text="{x:Static app:AppResources.RegisterCardSubmitButton}"
+					TextColor="{x:Static resources:ColorResources.TextColorLight}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					BackgroundColor="{x:Static resources:ColorResources.ANFGreen}" />
+
+			</Grid>
+		</ScrollView>
+
+		<!-- Application Bar -->
+		<!--<views:ApplicationBar x:Name="ApplicationBar"  />-->
+    <views:ApplicationBarUserCard x:Name="ApplicationBar" > </views:ApplicationBarUserCard>
+		
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView"
+			Grid.Row="1"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</ANFPage>
+>>>>>>> maintenance_phase5_azure_notification

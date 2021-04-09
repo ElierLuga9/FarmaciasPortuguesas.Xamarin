@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	           xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	           xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	           xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	           xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	           xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	           xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	           xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+             x:Class="ANFAPP.Views.PromotionsVouchersValueListItem">
+
+  <StackLayout Orientation="Vertical" Spacing="0">
+
+    <!-- Card -->
+    <Grid Grid.Row="1" Grid.Column="1"
+      Grid.ColumnSpacing="0" Grid.RowSpacing="0"
+      IsClippedToBounds="False"
+      HorizontalOptions="Center"
+      WidthRequest="300">
+
+      <!--<Grid.GestureRecognizers>
+        <TapGestureRecognizer Tapped="VoucherTap"/>
+      </Grid.GestureRecognizers>-->
+
+      <Grid.RowDefinitions>
+        <!-- Spacing -->
+        <RowDefinition Height="25" />
+        <!-- Title -->
+        <RowDefinition Height="50" />
+        <!-- Spacing -->
+        <RowDefinition Height="5" />
+        <!-- Value Title -->
+        <RowDefinition Height="55" />
+        <!-- Spacing -->
+        <RowDefinition Height="65" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <!-- Left Margin -->
+        <ColumnDefinition Width="40" />
+        <!-- Center Column-->
+        <ColumnDefinition Width="*" />
+        <!-- Right Margin -->
+        <ColumnDefinition Width="40" />
+      </Grid.ColumnDefinitions>
+
+      <!-- Card Background -->
+      <common:CustomImage Grid.Row="0" Grid.Column="0" Grid.RowSpan="5" Grid.ColumnSpan="3"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand"
+        Source="{Binding Source}" />
+      
+      <!-- Description 
+      <common:CustomLabel Grid.Row="1" Grid.Column="1"
+        FontSize="16"
+        VerticalOptions="Start"
+        HorizontalOptions="Start"
+        InputTransparent="True"
+        TextColor="{x:Static resources:ColorResources.ANFWhite}"
+        CustomFont="{x:Static resources:FontResources.RegularFont}"
+        Text="{Binding DescriptionTitle}" />-->
+
+      <!-- Value 
+      <common:CustomLabel Grid.Row="3" Grid.Column="1"
+        FontSize="40"
+        VerticalOptions="Start"
+        HorizontalOptions="End"
+        InputTransparent="True"
+        TextColor="{x:Static resources:ColorResources.ANFWhite}"
+        CustomFont="{x:Static resources:FontResources.BoldFont}"
+        Text="{Binding FormatedValue}" />-->
+    </Grid>
+
+    <Grid HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand">
+      <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1"
+        Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+    </Grid>
+    
+  </StackLayout>
+  
+</ContentView>

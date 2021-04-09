@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	x:Class="ANFAPP.Views.ArticlesListItemView">
+
+	<ContentView.Content >
+		<StackLayout Orientation="Vertical" Spacing="0">
+			<Grid Grid.RowSpacing="0" Grid.ColumnSpacing="15"
+			VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+			Padding="15, 5">
+				<Grid.ColumnDefinitions>
+					<!-- Article Thumbnail -->
+					<ColumnDefinition Width="auto" />
+					<!-- Article Text -->
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+
+				<!-- Article Thumbnail -->
+				<common:CustomImage
+					HeightRequest="60"
+					WidthRequest="60"
+					HorizontalOptions="Start"
+					Aspect="AspectFill"
+					Source="{Binding Image}"/>
+
+				<!-- Article Text -->
+				<StackLayout Grid.Column="1" Orientation="Vertical" VerticalOptions="Center" Spacing="0">
+
+					<!-- Category -->
+					<common:CustomLabel
+						FontSize="10"
+						VerticalOptions="Start"
+						HorizontalOptions="StartAndExpand"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						IsVisible="{Binding GetCategoryName, Converter={x:Static converters:ConverterResources.NotNullable}"
+						Text="{Binding GetCategoryName}" />
+
+					<!-- Article Title -->
+					<common:CustomLabel
+						FontSize="15"
+						VerticalOptions="Start"
+						LineBreakMode="WordWrap"
+						HorizontalOptions="StartAndExpand"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						Text="{Binding DecodedTitle}" />
+				</StackLayout>
+			</Grid>
+
+			<Grid HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand">
+				<BoxView HorizontalOptions="FillAndExpand" HeightRequest="1"
+					Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+			</Grid>
+		</StackLayout>
+	</ContentView.Content>
+</ContentView>

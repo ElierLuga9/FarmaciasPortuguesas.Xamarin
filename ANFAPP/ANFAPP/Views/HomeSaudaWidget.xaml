@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Views.HomeSaudaWidget">
+
+	<ContentView.Content>
+		<Grid IsVisible="{Binding IsInitialized}">
+
+			<Grid RowSpacing="0" ColumnSpacing="0"
+				IsVisible="{Binding HasCard}"
+				HeightRequest="{x:Static resources:DimenResources.SaudaWidgetHeight}"
+				BackgroundColor="{x:Static resources:ColorResources.WidgetSaudaActiveColor}">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="15" />
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="30" />
+					<ColumnDefinition Width="15" />
+				</Grid.ColumnDefinitions>
+				<Grid.GestureRecognizers>
+					<TapGestureRecognizer Tapped="OnWidgetButtonClicked" />
+				</Grid.GestureRecognizers>
+
+				<common:CustomImage Grid.Column="1" 
+					HorizontalOptions="Start"
+					VerticalOptions="Center"
+					Source="ic_sauda_logo_w" />
+
+				<!-- Expiring -->
+				<Grid Grid.Column="2" Padding="0, 8"
+					Grid.ColumnSpacing="20" Grid.RowSpacing="0"
+					IsVisible="{Binding HasExpiringPointsOrVouchers}"
+					VerticalOptions="FillAndExpand"
+					HorizontalOptions="End">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="auto" />
+						<ColumnDefinition Width="1" />
+						<ColumnDefinition Width="auto" />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="auto" />
+						<RowDefinition Height="*" />	
+						<RowDefinition Height="auto" />
+					</Grid.RowDefinitions>
+
+ 					<!-- Top label -->
+					<common:CustomLabel Grid.ColumnSpan="3"
+						InputTransparent="True"
+        				CustomFont="{x:Static resources:FontResources.RegularFont}"                          
+        				VerticalOptions="Start"
+        				HorizontalOptions="Center"
+        				FontSize="10"
+        				TextColor="#ffffff"
+        				Text="A EXPIRAR" />
+
+        			<!-- Points -->
+					<common:CustomLabel Grid.Row="1"
+						InputTransparent="True"
+        				CustomFont="{x:Static resources:FontResources.LightFont}"                          
+        				VerticalOptions="Start"
+        				HorizontalOptions="Center"
+        				FontSize="25"
+        				TextColor="White"
+        				Text="{Binding Points}" />
+
+        			<BoxView Grid.Row="1" Grid.Column="1" 
+						WidthRequest="1" HeightRequest="17"
+						VerticalOptions="Center"
+						BackgroundColor="#eeeeeecc" />
+
+        			<!-- Vouchers -->
+					<common:CustomLabel Grid.Row="1" Grid.Column="2"
+						InputTransparent="True"
+        				CustomFont="{x:Static resources:FontResources.LightFont}"                          
+        				VerticalOptions="Start"
+        				HorizontalOptions="Center"
+        				FontSize="25"
+        				TextColor="White"
+        				Text="{Binding Vouchers}" />
+
+        			<!-- Points legend -->
+					<common:CustomLabel Grid.Row="2"
+						InputTransparent="True"
+        				CustomFont="{x:Static resources:FontResources.SemiBoldFont}"                          
+        				VerticalOptions="End"
+        				HorizontalOptions="Center"
+        				FontSize="10"
+        				TextColor="White"
+        				Text="PONTOS" />
+
+        			<!-- Vouchers legend -->
+					<common:CustomLabel Grid.Row="2" Grid.Column="2"
+						InputTransparent="True"
+        				CustomFont="{x:Static resources:FontResources.SemiBoldFont}"                          
+        				VerticalOptions="End"
+        				HorizontalOptions="Center"
+        				FontSize="10"
+        				TextColor="White"
+        				Text="VALES" />
+
+				</Grid>
+
+				<!-- Not Expiring -->
+				<common:CustomLabel Grid.Column="2"
+					InputTransparent="True"
+					IsVisible="{Binding HasExpiringPointsOrVouchers, Converter={x:Static converters:ConverterResources.InverseBool}}"
+        			CustomFont="{x:Static resources:FontResources.RegularFont}"                          
+        			VerticalOptions="Center"
+       				HorizontalOptions="Center"
+      				FontSize="20"
+        			TextColor="White"
+        			Text="{Binding Points, StringFormat='Tem {0} Pontos'}" />
+
+				<common:CustomImage Grid.Column="3"
+					HorizontalOptions="End"
+					VerticalOptions="Center"   
+					Source="ic_button_arrow" />
+			</Grid>
+
+			<common:CustomImage 
+				IsVisible="{Binding HasCard, Converter={x:Static converters:ConverterResources.InverseBool}}"
+				HeightRequest="{x:Static resources:DimenResources.SaudaWidgetHeight}"
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="FillAndExpand"
+				Aspect="AspectFill"
+				Source="bg_banner_join">
+
+				<common:CustomImage.GestureRecognizers>
+					<TapGestureRecognizer Tapped="OnWidgetButtonClicked" />
+				</common:CustomImage.GestureRecognizers>
+			</common:CustomImage>
+
+			<common:CustomImage 
+				IsVisible="{Binding HasSAFEBanner}"
+				HeightRequest="{x:Static resources:DimenResources.SaudaWidgetHeight}"
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="FillAndExpand"
+				Aspect="AspectFill"
+				Source="banner_safe_fixo">
+
+				<common:CustomImage.GestureRecognizers>
+					<TapGestureRecognizer Tapped="OnWidgetButtonClicked" />
+				</common:CustomImage.GestureRecognizers>
+			</common:CustomImage>
+		</Grid>
+	</ContentView.Content>
+</ContentView>

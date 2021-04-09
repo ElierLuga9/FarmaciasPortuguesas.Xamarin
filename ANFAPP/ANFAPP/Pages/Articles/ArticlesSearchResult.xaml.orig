@@ -1,0 +1,254 @@
+<<<<<<< HEAD
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.Articles.ArticlesSearchResult">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Page Content -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Content Page -->
+		<!-- should have a binding to ensure category appears only if is invoked in search widget-->
+		<Grid Grid.Row="1" Grid.Column="1"
+			RowSpacing="0" ColumnSpacing="0">
+			<Grid.RowDefinitions>
+				<!-- Search Widget -->
+				<RowDefinition Height="auto"/>
+				<!-- Search Header -->
+				<RowDefinition Height="auto"/>
+				<!-- Search Results-->
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+
+			<!-- Search Widget -->
+			<views:ArticlesSearchWidget Grid.Row="0" x:Name="SearchWidget" SearchParamsRefreshed="OnSearch" />
+
+			<!-- Category/Search terms -->
+			<StackLayout IsVisible="True" Grid.Row="1"
+				Spacing="15"
+				Padding="15, 8"
+				HeightRequest="34"
+				Orientation="Horizontal"
+				HorizontalOptions="FillAndExpand"
+				BackgroundColor="#eeeeee">
+
+				<common:CustomLabel
+					HorizontalOptions="StartAndExpand"
+					VerticalOptions="CenterAndExpand"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					FontSize="15"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					Text="{Binding CategoryName}" />
+			</StackLayout>
+
+			<!-- Search Result-->
+			<common:CustomLabel
+				x:Name="noResultsLabel"
+				Grid.Row="2"
+				HorizontalOptions="StartAndExpand"
+				VerticalOptions="CenterAndExpand"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				FontSize="13"
+				IsVisible="False"
+				TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				Text="Não existem Resultados Disponíveis" />
+      
+			<common:InfiniteListView
+				x:Name="ArticlesList"
+				Grid.Row="2"
+				ItemTapped="OnListItemTapped"
+				VerticalOptions="FillAndExpand"
+				ItemsSource="{Binding SearchResults}"
+				SeparatorColor="White"
+				HasUnevenRows="True"
+				Footer="{Binding HasMore}">
+
+				<!-- Article Template -->
+				<common:CustomListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell >
+							<views:ArticlesListItemView/>
+						</ViewCell>
+					</DataTemplate>
+				</common:CustomListView.ItemTemplate>
+
+
+				<common:InfiniteListView.FooterTemplate>
+					<DataTemplate>
+						<common:CustomActivityIndicator
+							HorizontalOptions="CenterAndExpand"
+							VerticalOptions="CenterAndExpand"
+							IsRunning="{Binding .}"
+							Color="{x:Static resources:ColorResources.ANFGreen}" />
+					</DataTemplate>
+				</common:InfiniteListView.FooterTemplate>
+			</common:InfiniteListView>
+		</Grid>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>
+=======
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.Articles.ArticlesSearchResult">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Page Content -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Content Page -->
+		<!-- should have a binding to ensure category appears only if is invoked in search widget-->
+		<Grid Grid.Row="1" Grid.Column="1"
+			RowSpacing="0" ColumnSpacing="0">
+			<Grid.RowDefinitions>
+				<!-- Search Widget -->
+				<RowDefinition Height="auto"/>
+				<!-- Search Header -->
+				<RowDefinition Height="auto"/>
+				<!-- Search Results-->
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+
+			<!-- Search Widget -->
+			<views:ArticlesSearchWidget Grid.Row="0" x:Name="SearchWidget" SearchParamsRefreshed="OnSearch" />
+
+			<!-- Category/Search terms -->
+			<StackLayout IsVisible="True" Grid.Row="1"
+				Spacing="15"
+				Padding="15, 8"
+				HeightRequest="34"
+				Orientation="Horizontal"
+				HorizontalOptions="FillAndExpand"
+				BackgroundColor="#eeeeee">
+
+				<common:CustomLabel
+					HorizontalOptions="StartAndExpand"
+					VerticalOptions="CenterAndExpand"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					FontSize="15"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					Text="{Binding CategoryName}" />
+			</StackLayout>
+
+			<!-- Search Result-->
+			<common:CustomLabel
+				x:Name="noResultsLabel"
+				Grid.Row="2"
+				HorizontalOptions="StartAndExpand"
+				VerticalOptions="CenterAndExpand"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				FontSize="13"
+				IsVisible="False"
+				TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				Text="Não existem Resultados Disponíveis" />
+      
+			<common:InfiniteListView
+				x:Name="ArticlesList"
+				Grid.Row="2"
+				ItemTapped="OnListItemTapped"
+				VerticalOptions="FillAndExpand"
+				ItemsSource="{Binding SearchResults}"
+				SeparatorColor="White"
+				HasUnevenRows="True"
+				Footer="{Binding HasMore}">
+
+				<!-- Article Template -->
+				<common:CustomListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell >
+							<views:ArticlesListItemView/>
+						</ViewCell>
+					</DataTemplate>
+				</common:CustomListView.ItemTemplate>
+
+
+				<common:InfiniteListView.FooterTemplate>
+					<DataTemplate>
+						<common:CustomActivityIndicator
+							HorizontalOptions="CenterAndExpand"
+							VerticalOptions="CenterAndExpand"
+							IsRunning="{Binding .}"
+							Color="{x:Static resources:ColorResources.ANFGreen}" />
+					</DataTemplate>
+				</common:InfiniteListView.FooterTemplate>
+			</common:InfiniteListView>
+		</Grid>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</ANFPage>
+>>>>>>> maintenance_phase5_azure_notification

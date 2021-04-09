@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Views.HighlightsWidget">
+	<ContentView.Content>
+		<StackLayout Orientation="Vertical" Spacing="0">
+			
+			<StackLayout 
+				Spacing="15"
+				Padding="15, 8"
+				HeightRequest="34"
+				Orientation="Horizontal" 
+				HorizontalOptions="FillAndExpand"
+        		BackgroundColor="#eeeeee">
+				
+        		<common:CustomLabel
+        			InputTransparent="True"
+        			HorizontalOptions="StartAndExpand"
+        			VerticalOptions="CenterAndExpand"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"                          
+        			FontSize="20"
+        			TextColor="{x:Static resources:ColorResources.TextColorDark}"
+        			Text="{Binding HeaderTitle}" />
+
+        		<common:CustomImage Source="ic_button_arrow_black" VerticalOptions="Center" HorizontalOptions="End" InputTransparent="True"/>
+
+        		<StackLayout.GestureRecognizers>
+        			<TapGestureRecognizer Tapped="OnHeaderButtonClicked" />
+        		</StackLayout.GestureRecognizers>
+        	</StackLayout>
+
+        	<Grid Grid.ColumnSpacing="0" Padding="15, 0">
+        		<Grid.ColumnDefinitions>
+					<!-- The wrapping columns use the remaining screen space, keeping the list centered -->
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="10" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+
+				<views:ECProductHighlight x:Name="Widget1" Grid.Column="0"
+					BindingContext="{Binding Product0}" />
+				
+        		<views:ECProductHighlight x:Name="Widget2" Grid.Column="2" 
+					BindingContext="{Binding Product1}" />
+
+				<!-- Loading Container
+				<Grid x:Name="LoadingView" Grid.ColumnSpan="2"
+					IsVisible="False"
+					VerticalOptions="FillAndExpand"
+					HorizontalOptions="FillAndExpand"
+					BackgroundColor="#7FFFFFFF">
+					<common:CustomActivityIndicator
+						HorizontalOptions="Center"
+						VerticalOptions="Center"
+						IsRunning="True"
+						Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+				</Grid>
+				-->
+
+        	</Grid>
+		</StackLayout>
+	</ContentView.Content>
+</ContentView>

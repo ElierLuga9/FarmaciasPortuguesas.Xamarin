@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+  xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+  xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+  xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+  xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+  xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+  x:Class="ANFAPP.Pages.UserLogin.LoginPage">
+
+	<Grid Grid.RowSpacing="0">
+		<common:CustomImage Source="initialpagebackgroundimage.png" Aspect="AspectFill" />
+		<StackLayout Padding="0,35,0,0">
+						<common:CustomImage 	
+						  HorizontalOptions="Center"
+						 VerticalOptions="StartAndExpand"
+						  Source="ic_anf_logo_large.png" />
+		</StackLayout>
+		<ScrollView>
+			
+				  
+		<!-- Page -->
+
+			<StackLayout Orientation="Vertical"
+				VerticalOptions="EndAndExpand"
+				Spacing="15" Padding="15">
+				
+				<!-- Idiom Specific Params -->
+				<StackLayout.HorizontalOptions>
+					<OnIdiom x:TypeArguments="LayoutOptions">
+						<OnIdiom.Phone>FillAndExpand</OnIdiom.Phone>
+						<OnIdiom.Tablet>Center</OnIdiom.Tablet>
+					</OnIdiom>
+				</StackLayout.HorizontalOptions>
+				<StackLayout.WidthRequest>
+					<OnIdiom x:TypeArguments="x:Double">
+						<OnIdiom.Phone>-1</OnIdiom.Phone>
+						<OnIdiom.Tablet>480</OnIdiom.Tablet>
+					</OnIdiom>
+				</StackLayout.WidthRequest>
+
+				<!-- Logo -->
+
+				<!-- Welcome Text 
+				<common:CustomLabel
+					HorizontalOptions="Center"
+					XAlign="Center"
+					FontSize="15"
+					Text="{x:Static app:AppResources.LoginPageWelcomeLabel}"
+					TextColor="{x:Static resources:ColorResources.ANFGreen}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}" />-->
+				<StackLayout>
+					<!-- Email Input -->
+					<common:CustomEntry 
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="Start"
+					FontSize="15"
+					Keyboard="Email"
+					CustomPadding="10, 0"
+							HeightRequest="50"
+					BackgroundResource="bg_input.png"
+					Text="{Binding Email, Mode=TwoWay}"
+					BackgroundColor="{x:Static resources:ColorResources.ANFWhite}"
+
+					Placeholder="{x:Static app:AppResources.LoginPageEmailInputPlaceholder}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}" />
+					<!-- Email Input 
+					<common:CustomEntry HeightRequest="50"
+						HorizontalOptions="FillAndExpand"
+						FontSize="15"
+						Keyboard="Email"
+						CustomPadding="10, 0"
+						BackgroundColor="{x:Static resources:ColorResources.ANFWhite}"
+						Text="{Binding Email, Mode=TwoWay}"
+						Placeholder="{x:Static app:AppResources.LoginPageEmailInputPlaceholder}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}" />-->
+
+					<!-- Password Input -->
+					<common:CustomEntry HeightRequest="50"
+						HorizontalOptions="FillAndExpand"
+						FontSize="15"
+						CustomPadding="10, 0"
+						IsPassword="True"
+						BackgroundResource="bg_input.png"
+						BackgroundColor="{x:Static resources:ColorResources.ANFWhite}"
+						Text="{Binding Password, Mode=TwoWay}"
+						Placeholder="{x:Static app:AppResources.LoginPagePasswordInputPlaceholder}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}" />
+				</StackLayout>
+				<Grid Grid.RowSpacing="10" >
+
+					<!-- Enter Button -->
+					<common:CustomButton HeightRequest="40"
+						HorizontalOptions="FillAndExpand"
+						FontSize="15"
+						Clicked="LoginButton_Click"
+						Text="{x:Static app:AppResources.LoginPageEnterButton}"
+						TextColor="{x:Static resources:ColorResources.TextColorLight}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						BackgroundColor="{x:Static resources:ColorResources.ANFGreen}" />
+
+					<!-- Forgot Password Label -->
+				
+
+					<!--	<common:CustomLabel Grid.Row="1"
+						VerticalOptions="Center"
+						HorizontalOptions="Start"
+						FontSize="12"
+						IsUnderline="True"
+						Text="{x:Static app:AppResources.LoginPageForgotPasswordLabel}"
+						TextColor="{x:Static resources:ColorResources.ANFGreen}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+
+					 Forgot Password Button 
+					<common:CustomButton Grid.Row="1" HeightRequest="40"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						BackgroundColor="Transparent"
+						Clicked="RecoverPasswordButton_Click" />-->
+				</Grid>
+				<StackLayout Spacing="20"
+					Padding="0,20,0,20"
+					Orientation="Horizontal"
+					VerticalOptions="Center"
+					HorizontalOptions="Center">
+
+					<controls:ExtendedLabel
+						Text="{x:Static app:AppResources.LoginPageForgotPasswordLabel}"
+					    FontSize="12"
+						
+						TextColor="{x:Static resources:ColorResources.ANFWhite}"
+					    HorizontalOptions="Center"
+					    VerticalOptions="Center"
+						IsUnderline="true">
+						<controls:ExtendedLabel.GestureRecognizers>
+						 	<TapGestureRecognizer
+			                Tapped="RecoverPasswordButton_Click"
+			                NumberOfTapsRequired="1" />
+							
+						</controls:ExtendedLabel.GestureRecognizers>
+					</controls:ExtendedLabel>
+					<controls:ExtendedLabel 
+						Text="{x:Static app:AppResources.LoginBackLabel}"
+					    FontSize="12"
+						TextColor="{x:Static resources:ColorResources.ANFWhite}"
+					    HorizontalOptions="Center"
+					    VerticalOptions="Center"
+						IsUnderline="true">
+						<controls:ExtendedLabel.GestureRecognizers>
+						 	<TapGestureRecognizer
+			                Tapped="OnBackButton_Clicked"
+			                NumberOfTapsRequired="1" />
+						</controls:ExtendedLabel.GestureRecognizers>
+						
+					</controls:ExtendedLabel>
+
+					<!-- Login Label 
+					<common:CustomLabel
+						VerticalOptions="Center"
+						HorizontalOptions="Center"
+						FontSize="12"
+						Text="{x:Static app:AppResources.QuickRegisterLoginLabel}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>-->
+
+					<!-- Login Button 
+					<common:CustomButton x:Name="LoginButton"
+						HorizontalOptions="FillAndExpand"
+						HeightRequest="40"
+						FontSize="15"
+						BorderRadius="2"
+						Clicked="LoginButton_Click"
+						Text="{x:Static app:AppResources.QuickRegisterLoginButton}"
+						TextColor="{x:Static resources:ColorResources.TextColorLight}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						BackgroundColor="{x:Static resources:ColorResources.ANFGreen}" />-->
+				</StackLayout>
+			</StackLayout>
+		</ScrollView>
+		<!-- ApplicationBar 
+		<views:ApplicationBar x:Name="ApplicationBar" />-->
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+			HorizontalOptions="Center"
+			VerticalOptions="Center"
+			IsRunning="True"
+			Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>

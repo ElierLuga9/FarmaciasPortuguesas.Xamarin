@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>InfragisticsXF.Controls.Grids</name>
+    </assembly>
+    <members>
+        <member name="T:Infragistics.XF.Controls.XFGrid">
+            <summary>
+            Represents Infragistics Grid control with data binding and templatable data columns functionality 
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.Controls.XFGrid.AdapterProperty">
+            <summary>
+            Gets or sets the Adapter to use with this grid.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.Controls.XFGrid.RowHeightProperty">
+            <summary>
+            Gets or sets the row height of this grid.
+            </summary>
+        </member>
+        <member name="P:Infragistics.XF.Controls.XFGrid.Adapter">
+            <summary>
+            Gets or sets the Adapter to use with this grid.
+            </summary>
+        </member>
+        <member name="P:Infragistics.XF.Controls.XFGrid.RowHeight">
+            <summary>
+            Gets or sets the row height of this grid.
+            </summary>
+        </member>
+    </members>
+</doc>

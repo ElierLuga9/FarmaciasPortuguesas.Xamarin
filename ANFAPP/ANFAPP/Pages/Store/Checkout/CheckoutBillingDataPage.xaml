@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.Store.Checkout.CheckoutBillingDataPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Page -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Items -->
+		<ScrollView Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+
+			<StackLayout Orientation="Vertical" Spacing="20" Padding="15">
+
+				<!-- Title -->
+				<common:CustomLabel
+					FontSize="17"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					Text="{x:Static app:AppResources.CheckoutBillingDataTitleLabel}" />
+
+				<!-- Descriptive Text -->
+				<common:CustomLabel
+					FontSize="13"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					Text="{x:Static app:AppResources.CheckoutBillingHeaderMessage}" />
+
+				<!-- Name -->
+				<StackLayout Spacing="7" Orientation="Vertical">
+
+					<!-- Label -->
+					<common:CustomLabel
+						FontSize="15"
+						Text="{x:Static app:AppResources.CheckoutBillingNameLabel}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+					<!-- Input -->
+					<common:CustomEntry HeightRequest="40"
+						HorizontalOptions="FillAndExpand"
+						FontSize="15"
+						CustomPadding="10, 0"
+						BackgroundResource="bg_input.png"
+						Text="{Binding Name, Mode=TwoWay}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}" />
+				</StackLayout>
+
+				<!-- NIF -->
+				<StackLayout Spacing="7" Orientation="Vertical">
+
+					<!-- Label -->
+					<common:CustomLabel
+						FontSize="15"
+						Text="{x:Static app:AppResources.CheckoutBillingNIFLabel}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+					<!-- Input -->
+					<common:CustomEntry HeightRequest="40"
+						HorizontalOptions="FillAndExpand"
+						FontSize="15"
+						MaxLength="9"
+						Keyboard="Numeric"
+						CustomPadding="10, 0"
+						BackgroundResource="bg_input.png"
+						Text="{Binding NIF, Mode=TwoWay}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}" />
+				</StackLayout>
+
+				<!-- Address -->
+				<StackLayout Spacing="7" Orientation="Vertical">
+
+					<!-- Label -->
+					<common:CustomLabel
+						FontSize="15"
+						Text="{x:Static app:AppResources.CheckoutBillingMoradaLabel}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+					<!-- Input -->
+					<common:CustomEntry HeightRequest="40"
+						HorizontalOptions="FillAndExpand"
+						FontSize="15"
+						CustomPadding="10, 0"
+						BackgroundResource="bg_input.png"
+						Text="{Binding Address, Mode=TwoWay}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}" />
+				</StackLayout>
+
+				<!-- Postal Code -->
+				<Grid Grid.ColumnSpacing="10" Grid.RowSpacing="7">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="auto" />
+						<RowDefinition Height="auto" />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="112"/>
+						<ColumnDefinition Width="80"/>
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+
+					<!-- Label -->
+					<common:CustomLabel
+						FontSize="15"
+						Text="{x:Static app:AppResources.CheckoutBillingPostalCodeLabel}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+					<!-- 4 Digits -->
+					<common:CustomEntry Grid.Row="1" HeightRequest="40"
+						HorizontalOptions="FillAndExpand"
+						FontSize="15"
+						MaxLength="4"
+						Keyboard="Numeric"
+						CustomPadding="10, 0"
+						BackgroundResource="bg_input.png"
+						Text="{Binding PostalCode4, Mode=TwoWay}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+					<!-- 3 Digits -->
+					<common:CustomEntry Grid.Column="1" Grid.Row="1" HeightRequest="40"
+						HorizontalOptions="FillAndExpand"
+						FontSize="15"
+						MaxLength="3"
+						Keyboard="Numeric"
+						CustomPadding="10, 0"
+						BackgroundResource="bg_input.png"
+						Text="{Binding PostalCode3, Mode=TwoWay}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}" />
+				</Grid>
+
+				<!-- Locale -->
+				<StackLayout Spacing="7" Orientation="Vertical">
+
+					<!-- Label -->
+					<common:CustomLabel
+						FontSize="15"
+						Text="{x:Static app:AppResources.CheckoutBillingLocaleLabel}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+					<!-- Input -->
+					<common:CustomEntry HeightRequest="40"
+						HorizontalOptions="FillAndExpand"
+						FontSize="15"
+						CustomPadding="10, 0"
+						BackgroundResource="bg_input.png"
+						Text="{Binding Locale, Mode=TwoWay}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}" />
+				</StackLayout>
+
+				<!-- Descriptive Text -->
+				<common:CustomLabel
+					FontSize="11"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					Text="{x:Static app:AppResources.CheckoutBillingFooterMessage}" />
+
+				<!-- Confirm Button -->
+				<Frame HasShadow="False" Padding="0, 10, 0, 0">
+					<common:CustomButton HeightRequest="40"
+						HorizontalOptions="FillAndExpand"
+						FontSize="15"
+						BorderRadius="2"
+						Clicked="OnConfirmButtonClicked"
+						Text="{x:Static app:AppResources.CheckoutDeliveryMethodConfirmButton}"
+						TextColor="{x:Static resources:ColorResources.TextColorLight}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						BackgroundColor="{x:Static resources:ColorResources.ANFDarkOrange}" />
+				</Frame>
+			</StackLayout>
+		</ScrollView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>

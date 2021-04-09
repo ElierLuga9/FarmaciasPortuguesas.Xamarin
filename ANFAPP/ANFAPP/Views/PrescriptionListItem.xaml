@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+  xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+  xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+  xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+  x:Class="ANFAPP.Views.PrescriptionListItem">
+
+	<ContentView.Content>
+		<Grid Padding="15, 10" Grid.RowSpacing="5" Grid.ColumnSpacing="10"
+			VerticalOptions="Start"
+			BackgroundColor="White">
+
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="10" />
+				<ColumnDefinition Width="auto" />
+				<ColumnDefinition Width="10" />
+				<ColumnDefinition Width="auto" />
+			</Grid.ColumnDefinitions>
+			
+			<Grid.RowDefinitions>
+				<RowDefinition Height="60" />
+			</Grid.RowDefinitions>
+
+		
+			<!-- Product Info -->
+			<StackLayout Spacing="0" Orientation="Vertical" Grid.Column="0" 
+				VerticalOptions="CenterAndExpand"
+				HorizontalOptions="FillAndExpand">
+
+				<!-- CNPEM -->
+				<common:CustomLabel
+					FontSize="14"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					Text="{Binding CodeLabel}" />
+
+				<!-- PA -->
+				<common:CustomLabel
+					FontSize="10"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					Text="{Binding Name}" />
+
+				<!-- Pack Description -->
+				<common:CustomLabel
+					FontSize="10"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					Text="{Binding Presentation}" />
+
+				<!-- CNP Active Principle -->
+				<common:CustomLabel
+					FontSize="10"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					Text="{Binding CNPPrinciple}" />
+			</StackLayout>
+
+
+			<!-- Delete Icon -->
+			<common:CustomImage WidthRequest="19" HeightRequest="23" Grid.Column="4"
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				Source="bt_trashbin_orange.png" />
+			
+			<!-- Delete Button -->
+			<common:CustomButton Grid.Column="4"
+				HorizontalOptions="CenterAndExpand"
+				VerticalOptions="CenterAndExpand"
+				Clicked="OnRemoveButtonClicked"
+				BackgroundColor="Transparent" />
+
+
+			<!-- Quantity Entry -->
+			<ContentView Grid.Column="2"
+				VerticalOptions="Center"
+				HorizontalOptions="FillAndExpand"
+				HeightRequest="40"
+				WidthRequest="40">
+
+				<common:CustomEntry x:Name="QuantityEntry" 
+					CustomPadding="0, 0, 0, 0"
+					CenterText="true"
+					Keyboard="Numeric"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					FontSize="15"
+					MaxLength="2"
+					BackgroundColor="White"
+					BackgroundResource="bg_input.png"
+					CustomFont="{x:Static resources:FontResources.BoldFont}" 
+					TextChanged="OnQtyTextChanged"
+					Text="{Binding Quantity}" />
+
+			</ContentView>
+
+
+		</Grid>
+	</ContentView.Content>
+</ContentView>

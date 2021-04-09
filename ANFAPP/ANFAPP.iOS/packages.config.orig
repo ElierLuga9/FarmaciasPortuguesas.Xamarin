@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<packages>
+  <package id="Acr.BarCodes" version="3.1.0" targetFramework="xamarinios10" />
+  <package id="Branch-Xamarin-Linking-SDK" version="1.2.1" targetFramework="xamarinios10" />
+  <package id="ExifLib.PCL" version="1.0.1" targetFramework="xamarinios10" />
+  <package id="Infragistics.Xamarin" version="15.1.20151.169" targetFramework="xamarinios10" />
+  <package id="Infragistics.Xamarin.Barcodes" version="15.1.20151.169" targetFramework="xamarinios10" />
+  <package id="Infragistics.Xamarin.Charts" version="15.1.20151.169" targetFramework="xamarinios10" />
+  <package id="Infragistics.Xamarin.Core" version="15.1.20151.169" targetFramework="xamarinios10" />
+  <package id="Infragistics.Xamarin.Gauges" version="15.1.20151.169" targetFramework="xamarinios10" />
+  <package id="Infragistics.Xamarin.Grids" version="15.1.20151.169" targetFramework="xamarinios10" />
+  <package id="Microsoft.Bcl" version="1.1.10" targetFramework="xamarinios10" />
+  <package id="Microsoft.Bcl.Build" version="1.0.21" targetFramework="xamarinios10" />
+  <package id="Microsoft.Net.Http" version="2.2.29" targetFramework="xamarinios10" />
+<<<<<<< HEAD
+  <package id="Mindscape.Raygun4Net" version="5.4.0" targetFramework="xamarinios10" />
+  <package id="modernhttpclient" version="2.4.2" targetFramework="xamarinios10" />
+  <package id="Newtonsoft.Json" version="9.0.1" targetFramework="xamarinios10" />
+  <package id="Xam.Plugin.Connectivity" version="2.2.12" targetFramework="xamarinios10" />
+  <package id="Xam.Plugins.Settings" version="2.5.1.0" targetFramework="xamarinios10" />
+  <package id="Xamarin.Facebook" version="4.3.0.0" targetFramework="xamarinios10" />
+  <package id="Xamarin.Forms" version="2.3.2.127" targetFramework="xamarinios10" />
+  <package id="Xamarin.Forms.Maps" version="2.3.2.127" targetFramework="xamarinios10" />
+  <package id="XLabs.Core" version="2.0.5782" targetFramework="xamarinios10" />
+  <package id="XLabs.Forms" version="2.0.5782" targetFramework="xamarinios10" />
+  <package id="XLabs.Forms.Charting" version="2.0.5782" targetFramework="xamarinios10" />
+  <package id="XLabs.IoC" version="2.0.5782" targetFramework="xamarinios10" />
+  <package id="XLabs.Platform" version="2.0.5782" targetFramework="xamarinios10" />
+  <package id="XLabs.Serialization" version="2.0.5782" targetFramework="xamarinios10" />
+=======
+  <package id="Mindscape.Raygun4Net" version="5.1.0" targetFramework="xamarinios10" />
+  <package id="modernhttpclient" version="2.4.2" targetFramework="xamarinios10" />
+  <package id="Newtonsoft.Json" version="8.0.1" targetFramework="xamarinios10" />
+  <package id="Xam.Plugin.Connectivity" version="1.0.2" targetFramework="xamarinios10" />
+  <package id="Xam.Plugins.Settings" version="1.5.1" targetFramework="xamarinios10" />
+  <package id="Xamarin.Azure.NotificationHubs.iOS" version="1.2.5.2" targetFramework="xamarinios10" />
+  <package id="Xamarin.Facebook" version="4.0.1.3" targetFramework="xamarinios10" />
+  <package id="Xamarin.Forms" version="1.4.4.6392" targetFramework="xamarinios10" />
+  <package id="Xamarin.Forms.Maps" version="1.4.2.6359" targetFramework="xamarinios10" />
+  <package id="Xamarin.Insights" version="1.10.4.112" targetFramework="xamarinios10" />
+  <package id="XLabs.Core" version="2.0.5610.2" targetFramework="xamarinios10" />
+  <package id="XLabs.Forms" version="2.0.5610.2" targetFramework="xamarinios10" />
+  <package id="XLabs.Forms.Charting" version="2.0.5610.2" targetFramework="xamarinios10" />
+  <package id="XLabs.IoC" version="2.0.5610.2" targetFramework="xamarinios10" />
+  <package id="XLabs.Platform" version="2.0.5610.2" targetFramework="xamarinios10" />
+  <package id="XLabs.Serialization" version="2.0.5610.2" targetFramework="xamarinios10" />
+>>>>>>> maintenance_phase5_azure_notification
+  <package id="ZXing.Net.Mobile" version="1.4.7.1" targetFramework="xamarinios10" />
+</packages>

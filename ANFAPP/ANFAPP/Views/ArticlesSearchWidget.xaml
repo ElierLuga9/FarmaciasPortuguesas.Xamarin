@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	x:Class="ANFAPP.Views.ArticlesSearchWidget">
+
+	<ContentView.Content>
+		<StackLayout x:Name="MainContainer"
+			Padding="15, 10"
+			Spacing="10"
+			Orientation="Vertical"
+			BackgroundColor="White">
+
+			<!-- Section Button -->
+			<Grid HeightRequest="40">
+				<common:CustomButton BackgroundColor="Transparent" Clicked="OnCategoryClick"
+					BorderColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+					HorizontalOptions="FillAndExpand"
+					BorderWidth="1"
+					BorderRadius="2"/>
+
+				<StackLayout Orientation="Horizontal" Spacing="10" Padding="10, 0"
+					HorizontalOptions="Start"
+					InputTransparent="True"
+					VerticalOptions="FillAndExpand">
+
+					<common:CustomImage
+						Source="bt_sections.png"
+						VerticalOptions="Center"
+						InputTransparent="True" />
+
+					<common:CustomLabel
+						FontSize="15"
+						InputTransparent="True"
+						VerticalOptions="Center"
+						TextColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						Text="{x:Static app:AppResources.ArticlesPageThemesLabel}" />
+
+				</StackLayout>
+			</Grid>
+
+			<!-- Search Box -->
+			<common:CustomEntry x:Name="SearchBox"
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="Start"
+				HeightRequest="40"
+				FontSize="14"
+				CustomPadding="15, 5"
+				AccessoryImage="magnifier_gray.png"
+				BackgroundResource="bg_input.png"
+				Completed="OnSearchBoxInputSubmit"
+				AccessoryTapped="OnSearchBoxInputSubmit"
+				Text="{Binding SearchValue, Mode=TwoWay}"
+				TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				CustomFont="{x:Static resources:FontResources.RegularFont}" />
+		</StackLayout>
+	</ContentView.Content>
+</ContentView>

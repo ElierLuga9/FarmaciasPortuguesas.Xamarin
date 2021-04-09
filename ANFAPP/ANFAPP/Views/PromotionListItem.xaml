@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+  xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+  xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+  xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+  x:Class="ANFAPP.Views.PromotionListItem">
+
+	<ContentView.Content>
+		<Grid Padding="15, 10, 15, 0" Grid.RowSpacing="5" Grid.ColumnSpacing="10"
+			VerticalOptions="Start"
+			BackgroundColor="White">
+
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="85" />
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="auto" />
+			</Grid.ColumnDefinitions>
+			
+			<Grid.RowDefinitions>
+				<RowDefinition Height="auto" />
+				<RowDefinition Height="auto" />
+				<RowDefinition Height="10" />
+			</Grid.RowDefinitions>
+
+			<!-- Product Image -->
+			<!--<common:CustomWebImage Grid.RowSpan="2" Grid.Row="0"
+				VerticalOptions="CenterAndExpand" 
+				HorizontalOptions="CenterAndExpand" 
+				WidthRequest="85"
+				HeightRequest="85"
+ 				
+				ImageUrl="{Binding ImageURL}" 
+				DefaultImage="catalog_thumbnail.png" />
+			<common:CustomImage Grid.RowSpan="2" Grid.Row="0"
+				VerticalOptions="Center" 
+				HorizontalOptions="Center"
+				WidthRequest="85"
+				HeightRequest="85"
+
+				Source="msrmplaceholder.png" />-->
+
+			<!-- Icons -->
+
+			
+			<!-- Product Info -->
+			<StackLayout Spacing="1" Padding="0, 4" Orientation="Vertical" Grid.Column="1" Grid.Row="1">
+
+				<!-- Name -->
+				<common:CustomLabel
+					
+					FontSize="14" x:Name="Name"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					 />
+
+				<!-- Dosage -->
+				<common:CustomLabel x:Name="Dosage"
+					FontSize="10"
+
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					 />
+
+       	 		
+			</StackLayout>
+
+			<!-- Separator -->
+			<Grid Padding="-15, 0" Grid.Row="2" Grid.ColumnSpan="3" 
+				HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand">
+				<BoxView HorizontalOptions="FillAndExpand" HeightRequest="1"
+					Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+			</Grid>
+		</Grid>
+	</ContentView.Content>
+</ContentView>

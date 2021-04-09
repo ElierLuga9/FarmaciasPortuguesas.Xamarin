@@ -1,0 +1,14 @@
+﻿<resources>
+  <style name="Theme.Splash" parent="@android:Theme">
+    <item name="android:windowBackground">@drawable/bg_splashscreen</item>
+    <item name="android:windowNoTitle">true</item>
+  </style>
+
+  <style name="Theme.CustomNormal" parent="@android:Theme.Holo.Light">
+    <item name="android:windowBackground">@android:color/transparent</item>
+  </style>
+
+  <!--<style name="Theme.CustomTheme" parent="@android:Theme.Holo.Light">
+    <item name="android:actionBarSize">0dp</item>
+  </style>-->
+</resources>

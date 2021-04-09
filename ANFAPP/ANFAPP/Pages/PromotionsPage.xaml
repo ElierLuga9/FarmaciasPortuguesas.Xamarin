@@ -1,0 +1,68 @@
+﻿<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+		 xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+         xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+         xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+         xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+         xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+         xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+         xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+         x:Class="ANFAPP.Pages.PromotionsPage">
+
+
+  <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RowSpacing="0" ColumnSpacing="0">
+    <Grid.RowDefinitions>
+      <!-- Application Bar -->
+      <RowDefinition Height="auto" />
+      <!-- Page -->
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="auto" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+
+
+    <!-- Page -->
+    <ScrollView Grid.Row="1" Grid.Column="1"
+    		Orientation="Vertical"
+    		VerticalOptions="FillAndExpand"
+    		HorizontalOptions="FillAndExpand">
+      <StackLayout Orientation="Vertical" Spacing="0">
+        
+        <!-- Promotions -->
+		<views:PromotionsTabbedBar SelectedTab="Promotions"></views:PromotionsTabbedBar>
+				
+        <views:PromotionsTypeWidget OnPromoTapped="OnPromotionSelect" PromotionSelect="OnPromotionSelect"  IsVisible="{Binding UserIn}"></views:PromotionsTypeWidget>
+
+
+      </StackLayout>
+    </ScrollView>
+    
+    
+    <!-- MenuItem -->
+    <views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+    <!-- Application Bar -->
+    <views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+    <!-- Loading Container -->
+    <Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+      <!-- Loading Indicator -->
+      <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <common:CustomActivityIndicator
+					HorizontalOptions="CenterAndExpand"
+					VerticalOptions="CenterAndExpand"
+					IsRunning="True"
+					Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+      </StackLayout>
+
+    </Grid>
+  </Grid>
+ 
+</pages:ANFPage>

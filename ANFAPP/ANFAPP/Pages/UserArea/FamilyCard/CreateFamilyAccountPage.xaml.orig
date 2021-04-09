@@ -1,0 +1,260 @@
+<<<<<<< HEAD
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+  xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+  xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+  xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+  xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+  xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+  xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+  xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+  x:Class="ANFAPP.Pages.UserArea.FamilyCard.CreateFamilyAccountPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Content -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Content -->
+		<ScrollView Orientation="Vertical" Grid.Row="1" Grid.Column="1">
+			<Grid Grid.RowSpacing="0" Grid.ColumnSpacing="0">
+				<Grid.ColumnDefinitions>
+					<!-- Left Margin -->
+					<ColumnDefinition Width="15" />
+					<!-- Card Column -->
+					<ColumnDefinition Width="*" />
+					<!-- Right Margin -->
+					<ColumnDefinition Width="15" />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<!-- Spacing -->
+					<RowDefinition Height="22" />
+					<!-- Title Label -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="20" />
+					<!-- First Input -->
+					<RowDefinition Height="40" />
+					<!-- Spacing -->
+					<RowDefinition Height="15" />
+					<!-- Submit Button -->
+					<RowDefinition Height="40" />
+					<!-- Family Model Detail Button -->
+					<RowDefinition Height="40" />
+					<!-- Spacing -->
+					<RowDefinition Height="22" />
+				</Grid.RowDefinitions>
+
+				<!-- Title Label -->
+				<common:CustomLabel Grid.Row="1" Grid.Column="1"
+				  FontSize="15"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+				  Text="{x:Static app:AppResources.CreateFamilyAccountHeaderLabel}" />
+
+				<!-- First Input -->
+				<common:CustomEntry Grid.Row="3" Grid.Column="1"
+				  HorizontalOptions="FillAndExpand"
+				  VerticalOptions="FillAndExpand"
+				  FontSize="15"
+				  CustomPadding="10, 0"
+				  Text="{Binding Input1}"
+				  BackgroundResource="bg_input.png"
+				  Placeholder="{x:Static app:AppResources.CreateFamilyAccountInputPlaceholder}"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Submit Button -->
+				<common:CustomButton Grid.Row="5" Grid.Column="1"
+				  HorizontalOptions="FillAndExpand"
+				  VerticalOptions="FillAndExpand"
+				  FontSize="16"
+				  BorderRadius="0"
+				  Clicked="OnSubmitButton_Clicked"
+				  Text="{x:Static app:AppResources.CreateFamilyAccountSubmitButton}"
+				  TextColor="{x:Static resources:ColorResources.TextColorLight}"
+				  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+				  BackgroundColor="{x:Static resources:ColorResources.ANFGreen}" />
+
+				<!-- Family Model Details Label -->
+				<common:CustomLabel Grid.Row="6" Grid.Column="1"
+				  VerticalOptions="Center"
+				  HorizontalOptions="Start"
+				  FontSize="12"
+				  IsUnderline="True"
+				  Text="{x:Static app:AppResources.NoFamilyAccountFamilyModelDetailButton}"
+				  TextColor="{x:Static resources:ColorResources.ANFGreen}"
+				  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+
+				<!-- Family Model Details Button -->
+				<common:CustomButton Grid.Row="6" Grid.Column="1"
+				  HorizontalOptions="FillAndExpand"
+				  VerticalOptions="FillAndExpand"
+				  BackgroundColor="Transparent"
+				  Clicked="OnFamilyModuleDetailsButton_Clicked" />
+			</Grid>
+		</ScrollView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+    <!--<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />-->
+    <views:ApplicationBarUserCard x:Name="ApplicationBar" Grid.ColumnSpan="2"> </views:ApplicationBarUserCard>
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>
+=======
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+  xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+  xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+  xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+  xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+  xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+  xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+  xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+  x:Class="ANFAPP.Pages.UserArea.FamilyCard.CreateFamilyAccountPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Content -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Content -->
+		<ScrollView Orientation="Vertical" Grid.Row="1" Grid.Column="1">
+			<Grid Grid.RowSpacing="0" Grid.ColumnSpacing="0">
+				<Grid.ColumnDefinitions>
+					<!-- Left Margin -->
+					<ColumnDefinition Width="15" />
+					<!-- Card Column -->
+					<ColumnDefinition Width="*" />
+					<!-- Right Margin -->
+					<ColumnDefinition Width="15" />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<!-- Spacing -->
+					<RowDefinition Height="22" />
+					<!-- Title Label -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="20" />
+					<!-- First Input -->
+					<RowDefinition Height="40" />
+					<!-- Spacing -->
+					<RowDefinition Height="15" />
+					<!-- Submit Button -->
+					<RowDefinition Height="40" />
+					<!-- Family Model Detail Button -->
+					<RowDefinition Height="40" />
+					<!-- Spacing -->
+					<RowDefinition Height="22" />
+				</Grid.RowDefinitions>
+
+				<!-- Title Label -->
+				<common:CustomLabel Grid.Row="1" Grid.Column="1"
+				  FontSize="15"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+				  Text="{x:Static app:AppResources.CreateFamilyAccountHeaderLabel}" />
+
+				<!-- First Input -->
+				<common:CustomEntry Grid.Row="3" Grid.Column="1"
+				  HorizontalOptions="FillAndExpand"
+				  VerticalOptions="FillAndExpand"
+				  FontSize="15"
+				  CustomPadding="10, 0"
+				  Text="{Binding Input1}"
+				  BackgroundResource="bg_input.png"
+				  Placeholder="{x:Static app:AppResources.CreateFamilyAccountInputPlaceholder}"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Submit Button -->
+				<common:CustomButton Grid.Row="5" Grid.Column="1"
+				  HorizontalOptions="FillAndExpand"
+				  VerticalOptions="FillAndExpand"
+				  FontSize="16"
+				  BorderRadius="0"
+				  Clicked="OnSubmitButton_Clicked"
+				  Text="{x:Static app:AppResources.CreateFamilyAccountSubmitButton}"
+				  TextColor="{x:Static resources:ColorResources.TextColorLight}"
+				  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+				  BackgroundColor="{x:Static resources:ColorResources.ANFGreen}" />
+
+				<!-- Family Model Details Label -->
+				<common:CustomLabel Grid.Row="6" Grid.Column="1"
+				  VerticalOptions="Center"
+				  HorizontalOptions="Start"
+				  FontSize="12"
+				  IsUnderline="True"
+				  Text="{x:Static app:AppResources.NoFamilyAccountFamilyModelDetailButton}"
+				  TextColor="{x:Static resources:ColorResources.ANFGreen}"
+				  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+
+				<!-- Family Model Details Button -->
+				<common:CustomButton Grid.Row="6" Grid.Column="1"
+				  HorizontalOptions="FillAndExpand"
+				  VerticalOptions="FillAndExpand"
+				  BackgroundColor="Transparent"
+				  Clicked="OnFamilyModuleDetailsButton_Clicked" />
+			</Grid>
+		</ScrollView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+    <!--<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />-->
+    <views:ApplicationBarUserCard x:Name="ApplicationBar" Grid.ColumnSpan="2"> </views:ApplicationBarUserCard>
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</ANFPage>
+>>>>>>> maintenance_phase5_azure_notification

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.Articles.ArticlesMainPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Search Widget-->
+			<RowDefinition Height="auto" />
+			<!-- Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Articles -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Header 
+		http://issue.innovagency.com/view.php?id=20832
+		-->
+		<StackLayout Grid.Row="2" Grid.Column="1"
+			Padding="15, 8"
+			HeightRequest="34"
+			Orientation="Horizontal"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#eeeeee">
+
+			<common:CustomLabel
+				HorizontalOptions="StartAndExpand"
+				VerticalOptions="CenterAndExpand"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				FontSize="15"
+				TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				Text="Destaques" />
+		</StackLayout>
+
+		<common:InfiniteListView Grid.Row="3" Grid.Column="1" x:Name="ArticlesList"
+    		IsVisible="{Binding ArticlesHighlights, Converter={x:Static converters:ConverterResources.NotNullable}}"
+        	ItemTapped="OnListItemTapped"
+        	ItemsSource="{Binding ArticlesHighlights.MinorArticles}"
+        	SeparatorColor="White"
+        	HasUnevenRows="True"
+        	VerticalOptions="FillAndExpand"
+        	HorizontalOptions="FillAndExpand">
+
+			<common:InfiniteListView.HeaderTemplate>
+				<DataTemplate>
+					<Grid RowSpacing="0" ColumnSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+						<Grid.RowDefinitions>
+							<!-- Featured Image Placeholder-->
+							<RowDefinition Height="auto" />
+							<!-- Category & Title -->
+							<RowDefinition Height="auto" />
+							<!--Separator-->
+							<RowDefinition Height="1" />
+						</Grid.RowDefinitions>
+
+						<!-- Featured Image Placeholder -->
+						<common:CustomImage x:Name="HighlightImage"
+							HeightRequest="{x:Static resources:DimenResources.BannerHeight}"
+							Aspect="AspectFill"
+							Source="{Binding Image}"
+							IsVisible="{Binding Image, Converter={x:Static converters:ConverterResources.NotNullable}" />
+
+						<StackLayout Orientation="Vertical" Grid.Row="1" Spacing="5" Padding="15">
+
+							<!-- Category Placeholder-->
+							<common:CustomLabel Grid.Row="1" Grid.Column="1"
+								CustomFont="{x:Static resources:FontResources.RegularFont}"
+								VerticalOptions="StartAndExpand"
+								HorizontalOptions="StartAndExpand"
+								FontSize="10"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}"
+								Text="{Binding GetCategoryName}" />
+
+							<!-- Article Teaser Placeholder-->
+							<common:CustomLabel
+								CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+								VerticalOptions="StartAndExpand"
+								HorizontalOptions="StartAndExpand"
+								LineBreakMode="WordWrap"
+								FontSize="15"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}"
+								Text="{Binding DecodedTitle}" />
+						</StackLayout>
+
+						<!-- Separator-->
+						<BoxView Grid.Row="2" HeightRequest="1"
+							HorizontalOptions="FillAndExpand"
+							Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+
+						<Grid.GestureRecognizers>
+							<TapGestureRecognizer Tapped="OnMainArticleTapped" NumberOfTapsRequired="1" />
+						</Grid.GestureRecognizers>
+					</Grid>
+				</DataTemplate>
+			</common:InfiniteListView.HeaderTemplate>
+
+			<common:InfiniteListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<views:ArticlesListItemView />
+					</ViewCell>
+				</DataTemplate>
+			</common:InfiniteListView.ItemTemplate>
+		</common:InfiniteListView>
+
+		<!-- Search Widget -->
+		<views:ArticlesSearchWidget Grid.Column="1" Grid.Row="1" x:Name="SearchWidget" SearchParamsRefreshed="OnSearch"/>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" Grid.RowSpan="3" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="4" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+
+	</Grid>
+</pages:ANFPage>

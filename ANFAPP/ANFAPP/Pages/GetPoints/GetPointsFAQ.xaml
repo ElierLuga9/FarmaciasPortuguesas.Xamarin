@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.GetPoints.GetPointsFAQ">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Content -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		
+		<ScrollView Grid.Row="1" Grid.Column="1">
+			<!--FAQ Title-->
+
+
+			<StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand" Spacing="5" Padding="15,15,15,15">
+				<!--    <common:CustomLabel
+     
+        CustomFont="{x:Static resources:FontResources.BoldFont}"
+        TextColor="{x:Static resources:ColorResources.ANFWhite}"
+        FontSize="18"
+        HeightRequest="20"
+        VerticalOptions="Center"
+        HorizontalOptions="StartAndExpand"
+        Text="{x:Static app:AppResources.GetPointsFAQPageTitle}"
+      
+        BackgroundColor="{x:Static resources:ColorResources.ANFDarkerPaleGrey}"
+
+       />-->
+				<!-- Q1: How to win Points -->
+				<common:CustomLabel
+				 CustomFont="{x:Static resources:FontResources.BoldFont}"
+				 FontSize="15"
+				 VerticalOptions="Center"
+				 HorizontalOptions="StartAndExpand"
+						 LineBreakMode="WordWrap"
+				 Text="{x:Static app:AppResources.GetPointsFAQPageQuestion1}"
+        />
+				<!-- A1: How to win Points -->
+				<common:CustomLabel
+          
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				FontSize="13"
+				VerticalOptions="StartAndExpand"
+				HorizontalOptions="StartAndExpand"
+				LineBreakMode="WordWrap"
+				Text="{x:Static app:AppResources.GetPointsFAQPageAnswer1}"
+        
+        />
+
+				<BoxView HeightRequest="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+
+				<!-- Q2: Points Definition-->
+				<common:CustomLabel
+				 CustomFont="{x:Static resources:FontResources.BoldFont}"
+				 FontSize="15"
+				 VerticalOptions="Center"
+				 HorizontalOptions="StartAndExpand"
+						 LineBreakMode="WordWrap"
+				 Text="{x:Static app:AppResources.GetPointsFAQPageQuestion2}"
+        />
+				<!-- A2: Points Definition -->
+				<common:CustomLabel
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				FontSize="12"
+				VerticalOptions="StartAndExpand"
+				HorizontalOptions="StartAndExpand"
+				LineBreakMode="WordWrap"
+				Text="{x:Static app:AppResources.GetPointsFAQPageAnswer2}"
+        />
+
+				<BoxView HeightRequest="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+
+				<!-- Q3: Points Definition-->
+				<common:CustomLabel
+				 CustomFont="{x:Static resources:FontResources.BoldFont}"
+				 FontSize="15"
+				 VerticalOptions="Center"
+				 HorizontalOptions="StartAndExpand"
+						 LineBreakMode="WordWrap"
+				 Text="{x:Static app:AppResources.GetPointsFAQPageQuestion3}"
+        />
+				<!-- A3: Points Definition -->
+				<common:CustomLabel
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				FontSize="12"
+				VerticalOptions="StartAndExpand"
+				HorizontalOptions="StartAndExpand"
+				LineBreakMode="WordWrap"
+				Text="{x:Static app:AppResources.GetPointsFAQPageAnswer3}"
+        />
+
+				<BoxView HeightRequest="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+
+				<!-- Q4: Points Definition-->
+				<common:CustomLabel
+				 CustomFont="{x:Static resources:FontResources.BoldFont}"
+				 FontSize="15"
+				 VerticalOptions="Center"
+				 HorizontalOptions="StartAndExpand"
+						 LineBreakMode="WordWrap"
+				 Text="{x:Static app:AppResources.GetPointsFAQPageQuestion4}"
+        />
+				<!-- A4: Points Definition -->
+				<common:CustomLabel
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				FontSize="12"
+				VerticalOptions="StartAndExpand"
+				HorizontalOptions="StartAndExpand"
+				LineBreakMode="WordWrap"
+				Text="{x:Static app:AppResources.GetPointsFAQPageAnswer4}"
+        />
+
+			</StackLayout>
+		</ScrollView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>

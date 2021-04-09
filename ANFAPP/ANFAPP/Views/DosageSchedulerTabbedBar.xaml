@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	x:Class="ANFAPP.Views.DosageSchedulerTabbedBar">
+
+	<ContentView.Content>
+		
+      	<StackLayout Orientation="Horizontal" 
+			Padding="0, 10, 15, 10" Spacing="5" VerticalOptions="Start">
+				
+      		<!-- Dosing Scheduler Button -->
+			<common:CustomButton x:Name="DosingSchedulerButton"
+				HorizontalOptions="FillAndExpand"
+				HeightRequest="35"
+				BackgroundColor="Transparent"
+				Clicked="OnDosingSchedulerButtonClicked"
+        		BorderRadius="0"
+        		Text="Plano de Tomas"  
+              	TextColor="{x:Static resources:ColorResources.ANFWhite}"
+              	CustomFont="{x:Static resources:FontResources.RegularFont}" 
+              	FontSize="13" />
+      
+      		<!-- Medicine Button -->
+			<common:CustomButton x:Name="MedicineButton"
+				HorizontalOptions="FillAndExpand"
+				HeightRequest="35"
+				BackgroundColor="Transparent"
+				Clicked="OnMedicineButtonClicked" 
+        		Text="Medicamentos"
+              	BorderRadius="0"
+               	TextColor="{x:Static resources:ColorResources.ANFWhite}"
+               	CustomFont="{x:Static resources:FontResources.RegularFont}" 
+              	FontSize="13" />
+
+			<!-- Options Button -->
+			<common:CustomButton x:Name="OptionsButton"
+				HorizontalOptions="FillAndExpand"
+				HeightRequest="35"
+				BackgroundColor="Transparent"
+				Clicked="OnOptionsButtonClicked"
+        		Text="Opções"
+              	BorderRadius="0"
+               	TextColor="{x:Static resources:ColorResources.ANFWhite}"
+               	CustomFont="{x:Static resources:FontResources.RegularFont}" 
+              	FontSize="13" />
+      	</StackLayout>
+	</ContentView.Content>
+</ContentView>

@@ -1,0 +1,1225 @@
+<<<<<<< HEAD
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+  xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+  xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+  xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+  xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+  xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+  x:Class="ANFAPP.Pages.PharmacyLocator.LocatorPharmacyDetails">
+
+	<Grid RowSpacing="0" ColumnSpacing="0" x:Name="GridView">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Pharmacy Info-->
+		<ScrollView Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+			<Grid RowSpacing="0" ColumnSpacing="0" x:Name="MainPage" IsVisible="False">
+				<Grid.RowDefinitions>
+					<!-- MapSmall -->
+					<RowDefinition Height="150" />
+					<!-- My Pharmacy Button -->
+					<RowDefinition Height="auto" />
+					<!-- Service Label -->
+					<RowDefinition Height="auto" />
+          <!-- Scheduler Label -->
+					<RowDefinition Height="auto" />
+          <!-- separator small -->
+					<RowDefinition Height="1" />
+					<!-- Phone Number -->
+					<RowDefinition Height="auto" />
+					<!-- separator small -->
+					<RowDefinition Height="1" />
+					<!-- Address -->
+					<RowDefinition Height="auto" />
+					<!-- separator small -->
+					<RowDefinition Height="1" />
+					<!-- Schedule -->
+					<RowDefinition Height="auto" x:Name="RowSchedule"/>
+					<!-- separator small -->
+					<RowDefinition Height="1" />
+					<!-- Favourite -->
+					<RowDefinition Height="auto" />
+					<!-- separator small -->
+					<RowDefinition Height="1" />
+					<!-- Email -->
+					<RowDefinition Height="auto" />
+					<!-- separator small -->
+					<RowDefinition Height="1" />
+					<!-- Get Directions-->
+					<RowDefinition Height="auto"/>
+          <!-- separator small -->
+					<RowDefinition Height="1" x:Name="RowScheduleSeparator"/>
+					<!-- Conheca a Farmacia Navigator-->
+					<RowDefinition Height="auto" />
+					<!-- separator small -->
+					<RowDefinition Height="1" />
+					<!-- Go to store button -->
+					<RowDefinition Height="auto"/>
+					<!-- separator small -->
+					<RowDefinition Height="1" />
+				</Grid.RowDefinitions>
+
+				<Grid.ColumnDefinitions>
+					<!-- Left Margin -->
+					<ColumnDefinition Width="15" />
+					<!-- Left Row -->
+					<ColumnDefinition Width="*" />
+					<!-- Spacing -->
+					<ColumnDefinition Width="15" />
+				</Grid.ColumnDefinitions>
+
+				<!-- Map  -->
+				<common:NativeMap Grid.Row="0" Grid.ColumnSpan="3" x:Name="TheMap"
+					HeightRequest="130"
+					VerticalOptions="FillAndExpand"
+					IsShowingUser="false" />
+				<!-- Button-->
+				<Grid RowSpacing="0" ColumnSpacing="0" Grid.Column="1" Grid.Row="1" Padding="0,12,0,0"
+					BackgroundColor="{x:Static resources:ColorResources.ANFWhite}"  IsVisible="{Binding FarmButtonVisible}">
+
+					<common:CustomButton
+						x:Name="MyFarmButton"
+						HorizontalOptions="FillAndExpand"
+						HeightRequest="40"
+						FontSize="15"
+						BorderWidth="1"
+						BorderRadius="1"
+						Text="{x:Static app:AppResources.SetMyFarmLabel}"
+						Clicked="SetMyFarm_Click"
+						BorderColor="{x:Static resources:ColorResources.ANFGreen}"
+						TextColor="{x:Static resources:ColorResources.ANFGreen}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						BackgroundColor="{x:Static resources:ColorResources.ANFWhite}" />
+
+					<common:CustomButton
+						x:Name="MyFarmLabel"
+						HorizontalOptions="FillAndExpand"
+						HeightRequest="40"
+						FontSize="13"
+						BorderWidth="1"
+						BorderRadius="1"
+						InputTransparent="True"
+						Text="{x:Static app:AppResources.YourFarmacyLabel}"
+						BorderColor="{x:Static resources:ColorResources.ANFGreen}"
+						TextColor="{x:Static resources:ColorResources.ANFGreen}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						BackgroundColor="{x:Static resources:ColorResources.ANFWhite}" />
+
+				</Grid>
+
+				<!-- In Service Pharmacy Label -->
+				<Grid x:Name="InServiceLabel"
+					Grid.Row="2" Grid.ColumnSpan="3"
+          RowSpacing="0"
+					ColumnSpacing="0"
+					Padding ="16,16,12,0"
+					HorizontalOptions="FillAndExpand"
+					HeightRequest="40"
+					IsVisible="False">
+          
+          <Grid ColumnSpacing="0"
+            BackgroundColor="{x:Static resources:ColorResources.LocatorGreenText}"
+            HorizontalOptions="FillAndExpand">
+              <common:CustomLabel
+						    FontSize="15"
+						    VerticalOptions = "Center"
+                HorizontalOptions="Center"
+						    TextColor="{x:Static resources:ColorResources.ANFWhite}"
+						    CustomFont="{x:Static resources:FontResources.BoldFont}"
+						    Text="FARMÁCIA ABERTA"/>
+          </Grid>
+
+					<!--<common:CustomLabel
+						FontSize="15"
+						VerticalOptions = "Center"
+						HorizontalOptions="Center"
+						TextColor="{x:Static resources:ColorResources.LocatorGreenText}"
+						CustomFont="{x:Static resources:FontResources.BoldFont}"
+						Text="Em Serviço"/>!-->
+
+   
+				</Grid>
+        
+        <!-- Out Service Pharmacy Label -->
+				<Grid x:Name="OutServiceLabel"
+					Grid.Row="2" Grid.ColumnSpan="3"
+          RowSpacing="0"
+					ColumnSpacing="0"
+					Padding ="16,16,12,0"
+					HorizontalOptions="FillAndExpand"
+					HeightRequest="40"
+          
+					IsVisible="False">
+
+          <Grid ColumnSpacing="0"
+            BackgroundColor="{x:Static resources:ColorResources.ANFDarkGrey}"
+            HorizontalOptions="FillAndExpand">
+              <common:CustomLabel
+						    FontSize="15"
+						    VerticalOptions = "Center"
+						    HorizontalOptions="Center"
+						    TextColor="{x:Static resources:ColorResources.ANFWhite}"
+						    CustomFont="{x:Static resources:FontResources.BoldFont}"
+						    Text="FARMÁCIA FECHADA"/>
+          </Grid>
+          
+				</Grid>
+
+        <!-- Scheduler-->
+        <Grid x:Name="Scheduler"
+					Grid.Row="3" Grid.ColumnSpan="3"
+          RowSpacing="0"
+					ColumnSpacing="0"
+					Padding ="16,16,12,12"
+					HorizontalOptions="FillAndExpand">
+        
+          <Grid ColumnSpacing="0"
+            BackgroundColor="{x:Static resources:ColorResources.ANFPaleGrey}"
+            Padding ="16,16,0,12"
+            HorizontalOptions="FillAndExpand">
+            
+            <common:CustomLabel
+						HorizontalOptions="Start" Grid.Column = "0"
+						VerticalOptions="Start"
+						Text="HORÁRIO:"
+						FontSize="13"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.BoldFont}" />
+            
+            <Grid 
+					  RowSpacing="0"
+					  ColumnSpacing="0"
+					  Padding ="0,16,0,0">
+              <Grid.RowDefinitions>
+									<RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+              <!-- Repeater -->
+				      <common:ANFRepeaterView
+					      x:Name="HourList" 
+                Grid.Row="0"
+                ItemsSource="{Binding FarmHourList}"
+					      IsClippedToBounds="False"
+					      HorizontalOptions="FillAndExpand">
+					      <common:ANFRepeaterView.ItemTemplate>
+						      <DataTemplate>
+							      <Grid Padding ="0" RowSpacing="0" ColumnSpacing="0">
+								      <Grid.RowDefinitions>
+									      <!-- Margin -->
+									      <RowDefinition Height="Auto" />
+								      </Grid.RowDefinitions>
+								      <Grid.ColumnDefinitions>
+									      <!-- Left Row -->
+									      <ColumnDefinition Width="100" />
+									      <!-- Spacing -->
+									      <ColumnDefinition Width="10" />
+									      <!-- Right Row -->
+									      <ColumnDefinition Width="Auto" />
+								      </Grid.ColumnDefinitions>
+
+								      <common:CustomLabel
+									      Text="{Binding DayOrDays, StringFormat='{0}:'}"
+									      Grid.Column = "0"
+									      HorizontalOptions="End"
+									      VerticalOptions="Center"
+									      FontSize="13"
+									      TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									      CustomFont="{x:Static resources:FontResources.BoldFont}" />
+								      <common:CustomLabel
+									      Grid.Column = "2"
+									      FontSize="13"
+									      HorizontalOptions="Start"
+									      VerticalOptions = "Center"
+									      TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									      CustomFont="{x:Static resources:FontResources.RegularFont}"
+									      Text="{Binding HourOrHours}" />
+				              </Grid>
+						      </DataTemplate>
+					      </common:ANFRepeaterView.ItemTemplate>
+				      </common:ANFRepeaterView>
+              
+              <BoxView Grid.Row="1" 
+					      HeightRequest = "20"
+                IsVisible="{Binding FarmNotAvailableList, Converter={x:Static converters:ConverterResources.HasElements}}"/>
+                
+              <common:CustomLabel
+						  HorizontalOptions="Start" Grid.Column = "0"
+              Grid.Row="2"
+						  VerticalOptions="Start"
+              IsVisible="{Binding FarmNotAvailableList, Converter={x:Static converters:ConverterResources.HasElements}}"
+						  Text="INDISPONÍVEL:"
+						  FontSize="13"
+						  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						  CustomFont="{x:Static resources:FontResources.BoldFont}" />
+              
+              <!-- Repeater -->
+				      <common:ANFRepeaterView
+                ItemsSource="{Binding FarmNotAvailableList}"
+                IsVisible="{Binding FarmNotAvailableList, Converter={x:Static converters:ConverterResources.HasElements}}"
+					      IsClippedToBounds="False"
+                Grid.Row="3"
+					      HorizontalOptions="FillAndExpand">
+					      <common:ANFRepeaterView.ItemTemplate>
+						      <DataTemplate>
+							      <Grid Padding ="0" RowSpacing="0" ColumnSpacing="0">
+								      <Grid.RowDefinitions>
+									      <RowDefinition Height="Auto" />
+								      </Grid.RowDefinitions>
+								      <Grid.ColumnDefinitions>
+									      <ColumnDefinition Width="10" />
+									      <ColumnDefinition Width="Auto" />
+								      </Grid.ColumnDefinitions>
+                      
+                      <common:CustomLabel
+									      Text="{Binding DayOrDays}"
+									      Grid.Column = "1"
+									      HorizontalOptions="Start"
+									      VerticalOptions="Center"
+									      FontSize="13"
+									      TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									      CustomFont="{x:Static resources:FontResources.RegularFont}" />
+				              </Grid>
+						      </DataTemplate>
+					      </common:ANFRepeaterView.ItemTemplate>
+				      </common:ANFRepeaterView>
+            </Grid>
+          </Grid>
+				
+          
+        </Grid>
+        
+        <!--separator-->
+				<BoxView Grid.Row="4" Grid.ColumnSpan="3"
+					  HeightRequest = "1"
+					  BackgroundColor = "{x:Static resources:ColorResources.LocatorSeparatorColorLight}"/>
+        
+				<!-- Telephone-->
+				<Grid Grid.Row= "5" Grid.Column="1"
+					BackgroundColor="White"
+					RowSpacing="0"
+					ColumnSpacing="0"
+					Padding ="0,16,0,12">
+
+					<Grid.GestureRecognizers>
+						<TapGestureRecognizer Tapped="PhoneRowTap"/>
+					</Grid.GestureRecognizers>
+
+					<Grid.ColumnDefinitions>
+						<!-- Left Margin -->
+						<ColumnDefinition Width="auto" />
+						<!-- Left Row -->
+						<ColumnDefinition Width="auto" />
+						<!-- Spacing -->
+						<ColumnDefinition Width="50" />
+					</Grid.ColumnDefinitions>
+
+					<common:CustomLabel Grid.Column = "0"
+						HorizontalOptions="Start"
+						VerticalOptions="Center"
+						Text="Telefone:"
+						FontSize="13"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.BoldFont}" />
+
+					<common:CustomLabel Grid.Row="0" Grid.Column = "1"
+						x:Name = "LblPhone"
+						FontSize="13"
+						VerticalOptions = "Center"
+						HorizontalOptions="Start"
+						TextColor="{x:Static resources:ColorResources.LocatorGreenText}"
+						CustomFont="{x:Static resources:FontResources.BoldFont}"
+						Text="{Binding Phone}"/>
+				</Grid>
+				<!--separator-->
+				<BoxView Grid.Row="6" Grid.ColumnSpan="3"
+					HeightRequest = "1"
+					BackgroundColor = "{x:Static resources:ColorResources.LocatorSeparatorColorLight}"/>
+				<!-- Address-->
+				<Grid Grid.Row= "7" Grid.Column="1"
+					RowSpacing="0"
+					ColumnSpacing="0"
+					Padding="0, 11, 0, 11">
+
+					<Grid.ColumnDefinitions>
+						<!-- Left Margin -->
+						<ColumnDefinition Width="auto" />
+						<!-- Left Row -->
+						<ColumnDefinition Width="auto" />
+
+					</Grid.ColumnDefinitions>
+					
+					<common:CustomLabel Grid.Column = "0"
+						HorizontalOptions="Start"
+						VerticalOptions="Start"
+						Text="Morada: "
+						FontSize="13"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.BoldFont}" />
+					
+					<common:CustomLabel Grid.Column = "1"
+						x:Name = "LblAdress"
+						FontSize="13"
+						YAlign = "Center"
+						VerticalOptions = "Start"
+						HorizontalOptions="Start"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						Text="{Binding Address}" />
+				</Grid>
+				<!-- separator-->
+				<BoxView Grid.Row="8" Grid.ColumnSpan="3"
+					HeightRequest = "1"
+          IsVisible="False"
+					BackgroundColor = "{x:Static resources:ColorResources.LocatorSeparatorColorLight}"/>
+				<!-- Schedule-->
+				<Grid Grid.Row= "9"
+					RowSpacing="0"
+					ColumnSpacing="0"
+					Padding="0,11,0,11"
+					IsVisible="False">
+					<Grid.ColumnDefinitions>
+						<!-- Left Margin -->
+						<ColumnDefinition Width="60" />
+						<!-- Left Row -->
+						<ColumnDefinition Width="*" />
+						<!-- Spacing -->
+						<ColumnDefinition Width="50" />
+					</Grid.ColumnDefinitions>
+
+					<common:CustomLabel Grid.Column = "0"
+						HorizontalOptions="Center"
+						VerticalOptions="Start"
+						FontSize="13"
+						Text="Horário"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.BoldFont}" />
+
+					<common:CustomLabel Grid.Column = "1"
+						x:Name="LblSchedule"
+						FontSize="13"
+						YAlign = "Center"
+						VerticalOptions = "Start"
+						HorizontalOptions="Start"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						Text="{Binding Schedule}" />
+				</Grid>
+				
+        <!-- separator-->
+				<BoxView Grid.Row="8" Grid.ColumnSpan="3"
+					HeightRequest = "1"
+					BackgroundColor = "{x:Static resources:ColorResources.LocatorSeparatorColorLight}" IsVisible="True"/>
+
+				<!-- get directions nav -->
+				<Grid MinimumHeightRequest="40" Grid.Column="1" Grid.Row="9" Padding="0,11,0,11">
+					<Grid.ColumnDefinitions>
+						<!-- Label -->
+						<ColumnDefinition Width="*" />
+						<!-- Arrow -->
+						<ColumnDefinition Width="40" />
+						<!-- Right Margin -->
+						<ColumnDefinition Width="16" />
+					</Grid.ColumnDefinitions>
+
+					<Grid.GestureRecognizers>
+						<TapGestureRecognizer Tapped="DirectionsRowTap"/>
+					</Grid.GestureRecognizers>
+
+					<common:CustomLabel Grid.Column="0"
+						FontSize="13"
+						VerticalOptions="Center"
+						Text="Obter Direções"
+						LineBreakMode="WordWrap"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.BoldFont}"/>
+
+					<common:CustomImage Grid.Column="2"
+						HeightRequest="9"
+						WidthRequest="8"
+						HorizontalOptions="End"
+						VerticalOptions="Center"
+						Source="ic_button_arrow_black" />
+				</Grid>
+        
+				<!--separator-->
+				<BoxView Grid.Row="10" Grid.ColumnSpan="3"
+					HeightRequest = "1"
+					BackgroundColor = "{x:Static resources:ColorResources.LocatorSeparatorColorLight}" IsVisible="{Binding Pharmacy.PFPSubscriber}"/>
+				<!-- Fav-->
+				<Grid Grid.Row= "11" Grid.Column="1"
+					IsVisible="{Binding Pharmacy.PFPSubscriber}"
+					RowSpacing="0"
+					BackgroundColor="White"
+					ColumnSpacing="0"
+					Padding ="0,8,0,8">
+
+					<Grid.GestureRecognizers>
+						<TapGestureRecognizer Tapped="FavouriteRowTap"/>
+					</Grid.GestureRecognizers>
+
+					<Grid.ColumnDefinitions>
+						<!-- Left Margin -->
+						<ColumnDefinition Width="auto" />
+						<!-- Left Row -->
+						<ColumnDefinition Width="*" />
+
+					</Grid.ColumnDefinitions>
+					<common:CustomLabel  Grid.Column = "0"
+						Text = "Adicionar como Favorita "
+						FontSize="13"
+						VerticalOptions = "Center"
+						HorizontalOptions="Start"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.BoldFont}" />
+					<common:CustomImage  Grid.Column = "1"
+						WidthRequest="25"
+						HeightRequest="25"
+						x:Name = "ImgFavourite"
+						VerticalOptions = "Center"
+						HorizontalOptions="Start"
+						Source="{Binding FavouriteImg}"/>
+				</Grid>
+				<!--separator-->
+				<BoxView Grid.Row="12" Grid.ColumnSpan="3" 
+                 IsVisible="False"
+					HeightRequest = "1"
+					BackgroundColor = "{x:Static resources:ColorResources.LocatorSeparatorColorLight}"  />
+				<!-- email-->
+				<Grid Grid.Row= "13" Grid.Column="1"
+					RowSpacing="0"
+					ColumnSpacing="0"
+					Padding="0,11,0,11" IsVisible="False">
+
+					<Grid.ColumnDefinitions>
+						<!-- Left Margin -->
+						<ColumnDefinition Width="auto" />
+						<!-- Left Row -->
+						<ColumnDefinition Width="*" />
+						<!-- Spacing -->
+						<ColumnDefinition Width="50" />
+					</Grid.ColumnDefinitions>
+
+					<common:CustomLabel Grid.Column = "0"
+						HorizontalOptions="Start"
+						VerticalOptions="Center"
+						Text="Email: "
+						FontSize="13"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.BoldFont}" />
+
+					<common:CustomLabel Grid.Column = "1"
+						x:Name = "LblEmail"
+						FontSize="13"
+						VerticalOptions = "Center"
+						HorizontalOptions="Start"
+						TextColor="{x:Static resources:ColorResources.LocatorGreenText}"
+						CustomFont="{x:Static resources:FontResources.BoldFont}"
+						Text="{Binding PharmacyDetail.Email}"/>
+
+				</Grid>
+			
+        <!--separator -->
+				<BoxView Grid.Row="16" Grid.ColumnSpan="3"
+					HeightRequest = "1"
+					BackgroundColor = "{x:Static resources:ColorResources.LocatorSeparatorColorLight}" IsVisible="{Binding FarmButtonVisible}"/>
+
+				<!-- Conheca farmacia nav-->
+				<Grid Grid.Column="1" Grid.Row="17" Padding="0,11,0,11" IsVisible="{Binding FarmButtonVisible}">
+					<Grid.ColumnDefinitions>
+						<!-- Label -->
+						<ColumnDefinition Width="*" />
+						<!-- Arrow -->
+						<ColumnDefinition Width="40" />
+						<!-- Right Margin -->
+						<ColumnDefinition Width="15" />
+					</Grid.ColumnDefinitions>
+
+					<Grid.GestureRecognizers>
+						<TapGestureRecognizer Tapped="KnowFarmacyRowTap"/>
+					</Grid.GestureRecognizers>
+
+					<common:CustomLabel Grid.Column="0"
+						FontSize="13"
+						VerticalOptions="Center"
+						Text="CONHEÇA A FARMÁCIA"
+						CustomFont="{x:Static resources:FontResources.BoldFont}"
+						TextColor="{x:Static resources:ColorResources.LocatorGreenText}"/>
+
+					<common:CustomImage Grid.Column="2"
+						HeightRequest="9"
+						WidthRequest="8"
+						HorizontalOptions="End"
+						VerticalOptions="Center"
+						Source="ic_button_arrow_black" />
+				</Grid>
+    
+				<!--separator-->
+				<BoxView Grid.Row="18" Grid.ColumnSpan="3"
+					HeightRequest = "1"
+					BackgroundColor = "{x:Static resources:ColorResources.LocatorSeparatorColorLight}" x:Name="separatorGoToStore"/>
+
+				<!-- Button-->
+				<Grid x:Name="GoToStoreButton" IsVisible="False"
+					RowSpacing="0" ColumnSpacing="0" Grid.Column="1" Grid.Row="19" Padding="0, 10"
+					BackgroundColor="{x:Static resources:ColorResources.ANFWhite}">
+
+					<common:CustomButton
+						HorizontalOptions="FillAndExpand"
+						HeightRequest="40"
+						FontSize="15"
+						BorderWidth="1"
+						BorderRadius="1"
+						Text="{x:Static app:AppResources.PharmacyDetailGoToStoreButton}"
+						Clicked="GoToStoreButtonClicked"
+						BorderColor="{x:Static resources:ColorResources.ANFGreen}"
+						TextColor="{x:Static resources:ColorResources.ANFGreen}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						BackgroundColor="{x:Static resources:ColorResources.ANFWhite}" />
+				</Grid>
+			</Grid>
+		</ScrollView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>
+=======
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+  xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+  xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+  xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+  xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+  xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+  x:Class="ANFAPP.Pages.PharmacyLocator.LocatorPharmacyDetails">
+
+	<Grid RowSpacing="0" ColumnSpacing="0" x:Name="GridView">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Pharmacy Info-->
+		<ScrollView Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+			<Grid RowSpacing="0" ColumnSpacing="0" x:Name="MainPage" IsVisible="False">
+				<Grid.RowDefinitions>
+					<!-- MapSmall -->
+					<RowDefinition Height="150" />
+					<!-- My Pharmacy Button -->
+					<RowDefinition Height="auto" />
+					<!-- Service Label -->
+					<RowDefinition Height="auto" />
+          <!-- Scheduler Label -->
+					<RowDefinition Height="auto" />
+          <!-- separator small -->
+					<RowDefinition Height="1" />
+					<!-- Phone Number -->
+					<RowDefinition Height="auto" />
+					<!-- separator small -->
+					<RowDefinition Height="1" />
+					<!-- Address -->
+					<RowDefinition Height="auto" />
+					<!-- separator small -->
+					<RowDefinition Height="1" />
+					<!-- Schedule -->
+					<RowDefinition Height="auto" x:Name="RowSchedule"/>
+					<!-- separator small -->
+					<RowDefinition Height="1" />
+					<!-- Favourite -->
+					<RowDefinition Height="auto" />
+					<!-- separator small -->
+					<RowDefinition Height="1" />
+					<!-- Email -->
+					<RowDefinition Height="auto" />
+					<!-- separator small -->
+					<RowDefinition Height="1" />
+					<!-- Get Directions-->
+					<RowDefinition Height="auto"/>
+          <!-- separator small -->
+					<RowDefinition Height="1" x:Name="RowScheduleSeparator"/>
+					<!-- Conheca a Farmacia Navigator-->
+					<RowDefinition Height="auto" />
+					<!-- separator small -->
+					<RowDefinition Height="1" />
+					<!-- Go to store button -->
+					<RowDefinition Height="auto"/>
+					<!-- separator small -->
+					<RowDefinition Height="1" />
+				</Grid.RowDefinitions>
+
+				<Grid.ColumnDefinitions>
+					<!-- Left Margin -->
+					<ColumnDefinition Width="15" />
+					<!-- Left Row -->
+					<ColumnDefinition Width="*" />
+					<!-- Spacing -->
+					<ColumnDefinition Width="15" />
+				</Grid.ColumnDefinitions>
+
+				<!-- Map  -->
+				<common:NativeMap Grid.Row="0" Grid.ColumnSpan="3" x:Name="TheMap"
+					HeightRequest="130"
+					VerticalOptions="FillAndExpand"
+					IsShowingUser="false" />
+				<!-- Button-->
+				<StackLayout Grid.Column="1" Grid.Row="1" Padding="0,5,0,0" Orientation="Vertical"
+					  IsVisible="{Binding FarmButtonVisible}">
+						<!-- Button-->
+					<common:CustomLabel 
+								x:Name="MyFarmLabel"
+								HorizontalOptions="CenterAndExpand"
+								FontSize="13"
+								InputTransparent="True"
+								Text="{x:Static app:AppResources.YourFarmacyLabel}"
+								TextColor="{x:Static resources:ColorResources.ANFGreen}"
+								CustomFont="{x:Static resources:FontResources.RegularFont}"
+								BackgroundColor="{x:Static resources:ColorResources.ANFWhite}"
+					/>
+					<common:CustomButton
+								x:Name="MyFarmButton"
+								HorizontalOptions="FillAndExpand"
+								HeightRequest="40"
+								FontSize="15"
+								BorderWidth="1"
+								BorderRadius="1"
+								Text="{x:Static app:AppResources.SetMyFarmLabel}"
+								Clicked="SetMyFarm_Click"
+								BorderColor="{x:Static resources:ColorResources.ANFGreen}"
+								TextColor="{x:Static resources:ColorResources.ANFGreen}"
+								CustomFont="{x:Static resources:FontResources.RegularFont}"
+								BackgroundColor="{x:Static resources:ColorResources.ANFWhite}" />
+					
+					<common:CustomButton
+						HorizontalOptions="FillAndExpand"
+						HeightRequest="40"
+						FontSize="15"
+						BorderWidth="1"
+						x:Name="GoToStoreButton" IsVisible="False"
+						BorderRadius="1"
+						Text="{x:Static app:AppResources.PharmacyDetailGoToStoreButton}"
+						Clicked="GoToStoreButtonClicked"
+						BorderColor="{x:Static resources:ColorResources.ANFGreen}"
+						TextColor="{x:Static resources:ColorResources.ANFGreen}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						BackgroundColor="{x:Static resources:ColorResources.ANFWhite}" />
+
+					
+				
+				</StackLayout>
+
+				<!-- In Service Pharmacy Label -->
+				<Grid x:Name="InServiceLabel"
+					Grid.Row="2" Grid.ColumnSpan="3"
+          RowSpacing="0"
+					ColumnSpacing="0"
+					Padding ="16,16,12,0"
+					HorizontalOptions="FillAndExpand"
+					HeightRequest="40"
+					IsVisible="False">
+          
+          <Grid ColumnSpacing="0"
+            BackgroundColor="{x:Static resources:ColorResources.LocatorGreenText}"
+            HorizontalOptions="FillAndExpand">
+              <common:CustomLabel
+						    FontSize="15"
+						    VerticalOptions = "Center"
+                HorizontalOptions="Center"
+						    TextColor="{x:Static resources:ColorResources.ANFWhite}"
+						    CustomFont="{x:Static resources:FontResources.BoldFont}"
+						    Text="FARMÁCIA ABERTA"/>
+          </Grid>
+
+					<!--<common:CustomLabel
+						FontSize="15"
+						VerticalOptions = "Center"
+						HorizontalOptions="Center"
+						TextColor="{x:Static resources:ColorResources.LocatorGreenText}"
+						CustomFont="{x:Static resources:FontResources.BoldFont}"
+						Text="Em Serviço"/>!-->
+
+   
+				</Grid>
+        
+        <!-- Out Service Pharmacy Label -->
+				<Grid x:Name="OutServiceLabel"
+					Grid.Row="2" Grid.ColumnSpan="3"
+          RowSpacing="0"
+					ColumnSpacing="0"
+					Padding ="16,16,12,0"
+					HorizontalOptions="FillAndExpand"
+					HeightRequest="40"
+          
+					IsVisible="False">
+
+          <Grid ColumnSpacing="0"
+            BackgroundColor="{x:Static resources:ColorResources.ANFDarkGrey}"
+            HorizontalOptions="FillAndExpand">
+              <common:CustomLabel
+						    FontSize="15"
+						    VerticalOptions = "Center"
+						    HorizontalOptions="Center"
+						    TextColor="{x:Static resources:ColorResources.ANFWhite}"
+						    CustomFont="{x:Static resources:FontResources.BoldFont}"
+						    Text="FARMÁCIA FECHADA"/>
+          </Grid>
+          
+				</Grid>
+
+        <!-- Scheduler-->
+        <Grid x:Name="Scheduler"
+					Grid.Row="3" Grid.ColumnSpan="3"
+          RowSpacing="0"
+					ColumnSpacing="0"
+					Padding ="16,16,12,12"
+					HorizontalOptions="FillAndExpand">
+        
+          <Grid ColumnSpacing="0"
+            BackgroundColor="{x:Static resources:ColorResources.ANFPaleGrey}"
+            Padding ="16,16,0,12"
+            HorizontalOptions="FillAndExpand">
+            
+            <common:CustomLabel
+						HorizontalOptions="Start" Grid.Column = "0"
+						VerticalOptions="Start"
+						Text="HORÁRIO:"
+						FontSize="13"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.BoldFont}" />
+            
+            <Grid 
+					  RowSpacing="0"
+					  ColumnSpacing="0"
+					  Padding ="0,16,0,0">
+              <Grid.RowDefinitions>
+									<RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+              <!-- Repeater -->
+				      <common:ANFRepeaterView
+					      x:Name="HourList" 
+                Grid.Row="0"
+                ItemsSource="{Binding FarmHourList}"
+					      IsClippedToBounds="False"
+					      HorizontalOptions="FillAndExpand">
+					      <common:ANFRepeaterView.ItemTemplate>
+						      <DataTemplate>
+							      <Grid Padding ="0" RowSpacing="0" ColumnSpacing="0">
+								      <Grid.RowDefinitions>
+									      <!-- Margin -->
+									      <RowDefinition Height="Auto" />
+								      </Grid.RowDefinitions>
+								      <Grid.ColumnDefinitions>
+									      <!-- Left Row -->
+									      <ColumnDefinition Width="100" />
+									      <!-- Spacing -->
+									      <ColumnDefinition Width="10" />
+									      <!-- Right Row -->
+									      <ColumnDefinition Width="Auto" />
+								      </Grid.ColumnDefinitions>
+
+								      <common:CustomLabel
+									      Text="{Binding DayOrDays, StringFormat='{0}:'}"
+									      Grid.Column = "0"
+									      HorizontalOptions="End"
+									      VerticalOptions="Center"
+									      FontSize="13"
+									      TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									      CustomFont="{x:Static resources:FontResources.BoldFont}" />
+								      <common:CustomLabel
+									      Grid.Column = "2"
+									      FontSize="13"
+									      HorizontalOptions="Start"
+									      VerticalOptions = "Center"
+									      TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									      CustomFont="{x:Static resources:FontResources.RegularFont}"
+									      Text="{Binding HourOrHours}" />
+				              </Grid>
+						      </DataTemplate>
+					      </common:ANFRepeaterView.ItemTemplate>
+				      </common:ANFRepeaterView>
+              
+              <BoxView Grid.Row="1" 
+					      HeightRequest = "20"
+                IsVisible="{Binding FarmNotAvailableList, Converter={x:Static converters:ConverterResources.HasElements}}"/>
+                
+              <common:CustomLabel
+						  HorizontalOptions="Start" Grid.Column = "0"
+              Grid.Row="2"
+						  VerticalOptions="Start"
+              IsVisible="{Binding FarmNotAvailableList, Converter={x:Static converters:ConverterResources.HasElements}}"
+						  Text="INDISPONÍVEL:"
+						  FontSize="13"
+						  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						  CustomFont="{x:Static resources:FontResources.BoldFont}" />
+              
+              <!-- Repeater -->
+				      <common:ANFRepeaterView
+                ItemsSource="{Binding FarmNotAvailableList}"
+                IsVisible="{Binding FarmNotAvailableList, Converter={x:Static converters:ConverterResources.HasElements}}"
+					      IsClippedToBounds="False"
+                Grid.Row="3"
+					      HorizontalOptions="FillAndExpand">
+					      <common:ANFRepeaterView.ItemTemplate>
+						      <DataTemplate>
+							      <Grid Padding ="0" RowSpacing="0" ColumnSpacing="0">
+								      <Grid.RowDefinitions>
+									      <RowDefinition Height="Auto" />
+								      </Grid.RowDefinitions>
+								      <Grid.ColumnDefinitions>
+									      <ColumnDefinition Width="10" />
+									      <ColumnDefinition Width="Auto" />
+								      </Grid.ColumnDefinitions>
+                      
+                      <common:CustomLabel
+									      Text="{Binding DayOrDays}"
+									      Grid.Column = "1"
+									      HorizontalOptions="Start"
+									      VerticalOptions="Center"
+									      FontSize="13"
+									      TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									      CustomFont="{x:Static resources:FontResources.RegularFont}" />
+				              </Grid>
+						      </DataTemplate>
+					      </common:ANFRepeaterView.ItemTemplate>
+				      </common:ANFRepeaterView>
+            </Grid>
+          </Grid>
+				
+          
+        </Grid>
+        
+        <!--separator-->
+				<BoxView Grid.Row="4" Grid.ColumnSpan="3"
+					  HeightRequest = "1"
+					  BackgroundColor = "{x:Static resources:ColorResources.LocatorSeparatorColorLight}"/>
+        
+				<!-- Telephone-->
+				<Grid Grid.Row= "5" Grid.Column="1"
+					BackgroundColor="White"
+					RowSpacing="0"
+					ColumnSpacing="0"
+					Padding ="0,16,0,12">
+
+					<Grid.GestureRecognizers>
+						<TapGestureRecognizer Tapped="PhoneRowTap"/>
+					</Grid.GestureRecognizers>
+
+					<Grid.ColumnDefinitions>
+						<!-- Left Margin -->
+						<ColumnDefinition Width="auto" />
+						<!-- Left Row -->
+						<ColumnDefinition Width="auto" />
+						<!-- Spacing -->
+						<ColumnDefinition Width="50" />
+					</Grid.ColumnDefinitions>
+
+					<common:CustomLabel Grid.Column = "0"
+						HorizontalOptions="Start"
+						VerticalOptions="Center"
+						Text="Telefone:"
+						FontSize="13"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.BoldFont}" />
+
+					<common:CustomLabel Grid.Row="0" Grid.Column = "1"
+						x:Name = "LblPhone"
+						FontSize="13"
+						VerticalOptions = "Center"
+						HorizontalOptions="Start"
+						TextColor="{x:Static resources:ColorResources.LocatorGreenText}"
+						CustomFont="{x:Static resources:FontResources.BoldFont}"
+						Text="{Binding Phone}"/>
+				</Grid>
+				<!--separator-->
+				<BoxView Grid.Row="6" Grid.ColumnSpan="3"
+					HeightRequest = "1"
+					BackgroundColor = "{x:Static resources:ColorResources.LocatorSeparatorColorLight}"/>
+				<!-- Address-->
+				<Grid Grid.Row= "7" Grid.Column="1"
+					RowSpacing="0"
+					ColumnSpacing="0"
+					Padding="0, 11, 0, 11">
+
+					<Grid.ColumnDefinitions>
+						<!-- Left Margin -->
+						<ColumnDefinition Width="auto" />
+						<!-- Left Row -->
+						<ColumnDefinition Width="auto" />
+
+					</Grid.ColumnDefinitions>
+					
+					<common:CustomLabel Grid.Column = "0"
+						HorizontalOptions="Start"
+						VerticalOptions="Start"
+						Text="Morada: "
+						FontSize="13"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.BoldFont}" />
+					
+					<common:CustomLabel Grid.Column = "1"
+						x:Name = "LblAdress"
+						FontSize="13"
+						YAlign = "Center"
+						VerticalOptions = "Start"
+						HorizontalOptions="Start"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						Text="{Binding Address}" />
+				</Grid>
+				<!-- separator-->
+				<BoxView Grid.Row="8" Grid.ColumnSpan="3"
+					HeightRequest = "1"
+          IsVisible="False"
+					BackgroundColor = "{x:Static resources:ColorResources.LocatorSeparatorColorLight}"/>
+				<!-- Schedule-->
+				<Grid Grid.Row= "9"
+					RowSpacing="0"
+					ColumnSpacing="0"
+					Padding="0,11,0,11"
+					IsVisible="False">
+					<Grid.ColumnDefinitions>
+						<!-- Left Margin -->
+						<ColumnDefinition Width="60" />
+						<!-- Left Row -->
+						<ColumnDefinition Width="*" />
+						<!-- Spacing -->
+						<ColumnDefinition Width="50" />
+					</Grid.ColumnDefinitions>
+
+					<common:CustomLabel Grid.Column = "0"
+						HorizontalOptions="Center"
+						VerticalOptions="Start"
+						FontSize="13"
+						Text="Horário"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.BoldFont}" />
+
+					<common:CustomLabel Grid.Column = "1"
+						x:Name="LblSchedule"
+						FontSize="13"
+						YAlign = "Center"
+						VerticalOptions = "Start"
+						HorizontalOptions="Start"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						Text="{Binding Schedule}" />
+				</Grid>
+				
+        <!-- separator-->
+				<BoxView Grid.Row="8" Grid.ColumnSpan="3"
+					HeightRequest = "1"
+					BackgroundColor = "{x:Static resources:ColorResources.LocatorSeparatorColorLight}" IsVisible="True"/>
+
+				<!-- get directions nav -->
+				<Grid MinimumHeightRequest="40" Grid.Column="1" Grid.Row="9" Padding="0,11,0,11">
+					<Grid.ColumnDefinitions>
+						<!-- Label -->
+						<ColumnDefinition Width="*" />
+						<!-- Arrow -->
+						<ColumnDefinition Width="40" />
+						<!-- Right Margin -->
+						<ColumnDefinition Width="16" />
+					</Grid.ColumnDefinitions>
+
+					<Grid.GestureRecognizers>
+						<TapGestureRecognizer Tapped="DirectionsRowTap"/>
+					</Grid.GestureRecognizers>
+
+					<common:CustomLabel Grid.Column="0"
+						FontSize="13"
+						VerticalOptions="Center"
+						Text="Obter Direções"
+						LineBreakMode="WordWrap"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.BoldFont}"/>
+
+					<common:CustomImage Grid.Column="2"
+						HeightRequest="9"
+						WidthRequest="8"
+						HorizontalOptions="End"
+						VerticalOptions="Center"
+						Source="ic_button_arrow_black" />
+				</Grid>
+        
+				<!--separator-->
+				<BoxView Grid.Row="10" Grid.ColumnSpan="3"
+					HeightRequest = "1"
+					BackgroundColor = "{x:Static resources:ColorResources.LocatorSeparatorColorLight}" IsVisible="{Binding Pharmacy.PFPSubscriber}"/>
+				<!-- Fav-->
+				<Grid Grid.Row= "11" Grid.Column="1"
+					IsVisible="{Binding Pharmacy.PFPSubscriber}"
+					RowSpacing="0"
+					BackgroundColor="White"
+					ColumnSpacing="0"
+					Padding ="0,8,0,8">
+
+					<Grid.GestureRecognizers>
+						<TapGestureRecognizer Tapped="FavouriteRowTap"/>
+					</Grid.GestureRecognizers>
+
+					<Grid.ColumnDefinitions>
+						<!-- Left Margin -->
+						<ColumnDefinition Width="auto" />
+						<!-- Left Row -->
+						<ColumnDefinition Width="*" />
+
+					</Grid.ColumnDefinitions>
+					<common:CustomLabel  Grid.Column = "0"
+						Text = "Adicionar como Favorita "
+						FontSize="13"
+						VerticalOptions = "Center"
+						HorizontalOptions="Start"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.BoldFont}" />
+					<common:CustomImage  Grid.Column = "1"
+						WidthRequest="25"
+						HeightRequest="25"
+						x:Name = "ImgFavourite"
+						VerticalOptions = "Center"
+						HorizontalOptions="Start"
+						Source="{Binding FavouriteImg}"/>
+				</Grid>
+				<!--separator-->
+				<BoxView Grid.Row="12" Grid.ColumnSpan="3" 
+                 IsVisible="False"
+					HeightRequest = "1"
+					BackgroundColor = "{x:Static resources:ColorResources.LocatorSeparatorColorLight}"  />
+				<!-- email-->
+				<Grid Grid.Row= "13" Grid.Column="1"
+					RowSpacing="0"
+					ColumnSpacing="0"
+					Padding="0,11,0,11" IsVisible="False">
+
+					<Grid.ColumnDefinitions>
+						<!-- Left Margin -->
+						<ColumnDefinition Width="auto" />
+						<!-- Left Row -->
+						<ColumnDefinition Width="*" />
+						<!-- Spacing -->
+						<ColumnDefinition Width="50" />
+					</Grid.ColumnDefinitions>
+
+					<common:CustomLabel Grid.Column = "0"
+						HorizontalOptions="Start"
+						VerticalOptions="Center"
+						Text="Email: "
+						FontSize="13"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.BoldFont}" />
+
+					<common:CustomLabel Grid.Column = "1"
+						x:Name = "LblEmail"
+						FontSize="13"
+						VerticalOptions = "Center"
+						HorizontalOptions="Start"
+						TextColor="{x:Static resources:ColorResources.LocatorGreenText}"
+						CustomFont="{x:Static resources:FontResources.BoldFont}"
+						Text="{Binding PharmacyDetail.Email}"/>
+
+				</Grid>
+			
+        <!--separator -->
+				<BoxView Grid.Row="16" Grid.ColumnSpan="3"
+					HeightRequest = "1"
+					BackgroundColor = "{x:Static resources:ColorResources.LocatorSeparatorColorLight}" IsVisible="{Binding FarmButtonVisible}"/>
+
+				<!-- Conheca farmacia nav-->
+				<Grid Grid.Column="1" Grid.Row="17" Padding="0,11,0,11" IsVisible="{Binding FarmButtonVisible}">
+					<Grid.ColumnDefinitions>
+						<!-- Label -->
+						<ColumnDefinition Width="*" />
+						<!-- Arrow -->
+						<ColumnDefinition Width="40" />
+						<!-- Right Margin -->
+						<ColumnDefinition Width="15" />
+					</Grid.ColumnDefinitions>
+
+					<Grid.GestureRecognizers>
+						<TapGestureRecognizer Tapped="KnowFarmacyRowTap"/>
+					</Grid.GestureRecognizers>
+
+					<common:CustomLabel Grid.Column="0"
+						FontSize="13"
+						VerticalOptions="Center"
+						Text="CONHEÇA A FARMÁCIA"
+						CustomFont="{x:Static resources:FontResources.BoldFont}"
+						TextColor="{x:Static resources:ColorResources.LocatorGreenText}"/>
+
+					<common:CustomImage Grid.Column="2"
+						HeightRequest="9"
+						WidthRequest="8"
+						HorizontalOptions="End"
+						VerticalOptions="Center"
+						Source="ic_button_arrow_black" />
+				</Grid>
+    
+				<!--separator-->
+				<BoxView Grid.Row="18" Grid.ColumnSpan="3"
+					HeightRequest = "1"
+					BackgroundColor = "{x:Static resources:ColorResources.LocatorSeparatorColorLight}" x:Name="separatorGoToStore"/>
+
+				
+			</Grid>
+		</ScrollView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</ANFPage>
+>>>>>>> maintenance_phase5_azure_notification

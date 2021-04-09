@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFStorePage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages.Store;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.Store.StorePrescriptionPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Store Navigation Widget -->
+			<RowDefinition Height="auto" />
+			<!-- Page -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+    
+
+		<!-- Store Navigation Widget -->
+		<views:StoreNavigationWidget Grid.Row="1" Grid.Column="1" Padding="0, 15" SelectedTab="Prescriptions" />
+
+		<!-- Page -->
+		<ScrollView Orientation="Vertical" Grid.Column="1" Grid.Row="2">
+
+			<StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Spacing="0">
+				<StackLayout
+					Padding="15, 5, 15, 15"
+					Orientation="Horizontal"
+				  	HorizontalOptions="Start"
+				  	VerticalOptions="Center">
+
+				  	<common:CustomLabel
+						FontSize="14"
+						HorizontalOptions="Center"
+				    	VerticalOptions="Center" 
+						Text="{x:Static app:AppResources.StorePrescriptionCNPLabel}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"/>
+
+				  	<common:Toggler x:Name="BtnToggleSearch"
+				  		InputTransparent="True"
+						HorizontalOptions = "Center"
+				    	VerticalOptions = "Center" 
+						WidthRequest="38"
+						HeightRequest="23" />
+
+				  	<common:CustomLabel
+						FontSize="14"
+						HorizontalOptions = "Center"
+				    	VerticalOptions = "Center"
+						Text="{x:Static app:AppResources.StorePrescriptionActivePrincipleLabel}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"/>
+
+					<StackLayout.GestureRecognizers>
+						<TapGestureRecognizer Tapped="ToggleClick" />
+					</StackLayout.GestureRecognizers>
+
+				</StackLayout>
+
+				<ContentView 
+					Padding="15, 0, 15, 15"
+					HorizontalOptions="FillAndExpand"
+					IsVisible="{Binding SearchByActivePrinciple, Converter={x:Static converters:ConverterResources.InverseBool}}"
+					HeightRequest="100">
+					<common:CustomImage 
+						VerticalOptions="FillAndExpand"
+						HorizontalOptions="FillAndExpand"
+						Source="prescriptionplaceholder.png" />
+				</ContentView>
+
+				<!-- Separator -->
+				<BoxView
+					HorizontalOptions="FillAndExpand"
+					HeightRequest="1"
+					Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+
+				<!-- Repeater -->
+				<common:ANFRepeaterView ItemsSource="{Binding Items}">
+					<common:ANFRepeaterView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell>
+ 								<StackLayout Orientation="Vertical" Spacing="0">
+ 									<views:PrescriptionListItem RemoveClicked="OnRemove" QtyChanged="OnQtyChanged" />
+									<BoxView
+										HorizontalOptions="FillAndExpand"
+										HeightRequest="1"
+										Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+ 								</StackLayout>
+							</ViewCell>
+						</DataTemplate>
+					</common:ANFRepeaterView.ItemTemplate>
+				</common:ANFRepeaterView>
+
+				<!-- Search section -->
+				<StackLayout Orientation="Vertical" Padding="15, 15" Spacing="15">
+					<!-- Search Label -->
+					<common:CustomLabel x:Name="SearchHeader"
+						FontSize="14"
+						HorizontalOptions="Start"
+				    	VerticalOptions="End" 
+						Text="{x:Static app:AppResources.StorePrescriptionCNPInputLabel}"
+						CustomFont="{x:Static resources:FontResources.BoldFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+
+					<!-- Search Field -->
+					<Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.ColumnSpacing="0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="auto" />
+							<ColumnDefinition Width="auto" />
+						</Grid.ColumnDefinitions>
+
+						<common:CustomEntry x:Name="SearchEntry" Grid.Column="0" HeightRequest="40"
+							VerticalOptions="FillAndExpand"
+							HorizontalOptions="FillAndExpand"
+							CustomPadding="11, 0, 5, 0"
+							Keyboard="Numeric"
+							TextColor="{x:Static resources:ColorResources.TextColorDark}"
+							FontSize="15"
+							BackgroundColor="White"
+							BackgroundResource="bg_input.png"
+							CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+						<!-- Barcode Button -->
+						<common:CustomImage Grid.Column="1"
+							VerticalOptions="Center"
+							HorizontalOptions="Center"
+							Source="ic_barcode_scan_small.png"/>
+						<common:CustomButton Grid.Column="1"
+							BorderWidth="0"
+							WidthRequest="50"
+							HeightRequest="40"
+							BorderColor="Transparent"
+							BackgroundColor="Transparent"
+							Clicked="ReadBarcodeButtonClicked" />
+
+						<common:CustomButton x:Name="SearchButton" Grid.Column="2"
+							WidthRequest="111"
+							HeightRequest="40"
+							HorizontalOptions="EndAndExpand"
+							VerticalOptions="FillAndExpand"
+							BorderRadius="1"
+							BorderWidth="1"
+							Text="PESQUISAR"
+							Clicked="OnSearchClicked"
+							FontSize="15"
+							BorderColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+							TextColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+							BackgroundColor="White" />
+					</Grid>
+
+					<common:CustomLabel
+						FontSize="13"
+						HorizontalOptions="FillAndExpand"
+				    	VerticalOptions="FillAndExpand" 
+						Text="{x:Static app:AppResources.StorePrescriptionActivePrincipleDisclamer}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+				</StackLayout>
+
+				<!-- Search If PA
+				<StackLayout x:Name="PASearchWrapper"
+					Orientation="Vertical"
+					IsVisible="false">
+					<StackLayout
+						Spacing="15"
+						HeightRequest="44"
+						Orientation="Vertical"
+						BackgroundColor="{x:Static resources:ColorResources.SchedulerPPGreyN3}">
+
+						<StackLayout Orientation="Horizontal" Padding="15, 15">
+							<common:CustomLabel
+								FontSize="14"
+								TextColor="{x:Static resources:ColorResources.SchedulerTitleTextColor}"
+								CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+								Text="RESULTADO PARA: " />
+							<common:CustomLabel x:Name="QueryString"
+								FontSize="14"
+								TextColor="{x:Static resources:ColorResources.SchedulerTitleTextColor}"
+								CustomFont="{x:Static resources:FontResources.BoldFont}" 
+								Text="{Binding Query}" />
+						</StackLayout>
+					</StackLayout>
+
+					<common:ANFRepeaterView 
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						ItemsSource="{Binding PAQueryItems}">
+						<common:ANFRepeaterView.ItemTemplate>
+							<DataTemplate>
+								<ViewCell>
+ 									<StackLayout Orientation="Vertical" Spacing="0">
+ 										<StackLayout Orientation="Horizontal" Padding="15, 0" HeightRequest="44">
+											<common:CustomLabel
+												FontSize="15"
+												HorizontalOptions="StartAndExpand"
+												VerticalOptions="CenterAndExpand"
+												InputTransparent="True"
+												TextColor="{x:Static resources:ColorResources.TextColorDark}"
+												CustomFont="{x:Static resources:FontResources.RegularFont}"
+												Text="{Binding Name}" />
+
+											<common:CustomImage
+												WidthRequest="6" HeightRequest="10"
+												VerticalOptions="Center"
+												HorizontalOptions="End"
+												Source="ic_button_arrow_black" />
+ 										</StackLayout>
+
+										<BoxView
+											HorizontalOptions="FillAndExpand"
+											HeightRequest="1"
+											Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+ 									</StackLayout>
+								</ViewCell>
+							</DataTemplate>
+						</common:ANFRepeaterView.ItemTemplate>
+					</common:ANFRepeaterView>
+				</StackLayout>
+				-->
+				<StackLayout Orientation="Vertical" Padding="15, 15" Spacing="15"
+					IsVisible="{Binding HasItems}">
+					<common:CustomButton x:Name="AddToCartButton"
+						HeightRequest="40"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						FontSize="14"
+						BorderRadius="0"
+						TextAlignment="Center"
+						Text="ADICIONAR AO CARRINHO"
+						TextColor="White"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						BackgroundColor="{x:Static resources:ColorResources.ANFDarkOrange}" 
+						Clicked="AddToCartClicked" />
+
+				</StackLayout>
+			</StackLayout>
+		</ScrollView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" Grid.RowSpan="2" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="3" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+
+      <common:CustomLabel
+        x:Name="LoadingMessage"
+        FontSize="12"
+        Text=""
+        VerticalOptions="CenterAndExpand"
+        HorizontalOptions="CenterAndExpand"
+        CustomFont="{x:Static resources:FontResources.RegularFont}"
+        TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFStorePage>

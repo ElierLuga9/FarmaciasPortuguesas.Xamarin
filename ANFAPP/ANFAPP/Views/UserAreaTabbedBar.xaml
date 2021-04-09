@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	x:Class="ANFAPP.Views.UserAreaTabbedBar">
+	
+	<ContentView.Content>
+		<Grid Grid.RowSpacing="0" Grid.ColumnSpacing="0"
+			BackgroundColor="White"
+			HorizontalOptions="FillAndExpand">
+
+			<StackLayout Orientation="Horizontal" 
+				HorizontalOptions="FillAndExpand" 
+				VerticalOptions="Start"
+				Padding="0, 10, 20, 10" 
+				Spacing="5">
+				
+				<!-- Dosing Scheduler Button -->
+				<common:CustomButton x:Name="PersonalDataButton"
+					VerticalOptions="Start"
+					WidthRequest="125"
+					HeightRequest="31"
+					BackgroundColor="Transparent"
+					TextAlignment="Center"	 
+					Clicked="OnPersonalDataButtonClicked"
+					BorderRadius="0"
+					Text="{x:Static app:AppResources.UserAreaPageTabUserDataLabel}"
+					TextColor="{x:Static resources:ColorResources.ANFDarkGrey}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					FontSize="13" />
+
+				<!-- Medicine Button -->
+				<common:CustomButton x:Name="HistoryButton"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="Start"
+					HeightRequest="31"
+					BackgroundColor="Transparent"
+					TextAlignment="Center"
+					Clicked="OnHistoryButtonClicked"
+					Text="{x:Static app:AppResources.UserAreaPageTabOrdersHistory}"
+					BorderRadius="0"
+					TextColor="{x:Static resources:ColorResources.ANFDarkGrey}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					FontSize="13" />
+
+				<!--<BoxView WidthRequest="80"/>-->
+
+			</StackLayout>
+		</Grid>
+	</ContentView.Content>
+</ContentView>

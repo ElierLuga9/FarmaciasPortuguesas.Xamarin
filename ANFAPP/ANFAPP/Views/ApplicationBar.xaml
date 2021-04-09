@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	x:Class="ANFAPP.Views.ApplicationBar"
+	BackgroundColor="{x:Static resources:ColorResources.ANFGreen}"
+	HeightRequest="{x:Static resources:DimenResources.ApplicationBarHeightByDevice}">
+
+	<ContentView.Content>
+
+		<Grid Grid.RowSpacing="0" Grid.ColumnSpacing="0"
+			HorizontalOptions="FillAndExpand"
+			VerticalOptions="End"
+			HeightRequest="{x:Static resources:DimenResources.ApplicationBarHeight}">
+
+			<Grid.ColumnDefinitions>
+				<!-- Left Margin -->
+				<ColumnDefinition Width="auto" x:Name="MarginCol"/>
+				<!-- Left Button -->
+				<ColumnDefinition Width="auto" x:Name="LeftButtonCol" />
+				<!--<ColumnDefinition.Width>
+						<OnIdiom x:TypeArguments="GridLength">
+							<OnIdiom.Phone>45</OnIdiom.Phone>
+							<OnIdiom.Tablet>15</OnIdiom.Tablet>
+						</OnIdiom>
+					</ColumnDefinition.Width>
+				</ColumnDefinition>-->
+				<!-- Page Title -->
+				<ColumnDefinition Width="*" />
+
+        <!-- Card Button Margin -->
+        <ColumnDefinition Width="8" />
+        <!-- Card Button -->
+        <ColumnDefinition Width="auto" />
+        <ColumnDefinition Width="15" />
+       
+				<!-- Favorites Button Margin -->
+				<ColumnDefinition Width="8" x:Name="FavPointsCol"/>
+				<!-- Favorites Button -->
+				<ColumnDefinition Width="auto" x:Name="FavButtonImageCol"/>
+				<ColumnDefinition Width="15" x:Name="FavButtonCol"/>
+				
+        <!-- Cart Button Margin -->
+				<ColumnDefinition Width="8" x:Name="CartPointsCol"/>
+        <!-- Cart Button -->
+				<ColumnDefinition Width="auto" x:Name="CartButtonImageCol"/>
+				<ColumnDefinition Width="15" x:Name="CartButtonCol"/>
+				
+        <!-- Cart Margin -->
+				<ColumnDefinition Width="13" x:Name="CartMarginCol" />
+
+        <!-- Menu Button -->
+				<ColumnDefinition Width="auto" x:Name="MenuButton"/>
+        
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<!-- User Points Top Margin -->
+				<RowDefinition Height="3" />
+				<!-- Content -->
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+
+			<!-- Left Button Image -->
+			<common:CustomImage x:Name="LeftButtonImage" Grid.RowSpan="2" Grid.Column="1"
+					
+				InputTransparent="True"
+				HorizontalOptions="Start"
+				VerticalOptions="Center" />
+
+			<!-- Left Button -->
+			<common:CustomButton x:Name="LeftButton" Grid.RowSpan="2" Grid.ColumnSpan="2"
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="FillAndExpand"
+				BackgroundColor="Transparent"
+				BorderColor="Transparent" />
+
+			<StackLayout Orientation="Vertical" Grid.RowSpan="2" Grid.Column="2" Spacing="0" Padding="0, 5">
+				<!-- Title 
+				LineBreakMode="TailTruncation"
+				-->
+				<common:CustomLabel x:Name="PageTitle"
+					HorizontalOptions="StartAndExpand"
+					VerticalOptions="CenterAndExpand"
+					TextColor="White"
+					FontSize="17"
+					InputTransparent="True"
+					CustomFont="{x:Static resources:FontResources.LightFont}"/>
+			
+				<!-- Subtitle -->
+				<common:CustomLabel x:Name="PageSubtitle"
+					IsVisible="false"
+					HorizontalOptions="Start"
+					VerticalOptions="StartAndExpand"
+					TextColor="White"
+					FontSize="12"
+					InputTransparent="True"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"/>
+
+			</StackLayout>
+
+<!--Source="ic_locate_services.png"-->
+      <!-- Card Button Image --><!--
+      <common:CustomImage x:Name="CardButtonImage" Grid.RowSpan="2" Grid.Column="4" Grid.ColumnSpan="2"
+				IsVisible="False"            
+				InputTransparent="True"
+				HorizontalOptions="End"
+				VerticalOptions="Center"
+				Source="ic_cartao_pontos.png"/>
+
+      --><!-- Card Items --><!--
+      <Grid x:Name="CardItemsContainer" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="1"
+				HeightRequest="16"
+				HorizontalOptions="End"
+				VerticalOptions="Start"
+				InputTransparent="True"
+				IsVisible="False">
+
+        <common:CustomImage Aspect="Fill"
+					InputTransparent="True"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					Source="points_bg4.png" />
+
+        <StackLayout Padding="6, 0, 7, 0"
+					HorizontalOptions="Center"
+					VerticalOptions="Center">
+
+          <common:CustomLabel x:Name="CardItems"
+						TextColor="White"
+						FontSize="10"
+						InputTransparent="True"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+        </StackLayout>
+      </Grid>
+
+      --><!-- Card Button --><!--
+      <common:CustomButton x:Name="CardButton" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="3"
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="FillAndExpand"
+				BackgroundColor="Transparent"
+				BorderColor="Transparent"
+				IsVisible="False"
+				Clicked="OnCardButton_Clicked" />-->
+      
+			<!-- Fav Button Image -->
+			<common:CustomImage x:Name="FavButtonImage" Grid.RowSpan="2" Grid.Column="7" Grid.ColumnSpan="2"
+				IsVisible="False"
+				InputTransparent="True"
+				HorizontalOptions="End"
+				VerticalOptions="Center"
+				Source="ic_navbar_star_white.png" />
+
+			<!-- Fav Items -->
+			<Grid x:Name="FavItemsContainer" Grid.Column="5" Grid.ColumnSpan="3" Grid.Row="1"
+				HeightRequest="16"
+				HorizontalOptions="End"
+				VerticalOptions="Start"
+				InputTransparent="True"
+				IsVisible="False">
+
+				<common:CustomImage Aspect="Fill"
+					InputTransparent="True"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					Source="points_bg3.png" />
+
+				<StackLayout Padding="6, 0, 7, 0"
+					HorizontalOptions="Center"
+					VerticalOptions="Center">
+					
+					<common:CustomLabel x:Name="FavItems"
+						TextColor="White"
+						FontSize="10"
+						InputTransparent="True"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+				</StackLayout>
+			</Grid>
+
+			<!-- Fav Button -->
+			<common:CustomButton x:Name="FavButton" Grid.RowSpan="2" Grid.Column="6" Grid.ColumnSpan="3"
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="FillAndExpand"
+				BackgroundColor="Transparent"
+				BorderColor="Transparent"
+				IsVisible="False"
+				Clicked="OnFavButton_Clicked" />
+
+			<!-- Cart Button Image -->
+			<common:CustomImage x:Name="CartButtonImage" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Column="10"
+				IsVisible="False"
+				InputTransparent="True"
+				HorizontalOptions="End"
+				Source="ic_navbar_cart"
+				VerticalOptions="Center"/>
+
+			<!-- Cart Items -->
+			<Grid x:Name="CartItemsContainer" Grid.Column="8" Grid.ColumnSpan="3" Grid.Row="1"
+				HeightRequest="16"
+				HorizontalOptions="End"
+				VerticalOptions="Start"
+				InputTransparent="True"
+				IsVisible="False">
+
+				<common:CustomImage Aspect="Fill"
+					InputTransparent="True"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					Source="points_bg3.png"/>
+
+				<StackLayout Padding="6, 0, 7, 0"
+					HorizontalOptions="Center"
+					VerticalOptions="Center">
+
+					<common:CustomLabel x:Name="CartItems"
+						TextColor="White"
+						FontSize="10"
+						InputTransparent="True"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+				</StackLayout>
+			</Grid>
+
+			<!-- Cart Button -->
+			<common:CustomButton x:Name="CartButton" Grid.RowSpan="2" Grid.ColumnSpan="3" Grid.Column="9"
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="FillAndExpand"
+				BackgroundColor="Transparent"
+				BorderColor="Transparent"
+				IsVisible="False"
+				Clicked="OnCartButton_Clicked"/>
+
+      		<Grid x:Name="RightButtonImageArea" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Column="4" 
+      			HorizontalOptions="End"
+      			VerticalOptions="Center"
+      			HeightRequest="35"
+				WidthRequest="35"
+				InputTransparent="True">
+            
+        	<!-- Right Button Image -->
+        		<common:CustomImage x:Name="RightButtonImage" Grid.Row="0"
+ 	         		HeightRequest="30"
+    	      		WidthRequest="30"
+        	  		HorizontalOptions="Center"
+          			Aspect="AspectFill"
+      				InputTransparent="True"
+			    	VerticalOptions="Center"
+          			Source="ic_smile_56x56_verde.png" />
+
+        		<!-- Right Button Mask-->
+        		<common:CustomImage x:Name="RightButtonMask" Grid.Row="0"
+    				HeightRequest="35"
+					WidthRequest="35"
+					HorizontalOptions="Center"
+					IsVisible="False"
+					InputTransparent="True"
+					Source="ic_smile_56x56_verde.png"
+					VerticalOptions="Center" />
+			</Grid>
+
+			<!-- User Points -->
+			<Grid x:Name="UserPointsContainer" Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="1"
+				HeightRequest="16"
+				Padding="0, 0, 5, 0"
+				HorizontalOptions="End"
+				VerticalOptions="Start"
+				InputTransparent="True"
+				IsVisible="False">
+
+				<common:CustomImage x:Name="UserPointsBGImage" Aspect="Fill"
+					InputTransparent="True"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					Source="points_bg5.png"/>
+
+				<StackLayout Padding="5, 0, 5, 0"
+					Spacing="0" 
+					Orientation="Horizontal"
+					HorizontalOptions="Center"
+					VerticalOptions="Center">
+
+					<common:CustomLabel x:Name="UserPoints"
+						TextColor="White"
+						FontSize="10"
+						InputTransparent="True"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+					<common:CustomLabel
+						TextColor="White"
+						FontSize="7"
+						InputTransparent="True"
+						Text="PTS"
+						VerticalOptions="End"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+				</StackLayout>
+			</Grid>
+
+			<!-- Right Button -->
+			<common:CustomButton x:Name="RightButton" Grid.RowSpan="2" Grid.ColumnSpan="3" Grid.Column="3"
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="FillAndExpand"
+				BackgroundColor="Transparent"
+				BorderColor="Transparent"
+				Clicked="OnCardButton_Clicked" />
+      
+      <!-- Menu Button image on right side -->
+      <common:CustomImage x:Name="MenuRightButtonImage" Grid.RowSpan="2" Grid.Column="13"
+				InputTransparent="True"
+				HorizontalOptions="Start"
+				VerticalOptions="Center"
+      Source="ic_appbar_menu2.png"/>
+
+      <!-- Menu Button on right side -->
+      <common:CustomButton x:Name="MenuRightButton" Grid.RowSpan="2"  Grid.Column="13"
+        HorizontalOptions="FillAndExpand"
+				VerticalOptions="FillAndExpand"
+				BackgroundColor="Transparent"
+				BorderColor="Transparent"
+        WidthRequest="24"
+      Clicked="OnMenuButton_Clicked"/>
+
+    </Grid>
+	</ContentView.Content>
+</ContentView>

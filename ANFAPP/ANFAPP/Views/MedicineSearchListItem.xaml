@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+  xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+  xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+  xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+  x:Class="ANFAPP.Views.MedicineSearchListItem">
+
+	<ContentView.Content>
+
+		<Grid HeightRequest="60"
+			Grid.RowSpacing="0" Grid.ColumnSpacing="0"
+			HorizontalOptions="FillAndExpand"
+			VerticalOptions="FillAndExpand"
+			BackgroundColor="White">
+
+			<Grid.RowDefinitions>
+				<!-- Top Margin -->
+				<RowDefinition Height="15" />
+				<!-- Name Row -->
+				<RowDefinition Height="*" />
+				<!-- Description Row -->
+				<RowDefinition Height="*" />
+				<!-- Bottom Margin -->
+				<RowDefinition Height="15" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<!-- Left Margin -->
+				<ColumnDefinition Width="15" />
+				<!-- Labels -->
+				<ColumnDefinition Width="*" />
+				<!-- Disclosure Icon -->
+				<ColumnDefinition Width="10" />
+				<!-- Right Margin -->
+				<ColumnDefinition Width="15" />
+			</Grid.ColumnDefinitions>
+
+			<!-- Name -->
+			<common:CustomLabel Grid.Row="1" Grid.Column="1"
+				FontSize="15"
+				HorizontalOptions="Start"
+				VerticalOptions="End"
+				InputTransparent="True"
+				LineBreakMode="TailTruncation"
+				TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				Text="{Binding Name}" />
+
+			<!-- Description -->
+			<common:CustomLabel Grid.Row="2" Grid.Column="1"
+          		FontSize="12"
+				HorizontalOptions="Start"
+				VerticalOptions="Center"
+				InputTransparent="True"
+				TextColor="{x:Static resources:ColorResources.SchedulerPPGreyN4}"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				Text="{Binding Presentation}" />
+
+			<!-- Disclosure Icon -->
+			<common:CustomImage Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" 
+				WidthRequest="6" HeightRequest="10"
+				VerticalOptions="Center"
+				HorizontalOptions="End"
+				Source="ic_button_arrow_black" />
+
+			<!-- Separator -->
+			<Grid Grid.Row="3" Grid.ColumnSpan="4"
+				HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand">
+				<BoxView HorizontalOptions="FillAndExpand" HeightRequest="1"
+					Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+			</Grid>
+		</Grid>
+
+	</ContentView.Content>
+</ContentView>

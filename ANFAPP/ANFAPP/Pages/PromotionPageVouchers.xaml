@@ -1,0 +1,191 @@
+﻿<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+		 xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+         xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+         xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+         xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+         xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+         xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+         xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+         x:Class="ANFAPP.Pages.PromotionPageVouchers">
+
+
+  <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RowSpacing="0" ColumnSpacing="0">
+    <Grid.RowDefinitions>
+      <!-- Application Bar -->
+      <RowDefinition Height="auto" />
+      <!-- Page -->
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="auto" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+
+
+    <!-- Page -->
+    <ScrollView Grid.Row="1" Grid.Column="1"
+    		Orientation="Vertical"
+    		VerticalOptions="FillAndExpand"
+    		HorizontalOptions="FillAndExpand">
+      <StackLayout Orientation="Vertical" Spacing="0">
+        
+        <!-- Promotions -->
+		<views:PromotionsTabbedBar SelectedTab="Vouchers"></views:PromotionsTabbedBar>
+				
+      
+     
+
+        <!-- Vouchers List -->
+		<StackLayout VerticalOptions="StartAndExpand" 
+				     HorizontalOptions="CenterAndExpand"
+					x:Name="noVoucherLabel"
+					IsVisible="true"
+					>
+		 <common:CustomLabel Text="{x:Static app:AppResources.VouchersNoDataLabel}" 
+						CustomFont="{x:Static resources:FontResources.RegularFont}" 
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" 
+						FontSize="16" 
+
+						/> 
+
+		</StackLayout>
+		  <StackLayout x:Name="VouchersPromos"
+            Spacing="15"
+            Padding="15, 8"
+            HeightRequest="34"
+            Orientation="Horizontal"
+            HorizontalOptions="FillAndExpand"
+            BackgroundColor="#eeeeee"
+            IsVisible="false">
+
+            <common:CustomLabel x:Name="VouchersLabel"
+              InputTransparent="True"
+              HorizontalOptions="StartAndExpand"
+              VerticalOptions="CenterAndExpand"
+              CustomFont="{x:Static resources:FontResources.RegularFont}"
+              FontSize="20"
+              TextColor="{x:Static resources:ColorResources.TextColorDark}"
+              Text="Promoções" />
+          </StackLayout>
+          <common:ANFRepeaterView x:Name="VouchersRepeaterList"
+                VerticalOptions="StartAndExpand"
+                ItemsSource="{Binding VouchersList}"
+                IsVisible="false">
+            <!-- Article Template -->
+            <common:ANFRepeaterView.ItemTemplate>
+              <DataTemplate>
+                <ViewCell Height="80">
+                  <Grid>
+                 	 <views:PromotionsVouchersListItem VoucherTapped="OnArticleTapped" />
+					<common:CustomButton
+							BackgroundColor="Transparent"
+							HorizontalOptions="FillAndExpand"
+							VerticalOptions="FillAndExpand"
+												
+											
+							Clicked="OnArticleTapped">
+					</common:CustomButton>				
+                    <BoxView
+                    HeightRequest="1"
+                    VerticalOptions="End"
+                    HorizontalOptions="FillAndExpand"
+                    Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+                  </Grid>
+                </ViewCell>
+              </DataTemplate>
+            </common:ANFRepeaterView.ItemTemplate>
+          </common:ANFRepeaterView>
+          <StackLayout x:Name="VouchersVales"
+            Spacing="15"
+            Padding="15, 8"
+            HeightRequest="34"
+            Orientation="Horizontal"
+            HorizontalOptions="FillAndExpand"
+            BackgroundColor="#eeeeee"
+            IsVisible="false">
+
+            <common:CustomLabel x:Name="VouchersLabel2"
+              InputTransparent="True"
+              HorizontalOptions="StartAndExpand"
+              VerticalOptions="CenterAndExpand"
+              CustomFont="{x:Static resources:FontResources.RegularFont}"
+              FontSize="20"
+              TextColor="{x:Static resources:ColorResources.TextColorDark}"
+              Text="Vales" />
+          </StackLayout>
+		<common:ANFRepeaterView x:Name="VouchersRepeaterListValue"
+                VerticalOptions="StartAndExpand"
+                ItemsSource="{Binding VouchersValueList}"
+                IsVisible="false">
+            <!-- Article Template -->
+            <common:ANFRepeaterView.ItemTemplate>
+              <DataTemplate>
+                <ViewCell Height="80">
+                  <Grid>
+                 	 <views:PromotionsVouchersValueListItem VoucherTapped="OnArticleTapped" />
+					<common:CustomButton
+							BackgroundColor="Transparent"
+							HorizontalOptions="FillAndExpand"
+							VerticalOptions="FillAndExpand"									
+							Clicked="OnArticleTapped">
+					</common:CustomButton>				
+                    <BoxView
+                    HeightRequest="1"
+                    VerticalOptions="End"
+                    HorizontalOptions="FillAndExpand"
+                    Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+                  </Grid>
+                </ViewCell>
+              </DataTemplate>
+            </common:ANFRepeaterView.ItemTemplate>
+          </common:ANFRepeaterView>	
+          <!-- No Data Label -->
+        <!--<StackLayout x:Name="NoDataLayout" IsVisible="True">-->
+          
+          <!--<Grid x:Name="NoDataGrid" Padding="0, 15"
+            HorizontalOptions="FillAndExpand"
+            IsVisible="{Binding VouchersList, Converter={x:Static converters:ConverterResources.Nullable}" >
+            
+            <common:CustomLabel
+              FontSize="15"
+              XAlign="Center"
+              VerticalOptions="Center"
+              HorizontalOptions="Center"
+              TextColor="{x:Static resources:ColorResources.TextColorDark}"
+              CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+              Text="{x:Static app:AppResources.VouchersNoDataLabel}" />
+            
+          </Grid>-->
+        <!--</StackLayout>-->
+      
+      </StackLayout>
+    </ScrollView>
+    
+    
+    <!-- MenuItem -->
+    <views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+    <!-- Application Bar -->
+    <views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+    <!-- Loading Container -->
+    <Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+      <!-- Loading Indicator -->
+      <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <common:CustomActivityIndicator
+					HorizontalOptions="CenterAndExpand"
+					VerticalOptions="CenterAndExpand"
+					IsRunning="True"
+					Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+      </StackLayout>
+
+    </Grid>
+  </Grid>
+ 
+</pages:ANFPage>

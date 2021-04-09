@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.UserArea.Vouchers.VouchersPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Content -->
+			<RowDefinition Height="*" />
+			<!-- Buttons -->
+			<RowDefinition Height="auto" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- List of Vouchers -->
+		<common:CustomListView x:Name="VoucherList" Grid.Row="1" Grid.Column="1"
+			HasUnevenRows="True"
+			ItemSelected="OnItemSelected"
+			GroupDisplayBinding="{Binding Title}"
+			VerticalOptions="FillAndExpand"
+			ItemsSource="{Binding Vouchers}"
+			IsGroupingEnabled="true"
+			SeparatorColor="White">
+
+			<!-- Header Template -->
+			<common:CustomListView.GroupHeaderTemplate>
+				<DataTemplate>
+					<ViewCell Height="80">
+						<StackLayout  Orientation="Vertical" Spacing="0">
+
+							<!-- Group Header -->
+							<Grid HorizontalOptions="FillAndExpand" HeightRequest="40" Padding="15, 0"
+								BackgroundColor="{x:Static resources:ColorResources.ANFPaleGrey}">
+								<common:CustomLabel 
+									FontSize="15"
+									VerticalOptions="Center"
+									HorizontalOptions="Start"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									CustomFont="{x:Static resources:FontResources.RegularFont}"
+									Text="{Binding Title}" />
+							</Grid>
+							
+							<!-- Table Header-->
+							<Grid HorizontalOptions="FillAndExpand" 
+								HeightRequest="40"
+								Grid.ColumnSpacing="0"
+								BackgroundColor="{x:Static resources:ColorResources.ANFCream}">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="15" />
+									<ColumnDefinition Width="3*" />
+									<ColumnDefinition Width="2*" />
+									<ColumnDefinition Width="85" />
+									<ColumnDefinition Width="15" />
+									<ColumnDefinition Width="15" />
+								</Grid.ColumnDefinitions>
+
+								<common:CustomLabel Grid.Column="1"
+									FontSize="12"
+									VerticalOptions="Center"
+									HorizontalOptions="Start"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									CustomFont="{x:Static resources:FontResources.RegularFont}"
+									Text="{x:Static app:AppResources.VouchersPageTableDescriptionLabel}" />
+
+								<common:CustomLabel Grid.Column="2"
+									FontSize="12"
+									VerticalOptions="Center"
+									HorizontalOptions="Start"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									CustomFont="{x:Static resources:FontResources.RegularFont}"
+									Text="{x:Static app:AppResources.VouchersPageTableValueLabel}" />
+
+								<common:CustomLabel Grid.Column="3"
+									FontSize="12"
+									VerticalOptions="Center"
+									HorizontalOptions="Start"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									CustomFont="{x:Static resources:FontResources.RegularFont}"
+									Text="{x:Static app:AppResources.VouchersPageTableExpiresLabel}" />
+							</Grid>
+						</StackLayout>
+					</ViewCell>
+				</DataTemplate>
+			</common:CustomListView.GroupHeaderTemplate>
+			<common:CustomListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell >
+						<StackLayout Orientation="Vertical" Spacing="0">
+							<Grid HorizontalOptions="FillAndExpand" Padding="0, 12"
+							Grid.ColumnSpacing="0" MinimumHeightRequest="52"
+							BackgroundColor="White">
+								<Grid.ColumnDefinitions>
+									<!-- Left Margin -->
+									<ColumnDefinition Width="15" />
+									<!-- Description -->
+									<ColumnDefinition Width="3*" />
+									<!-- Value -->
+									<ColumnDefinition Width="2*" />
+									<!-- Expiration Date -->
+									<ColumnDefinition Width="85" />
+									<!-- Arrow -->
+									<ColumnDefinition Width="15" />
+									<!-- Right Margin -->
+									<ColumnDefinition Width="15" />
+								</Grid.ColumnDefinitions>
+
+								<!-- Description -->
+								<common:CustomLabel Grid.Column="1"
+									FontSize="15"
+									VerticalOptions="Center"
+									HorizontalOptions="Start"
+									InputTransparent="True"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									CustomFont="{x:Static resources:FontResources.RegularFont}"
+									Text="{Binding DescriptionTitle}" />
+
+								<!-- Value -->
+								<common:CustomLabel Grid.Column="2"
+									FontSize="15"
+									VerticalOptions="Center"
+									HorizontalOptions="Start"
+									InputTransparent="True"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									CustomFont="{x:Static resources:FontResources.RegularFont}"
+									Text="{Binding FormatedValue}" />
+
+								<!-- Expiration Date -->
+								<common:CustomLabel Grid.Column="3"
+									FontSize="15"
+									VerticalOptions="Center"
+									HorizontalOptions="Start"
+									InputTransparent="True"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									CustomFont="{x:Static resources:FontResources.RegularFont}"
+									Text="{Binding EndDate, Converter={x:Static converters:ConverterResources.StringToShortDate}}" />
+
+								<!-- Arrow -->
+								<common:CustomImage Grid.Column="4"
+									HorizontalOptions="End"
+									VerticalOptions="Center"
+									InputTransparent="True"
+									Source="acessory" />
+							</Grid>
+
+							<Grid HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand">
+								<BoxView HorizontalOptions="FillAndExpand" HeightRequest="1"
+									Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+							</Grid>
+						</StackLayout>
+					</ViewCell>
+				</DataTemplate>
+			</common:CustomListView.ItemTemplate>
+		</common:CustomListView>
+
+		<!-- No Data Label -->
+		<Grid Grid.Row="1" Grid.Column="1" Padding="0, 15"
+			HorizontalOptions="FillAndExpand"
+			IsVisible="{Binding Vouchers, Converter={x:Static converters:ConverterResources.Nullable}" >
+			<common:CustomLabel 
+				FontSize="15"
+				XAlign="Center"
+				VerticalOptions="Center"
+				HorizontalOptions="Center"
+				TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+				Text="{x:Static app:AppResources.VouchersNoDataLabel}" />
+		</Grid>
+
+		<!-- Buttons -->
+		<StackLayout Grid.Row="2" Grid.Column="1" Orientation="Vertical" Spacing="1">
+			
+			<!-- Voucher History Button  -->
+			<Grid HeightRequest="40"
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="FillAndExpand">
+
+				<Grid.ColumnDefinitions>
+					<!-- Left Margin -->
+					<ColumnDefinition Width="15" />
+					<!-- Content -->
+					<ColumnDefinition Width="*" />
+					<!-- Left Margin -->
+					<ColumnDefinition Width="15" />
+				</Grid.ColumnDefinitions>
+
+				<!-- Button -->
+				<common:CustomButton Grid.ColumnSpan="3"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					BorderRadius="0"
+					Clicked="OnVoucherHistory_Clicked"
+					BackgroundColor="{x:Static resources:ColorResources.ANFLightGreen}" />
+
+				<!-- Button Label -->
+				<common:CustomLabel Grid.Column="1"
+					FontSize="15"
+					HorizontalOptions="Start"
+					VerticalOptions="Center"
+					TextColor="{x:Static resources:ColorResources.TextColorLight}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					Text="{x:Static app:AppResources.VouchersPageHistoryButton}" />
+
+				<!-- Arrow -->
+				<common:CustomImage Grid.Column="1"
+					HorizontalOptions="End"
+					VerticalOptions="Center"
+					Source="ic_button_arrow.png" />
+			</Grid>
+
+			<!-- Aquire Voucher Button -->
+			<Grid HeightRequest="40"
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="FillAndExpand">
+
+				<Grid.ColumnDefinitions>
+					<!-- Left Margin -->
+					<ColumnDefinition Width="15" />
+					<!-- Content -->
+					<ColumnDefinition Width="*" />
+					<!-- Left Margin -->
+					<ColumnDefinition Width="15" />
+				</Grid.ColumnDefinitions>
+
+				<!-- Button -->
+				<common:CustomButton Grid.ColumnSpan="3"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					BorderRadius="0"
+					Clicked="OnAquireVoucher_Clicked"
+					BackgroundColor="{x:Static resources:ColorResources.ANFLightGreen}" />
+
+				<!-- Button Label -->
+				<common:CustomLabel Grid.Column="1"
+					FontSize="15"
+					HorizontalOptions="Start"
+					VerticalOptions="Center"
+					TextColor="{x:Static resources:ColorResources.TextColorLight}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					Text="{x:Static app:AppResources.VouchersPageAquireVouchersButton}" />
+
+				<!-- Arrow -->
+				<common:CustomImage Grid.Column="1"
+					HorizontalOptions="End"
+					VerticalOptions="Center"
+					Source="ic_button_arrow.png" />
+			</Grid>
+		</StackLayout>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" Grid.RowSpan="2" />
+
+		<!-- Application Bar -->
+    <!--<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />-->
+    <views:ApplicationBarUserCard x:Name="ApplicationBar" Grid.ColumnSpan="2"> </views:ApplicationBarUserCard>
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="3" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>

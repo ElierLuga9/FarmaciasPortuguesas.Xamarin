@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+  xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+  x:Class="ANFAPP.Views.BiometricDashboardButton"
+  HeightRequest="40">
+  
+  <ContentView.Content>
+
+    <Grid ColumnSpacing="0" RowSpacing="0">
+      <Grid.ColumnDefinitions>
+        <!-- Left Margin -->
+        <ColumnDefinition Width="15" />
+        <!-- Icon -->
+        <ColumnDefinition Width="27" />
+        <!-- Spacing -->
+        <ColumnDefinition Width="15" />
+        <!-- Category Name -->
+        <ColumnDefinition Width="auto" />
+        <!-- Last Biometric Value -->
+        <ColumnDefinition Width="*" />
+        <!-- Spacing -->
+        <ColumnDefinition Width="4" />
+        <!-- Biometric Unit -->
+        <ColumnDefinition Width="auto" />
+        <!-- Right Margin -->
+        <ColumnDefinition Width="15" />
+      </Grid.ColumnDefinitions>
+      <Grid.GestureRecognizers>
+        <TapGestureRecognizer Tapped="OnButtonClicked"/>
+      </Grid.GestureRecognizers>
+      
+      <!-- Clickable Button -->
+      <!--<Button x:Name="CategoryButton"
+        Grid.ColumnSpan="8"
+        BorderRadius="0"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand"
+        BackgroundColor="{x:Static resources:ColorResources.APPBackgroundGrey}" />-->
+      <BoxView
+        Grid.ColumnSpan="8"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand"
+        Color="{x:Static resources:ColorResources.APPBackgroundGrey}" />
+
+
+      <!-- Category Name -->
+      <common:CustomLabel x:Name="CategoryNameLabel"
+        Grid.Column="3" 
+        CustomFont="{x:Static resources:FontResources.RegularFont}"                          
+        VerticalOptions="Center"
+        FontSize="15"
+        TextColor="{x:Static resources:ColorResources.TextColorDark}"
+        Text="{Binding Title}" />
+
+      <!-- Last Biometric Value -->
+      <common:CustomLabel x:Name="BiometricValueLabel"
+        Grid.Column="4"
+        CustomFont="{x:Static resources:FontResources.RegularFont}"
+        HorizontalOptions="End"
+        VerticalOptions="Center"
+        FontSize="15"
+        TextColor="{Binding ButtonColor}"
+        Text="{Binding BiometricValue}" />
+
+      <!-- Biometric Unit -->
+      <common:CustomLabel x:Name="BiometricUnitLabel"
+        Grid.Column="6"
+        CustomFont="{x:Static resources:FontResources.RegularFont}"
+        VerticalOptions="Center"
+        FontSize="15"
+        TextColor="{Binding ButtonColor}"
+        Text="{Binding BiometricUnit}" />
+      
+      <!-- Icon -->
+      <common:CustomImage x:Name="CategoryIcon"
+        Grid.Column="1"
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        Source="{Binding Icon}" />
+
+    </Grid>
+    
+  </ContentView.Content>
+</ContentView>

@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Views.PromotionsHighlightsWidget">
+  <ContentView.Content>
+    
+    <StackLayout Orientation="Vertical" Spacing="0">
+
+      <!-- HighLights Header 
+      <StackLayout
+				Spacing="15"
+				Padding="15, 8"
+				HeightRequest="34"
+				Orientation="Horizontal"
+				HorizontalOptions="FillAndExpand"
+        BackgroundColor="#eeeeee">
+
+        <common:CustomLabel
+          InputTransparent="True"
+          HorizontalOptions="StartAndExpand"
+          VerticalOptions="CenterAndExpand"
+          CustomFont="{x:Static resources:FontResources.RegularFont}"
+          FontSize="20"
+          TextColor="{x:Static resources:ColorResources.TextColorDark}"
+          Text="Promoções e Destaques" />
+      </StackLayout>-->
+
+
+      <Grid Grid.RowSpacing="0" Grid.ColumnSpacing="0"  Padding="15, 0">
+        <Grid.RowDefinitions>
+          <!--Widget 1 and 2-->
+          <RowDefinition Height="auto" />
+          <!--Spacing-->
+          <RowDefinition Height="10" />
+          <!--Widget 3 and 4-->
+          <RowDefinition Height="auto" />
+          <!--Spacing-->
+          <RowDefinition Height="10" />
+          <!--See all button-->
+          <RowDefinition Height="auto" />
+          <!--Spacing-->
+          <RowDefinition Height="10" />
+          
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <!-- The wrapping columns use the remaining screen space, keeping the list centered -->
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="10" />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Product 1 top left -->
+        <views:ECProductHighlight x:Name="Widget1" Grid.Column="0" Grid.Row="0"
+					BindingContext="{Binding Product0}" />
+
+        <!-- Product 2 top right -->
+        <views:ECProductHighlight x:Name="Widget2" Grid.Column="2" Grid.Row="0"
+          BindingContext="{Binding Product1}" />
+
+        <!-- Product 3 bottom left -->
+        <views:ECProductHighlight x:Name="Widget3" Grid.Column="0" Grid.Row="2"
+					BindingContext="{Binding Product2}" />
+
+        <!-- Prtoduct 4 bottom right-->
+        <views:ECProductHighlight x:Name="Widget4" Grid.Column="2" Grid.Row="2"
+          BindingContext="{Binding Product3}" />
+
+      </Grid>
+      <!---->
+      
+      <!-- See all products button -->
+
+      <Grid Grid.RowSpacing="0" Grid.ColumnSpacing="0"  Padding="15, 0, 15, 0">
+        <Grid.RowDefinitions>
+          <!--See all button-->
+          <RowDefinition Height="*" />
+          <!--Spacing-->
+          <RowDefinition Height="15" />
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          
+          <ColumnDefinition Width="*" />
+          
+        </Grid.ColumnDefinitions>
+      
+        <StackLayout Orientation="Horizontal" 
+          Grid.Column="0"
+          Grid.Row="0" 
+          Spacing="0"
+          HeightRequest="23"
+          WidthRequest="437"
+          HorizontalOptions="CenterAndExpand"
+          BackgroundColor="{x:Static resources:ColorResources.ANFDarkOrange}">
+
+          <common:CustomLabel
+            IsVisible="True"
+            InputTransparent="True"
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand"
+            CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+            FontSize="10"
+            TextColor="White"
+            Text="{x:Static app:AppResources.PromotionsSeeAllLabel}" />
+          
+            <StackLayout.GestureRecognizers>
+        			<TapGestureRecognizer Tapped="OnSeeAllClicked" />
+        		</StackLayout.GestureRecognizers>
+
+        </StackLayout>
+     </Grid>
+        <!-- spacing -->  
+      <!--Grid.Column="0" Grid.Row="5"-->    
+        <!--<StackLayout  HeightRequest="10"></StackLayout>-->
+      
+    </StackLayout>
+  </ContentView.Content>
+</ContentView>

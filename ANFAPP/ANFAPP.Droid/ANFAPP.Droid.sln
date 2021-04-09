@@ -1,0 +1,20 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ANFAPP.Droid", "ANFAPP.Droid.csproj", "{EF4C3387-C28C-43E4-94CC-85E42E23D942}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Prod|Any CPU = Prod|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EF4C3387-C28C-43E4-94CC-85E42E23D942}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF4C3387-C28C-43E4-94CC-85E42E23D942}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF4C3387-C28C-43E4-94CC-85E42E23D942}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF4C3387-C28C-43E4-94CC-85E42E23D942}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF4C3387-C28C-43E4-94CC-85E42E23D942}.Prod|Any CPU.ActiveCfg = Prod|Any CPU
+		{EF4C3387-C28C-43E4-94CC-85E42E23D942}.Prod|Any CPU.Build.0 = Prod|Any CPU
+	EndGlobalSection
+EndGlobal

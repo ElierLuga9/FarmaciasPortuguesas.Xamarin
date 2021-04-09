@@ -1,0 +1,592 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFStorePage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages.Store;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.Store.StoreProductDetailPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Store Navigation Widget -->
+			<RowDefinition Height="auto" />
+			<!-- Store Filter Widget -->
+			<RowDefinition Height="auto" />
+			<!-- Page -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Page -->
+		<ScrollView Grid.Row="3" Grid.Column="1" Orientation="Vertical">
+			
+			<!-- StackLayout pinned to margin -->
+			<StackLayout x:Name="ContentScroll" 
+				IsVisible="{Binding Product, Converter={x:Static converters:ConverterResources.NotNullable}}"
+				Orientation="Vertical">
+				
+				<!-- StackLayout with the default margin -->
+				<StackLayout Orientation="Vertical"
+					Spacing="10"
+					Padding="15, 0">
+
+					<Grid RowSpacing="0" ColumnSpacing="0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="10" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="50" />
+							<RowDefinition Height="10" />
+							<RowDefinition Height="auto" />
+						</Grid.RowDefinitions>
+
+						<!--- Product Identification -->
+						<StackLayout Grid.Row="0" Grid.Column="0" Orientation="Vertical" Spacing="1">
+							<common:CustomLabel
+								FontSize="13"
+								HeightRequest="32"
+								Text="{Binding Product.Name}"
+								VerticalOptions="StartAndExpand"
+								HorizontalOptions="Start"
+								CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+							<common:CustomLabel
+								FontSize="11"
+								HeightRequest="14"
+								Text="{Binding Product.Brand}"
+								VerticalOptions="End"
+								HorizontalOptions="Start"
+								CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+							<common:CustomLabel
+								FontSize="11"
+								HeightRequest="30"
+								Text="{Binding Product.FullPresentation}"
+								VerticalOptions="StartAndExpand"
+								HorizontalOptions="Start"
+								CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+						</StackLayout>
+
+						<!-- Product Price -->
+						<!--
+						Text="{Binding Product.Price, StringFormat='{0} €'}"
+						-->
+						<StackLayout Grid.Row="0" Grid.Column="2" Orientation="Vertical" Spacing="0">
+							<common:CustomLabel
+								FontSize="22"
+								Text="{Binding Product.PriceOrPointsDescription}"
+								VerticalOptions="Start"
+								HorizontalOptions="End"
+								CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+							<common:CustomLabel
+								FontSize="13"
+								Text="{Binding Product.PointsDescription}"
+								VerticalOptions="Start"
+								HorizontalOptions="End"
+								CustomFont="{x:Static resources:FontResources.RegularFont}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+						</StackLayout>
+
+						<!--- Product Image -->
+						<Grid Grid.Row="2" Grid.Column="0" RowSpacing="0" ColumnSpacing="0">
+							<Grid.RowDefinitions>
+								<!-- Annotation icon offset -->
+								<RowDefinition Height="8" />
+								<!-- Top annotations -->
+								<RowDefinition Height="24" />
+								<!-- Image only -->
+								<RowDefinition Height="*" />
+								<!-- Bottom annotations -->
+								<RowDefinition Height="24" />
+								<!-- Annotation icon offset -->
+								<RowDefinition Height="8" />
+								<!-- CNP Info -->
+								<RowDefinition Height="auto" />
+							</Grid.RowDefinitions>
+
+							<common:CustomWebImage Grid.RowSpan="5" Grid.Row="0" x:Name="RemoteImage" HeightRequest="200"
+								IsVisible="{Binding Product.IsMSRM, Converter={x:Static converters:ConverterResources.InverseBool}}"
+								ImageUrl="{Binding Product.MainImageURL}"
+								Aspect="AspectFit"
+								HorizontalOptions="FillAndExpand"
+								DefaultImage="catalog_detail.png">
+								<common:CustomWebImage.GestureRecognizers>
+									<TapGestureRecognizer Tapped="OnImageSelected" />
+								</common:CustomWebImage.GestureRecognizers>
+							</common:CustomWebImage>
+							
+							<!--<common:CustomImage Grid.RowSpan="5" Grid.Row="0" x:Name="RemoteImage"
+								IsVisible="{Binding Product.MSRM, Converter={x:Static converters:ConverterResources.InverseBool}}"
+								Source="{Binding Product.MainImageSource}"
+								VerticalOptions="FillAndExpand"
+								HorizontalOptions="StartAndExpand">
+								<common:CustomWebImage.GestureRecognizers>
+									<TapGestureRecognizer Tapped="OnImageSelected" />
+								</common:CustomWebImage.GestureRecognizers>
+							</common:CustomImage>-->
+
+							<!-- Magnifier -->
+							<Frame HasShadow="False" Padding="10"
+								Grid.RowSpan="5" Grid.Row="0"
+								VerticalOptions="End"
+								InputTransparent="True"
+								HorizontalOptions="Start"
+								BackgroundColor="Transparent"
+								IsVisible="{Binding Product.CanZoomImage}">
+								
+								<common:CustomImage Source="icon_galeria.png" 
+									InputTransparent="True"/>
+							</Frame>
+
+							<common:CustomImage Grid.RowSpan="5" Grid.Row="0"
+								IsVisible="{Binding Product.IsMSRM}"
+								Source="msrmplaceholder.png"
+								VerticalOptions="FillAndExpand"
+								HorizontalOptions="StartAndExpand">
+							</common:CustomImage>
+
+							<!-- Icons -->
+							<StackLayout Spacing="5" Orientation="Horizontal" Grid.Row="1">
+								<common:CustomImage WidthRequest="22" HeightRequest="22"
+									VerticalOptions="Start"
+									HorizontalOptions="Start"
+									IsVisible="{Binding Product.CatIcon, Converter={x:Static converters:ConverterResources.NotNullable}}"
+									Source="{Binding Product.CatIcon}" />
+
+								<common:CustomImage WidthRequest="22" HeightRequest="22"
+									VerticalOptions="Start"
+									HorizontalOptions="Start"
+									IsVisible="{Binding Product.IsMSRM}"
+									Source="ic_prescription_annotation.png" />
+
+								<common:CustomImage WidthRequest="22" HeightRequest="22"
+									VerticalOptions="Start"
+									HorizontalOptions="Start"
+									IsVisible="{Binding Product.Generic}"
+									Source="ic_drug_annotation.png" />
+
+							</StackLayout>
+
+							<StackLayout Padding="0, 5, 0, 0" Grid.Row="5" 
+								Orientation="Vertical" Spacing="10">
+
+								<common:CustomLabel
+									FontSize="9"
+									HorizontalOptions="Center"
+									CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+									Text="{x:Static app:AppResources.ProductDetailImageDisclaimer}"
+									TextColor="#8c8c8c" />
+								
+								<common:CustomLabel 
+									FontSize="9"
+									Text="{Binding Product.CNP, StringFormat='CNP: {0}'}"
+									HorizontalOptions="Center"
+									CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+									TextColor="#8c8c8c" />
+							</StackLayout>
+						</Grid>
+
+						<!--- Product Description -->
+						<StackLayout Grid.Row="2" Grid.Column="2" Orientation="Vertical">
+							<common:CustomLabel
+								FontSize="12"
+								Text="Descrição"
+								HeightRequest="16"
+								VerticalOptions="Start"
+								HorizontalOptions="Start"
+								CustomFont="{x:Static resources:FontResources.BoldFont}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+							<common:CustomLabel
+								FontSize="12"
+								Text="{Binding Product.DescriptionText}"
+								VerticalOptions="StartAndExpand"
+								HorizontalOptions="StartAndExpand"
+								CustomFont="{x:Static resources:FontResources.RegularFont}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+							<!--
+								Text="{Binding CNP, StringFormat='CNP: {0}'}"
+								-->
+							<!--<common:CustomLabel
+								FontSize="9"
+								HeightRequest="10"
+								Text="{Binding Product.CNP, StringFormat='CNP: {0}'}"
+								VerticalOptions="End"
+								HorizontalOptions="Start"
+								CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+								TextColor="#8c8c8c" />-->
+						</StackLayout>
+					</Grid>
+
+					<!--- Add to Cart -->
+					<StackLayout Orientation="Horizontal"
+						HeightRequest="40"
+						Padding="0, 10"
+						Spacing="10">
+
+						<Grid HeightRequest="40" ColumnSpacing="0"
+							HorizontalOptions="FillAndExpand"
+							VerticalOptions="FillAndExpand"
+							Padding="1, 1"
+							BackgroundColor="{x:Static resources:ColorResources.ANFDarkOrange}">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="40" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+
+							<common:CustomEntry x:Name="QuantityEntry"
+								CustomPadding="0, 0, 0, 0"
+								CenterText="true"
+								VerticalOptions="FillAndExpand"
+								HorizontalOptions="FillAndExpand"
+								Keyboard="Numeric"
+								Text="{Binding Quantity, Mode=TwoWay}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}"
+								FontSize="15"
+								MaxLength="2"
+								BackgroundColor="White"
+								CustomFont="{x:Static resources:FontResources.BoldFont}"
+                                  
+                                  />
+
+							<common:CustomButton x:Name="AddToCartButton" Grid.Column="1"
+								Clicked="OnAddToCart"
+								HorizontalOptions="FillAndExpand"
+								VerticalOptions="FillAndExpand"
+								FontSize="14"
+								BorderRadius="0"
+								TextAlignment="Center"
+								Text="ADICIONAR AO CARRINHO"
+								TextColor="White"
+								CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+								BackgroundColor="{x:Static resources:ColorResources.ANFDarkOrange}" />
+						</Grid>
+
+
+						<Grid
+							HeightRequest="40"
+							WidthRequest="40"
+							HorizontalOptions="End">
+							<common:CustomButton x:Name="AddToFavoritesButton"
+								Clicked="OnAddToFavorites"
+								HorizontalOptions="FillAndExpand"
+								VerticalOptions="FillAndExpand"
+								BorderRadius="1"
+								BorderWidth="1"
+								BorderColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+								BackgroundColor="White" />
+							<common:CustomImage Source="{Binding FavImage}" x:Name="AddToFavoritesImg"
+								VerticalOptions="CenterAndExpand"
+								HorizontalOptions="CenterAndExpand"
+								InputTransparent="true">
+								<!---
+								<common:CustomImage.Triggers>
+        							<DataTrigger TargetType="Image" Binding="{Binding IsInFavorites}" Value="true">
+            							<Setter Property="Source" Value="ic_star_orange_filled" />
+        							</DataTrigger>
+    							</common:CustomImage.Triggers>
+    							-->
+							</common:CustomImage>
+						</Grid>
+
+
+					</StackLayout>
+
+					<!-- Separator -->
+					<!--
+					<BoxView HeightRequest="1" BackgroundColor="#eeeeee" />
+					-->
+					<!-- Availability, not visible if the pharmacy is not selected -->
+					<StackLayout Orientation="Horizontal"
+						HeightRequest="55"
+						IsVisible="{Binding Source={x:Static app:SessionData.IsPharmacySelected}}" >
+						<common:CustomImage Source="ic_product_availability.png" />
+						<StackLayout Orientation="Vertical"
+							Spacing="1"
+							Padding="0, 5, 0, 0"
+							HorizontalOptions="FillAndExpand"
+							VerticalOptions="FillAndExpand">
+
+							<common:CustomLabel
+								FontSize="12"
+								Text="Disponibilidade"
+								VerticalOptions="End"
+								HorizontalOptions="Start"
+								CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+							<common:CustomLabel
+								FontSize="12"
+								Text="{Binding Product.AvailTexto}"
+								VerticalOptions="StartAndExpand"
+								HorizontalOptions="StartAndExpand"
+								CustomFont="{x:Static resources:FontResources.RegularFont}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+
+						</StackLayout>
+					</StackLayout>
+
+					<!-- Not recomended (optional?) -->
+					<StackLayout Orientation="Horizontal"
+						IsVisible="{Binding Product.IsNotRecommended}"
+						HeightRequest="40">
+						<common:CustomImage VerticalOptions="Start" Source="ic_product_notrecomended.png" />
+						<StackLayout Orientation="Vertical"
+							Spacing="1"
+							Padding="0, 5, 0, 0"
+							HorizontalOptions="FillAndExpand"
+							VerticalOptions="FillAndExpand">
+
+							<common:CustomLabel
+								FontSize="12"
+								Text="Precauções"
+								VerticalOptions="End"
+								HorizontalOptions="Start"
+								CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+							<common:CustomLabel
+								FontSize="12"
+								Text="{Binding Product.NotRecommendedText}"
+								VerticalOptions="StartAndExpand"
+								HorizontalOptions="StartAndExpand"
+								CustomFont="{x:Static resources:FontResources.RegularFont}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+
+						</StackLayout>
+					</StackLayout>
+
+					<!--- Prescription, visible if mandatory -->
+					<StackLayout Orientation="Horizontal"
+						IsVisible="{Binding Product.IsMSRM}"
+						HeightRequest="40">
+						<common:CustomImage VerticalOptions="Start" Source="ic_product_warning.png" />
+						<StackLayout Orientation="Vertical"
+							Spacing="1"
+							Padding="0, 5, 0, 0"
+							HorizontalOptions="FillAndExpand"
+							VerticalOptions="FillAndExpand">
+
+							<common:CustomLabel
+								FontSize="12"
+								Text="Medicamento"
+								VerticalOptions="End"
+								HorizontalOptions="Start"
+								CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+							<common:CustomLabel
+								FontSize="12"
+								Text="{Binding Product.PrescriptionStatusText}"
+								VerticalOptions="StartAndExpand"
+								HorizontalOptions="StartAndExpand"
+								CustomFont="{x:Static resources:FontResources.RegularFont}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+
+						</StackLayout>
+					</StackLayout>
+
+					<!--- Non Prescription, visible if mandatory -->
+					<StackLayout Orientation="Horizontal"
+						IsVisible="{Binding Product.MNSRM}"
+						HeightRequest="40">
+						<common:CustomImage VerticalOptions="Start" Source="ic_product_mnsrm_warning.png" />
+						<StackLayout Orientation="Vertical"
+							Spacing="1"
+							Padding="0, 5, 0, 0"
+							HorizontalOptions="FillAndExpand"
+							VerticalOptions="FillAndExpand">
+
+							<common:CustomLabel
+								FontSize="12"
+								Text="Medicamento"
+								VerticalOptions="End"
+								HorizontalOptions="Start"
+								CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+							<common:CustomLabel
+								FontSize="12"
+								Text="{x:Static app:AppResources.NonPrescriptionStatusText}"
+								VerticalOptions="StartAndExpand"
+								HorizontalOptions="StartAndExpand"
+								CustomFont="{x:Static resources:FontResources.RegularFont}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+
+						</StackLayout>
+					</StackLayout>
+
+					<!--- Generic Drug, visible if mandatory -->
+					<StackLayout Orientation="Horizontal"
+						IsVisible="{Binding Product.Generic}"
+						HeightRequest="40">
+						<common:CustomImage VerticalOptions="Start" Source="ic_drug_warning.png" />
+						<StackLayout Orientation="Vertical"
+							Spacing="1"
+							Padding="0, 5, 0, 0"
+							HorizontalOptions="FillAndExpand"
+							VerticalOptions="FillAndExpand">
+
+							<common:CustomLabel
+								FontSize="12"
+								Text="Medicamento"
+								VerticalOptions="End"
+								HorizontalOptions="Start"
+								CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+							<common:CustomLabel
+								FontSize="12"
+								Text="Genérico"
+								VerticalOptions="StartAndExpand"
+								HorizontalOptions="StartAndExpand"
+								CustomFont="{x:Static resources:FontResources.RegularFont}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+
+						</StackLayout>
+					</StackLayout>
+				</StackLayout>
+
+				<StackLayout Orientation="Vertical" IsVisible="{Binding Product.IsMSRM, Converter={x:Static converters:ConverterResources.InverseBool}">
+					<BoxView
+						HorizontalOptions="FillAndExpand"
+						HeightRequest="1"
+						Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+					<common:ANFRepeaterView
+						IsClippedToBounds="False"
+						HorizontalOptions="FillAndExpand"
+						ItemsSource="{Binding Product.Contents}">
+						<common:ANFRepeaterView.ItemTemplate>
+							<DataTemplate>
+								<ViewCell>
+									<StackLayout Orientation="Vertical">
+										<StackLayout Orientation="Vertical"
+											HorizontalOptions="FillAndExpand"
+											Padding="15, 10">
+											
+											<common:CustomLabel
+												FontSize="15"
+												Text="{Binding Title}"
+												HorizontalOptions="Start"
+												CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+												TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+											<common:CustomLabel
+												FontSize="12"
+												Text="{Binding Content}"
+												VerticalOptions="Start"
+												HorizontalOptions="Start"
+												CustomFont="{x:Static resources:FontResources.RegularFont}"
+												TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+										</StackLayout>
+										
+										<!-- Separator -->
+										<BoxView
+											HorizontalOptions="FillAndExpand"
+											HeightRequest="1"
+											Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+									</StackLayout>
+									
+									<!--<StackLayout Orientation="Vertical">
+										<views:SimpleListItem Clicked="ContentItemTapped"/>
+										<BoxView
+											HorizontalOptions="FillAndExpand"
+											HeightRequest="1"
+											Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+									</StackLayout>-->
+								</ViewCell>
+							</DataTemplate>
+						</common:ANFRepeaterView.ItemTemplate>
+					</common:ANFRepeaterView>
+				</StackLayout>
+
+				<BoxView IsVisible="{Binding Product.IsMSRM}"
+					HorizontalOptions="FillAndExpand"
+					HeightRequest="1"
+					Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+
+				<!--- Non Prescription, visible if mandatory -->
+				<common:ANFRepeaterView
+					IsClippedToBounds="False"
+					Padding="0, 5, 0, 0"
+					HorizontalOptions="FillAndExpand"
+					ItemsSource="{Binding Product.Disclaimers}">
+					<common:ANFRepeaterView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell>
+								<Grid HorizontalOptions="FillAndExpand"
+									
+									Padding="16, 0, 16, 7">
+
+									<common:CustomLabel
+										FontSize="11"
+										Text="{Binding description}"
+										VerticalOptions="StartAndExpand"
+										HorizontalOptions="StartAndExpand"
+										CustomFont="{x:Static resources:FontResources.RegularFont}"
+										TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+								</Grid>
+							</ViewCell>
+						</DataTemplate>
+					</common:ANFRepeaterView.ItemTemplate>
+				</common:ANFRepeaterView>
+			</StackLayout>
+		</ScrollView>
+
+		<!-- Options -->
+    <!-- Store Search Widget -->
+    <views:StoreSearchWidget Grid.Row="1" Grid.Column="1"
+			SearchParamsRefreshed="OnSearch"
+			FiltersEnabled="False"
+			Padding="0, 15" />
+
+    <!-- Store Navigation Widget -->
+    <views:StoreNavigationWidget Grid.Row="2" Grid.Column="1"
+      Padding="0,0,0, 15"
+      SelectedTab="LandingPage" />
+    
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" Grid.RowSpan="3" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="4" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+				<common:CustomActivityIndicator
+					HorizontalOptions="CenterAndExpand"
+					VerticalOptions="CenterAndExpand"
+					IsRunning="True"
+					Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+
+				<ContentView HeightRequest="16" />
+
+				<Frame x:Name="LoadingMessage" IsVisible="False">
+					<common:CustomLabel
+						HeightRequest="16"
+						FontSize="13"
+						Text="A adicionar ao seu carrinho"
+						VerticalOptions="EndAndExpand"
+						HorizontalOptions="CenterAndExpand"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+				</Frame>
+			</StackLayout>
+		</Grid>
+	</Grid>
+</pages:ANFStorePage>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Views.ECBannerWidget">
+
+	<ContentView.Content>
+		<common:CustomWebView x:Name="Gallery"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand" 
+			HeightRequest="{x:Static resources:DimenResources.BannerHeight}" />
+		
+	</ContentView.Content>
+</ContentView>

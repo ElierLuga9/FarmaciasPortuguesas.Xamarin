@@ -1,0 +1,452 @@
+<<<<<<< HEAD
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+  xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+  xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+  xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+  xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+  xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+  x:Class="ANFAPP.Pages.UserLogin.CardBenefitsPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Content -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+
+		<!-- Application Bar -->
+		<!--<views:ApplicationBar x:Name="ApplicationBar"  />-->
+    <views:ApplicationBarUserCard x:Name="ApplicationBar" > </views:ApplicationBarUserCard>
+
+		<!-- Content -->
+		<ScrollView Orientation="Vertical" Grid.Row="1" HorizontalOptions="FillAndExpand" IsClippedToBounds="False">
+			<Grid Grid.RowSpacing="0" Grid.ColumnSpacing="0">
+
+				<!-- Idiom Specific Params -->
+				<Grid.HorizontalOptions>
+					<OnIdiom x:TypeArguments="LayoutOptions">
+						<OnIdiom.Phone>FillAndExpand</OnIdiom.Phone>
+						<OnIdiom.Tablet>Center</OnIdiom.Tablet>
+					</OnIdiom>
+				</Grid.HorizontalOptions>
+				<Grid.WidthRequest>
+					<OnIdiom x:TypeArguments="x:Double">
+						<OnIdiom.Phone>-1</OnIdiom.Phone>
+						<OnIdiom.Tablet>480</OnIdiom.Tablet>
+					</OnIdiom>
+				</Grid.WidthRequest>
+
+				<Grid.ColumnDefinitions>
+					<!-- Left Margin -->
+					<ColumnDefinition Width="15" />
+					<!-- Content -->
+					<ColumnDefinition Width="*" />
+					<!-- Right Margin -->
+					<ColumnDefinition Width="15" />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<!-- Top Margin -->
+					<RowDefinition Height="17" />
+					<!-- Card -->
+					<RowDefinition Height="136" />
+					<!-- Spacing -->
+					<RowDefinition Height="17" />
+					<!-- Intro Text -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="25" />
+					<!-- Text 1 -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="20" />
+					<!-- Text 2 -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="20" />
+					<!-- Text 3 -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="20" />
+					<!-- Text 4 -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="20" />
+					<!-- Text 5 -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="20" />
+					<!-- Text 6 -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="20" />
+				</Grid.RowDefinitions>
+
+				<!-- Card -->
+				<common:CustomImage Grid.Row="1" Grid.Column="1"
+				  HorizontalOptions="Center"
+				  VerticalOptions="Center"
+				  Source="bg_card_benefits.png" />
+
+				<!-- Intro Text -->
+				<common:CustomLabel Grid.Row="3" Grid.Column="1"
+				  FontSize="15"
+				  Text="{x:Static app:AppResources.CardBenefitsHeaderLabel}"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Text 1 -->
+				<StackLayout Grid.Row="5" Grid.Column="1"
+				  VerticalOptions="Start"
+				  Orientation="Horizontal"
+				  Spacing="10">
+
+					<!-- Bullet -->
+					<Frame Padding="0, 7"
+					  HasShadow="False" VerticalOptions="Start">
+						<common:CustomImage Source="ic_bulletpoint.png" />
+					</Frame>
+
+					<!-- Text -->
+					<common:CustomLabel
+					  FontSize="15"
+					  LineBreakMode="WordWrap"
+					  Text="{x:Static app:AppResources.CardBenefitsText1}"
+					  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+				</StackLayout>
+
+				<!-- Text 2 -->
+				<StackLayout Grid.Row="7" Grid.Column="1"
+				  VerticalOptions="FillAndExpand"
+				  Orientation="Horizontal"
+				  Spacing="10">
+
+					<!-- Bullet -->
+					<Frame Padding="0, 7"
+					  HasShadow="False" VerticalOptions="Start">
+						<common:CustomImage Source="ic_bulletpoint.png" />
+					</Frame>
+
+					<!-- Text -->
+					<common:CustomLabel
+					  FontSize="15"
+            
+					  Text="{x:Static app:AppResources.CardBenefitsText2}"
+					  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+				</StackLayout>
+
+				<!-- Text 3 -->
+				<StackLayout Grid.Row="9" Grid.Column="1"
+				  Orientation="Horizontal"
+				  Spacing="10">
+
+					<!-- Bullet -->
+					<Frame Padding="0, 7"
+					  HasShadow="False" VerticalOptions="Start">
+						<common:CustomImage Source="ic_bulletpoint.png" />
+					</Frame>
+
+					<!-- Text -->
+					<common:CustomLabel
+					  FontSize="15"
+            
+					  Text="{x:Static app:AppResources.CardBenefitsText3}"
+					  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+				</StackLayout>
+
+				<!-- Text 4 -->
+				<StackLayout Grid.Row="11" Grid.Column="1"
+				  Orientation="Horizontal"
+				  Spacing="10">
+
+					<!-- Bullet -->
+					<Frame Padding="0, 7"
+					  HasShadow="False" VerticalOptions="Start">
+						<common:CustomImage Source="ic_bulletpoint.png" />
+					</Frame>
+
+					<!-- Text -->
+					<common:CustomLabel
+					  FontSize="15"
+            
+					  Text="{x:Static app:AppResources.CardBenefitsText4}"
+					  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+				</StackLayout>
+
+				<!-- Text 5 -->
+				<StackLayout Grid.Row="13" Grid.Column="1"
+				  Orientation="Horizontal"
+				  Spacing="10">
+
+					<!-- Bullet -->
+					<Frame Padding="0, 7"
+					  HasShadow="False" VerticalOptions="Start">
+						<common:CustomImage Source="ic_bulletpoint.png" />
+					</Frame>
+
+					<!-- Text -->
+					<common:CustomLabel
+					  FontSize="15"
+            
+					  Text="{x:Static app:AppResources.CardBenefitsText5}"
+					  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+				</StackLayout>
+
+				<!-- Text 6 -->
+				<StackLayout Grid.Row="15" Grid.Column="1"
+				  Orientation="Horizontal"
+				  Spacing="10">
+
+					<!-- Bullet -->
+					<Frame Padding="0, 7"
+					  HasShadow="False" VerticalOptions="Start">
+						<common:CustomImage Source="ic_bulletpoint.png" />
+					</Frame>
+
+					<!-- Text -->
+					<common:CustomLabel
+					  FontSize="15"
+            
+					  Text="{x:Static app:AppResources.CardBenefitsText6}"
+					  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+				</StackLayout>
+			</Grid>
+		</ScrollView>
+	</Grid>
+</pages:ANFPage>
+=======
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+  xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+  xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+  xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+  xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+  xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+  x:Class="ANFAPP.Pages.UserLogin.CardBenefitsPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Content -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+
+		<!-- Application Bar -->
+		<!--<views:ApplicationBar x:Name="ApplicationBar"  />-->
+    <views:ApplicationBarUserCard x:Name="ApplicationBar" > </views:ApplicationBarUserCard>
+
+		<!-- Content -->
+		<ScrollView Orientation="Vertical" Grid.Row="1" HorizontalOptions="FillAndExpand" IsClippedToBounds="False">
+			<Grid Grid.RowSpacing="0" Grid.ColumnSpacing="0">
+
+				<!-- Idiom Specific Params -->
+				<Grid.HorizontalOptions>
+					<OnIdiom x:TypeArguments="LayoutOptions">
+						<OnIdiom.Phone>FillAndExpand</OnIdiom.Phone>
+						<OnIdiom.Tablet>Center</OnIdiom.Tablet>
+					</OnIdiom>
+				</Grid.HorizontalOptions>
+				<Grid.WidthRequest>
+					<OnIdiom x:TypeArguments="x:Double">
+						<OnIdiom.Phone>-1</OnIdiom.Phone>
+						<OnIdiom.Tablet>480</OnIdiom.Tablet>
+					</OnIdiom>
+				</Grid.WidthRequest>
+
+				<Grid.ColumnDefinitions>
+					<!-- Left Margin -->
+					<ColumnDefinition Width="15" />
+					<!-- Content -->
+					<ColumnDefinition Width="*" />
+					<!-- Right Margin -->
+					<ColumnDefinition Width="15" />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<!-- Top Margin -->
+					<RowDefinition Height="17" />
+					<!-- Card -->
+					<RowDefinition Height="136" />
+					<!-- Spacing -->
+					<RowDefinition Height="17" />
+					<!-- Intro Text -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="25" />
+					<!-- Text 1 -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="20" />
+					<!-- Text 2 -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="20" />
+					<!-- Text 3 -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="20" />
+					<!-- Text 4 -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="20" />
+					<!-- Text 5 -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="20" />
+					<!-- Text 6 -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="20" />
+				</Grid.RowDefinitions>
+
+				<!-- Card -->
+				<common:CustomImage Grid.Row="1" Grid.Column="1"
+				  HorizontalOptions="Center"
+				  VerticalOptions="Center"
+				  Source="bg_card_benefits.png" />
+
+				<!-- Intro Text -->
+				<common:CustomLabel Grid.Row="3" Grid.Column="1"
+				  FontSize="15"
+				  Text="{x:Static app:AppResources.CardBenefitsHeaderLabel}"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Text 1 -->
+				<StackLayout Grid.Row="5" Grid.Column="1"
+				  VerticalOptions="Start"
+				  Orientation="Horizontal"
+				  Spacing="10">
+
+					<!-- Bullet -->
+					<Frame Padding="0, 7"
+					  HasShadow="False" VerticalOptions="Start">
+						<common:CustomImage Source="ic_bulletpoint.png" />
+					</Frame>
+
+					<!-- Text -->
+					<common:CustomLabel
+					  FontSize="15"
+					  LineBreakMode="WordWrap"
+					  Text="{x:Static app:AppResources.CardBenefitsText1}"
+					  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+				</StackLayout>
+
+				<!-- Text 2 -->
+				<StackLayout Grid.Row="7" Grid.Column="1"
+				  VerticalOptions="FillAndExpand"
+				  Orientation="Horizontal"
+				  Spacing="10">
+
+					<!-- Bullet -->
+					<Frame Padding="0, 7"
+					  HasShadow="False" VerticalOptions="Start">
+						<common:CustomImage Source="ic_bulletpoint.png" />
+					</Frame>
+
+					<!-- Text -->
+					<common:CustomLabel
+					  FontSize="15"
+            
+					  Text="{x:Static app:AppResources.CardBenefitsText2}"
+					  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+				</StackLayout>
+
+				<!-- Text 3 -->
+				<StackLayout Grid.Row="9" Grid.Column="1"
+				  Orientation="Horizontal"
+				  Spacing="10">
+
+					<!-- Bullet -->
+					<Frame Padding="0, 7"
+					  HasShadow="False" VerticalOptions="Start">
+						<common:CustomImage Source="ic_bulletpoint.png" />
+					</Frame>
+
+					<!-- Text -->
+					<common:CustomLabel
+					  FontSize="15"
+            
+					  Text="{x:Static app:AppResources.CardBenefitsText3}"
+					  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+				</StackLayout>
+
+				<!-- Text 4 -->
+				<StackLayout Grid.Row="11" Grid.Column="1"
+				  Orientation="Horizontal"
+				  Spacing="10">
+
+					<!-- Bullet -->
+					<Frame Padding="0, 7"
+					  HasShadow="False" VerticalOptions="Start">
+						<common:CustomImage Source="ic_bulletpoint.png" />
+					</Frame>
+
+					<!-- Text -->
+					<common:CustomLabel
+					  FontSize="15"
+            
+					  Text="{x:Static app:AppResources.CardBenefitsText4}"
+					  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+				</StackLayout>
+
+				<!-- Text 5 -->
+				<StackLayout Grid.Row="13" Grid.Column="1"
+				  Orientation="Horizontal"
+				  Spacing="10">
+
+					<!-- Bullet -->
+					<Frame Padding="0, 7"
+					  HasShadow="False" VerticalOptions="Start">
+						<common:CustomImage Source="ic_bulletpoint.png" />
+					</Frame>
+
+					<!-- Text -->
+					<common:CustomLabel
+					  FontSize="15"
+            
+					  Text="{x:Static app:AppResources.CardBenefitsText5}"
+					  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+				</StackLayout>
+
+				<!-- Text 6 -->
+				<StackLayout Grid.Row="15" Grid.Column="1"
+				  Orientation="Horizontal"
+				  Spacing="10">
+
+					<!-- Bullet -->
+					<Frame Padding="0, 7"
+					  HasShadow="False" VerticalOptions="Start">
+						<common:CustomImage Source="ic_bulletpoint.png" />
+					</Frame>
+
+					<!-- Text -->
+					<common:CustomLabel
+					  FontSize="15"
+            
+					  Text="{x:Static app:AppResources.CardBenefitsText6}"
+					  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+				</StackLayout>
+			</Grid>
+		</ScrollView>
+	</Grid>
+</ANFPage>
+>>>>>>> maintenance_phase5_azure_notification

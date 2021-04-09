@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+  xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+  xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+  xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+  x:Class="ANFAPP.Views.BiometricGauge">
+  
+  <ContentView.Content>
+
+    <!-- IMC Graphic & Message -->
+    <Grid ColumnSpacing="0" RowSpacing="0">
+      <Grid.RowDefinitions>
+        <!-- Top Margin -->
+        <RowDefinition Height="20" />
+        <!-- Title -->
+        <RowDefinition Height="auto" />
+        <!-- Graph -->
+        <RowDefinition Height="155" />
+        <!-- Spacing -->
+        <RowDefinition Height="20" />
+        <!-- State Message Title -->
+        <RowDefinition Height="auto" />
+        <!-- State Message -->
+        <RowDefinition Height="auto" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <!-- Left Margin -->
+        <ColumnDefinition Width="15" />
+        <!-- Content -->
+        <ColumnDefinition Width="*" />
+        <!-- Right Margin -->
+        <ColumnDefinition Width="15" />
+      </Grid.ColumnDefinitions>
+
+      <!-- Title -->
+      <StackLayout x:Name="TitleContainer"
+        Grid.Row="1" Grid.Column="1"
+        Spacing="5"
+        HorizontalOptions="Center"
+        Orientation="Horizontal"
+        Padding="0, 0, 0, 20"
+        IsVisible="{Binding Title, Converter={x:Static converters:ConverterResources.NotNullable}}">
+
+        <common:CustomLabel x:Name="TitleLabel"
+          FontSize="15"
+          VerticalOptions="Center"
+          TextColor="{x:Static resources:ColorResources.ANFGreen}"
+          CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+          Text="{Binding Title}" />
+
+        <common:CustomImage VerticalOptions="Center"
+          Source="ic_biometric_arrow_green.png" />
+
+      </StackLayout>
+
+      <!-- Graph -->
+      <common:CustomImage x:Name="BiometricGraph"
+        Grid.Row="2" Grid.Column="1"
+        HorizontalOptions="Center"
+        Source="{Binding BiometricEvaluator.EvaluationColor, Converter={x:Static converters:ConverterResources.BiometricGaugeImage}}"/>
+
+      <!-- Graph Values -->
+      <StackLayout x:Name="GraphContainer" Grid.Row="2" Grid.Column="1"
+        Spacing="-6"
+		WidthRequest="170"
+        Orientation="Vertical"
+        VerticalOptions="Center"
+		IsClippedToBounds="False"
+        HorizontalOptions="Center">
+
+        <!-- Value -->
+        <common:CustomLabel x:Name="BiometricValueLabel"
+          FontSize="60"
+          HorizontalOptions="FillAndExpand"
+		  XAlign="Center"
+          Text="{Binding BiometricValue}"
+          TextColor="{Binding BiometricEvaluator.EvaluationColor}"
+          CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+          IsVisible="{Binding BiometricValue, Converter={x:Static converters:ConverterResources.NotNullable}}" />
+
+        <!-- Unit -->
+        <common:CustomLabel x:Name="BiometricUnitLabel"
+          FontSize="14"
+          HorizontalOptions="Center"
+          VerticalOptions="End"
+          CustomMargin="0, 0, 0, 20"
+          Text="{Binding BiometricUnit}"
+          TextColor="{Binding BiometricEvaluator.EvaluationColor}"
+          CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+          IsVisible="{Binding BiometricValue, Converter={x:Static converters:ConverterResources.NotNullable}}" />
+        
+      </StackLayout>
+
+      <!-- Warning Message Title -->
+      <common:CustomLabel x:Name="WarningTitle"
+        Grid.Row="4" Grid.Column="1"
+        FontSize="15"
+        HorizontalOptions="Center"
+        TextColor="{Binding BiometricEvaluator.EvaluationColor}"
+        CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+        IsVisible="{Binding BiometricEvaluator.MessageTitle, Converter={x:Static converters:ConverterResources.NotNullable}}"
+        Text="{Binding BiometricEvaluator.MessageTitle}" />
+
+      <!-- Warning Message -->
+      <common:CustomLabel x:Name="WarningMessage"
+        Grid.Row="5" Grid.Column="1"
+        FontSize="15"
+        XAlign="Center"
+        CustomMargin="0, 0, 0, 20"
+        HorizontalOptions="Center"
+        TextColor="{x:Static resources:ColorResources.TextColorDark}"
+        CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+        IsVisible="{Binding BiometricEvaluator.Message, Converter={x:Static converters:ConverterResources.NotNullable}}"
+        Text="{Binding BiometricEvaluator.Message}" />
+
+    </Grid>
+    
+  </ContentView.Content>
+</ContentView>

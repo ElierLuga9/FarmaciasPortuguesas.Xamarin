@@ -1,0 +1,90 @@
+﻿<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.HomePage">
+
+	<Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Page -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Page -->
+		<ScrollView Grid.Row="1" Grid.Column="1"
+    		Orientation="Vertical"
+    		VerticalOptions="FillAndExpand"
+    		HorizontalOptions="FillAndExpand">
+			<StackLayout Orientation="Vertical" Spacing="0">
+				<!-- The eCommerce banners. -->
+				<views:ECBannerWidget x:Name="BannersWidget" />
+
+				<!-- The Sauda card control. -->
+				<views:HomeSaudaWidget x:Name="HomeSaudaWidget" />
+
+				<!-- The pharmacy widget. -->
+				<views:MyPharmacyWidget x:Name="PharmacyWidget" />
+
+				<!-- Highlights. -->
+				<views:HighlightsWidget x:Name="HighlightWidget"
+	    			Title="Promoções e Destaques"
+	    			FromCatalog="False"
+	    			IsVisible="{Binding Products, Converter={x:Static converters:ConverterResources.HasElements}" />
+				
+				<!-- Campaigns. -->
+				<views:HighlightsWidget x:Name="CampaignWidget"
+	    			Title="Catálogo"
+	    			FromCatalog="True"
+	    			IsVisible="{Binding Products, Converter={x:Static converters:ConverterResources.HasElements}" />
+
+			</StackLayout>
+		</ScrollView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+				<common:CustomActivityIndicator
+					HorizontalOptions="CenterAndExpand"
+					VerticalOptions="CenterAndExpand"
+					IsRunning="True"
+					Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+
+				<ContentView HeightRequest="16" />
+
+				<Frame x:Name="LoadingMessage" IsVisible="False">
+					<common:CustomLabel
+						HeightRequest="16"
+						FontSize="13"
+						Text=""
+						VerticalOptions="EndAndExpand"
+						HorizontalOptions="CenterAndExpand"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+				</Frame>
+			</StackLayout>
+		</Grid>
+	</Grid>
+</pages:ANFPage>

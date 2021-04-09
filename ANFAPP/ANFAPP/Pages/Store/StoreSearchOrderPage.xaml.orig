@@ -1,0 +1,180 @@
+<<<<<<< HEAD
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.Store.StoreSearchOrderPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Store Search Widget -->
+			<RowDefinition Height="auto" />
+      <!-- Store Filter Widget -->
+      <RowDefinition Height="auto" />
+			<!-- Page -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Store Search Widget -->
+    <views:FilterStoreSearchWidget Grid.Row="1" Grid.Column="1"
+			Padding="0, 15" />
+
+    <!-- Store Search Filter Widget -->
+    <views:OrderStoreSearchWidget Grid.Row="2" Grid.Column="1"
+      FilterButtonClickedEvent="FilterButtonClicked"
+      SearchValue="{Binding SearchValue, Mode=TwoWay}"
+			Padding="0, 15" />
+
+		<!-- Page -->
+		<common:CustomListView x:Name="OrdersList" Grid.Row="3" Grid.Column="1"
+			HasUnevenRows="True"
+			ItemSelected="OnItemSelected"
+			VerticalOptions="FillAndExpand"
+			ItemsSource="{Binding OrderFilter}"
+			SelectedItem="{Binding SelectedOrder}"
+			SeparatorColor="{x:Static resources:ColorResources.LocatorSeparatorColorLight}">
+
+			<!-- Product Template -->
+			<common:CustomListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<Grid Padding="15, 0" HeightRequest="55">
+							<common:CustomLabel
+								FontSize="15"
+								Text="{Binding Name}"
+								VerticalOptions="Center"
+								HorizontalOptions="Start"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}"
+								CustomFont="{x:Static resources:FontResources.RegularFont}" />
+						</Grid>
+					</ViewCell>
+				</DataTemplate>
+			</common:CustomListView.ItemTemplate>
+		</common:CustomListView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" Grid.RowSpan="3" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="4" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>
+=======
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.Store.StoreSearchOrderPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Store Search Widget -->
+			<RowDefinition Height="auto" />
+      <!-- Store Filter Widget -->
+      <RowDefinition Height="auto" />
+			<!-- Page -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Store Search Widget -->
+    <views:FilterStoreSearchWidget Grid.Row="1" Grid.Column="1"
+			Padding="0, 15" />
+
+    <!-- Store Search Filter Widget -->
+    <views:OrderStoreSearchWidget Grid.Row="2" Grid.Column="1"
+      FilterButtonClickedEvent="FilterButtonClicked"
+      SearchValue="{Binding SearchValue, Mode=TwoWay}"
+			Padding="0, 15" />
+
+		<!-- Page -->
+		<common:CustomListView x:Name="OrdersList" Grid.Row="3" Grid.Column="1"
+			HasUnevenRows="True"
+			ItemSelected="OnItemSelected"
+			VerticalOptions="FillAndExpand"
+			ItemsSource="{Binding OrderFilter}"
+			SelectedItem="{Binding SelectedOrder}"
+			SeparatorColor="{x:Static resources:ColorResources.LocatorSeparatorColorLight}">
+
+			<!-- Product Template -->
+			<common:CustomListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<Grid Padding="15, 0" HeightRequest="55">
+							<common:CustomLabel
+								FontSize="15"
+								Text="{Binding Name}"
+								VerticalOptions="Center"
+								HorizontalOptions="Start"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}"
+								CustomFont="{x:Static resources:FontResources.RegularFont}" />
+						</Grid>
+					</ViewCell>
+				</DataTemplate>
+			</common:CustomListView.ItemTemplate>
+		</common:CustomListView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" Grid.RowSpan="3" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="4" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</ANFPage>
+>>>>>>> maintenance_phase5_azure_notification

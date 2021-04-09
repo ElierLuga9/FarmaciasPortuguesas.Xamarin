@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.Store.Checkout.AddVoucherPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Page -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<Grid Grid.Row="1" Grid.Column="1"
+			Grid.RowSpacing="15" Padding="15">
+			<Grid.RowDefinitions>
+				<!-- ListView -->
+				<RowDefinition Height="*" />
+				<!-- Button -->
+				<RowDefinition Height="auto" />
+			</Grid.RowDefinitions>
+
+			<!-- Voucher List -->
+			<Grid Grid.Row="0"
+				Padding="-15, -15, -15, 0"
+				VerticalOptions="FillAndExpand">
+				
+				<!-- List of Vouchers -->
+				<common:CustomListView x:Name="VoucherList"
+					HasUnevenRows="True"
+					GroupDisplayBinding="{Binding Title}"
+					VerticalOptions="FillAndExpand"
+					ItemsSource="{Binding Vouchers}"
+					IsGroupingEnabled="true"
+					ItemTapped="OnVoucherSelected"
+					SeparatorColor="White">
+
+					<!-- Header Template -->
+					<common:CustomListView.GroupHeaderTemplate>
+						<DataTemplate>
+							<ViewCell Height="40">
+								<StackLayout Orientation="Vertical" Spacing="0">
+									
+									<!-- Group Header -->
+									<Grid HorizontalOptions="FillAndExpand" HeightRequest="40" Padding="15, 0"
+										BackgroundColor="{x:Static resources:ColorResources.ANFPaleGrey}">
+										<common:CustomLabel
+											FontSize="15"
+											VerticalOptions="Center"
+											HorizontalOptions="Start"
+											TextColor="{x:Static resources:ColorResources.TextColorDark}"
+											CustomFont="{x:Static resources:FontResources.RegularFont}"
+											Text="{Binding Title}" />
+									</Grid>
+								</StackLayout>
+							</ViewCell>
+						</DataTemplate>
+					</common:CustomListView.GroupHeaderTemplate>
+					<common:CustomListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell >
+								<StackLayout Orientation="Vertical" Spacing="0">
+									<Grid Padding="15, 10"
+									Grid.ColumnSpacing="15"
+									HorizontalOptions="FillAndExpand"
+									BackgroundColor="White">
+										<Grid.ColumnDefinitions>
+											<!-- Checkbox -->
+											<ColumnDefinition Width="auto" />
+											<!-- Name -->
+											<ColumnDefinition Width="*" />
+											<!-- Value -->
+											<ColumnDefinition Width="auto" />
+										</Grid.ColumnDefinitions>
+
+										<!-- CheckBox Image -->
+										<common:CustomImage WidthRequest="20" HeightRequest="20" Grid.Column="0"
+											HorizontalOptions="Start"
+											VerticalOptions="Center"
+											InputTransparent="True"
+											Source="{Binding Selected, Converter={x:Static converters:ConverterResources.CheckboxImage}" />
+
+										<!-- Name -->
+										<common:CustomLabel Grid.Column="1"
+											FontSize="15"
+											HorizontalOptions="Start"
+											VerticalOptions="Center"
+											InputTransparent="True"
+											TextColor="{x:Static resources:ColorResources.TextColorDark}"
+											CustomFont="{x:Static resources:FontResources.RegularFont}"
+											Text="{Binding DescriptionTitle}"/>
+
+										<!-- Value -->
+										<common:CustomLabel Grid.Column="2"
+											FontSize="15"
+											HorizontalOptions="Start"
+											VerticalOptions="Center"
+											InputTransparent="True"
+											TextColor="{x:Static resources:ColorResources.TextColorDark}"
+											CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+											Text="{Binding FormatedValue}" />
+									</Grid>
+
+									<Grid HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand">
+										<BoxView HorizontalOptions="FillAndExpand" HeightRequest="1"
+											Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+									</Grid>
+								</StackLayout>
+							</ViewCell>
+						</DataTemplate>
+					</common:CustomListView.ItemTemplate>
+				</common:CustomListView>
+
+				<!-- Empty List -->
+				<Grid Padding="25, 0" 
+					HeightRequest="50"
+					VerticalOptions="Start"
+					IsVisible="{Binding Vouchers, Converter={x:Static converters:ConverterResources.Nullable}">
+					
+					<common:CustomLabel
+						FontSize="15"
+						VerticalOptions="Center"
+						HorizontalOptions="Center"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						Text="{x:Static app:AppResources.CheckoutAddVoucherEmptyListLabel}" />
+				</Grid>
+			</Grid>
+
+			<!-- Buttons -->
+			<StackLayout Grid.Row="1" Orientation="Vertical" Spacing="10">
+
+				<!-- Confirm Button -->
+				<common:CustomButton HeightRequest="40"
+					HorizontalOptions="FillAndExpand"
+					FontSize="15"
+					BorderRadius="2"
+					Clicked="OnConfirmButtonClicked"
+					Text="{x:Static app:AppResources.CheckoutAddVoucherConfirmButton}"
+					TextColor="{x:Static resources:ColorResources.TextColorLight}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					BackgroundColor="{x:Static resources:ColorResources.ANFDarkOrange}" />
+
+				<!-- Cancel Button -->
+				<!--
+				<common:CustomButton HeightRequest="40"
+					HorizontalOptions="FillAndExpand"
+					FontSize="15"
+					BorderWidth="1"
+					BorderRadius="2"
+					Clicked="OnCancelButtonClicked"
+					Text="{x:Static app:AppResources.CheckoutAddVoucherCancelButton}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					TextColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+					BorderColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+					BackgroundColor="{x:Static resources:ColorResources.TextColorLight}" />
+				-->
+			</StackLayout>
+		</Grid>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>

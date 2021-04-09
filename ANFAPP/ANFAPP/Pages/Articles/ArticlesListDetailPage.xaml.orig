@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.Articles.ArticlesListDetailPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0" x:Name="MainPage" >
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Page -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Content -->
+		<ScrollView Grid.Row="1" Grid.Column="1" Orientation="Vertical" VerticalOptions="FillAndExpand">
+      		<Grid IsVisible="{Binding x:Reference Content.Loaded}" 
+				RowSpacing="0" ColumnSpacing="0" VerticalOptions="FillAndExpand">
+        		<Grid.ColumnDefinitions>
+          			<!-- Left Margin -->
+          			<ColumnDefinition Width="15" />
+          			<!-- Content -->
+          			<ColumnDefinition Width="*" />
+          			<!-- Right Margin -->
+          			<ColumnDefinition Width="15" />
+        		</Grid.ColumnDefinitions>
+
+        		<Grid.RowDefinitions>
+          			<!--0 Article Video/Image -->
+          			<RowDefinition Height="auto" />
+          			<!--1 Margin -->
+          			<RowDefinition Height="20" />
+          			<!--2 Article Title -->
+          			<RowDefinition Height="auto" />
+                <!--3 Margin -->
+                <RowDefinition Height="20" />
+          			<!--4 Article Content-->
+          			<RowDefinition Height="auto" />
+          			<!--5 Margin -->
+          			<RowDefinition Height="20" />
+          			<!--6 Social Networks -->
+          			<RowDefinition Height="auto" />
+          			<!--7 Margin -->
+          			<RowDefinition Height="20" />
+          			<!--8 Related Articles -->
+          			<RowDefinition Height="auto" />
+          			<!--9 Related Products -->
+          			<RowDefinition Height="auto" />
+        		</Grid.RowDefinitions>
+
+        		<common:CustomImage Grid.Row="0" Grid.ColumnSpan="3" Aspect="AspectFill" HeightRequest="{x:Static resources:DimenResources.BannerHeight}" Source="{Binding Image}" IsVisible="{Binding hasImage}" />
+        		<common:CustomWebView x:Name="VideoBox" Grid.Row="0" Grid.ColumnSpan="3" HeightRequest="{x:Static resources:DimenResources.VideoHeight}" HorizontalOptions="FillAndExpand" IsVisible="{Binding hasVideo}" ScrollEnabled="False"/>
+				
+					  
+        		<!-- Article Content -->
+        		<StackLayout Grid.Row="2" Grid.Column="1" 
+        			Orientation="Vertical" 
+        			VerticalOptions="FillAndExpand"
+        			HorizontalOptions="FillAndExpand">
+
+	          		<!--category -->
+	          		<common:CustomLabel
+						LineBreakMode="WordWrap"
+						Text="{Binding GetCategoryName}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						FontSize="13"
+						HorizontalOptions="StartAndExpand"
+						VerticalOptions="Start"
+						CustomFont="{x:Static resources:FontResources.RegularFont}" />
+	          		<!--title -->
+	          		<common:CustomLabel
+						LineBreakMode="WordWrap"
+						Text="{Binding DecodedTitle}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						FontSize="20"
+						HorizontalOptions="StartAndExpand"
+						VerticalOptions="Start"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+					<!-- Summary -->
+					<common:CustomLabel
+						Text="{Binding summary}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						FontSize="15"
+						HorizontalOptions="StartAndExpand"
+						VerticalOptions="Start"
+						CustomFont="{x:Static resources:FontResources.ItalicFont}" />
+        		</StackLayout>
+        		<!--content -->
+        		<common:CustomWebView Grid.Row="4"  Grid.ColumnSpan="3" x:Name="Content"
+        			HeightRequest="1" 
+        			HorizontalOptions="FillAndExpand" 
+        			VerticalOptions="FillAndExpand" 
+        			ScrollEnabled="False" />
+
+				<!-- Webview overlay, because Windows Phone webviews will eat all the touch events -->
+				<Grid BackgroundColor="Transparent" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Row="3" Grid.RowSpan="3"  Grid.ColumnSpan="3" />
+
+        		<!-- Social Networks -->
+        		<StackLayout Grid.Row="6" Grid.Column="1" x:Name="SocialWidget"
+        			IsVisible="False"
+        			Spacing="8" 
+        			Orientation="Horizontal" 
+        			VerticalOptions="FillAndExpand" 
+        			HorizontalOptions="StartAndExpand">
+					<common:CustomImage 
+						MinimumHeightRequest="40"
+						HeightRequest="40"
+						MinimumWidthRequest="40" 
+						WidthRequest="40"
+						Source="f.png">
+            			<common:CustomImage.GestureRecognizers>
+              				<TapGestureRecognizer Tapped="OnFacebookTap" NumberOfTapsRequired="1" />
+            			</common:CustomImage.GestureRecognizers>
+          			</common:CustomImage>
+		          	<common:CustomImage
+		          		MinimumHeightRequest="40"
+						HeightRequest="40"
+						MinimumWidthRequest="40" 
+						WidthRequest="40"
+		          	  	Source="t.png">
+		            	<common:CustomImage.GestureRecognizers>
+		              		<TapGestureRecognizer Tapped="OnTwitterTap" NumberOfTapsRequired="1" />
+		            	</common:CustomImage.GestureRecognizers>
+		          	</common:CustomImage>
+		          	<common:CustomImage 
+		          		MinimumHeightRequest="40"
+						HeightRequest="40"
+						MinimumWidthRequest="40" 
+						WidthRequest="40"
+		          		Source="g.png">
+		            	<common:CustomImage.GestureRecognizers>
+		              		<TapGestureRecognizer Tapped="OnGoogleTap" NumberOfTapsRequired="1" />
+		            	</common:CustomImage.GestureRecognizers>
+		          	</common:CustomImage>
+       			</StackLayout>
+
+        		<!-- Related Articles-->
+        		<Grid RowSpacing="0" ColumnSpacing="0" x:Name="ArticlesRelated" Grid.Row="8" Grid.ColumnSpan="3" 
+        			VerticalOptions="Start" 
+        			HorizontalOptions="FillAndExpand" 
+        			IsVisible="false"  >
+          			<Grid.ColumnDefinitions>
+            			<ColumnDefinition Width="15"/>
+            			<ColumnDefinition Width="*"/>
+            			<ColumnDefinition Width="15"/>
+          			</Grid.ColumnDefinitions>
+
+          			<Grid.RowDefinitions>
+            			<!-- Header-->
+            			<RowDefinition Height="auto"/>
+            			<!-- Content-->
+            			<RowDefinition Height="auto"/>
+            			<!-- Margin -->
+            			<RowDefinition Height="8"/>
+          			</Grid.RowDefinitions>
+
+          			<!-- Header-->
+          			<StackLayout Grid.Row="0" Grid.ColumnSpan="3"
+                  		Spacing="15"
+                  		Padding="15, 8"
+                  		HeightRequest="30"
+                  		Orientation="Horizontal"
+                  		HorizontalOptions="FillAndExpand"
+                  		BackgroundColor="#eeeeee">
+
+            			<common:CustomLabel
+            				HorizontalOptions="StartAndExpand"
+            				VerticalOptions="CenterAndExpand"
+            				CustomFont="{x:Static resources:FontResources.RegularFont}"
+            				FontSize="15"
+            				TextColor="{x:Static resources:ColorResources.TextColorDark}"
+            				Text="Artigos Relacionados" />
+          			</StackLayout>
+
+          			<common:ANFRepeaterView Grid.Row="1" Grid.ColumnSpan="3"
+                     	Padding="0 , 0, 0, 5"
+                      	IsClippedToBounds="False"
+                      	VerticalOptions="Start"
+                      	HorizontalOptions="FillAndExpand"
+                      	ItemsSource="{Binding articlesList}">
+			            <common:ANFRepeaterView.ItemTemplate>
+			             	<DataTemplate>
+			                	<Grid Grid.RowSpacing="0" Grid.ColumnSpacing="5" x:Name="ArticleCellGrid" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+			                  		<Grid.ColumnDefinitions>
+			                    		<!-- Left Margin-->
+			                    		<ColumnDefinition Width="15" />
+			                    		<!-- Article Thumbnail PlaceHolder-->
+			                    		<ColumnDefinition Width="auto" />
+			                    		<!-- Margin -->
+			                    		<ColumnDefinition Width="8" />
+			                    		<!-- Article Text PlaceHolder-->
+			                    		<ColumnDefinition Width="auto" />
+			                    		<!-- Right Margin-->
+			                    		<ColumnDefinition Width="15" />
+			                  		</Grid.ColumnDefinitions>
+			                  		<Grid.RowDefinitions>
+			                    		<RowDefinition Height="8"/>
+			                    		<RowDefinition Height="*"/>
+			                    		<RowDefinition Height="8"/>
+			                  		</Grid.RowDefinitions>
+
+			                  		<common:CustomButton Grid.ColumnSpan="5" Grid.RowSpan="3"
+			                  			BackgroundColor="Transparent"
+			                  			Clicked="OnSuggestedArticlesClicked" />
+
+			                  		<!-- Article Thumbnail -->
+			                  		<common:CustomImage Grid.Row="1" Grid.Column="1" HeightRequest="60" WidthRequest="60" HorizontalOptions="StartAndExpand" Aspect="AspectFill" Source="{Binding Image}" />
+
+			                  		<!-- Article Text -->
+			                  		<StackLayout Grid.Row="1" Orientation="Vertical" Grid.Column="3" Spacing="8" InputTransparent="True">
+			                    		<!-- Category -->
+			                    		<common:CustomLabel
+			                    			InputTransparent="True"
+			                      			FontSize="10"
+			                      			VerticalOptions="Center"
+			                      			HorizontalOptions="StartAndExpand"
+			                      			TextColor="{x:Static resources:ColorResources.TextColorDark}"
+			                      			CustomFont="{x:Static resources:FontResources.RegularFont}"
+			                      			Text="{Binding GetCategoryName}" />
+			                    		<!-- Article Title -->
+			                    		<common:CustomLabel
+			                    			InputTransparent="True"
+			                      			LineBreakMode="WordWrap"
+			                      			FontSize="15"
+			                      			HorizontalOptions="StartAndExpand"
+			                      			TextColor="{x:Static resources:ColorResources.TextColorDark}"
+			                     			CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+			                      			Text="{Binding DecodedTitle}" />
+			                 		</StackLayout>
+				                </Grid>
+			              	</DataTemplate>
+						</common:ANFRepeaterView.ItemTemplate>
+          			</common:ANFRepeaterView>
+				</Grid>
+
+	        	<!-- Related Products-->
+	        	<Grid RowSpacing="0" ColumnSpacing="0" x:Name="ProductsRelated" Grid.Row="9" Grid.ColumnSpan="3" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" IsVisible="false">
+	          		<Grid.ColumnDefinitions>
+	            		<ColumnDefinition Width="15"/>
+	            		<ColumnDefinition Width="*"/>
+	            		<ColumnDefinition Width="15"/>
+	          		</Grid.ColumnDefinitions>
+	          		<Grid.RowDefinitions>
+	            		<!-- Header-->
+	            		<RowDefinition Height="auto"/>
+	            		<!-- Content-->
+	            		<RowDefinition Height="auto"/>
+	            		<!-- Margin -->
+	            		<RowDefinition Height="8"/>
+	          		</Grid.RowDefinitions>
+	          		<!-- Header-->
+	          		<StackLayout  Grid.Row="0" Grid.ColumnSpan="3"
+						Spacing="15"
+	                	Padding="15, 8"
+	                	HeightRequest="30"
+	                	Orientation="Horizontal"
+	                	HorizontalOptions="FillAndExpand"
+	                	BackgroundColor="#eeeeee">
+
+	           			<common:CustomLabel
+	            			HorizontalOptions="StartAndExpand"
+	            			VerticalOptions="CenterAndExpand"
+	            			CustomFont="{x:Static resources:FontResources.RegularFont}"
+	            			FontSize="15"
+	            			TextColor="{x:Static resources:ColorResources.TextColorDark}"
+	            			Text="Produtos Relacionados" />
+	          		</StackLayout>
+
+	          		<common:ANFRepeaterView Grid.Row="1" Grid.ColumnSpan="3"
+	                	Padding="0 , 0, 0, 5"
+						IsClippedToBounds="False"
+	                    VerticalOptions="StartAndExpand"
+						HorizontalOptions="FillAndExpand"
+						ItemsSource="{Binding productsList}">
+
+	            		<common:ANFRepeaterView.ItemTemplate>
+		              		<DataTemplate>
+		                		<ViewCell>
+		                  			<Grid Grid.RowSpacing="0" Grid.ColumnSpacing="5" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+					                    <Grid.ColumnDefinitions>
+				                      		<!-- Left Margin-->
+				                      		<ColumnDefinition Width="15" />
+				                      		<!-- Product Thumbnail PlaceHolder-->
+				                      		<ColumnDefinition Width="auto" />
+				                      		<!-- Margin -->
+				                      		<ColumnDefinition Width="8" />
+				                      		<!-- Product Text PlaceHolder-->
+				                      		<ColumnDefinition Width="auto" />
+				                      		<!-- Right Margin-->
+				                      		<ColumnDefinition Width="15" />
+				                    	</Grid.ColumnDefinitions>
+				                    	<Grid.RowDefinitions>
+				                      		<RowDefinition Height="8"/>
+				                      		<RowDefinition Height="auto"/>
+				                      		<RowDefinition Height="8"/>
+				                    	</Grid.RowDefinitions>
+
+				                    	<common:CustomButton Grid.ColumnSpan="5" Grid.RowSpan="3"
+			                  				BackgroundColor="Transparent"
+			                  				Clicked="OnSuggestedProductClicked" />
+
+					                    <!-- Product Thumbnail -->
+					                    <common:CustomWebImage Grid.Row="1" Grid.Column="1"  
+					                    	InputTransparent="True"
+					                    	HeightRequest="60" 
+					                    	WidthRequest="60" 
+					                    	HorizontalOptions="CenterAndExpand" 
+					                    	VerticalOptions="CenterAndExpand"
+					                    	DefaultImage="catalog_thumbnail.png"
+					                    	ImageUrl="{Binding ImageURL}" />
+
+					                    <!-- Product Text -->
+					                    <StackLayout Grid.Row="1" Orientation="Vertical" Grid.Column="3" Spacing="8" InputTransparent="True">
+					                    	<!-- Brand -->
+					                      	<common:CustomLabel
+					                      		InputTransparent="True"
+					                        	FontSize="10"
+					                        	VerticalOptions="Center"
+					                        	HorizontalOptions="StartAndExpand"
+					                        	TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					                        	CustomFont="{x:Static resources:FontResources.RegularFont}"
+					                        	Text="{Binding Brand}" />
+					                        
+					                      	<!-- Product Name -->
+					                      	<common:CustomLabel
+					                      		InputTransparent="True"
+					                        	LineBreakMode="WordWrap"
+					                        	FontSize="15"
+					                        	HorizontalOptions="StartAndExpand"
+					                        	TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					                        	CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					                        	Text="{Binding Name}" />
+										</StackLayout>
+									</Grid>
+		                		</ViewCell>
+		              		</DataTemplate>
+	            		</common:ANFRepeaterView.ItemTemplate>
+	          		</common:ANFRepeaterView>
+				</Grid>
+			</Grid>
+		</ScrollView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>

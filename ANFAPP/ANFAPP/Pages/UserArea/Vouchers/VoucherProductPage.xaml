@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+		 xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+         xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	    xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+		xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+		xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+		xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+		xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+		xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+		x:Class="ANFAPP.Pages.UserArea.Vouchers.VoucherProductPage">
+
+	<Grid>
+
+		<Grid.RowDefinitions>	
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Page -->
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+			<Grid Grid.Row="1" Grid.Column="1" 
+				HorizontalOptions="Center"
+				VerticalOptions="Center">
+				<common:CustomLabel  
+						FontSize="15"
+						TextColor="{x:Static resources:ColorResources.ANFGreen}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						Text="Em qual destes produtos pretende usar o vale?" />
+				
+			</Grid>
+		  <Grid Grid.Row="2" Grid.RowSpan="6" Grid.Column="1" Grid.RowSpacing="0" Grid.ColumnSpacing="0"  x:Name="GridProducts">
+				
+		        <common:InfiniteListView x:Name="ProductsList" 
+						Footer="{Binding hasMore}"
+						VerticalOptions="FillAndExpand"
+						RowHeight="110"
+						ItemSelected="OnItemSelected"
+						SeparatorColor="Transparent"
+						HasUnevenRows="True">
+				      <!-- Product Template -->
+				      <common:InfiniteListView.ItemTemplate>
+				        <DataTemplate>
+				          <ViewCell>
+				            <views:ProductVoucherListItem />	
+				          </ViewCell>
+				        </DataTemplate>
+				      </common:InfiniteListView.ItemTemplate>
+				      <!-- Remove trailing lines. -->
+				     <common:InfiniteListView.FooterTemplate>
+						<DataTemplate>
+							<common:CustomActivityIndicator
+								HorizontalOptions="CenterAndExpand"
+								VerticalOptions="CenterAndExpand"
+								IsRunning="{Binding hasMore}"
+								IsVisible="{Binding hasMore}"
+								Color="{x:Static resources:ColorResources.ANFGreen}" />
+						</DataTemplate>
+					</common:InfiniteListView.FooterTemplate>
+			    </common:InfiniteListView>
+
+	      </Grid>
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+	    <views:ApplicationBarUserCard x:Name="ApplicationBar" Grid.ColumnSpan="2">
+		</views:ApplicationBarUserCard>
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="8" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+
+	</Grid>
+</pages:ANFPage>

@@ -1,0 +1,380 @@
+<<<<<<< HEAD
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.UserArea.PointsHistoryPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Table Top -->
+			<RowDefinition Height="54" />
+			<!-- Separator -->
+			<RowDefinition Height="1" />
+			<!-- Content -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Table Top -->
+		<Grid Grid.Row="1" Grid.Column="1"
+			VerticalOptions="FillAndExpand"
+			Grid.ColumnSpacing="0" Grid.RowSpacing="0"
+			IsVisible="{Binding Movements, Converter={x:Static converters:ConverterResources.NotNullable}" >
+			<Grid.ColumnDefinitions>
+				<!-- Left Margin -->
+				<ColumnDefinition Width="15" />
+				<!-- Data -->
+				<ColumnDefinition Width="85" />
+				<!-- Type -->
+				<ColumnDefinition Width="*" />
+				<!-- Points -->
+				<ColumnDefinition Width="auto" />
+				<!-- Right Margin -->
+				<ColumnDefinition Width="15" />
+			</Grid.ColumnDefinitions>
+
+			<!-- Data Label -->
+			<common:CustomLabel Grid.Column="1"
+				FontSize="13"
+				VerticalOptions="Center"
+				HorizontalOptions="Start"
+				TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+				Text="{x:Static app:AppResources.PointsHistoryDateLabel}" />
+
+			<!-- Type Label -->
+			<common:CustomLabel Grid.Column="2"
+				FontSize="13"
+				VerticalOptions="Center"
+				HorizontalOptions="Start"
+				TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+				Text="{x:Static app:AppResources.PointsHistoryTypeLabel}" />
+
+			<!-- Points Label -->
+			<common:CustomLabel Grid.Column="3"
+				FontSize="13"
+				VerticalOptions="Center"
+				HorizontalOptions="Start"
+				TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+				Text="{x:Static app:AppResources.PointsHistoryPointsLabel}" />
+		</Grid>
+
+		<!-- Separator -->
+		<BoxView Grid.Row="2" Grid.Column="1"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			Color="{x:Static resources:ColorResources.APPBackgroundDark}"
+			IsVisible="{Binding Movements, Converter={x:Static converters:ConverterResources.NotNullable}" />
+
+		<!-- History List -->
+		<common:CustomListView Grid.Row="3" Grid.Column="1" RowHeight="62"
+			ItemsSource="{Binding Movements}"
+			ItemSelected="OnListSelection_EventHandler"
+			IsVisible="{Binding Movements, Converter={x:Static converters:ConverterResources.NotNullable}">
+			<common:CustomListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<Grid Grid.ColumnSpacing="0" Grid.RowSpacing="0"
+							HorizontalOptions="FillAndExpand"
+							VerticalOptions="Center"
+							BackgroundColor="{Binding Order, Converter={x:Static converters:ConverterResources.TableOrderBackground}}">
+
+							<Grid.ColumnDefinitions>
+								<!-- Left Margin -->
+								<ColumnDefinition Width="15" />
+								<!-- Data -->
+								<ColumnDefinition Width="85" />
+								<!-- Type -->
+								<ColumnDefinition Width="*" />
+								<!-- Points -->
+								<ColumnDefinition Width="auto" />
+								<!-- Right Margin -->
+								<ColumnDefinition Width="15" />
+							</Grid.ColumnDefinitions>
+
+							<!-- Data -->
+							<common:CustomLabel Grid.Column="1"
+								FontSize="15"
+								VerticalOptions="Center"
+								HorizontalOptions="Start"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}"
+								CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+								Text="{Binding Date, Converter={x:Static converters:ConverterResources.StringToMiniDate}}" />
+
+							<!-- Type -->
+							<StackLayout Grid.Column="2"
+								VerticalOptions="Center"
+								Orientation="Vertical" Spacing="-2">
+
+								<!-- Movement Type -->
+								<common:CustomLabel
+									FontSize="15"
+									HorizontalOptions="Start"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+									Text="{Binding MovementType}" />
+
+								<!-- Movement Source -->
+								<common:CustomLabel
+									FontSize="13"
+									HorizontalOptions="Start"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									CustomFont="{x:Static resources:FontResources.RegularFont}"
+									IsVisible="{Binding Card.Name, Converter={x:Static converters:ConverterResources.NotNullable}}"
+									Text="{Binding Card.Name, StringFormat='Movimento: {0}'}" />
+
+							</StackLayout>
+
+							<!-- Points -->
+							<common:CustomLabel Grid.Column="3"
+								FontSize="15"
+								VerticalOptions="Center"
+								HorizontalOptions="Center"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}"
+								CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+								Text="{Binding FormatedPoints}" />
+						</Grid>
+					</ViewCell>
+				</DataTemplate>
+			</common:CustomListView.ItemTemplate>
+		</common:CustomListView>
+
+		<!-- No Data Label -->
+		<common:CustomLabel Grid.Row="3" Grid.Column="1"
+			FontSize="15"
+			XAlign="Center"
+			HorizontalOptions="Center"
+			TextColor="{x:Static resources:ColorResources.TextColorDark}"
+			CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+			Text="{x:Static app:AppResources.PointsHistoryNoDataLabel}"
+			IsVisible="{Binding NoResults}" />
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" Grid.RowSpan="3" />
+
+		<!-- Application Bar -->
+    <!--<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />-->
+    <views:ApplicationBarUserCard x:Name="ApplicationBar" Grid.ColumnSpan="2"> </views:ApplicationBarUserCard>
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="4" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>
+=======
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.UserArea.PointsHistoryPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Table Top -->
+			<RowDefinition Height="54" />
+			<!-- Separator -->
+			<RowDefinition Height="1" />
+			<!-- Content -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Table Top -->
+		<Grid Grid.Row="1" Grid.Column="1"
+			VerticalOptions="FillAndExpand"
+			Grid.ColumnSpacing="0" Grid.RowSpacing="0"
+			IsVisible="{Binding Movements, Converter={x:Static converters:ConverterResources.NotNullable}" >
+			<Grid.ColumnDefinitions>
+				<!-- Left Margin -->
+				<ColumnDefinition Width="15" />
+				<!-- Data -->
+				<ColumnDefinition Width="85" />
+				<!-- Type -->
+				<ColumnDefinition Width="*" />
+				<!-- Points -->
+				<ColumnDefinition Width="auto" />
+				<!-- Right Margin -->
+				<ColumnDefinition Width="15" />
+			</Grid.ColumnDefinitions>
+
+			<!-- Data Label -->
+			<common:CustomLabel Grid.Column="1"
+				FontSize="13"
+				VerticalOptions="Center"
+				HorizontalOptions="Start"
+				TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+				Text="{x:Static app:AppResources.PointsHistoryDateLabel}" />
+
+			<!-- Type Label -->
+			<common:CustomLabel Grid.Column="2"
+				FontSize="13"
+				VerticalOptions="Center"
+				HorizontalOptions="Start"
+				TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+				Text="{x:Static app:AppResources.PointsHistoryTypeLabel}" />
+
+			<!-- Points Label -->
+			<common:CustomLabel Grid.Column="3"
+				FontSize="13"
+				VerticalOptions="Center"
+				HorizontalOptions="Start"
+				TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+				Text="{x:Static app:AppResources.PointsHistoryPointsLabel}" />
+		</Grid>
+
+		<!-- Separator -->
+		<BoxView Grid.Row="2" Grid.Column="1"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			Color="{x:Static resources:ColorResources.APPBackgroundDark}"
+			IsVisible="{Binding Movements, Converter={x:Static converters:ConverterResources.NotNullable}" />
+
+		<!-- History List -->
+		<common:CustomListView Grid.Row="3" Grid.Column="1" RowHeight="62"
+			ItemsSource="{Binding Movements}"
+			ItemSelected="OnListSelection_EventHandler"
+			IsVisible="{Binding Movements, Converter={x:Static converters:ConverterResources.NotNullable}">
+			<common:CustomListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<Grid Grid.ColumnSpacing="0" Grid.RowSpacing="0"
+							HorizontalOptions="FillAndExpand"
+							VerticalOptions="Center"
+							BackgroundColor="{Binding Order, Converter={x:Static converters:ConverterResources.TableOrderBackground}}">
+
+							<Grid.ColumnDefinitions>
+								<!-- Left Margin -->
+								<ColumnDefinition Width="15" />
+								<!-- Data -->
+								<ColumnDefinition Width="85" />
+								<!-- Type -->
+								<ColumnDefinition Width="*" />
+								<!-- Points -->
+								<ColumnDefinition Width="auto" />
+								<!-- Right Margin -->
+								<ColumnDefinition Width="15" />
+							</Grid.ColumnDefinitions>
+
+							<!-- Data -->
+							<common:CustomLabel Grid.Column="1"
+								FontSize="15"
+								VerticalOptions="Center"
+								HorizontalOptions="Start"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}"
+								CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+								Text="{Binding Date, Converter={x:Static converters:ConverterResources.StringToMiniDate}}" />
+
+							<!-- Type -->
+							<StackLayout Grid.Column="2"
+								VerticalOptions="Center"
+								Orientation="Vertical" Spacing="-2">
+
+								<!-- Movement Type -->
+								<common:CustomLabel
+									FontSize="15"
+									HorizontalOptions="Start"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+									Text="{Binding MovementType}" />
+
+								<!-- Movement Source -->
+								<common:CustomLabel
+									FontSize="13"
+									HorizontalOptions="Start"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									CustomFont="{x:Static resources:FontResources.RegularFont}"
+									IsVisible="{Binding Card.Name, Converter={x:Static converters:ConverterResources.NotNullable}}"
+									Text="{Binding Card.Name, StringFormat='Movimento: {0}'}" />
+
+							</StackLayout>
+
+							<!-- Points -->
+							<common:CustomLabel Grid.Column="3"
+								FontSize="15"
+								VerticalOptions="Center"
+								HorizontalOptions="Center"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}"
+								CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+								Text="{Binding FormatedPoints}" />
+						</Grid>
+					</ViewCell>
+				</DataTemplate>
+			</common:CustomListView.ItemTemplate>
+		</common:CustomListView>
+
+		<!-- No Data Label -->
+		<common:CustomLabel Grid.Row="3" Grid.Column="1"
+			FontSize="15"
+			XAlign="Center"
+			HorizontalOptions="Center"
+			TextColor="{x:Static resources:ColorResources.TextColorDark}"
+			CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+			Text="{x:Static app:AppResources.PointsHistoryNoDataLabel}"
+			IsVisible="{Binding NoResults}" />
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" Grid.RowSpan="3" />
+
+		<!-- Application Bar -->
+    <!--<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />-->
+    <views:ApplicationBarUserCard x:Name="ApplicationBar" Grid.ColumnSpan="2"> </views:ApplicationBarUserCard>
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="4" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</ANFPage>
+>>>>>>> maintenance_phase5_azure_notification

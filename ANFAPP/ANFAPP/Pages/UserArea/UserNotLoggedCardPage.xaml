@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.UserArea.UserNotLoggedCardPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		
+
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Content -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		<StackLayout Grid.Row="1" Grid.Column="1"
+ 			HorizontalOptions="FillAndExpand"
+ 			VerticalOptions="FillAndExpand">
+ 			<common:CustomImage
+ 					x:Name="UserNotLoggedCardBanner"
+ 						HorizontalOptions="FillAndExpand"
+ 						VerticalOptions="FillAndExpand"
+ 					Source="{Binding imagemBanner}"
+ 		/>
+ 		</StackLayout>
+		<ScrollView Orientation="Vertical" Grid.Row="2" Grid.Column="1">
+
+			
+		
+
+
+			<Grid Grid.RowSpacing="1" Grid.ColumnSpacing="0">
+				
+					
+				
+				<Grid.ColumnDefinitions>
+					<!-- Left Margin -->
+					<ColumnDefinition Width="15" />
+					<!-- Content -->
+					<ColumnDefinition Width="*" />
+					<!-- Right Margin -->
+					<ColumnDefinition Width="15" />
+				</Grid.ColumnDefinitions>
+					
+		
+				<Grid.RowDefinitions>
+					<!-- Top Margin -->
+					<RowDefinition Height="17" />
+					<!-- Card -->
+					<RowDefinition Height="auto" />
+					<!-- First ad row -->
+					<RowDefinition Height="2" />
+					<!-- Separator -->
+					<RowDefinition Height="1" />
+					<!-- Second ad row -->
+					<RowDefinition Height="80" />
+					<!-- Separator -->
+					<RowDefinition Height="1" />
+					<!-- Third ad row -->
+					<RowDefinition Height="80" />
+					<!-- Spacing -->
+					<RowDefinition Height="1" />
+					<!-- Register Card Button -->
+					<RowDefinition Height="40" />
+					<!-- Spacing -->
+					<RowDefinition Height="1" />
+					<!-- Associate Card Button -->
+					<RowDefinition Height="40" />
+					<!-- Spacing -->
+					<RowDefinition Height="1" />
+					<!-- Associate Card Button -->
+					<RowDefinition Height="40" />
+					<!-- Bottom Margin-->
+					<RowDefinition Height="20" />
+				</Grid.RowDefinitions> 
+				<!-- Card -->
+
+			
+
+				<!-- Separator -->
+				<BoxView Grid.Row="3" Grid.ColumnSpan="3"
+					VerticalOptions="FillAndExpand"
+					HorizontalOptions="FillAndExpand"
+					Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+
+				<!-- Second ad row -->
+				<Grid Grid.Row="4" Grid.Column="1"
+					Grid.ColumnSpacing="0" Grid.RowSpacing="0"
+					HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+					<Grid.ColumnDefinitions>
+						<!-- Image -->
+						<ColumnDefinition Width="46" />
+						<!-- Spacing -->
+						<ColumnDefinition Width="30" />
+						<!-- Text -->
+						<ColumnDefinition Width="*" />
+						<!-- Right Margin -->
+						<ColumnDefinition Width="15" />
+					</Grid.ColumnDefinitions>
+
+					<!-- Icon -->
+					<common:CustomImage
+						HorizontalOptions="Center"
+						VerticalOptions="Center"
+						Source="ic_usercard_img2.png" />
+
+					<!-- Text -->
+					<common:CustomLabel Grid.Column="2"
+						FontSize="15"
+						VerticalOptions="Center"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						Text="{x:Static app:AppResources.UserNotLoggedPageText2}" />
+
+				</Grid>
+
+				<!-- Separator -->
+				<BoxView Grid.Row="5" Grid.ColumnSpan="3"
+					VerticalOptions="FillAndExpand"
+					HorizontalOptions="FillAndExpand"
+					Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+
+				<!-- Third ad row -->
+				<Grid Grid.Row="6" Grid.Column="1"
+					Grid.ColumnSpacing="0" Grid.RowSpacing="0"
+					HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+					<Grid.ColumnDefinitions>
+						<!-- Image -->
+						<ColumnDefinition Width="46" />
+						<!-- Spacing -->
+						<ColumnDefinition Width="30" />
+						<!-- Text -->
+						<ColumnDefinition Width="*" />
+						<!-- Right Margin -->
+						<ColumnDefinition Width="15" />
+					</Grid.ColumnDefinitions>
+
+					<!-- Icon -->
+					<common:CustomImage
+						HorizontalOptions="Center"
+						VerticalOptions="Center"
+						Source="ic_usercard_img3.png" />
+
+					<!-- Text -->
+					<common:CustomLabel Grid.Column="2"
+						FontSize="15"
+						VerticalOptions="Center"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						Text="{x:Static app:AppResources.UserNotLoggedPageText3}" />
+
+				</Grid>
+
+				<!-- Register Card Button -->
+				<common:CustomButton Grid.Row="8" Grid.Column="1"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					HeightRequest="40"
+					FontSize="15"
+					BorderRadius="2"
+					Clicked="RegisterCardButton_Click"
+					Text="{x:Static app:AppResources.LoginPageRegisterCardButton}"
+					TextColor="{x:Static resources:ColorResources.TextColorLight}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					BackgroundColor="{x:Static resources:ColorResources.ANFGreen}" />
+
+				<!-- Associate Card Button -->
+				<common:CustomButton Grid.Row="10" Grid.Column="1"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					HeightRequest="40"
+					FontSize="15"
+					BorderRadius="2"
+					Clicked="AssociateCardButton_Click"
+					Text="{x:Static app:AppResources.LoginPageAssociateCardButton}"
+					TextColor="{x:Static resources:ColorResources.TextColorLight}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					BackgroundColor="{x:Static resources:ColorResources.ANFGreen}" />
+
+				<!-- Associate Later Button -->
+				<common:CustomButton Grid.Row="12" Grid.Column="1"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					HeightRequest="40"
+					FontSize="15"
+					BorderRadius="2"
+					BorderWidth="2"
+					Clicked="LeaveForLaterButton_Click"
+					Text="{x:Static app:AppResources.UserNotLoggedLeaveForLaterButton}"
+					BorderColor="{x:Static resources:ColorResources.ANFGreen}"
+					TextColor="{x:Static resources:ColorResources.ANFGreen}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					BackgroundColor="White" />
+			</Grid>
+		</ScrollView>
+		
+		<!-- MenuItem
+		<views:MenuView x:Name="MenuView" Grid.Row="1" /> -->
+
+
+		<!-- Application Bar -->
+		<!--<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />-->
+    <views:ApplicationBarUserCard x:Name="ApplicationBar" Grid.ColumnSpan="2"> </views:ApplicationBarUserCard>
+    
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>

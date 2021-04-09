@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+  xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+  xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+  xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+  x:Class="ANFAPP.Views.ProductVoucherListItem">
+
+	<ContentView.Content>
+		<Grid Padding="15, 10, 15, 0"
+			VerticalOptions="Start"
+			BackgroundColor="White">
+
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="85" />
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="auto" />
+			</Grid.ColumnDefinitions>
+			
+			<Grid.RowDefinitions>
+				<RowDefinition Height="auto" />
+				<RowDefinition Height="30" />
+				<RowDefinition Height="10" />
+			</Grid.RowDefinitions>
+
+			<!-- Product Image -->
+			<common:CustomWebImage Grid.RowSpan="2" Grid.Row="0"
+				VerticalOptions="CenterAndExpand" 
+					x:Name="WImageURL"
+				HorizontalOptions="CenterAndExpand" 
+				WidthRequest="85"
+				HeightRequest="85"
+ 				IsVisible="{Binding MSRM, Converter={x:Static converters:ConverterResources.InverseBool}}"
+				
+				ImageUrl="{Binding ImageURL}" 
+				DefaultImage="catalog_thumbnail.png" />
+			<common:CustomImage Grid.RowSpan="2" Grid.Row="0"
+				VerticalOptions="Center" 
+				HorizontalOptions="Center"
+				WidthRequest="85"
+				HeightRequest="85"
+				x:Name="WImageMSRM"
+				IsVisible="{Binding MSRM}"
+
+				Source="msrmplaceholder.png" />
+
+			
+
+			<!-- Icons 
+			<StackLayout Spacing="5" Orientation="Horizontal" Grid.RowSpan="2">
+
+				<common:CustomImage WidthRequest="22" HeightRequest="22"
+					VerticalOptions="Start"
+					HorizontalOptions="Start"
+					IsVisible="{Binding CatIcon, Converter={x:Static converters:ConverterResources.NotNullable}}"
+					Source="{Binding CatIcon}" />
+
+				<common:CustomImage WidthRequest="22" HeightRequest="22"
+					VerticalOptions="Start"
+					HorizontalOptions="Start"
+					IsVisible="{Binding MSRM}"
+					Source="ic_prescription_annotation.png" />
+
+				<common:CustomImage WidthRequest="22" HeightRequest="22"
+					VerticalOptions="Start"
+					HorizontalOptions="Start"
+					IsVisible="{Binding Generic}"
+					Source="ic_drug_annotation.png" />
+					 
+			</StackLayout> -->
+
+			<!-- Product Info -->
+			<StackLayout x:Name="ProdAvaliable" Spacing="1" Padding="0, 4" Orientation="Vertical" Grid.Column="1" IsVisible="true">
+				
+				<!-- Name -->
+				<common:CustomLabel
+					FontSize="14"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					Text="{Binding Name}" />
+
+				<!-- Dosage -->
+				<common:CustomLabel
+					FontSize="10"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					Text="{Binding Presentation}" />
+
+       	 		<!-- Brand -->
+				<common:CustomLabel
+					IsVisible="{Binding BrandId}"
+					FontSize="10"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					Text="{Binding Brand}" />
+			</StackLayout>
+			<!-- Product Info -->
+			<StackLayout x:Name="ProdNotAvaliableLabels" Spacing="1" Padding="0, 4" Orientation="Vertical" Grid.Column="1" IsVisible="false">
+
+				<!-- Name -->
+				<common:CustomLabel
+					FontSize="14"
+					TextColor="{x:Static resources:ColorResources.ProdNotAvailable}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					Text="{Binding Name}" />
+
+				<!-- Dosage -->
+				<common:CustomLabel
+					FontSize="10"
+					TextColor="{x:Static resources:ColorResources.ProdNotAvailable}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					Text="{Binding Presentation}" />
+
+       	 		<!-- Brand -->
+				<common:CustomLabel
+					IsVisible="{Binding BrandId}"
+					FontSize="10"
+					TextColor="{x:Static resources:ColorResources.ProdNotAvailable}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					Text="{Binding Brand}" />
+			</StackLayout>
+
+			<!-- Ecommerce Actions -->
+			<StackLayout Spacing="5" Orientation="Vertical"
+				Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+
+
+	           
+				<!-- Buy Button -->
+				<Grid x:Name="BuyButton"
+					Padding="10,0"
+					HeightRequest="25"
+					HorizontalOptions="FillAndExpand"
+					BackgroundColor="{x:Static resources:ColorResources.ANFOrange}">
+          			 
+	      			
+					
+					<common:CustomLabel x:Name="PriceLabel" Grid.Column="0" 
+						HorizontalOptions="StartAndExpand"
+						VerticalOptions="CenterAndExpand"
+						FontSize="10"
+						TextColor="{x:Static resources:ColorResources.TextColorLight}"
+						CustomFont="{x:Static resources:FontResources.BoldFont}"
+						Text="{Binding PriceDescription}" />
+
+					<common:CustomImage WidthRequest="15" HeightRequest="15"  Grid.Column="1" 
+							IsVisible="true"
+							InputTransparent="True"
+							VerticalOptions="Center"
+							HorizontalOptions="EndAndExpand"
+							Source="ic_cart_button" />
+					<common:CustomButton  Grid.Column="0" Grid.ColumnSpan="2"
+						BackgroundColor="Transparent"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						Clicked="OnAddToCartButtonClicked">
+					</common:CustomButton>		
+				</Grid>
+						
+				<!-- Button Not Available-->
+				<StackLayout Orientation="Horizontal" x:Name="ButtonNotAvailable"
+					Padding="10, 0"
+					HeightRequest="25"
+					IsVisible="false"
+					IsEnabled="false"
+					HorizontalOptions="FillAndExpand"
+					BackgroundColor="{x:Static resources:ColorResources.ProdNotAvailable}">
+
+					<common:CustomLabel
+						HorizontalOptions="StartAndExpand"
+						VerticalOptions="CenterAndExpand"
+						FontSize="10"
+						TextColor="{x:Static resources:ColorResources.TextColorLight}"
+						CustomFont="{x:Static resources:FontResources.BoldFont}"
+						Text="Indisponível na Farmácia" />
+
+					<common:CustomImage WidthRequest="15" HeightRequest="15"
+							IsVisible="false"
+							InputTransparent="True"
+							VerticalOptions="Center"
+							HorizontalOptions="EndAndExpand"
+							Source="ic_cart_button" />
+
+				</StackLayout>
+
+
+		</StackLayout>
+			<!-- Separator -->
+			<Grid Padding="-15, 0" Grid.Row="2" Grid.ColumnSpan="3" 
+				HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand">
+				<BoxView HorizontalOptions="FillAndExpand" HeightRequest="1"
+					Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+			</Grid>
+	
+						
+		</Grid>
+	</ContentView.Content>
+</ContentView>

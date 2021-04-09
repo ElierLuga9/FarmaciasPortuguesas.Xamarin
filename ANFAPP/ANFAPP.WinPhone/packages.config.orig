@@ -1,0 +1,58 @@
+<<<<<<< HEAD
+﻿<?xml version="1.0" encoding="utf-8"?>
+<packages>
+  <package id="Acr.BarCodes" version="3.1.0" targetFramework="wp80" />
+  <package id="Acr.DeviceInfo" version="3.0.0" targetFramework="wp80" />
+  <package id="ExifLib.PCL" version="1.0.1" targetFramework="wp80" />
+  <package id="Facebook" version="7.0.6" targetFramework="wp80" />
+  <package id="Facebook.Client" version="1.0.4" targetFramework="wp80" />
+  <package id="Infragistics.Xamarin.Charts" version="15.1.20151.169" targetFramework="wp80" />
+  <package id="Infragistics.Xamarin.Core" version="15.1.20151.169" targetFramework="wp80" />
+  <package id="modernhttpclient" version="2.4.2" targetFramework="wp80" />
+  <package id="parse" version="1.6.1" targetFramework="wp80" />
+  <package id="SQLite.Net-PCL" version="3.0.5" targetFramework="wp80" />
+  <package id="sqlite-net-wp8" version="3.8.5" targetFramework="wp80" />
+  <package id="WPControls" version="1.5.2" targetFramework="wp80" />
+  <package id="WPtoolkit" version="4.2013.08.16" targetFramework="wp80" />
+  <package id="Xam.Plugin.Connectivity" version="1.0.2" targetFramework="wp80" />
+  <package id="Xam.Plugins.Settings" version="1.5.2" targetFramework="wp80" />
+  <package id="Xamarin.Forms" version="2.3.1.114" targetFramework="wp8" />
+  <package id="Xamarin.Forms.Maps" version="2.0.1.6505" targetFramework="wp8" />
+  <package id="XLabs.Core" version="2.0.5781" targetFramework="wp8" />
+  <package id="XLabs.Forms" version="2.0.5781" targetFramework="wp8" />
+  <package id="XLabs.IoC" version="2.0.5781" targetFramework="wp8" />
+  <package id="XLabs.Platform" version="2.0.5781" targetFramework="wp8" />
+  <package id="XLabs.Serialization" version="2.0.5781" targetFramework="wp8" />
+  <package id="ZXing.Net.Mobile" version="1.4.7.1" targetFramework="wp80" />
+=======
+﻿<?xml version="1.0" encoding="utf-8"?>
+<packages>
+  <package id="Acr.BarCodes" version="3.1.0" targetFramework="wp80" />
+  <package id="Acr.DeviceInfo" version="3.0.0" targetFramework="wp80" />
+  <package id="Azure-NotificationHub" version="1.0.3" targetFramework="wp80" />
+  <package id="ExifLib.PCL" version="1.0.1" targetFramework="wp80" />
+  <package id="Facebook" version="7.0.6" targetFramework="wp80" />
+  <package id="Facebook.Client" version="1.0.4" targetFramework="wp80" />
+  <package id="Infragistics.Xamarin.Charts" version="15.1.20151.169" targetFramework="wp80" />
+  <package id="Infragistics.Xamarin.Core" version="15.1.20151.169" targetFramework="wp80" />
+  <package id="Microsoft.Bcl" version="1.1.10" targetFramework="wp8" />
+  <package id="Microsoft.Bcl.Build" version="1.0.14" targetFramework="wp8" />
+  <package id="Microsoft.Net.Http" version="2.2.29" targetFramework="wp8" />
+  <package id="modernhttpclient" version="2.4.2" targetFramework="wp80" />
+  <package id="parse" version="1.6.1" targetFramework="wp80" />
+  <package id="SQLite.Net-PCL" version="3.0.5" targetFramework="wp80" />
+  <package id="sqlite-net-wp8" version="3.8.5" targetFramework="wp80" />
+  <package id="WPControls" version="1.5.2" targetFramework="wp80" />
+  <package id="WPtoolkit" version="4.2013.08.16" targetFramework="wp80" />
+  <package id="Xam.Plugin.Connectivity" version="1.0.2" targetFramework="wp80" />
+  <package id="Xam.Plugins.Settings" version="1.5.2" targetFramework="wp80" />
+  <package id="Xamarin.Forms" version="1.4.4.6392" targetFramework="wp80" />
+  <package id="Xamarin.Forms.Maps" version="1.4.4.6392" targetFramework="wp80" />
+  <package id="XLabs.Core" version="2.0.5610.2" targetFramework="wp80" />
+  <package id="XLabs.Forms" version="2.0.5610.2" targetFramework="wp80" />
+  <package id="XLabs.IoC" version="2.0.5610.2" targetFramework="wp80" />
+  <package id="XLabs.Platform" version="2.0.5610.2" targetFramework="wp80" />
+  <package id="XLabs.Serialization" version="2.0.5610.2" targetFramework="wp80" />
+  <package id="ZXing.Net.Mobile" version="1.4.7.1" targetFramework="wp80" />
+>>>>>>> maintenance_phase5_azure_notification
+</packages>

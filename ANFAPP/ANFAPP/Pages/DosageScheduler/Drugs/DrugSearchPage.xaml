@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<pages:ANFPage
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.DosageScheduler.Drugs.DrugSearchPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Header/Query String -->
+			<RowDefinition Height="56" />
+			<!-- Scrollable Content -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<StackLayout Grid.Row="1" Grid.Column="1"
+			Padding="15"
+			Spacing="15"
+			Orientation="Vertical"
+			BackgroundColor="{x:Static resources:ColorResources.SchedulerPPGreyN3}">
+
+			<StackLayout Orientation="Horizontal">
+				<common:CustomLabel
+					FontSize="14"
+					TextColor="{x:Static resources:ColorResources.SchedulerTitleTextColor}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					Text="RESULTADO PARA: " />
+				<common:CustomLabel x:Name="QueryString"
+					FontSize="14"
+					TextColor="{x:Static resources:ColorResources.SchedulerTitleTextColor}"
+					CustomFont="{x:Static resources:FontResources.BoldFont}" />
+			</StackLayout>
+		</StackLayout>
+		<Frame HasShadow="False" Grid.Row="2" Grid.Column="1" x:Name="NoResults"
+			IsVisible="False"
+			HorizontalOptions="FillAndExpand" 
+			Padding="15">
+
+			<common:CustomLabel
+				FontSize="16"
+				HorizontalOptions="Center"
+				VerticalOptions="Start"
+				InputTransparent="True"
+				Text="{x:Static app:AppResources.DrugSearchNoResultsLabel}"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+			
+		</Frame>
+
+		<common:CustomListView Grid.Row="2" Grid.Column="1" x:Name="DrugList"
+			RowHeight="78"
+			HorizontalOptions="FillAndExpand"
+			VerticalOptions="FillAndExpand"
+			ItemsSource="{Binding QueryResults}"
+			SeparatorColor="Transparent"
+			ItemSelected="OnDrugItemSelected">
+			<common:CustomListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<views:MedicineSearchListItem />
+					</ViewCell>
+				</DataTemplate>
+			</common:CustomListView.ItemTemplate>
+			<!-- Remove trailing lines. -->
+			<common:CustomListView.Footer>
+				<ContentView HeightRequest="0" />
+			</common:CustomListView.Footer>
+		</common:CustomListView>
+
+
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" Grid.RowSpan="2" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="3" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>

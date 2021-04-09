@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+  xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+  xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+  xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+  xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+  xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+  xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+  xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+  x:Class="ANFAPP.Pages.UserArea.Vouchers.VoucherAquisitionPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Content -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Content -->
+		<ScrollView Grid.Row="1" Grid.Column="1"
+		  Orientation="Vertical"
+		  VerticalOptions="FillAndExpand"
+		  HorizontalOptions="FillAndExpand">
+
+			<Grid Grid.RowSpacing="0" Grid.ColumnSpacing="0">
+				<Grid.RowDefinitions>
+					<!-- Spacing -->
+					<RowDefinition Height="25" />
+					<!-- Descriptive Message -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="25" />
+					<!-- Warning Message -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="25" />
+					<!-- Labels -->
+					<RowDefinition Height="auto" />
+					<!-- Voucher Values -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="40" />
+					<!-- Button -->
+					<RowDefinition Height="40" />
+					<!-- Spacing -->
+					<RowDefinition Height="25" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<!-- Left Margin -->
+					<ColumnDefinition Width="15" />
+					<!-- Points Column -->
+					<ColumnDefinition Width="auto" />
+					<!-- Spacing -->
+					<ColumnDefinition Width="*" />
+					<!-- Value Column -->
+					<ColumnDefinition Width="auto" />
+					<!-- Right Margin -->
+					<ColumnDefinition Width="15" />
+				</Grid.ColumnDefinitions>
+
+				<!-- Descriptive Message -->
+				<common:CustomLabel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
+				  FontSize="15"
+				  HorizontalOptions="Start"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.RegularFont}"
+				  Text="{x:Static app:AppResources.VoucherAquisitionDescriptiveText}" />
+
+				<!-- Warning Message -->
+				<common:CustomLabel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3"
+				  FontSize="15"
+				  HorizontalOptions="Start"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.BoldFont}"
+				  Text="{x:Static app:AppResources.VoucherAquisitionWarningText}" />
+
+				<!-- Points Label -->
+				<common:CustomLabel Grid.Row="6" Grid.Column="1"
+				  FontSize="15"
+				  CustomMargin=" 0, 5, 0, 0"
+				  HorizontalOptions="Start"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+				  Text="{x:Static app:AppResources.VoucherAquisitionPointsLabel}" />
+
+
+						
+
+				<!-- Points Value -->
+				<StackLayout x:Name="Icon2" Grid.Row="6" Grid.Column="1" >
+					  <StackLayout.Padding>
+						<OnPlatform x:TypeArguments="Thickness">
+     					  <OnPlatform.iOS>
+        					0, 25, 0, 0
+      					  </OnPlatform.iOS>
+								<OnPlatform.Android>
+      							  0, 25, 0, 0
+      							</OnPlatform.Android>
+      							<OnPlatform.WinPhone>
+      							  0, 25, 0, 0
+      							</OnPlatform.WinPhone>
+      				  </OnPlatform>
+					</StackLayout.Padding>
+						<common:CustomLabel 
+				  FontSize="37"
+				  HorizontalOptions="Start"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.BoldFont}"
+				  Text="{Binding Points}" >
+				
+					</common:CustomLabel>
+					    
+						</StackLayout>
+				
+
+				<!-- Voucher Image -->
+				<common:CustomImage Grid.Row="6" Grid.Column="3"
+					x:Name="vale_sauda"
+				  IsVisible="true"
+				  HorizontalOptions="Start"
+				 
+				   />
+				
+				<!--<common:CustomImage Grid.Row="6" Grid.Column="3"
+				  HorizontalOptions="Start"
+				  IsVisible="{Binding Vale_5}"
+				  Source="cartao_vale_sauda_5"		
+				   />
+				
+				<common:CustomImage Grid.Row="6" Grid.Column="3"
+				  IsVisible="{Binding Vale_10}"
+				  HorizontalOptions="Start"
+				  Source="cartao_vale_sauda_10"		
+				   />
+				<common:CustomImage Grid.Row="6" Grid.Column="3"
+				  IsVisible="{Binding Vale_20}"
+				  HorizontalOptions="Start"
+				  Source="cartao_vale_sauda_20"		
+				   />-->
+
+				<!-- Divider arrow -->
+				<common:CustomImage Grid.Row="5" Grid.RowSpan="2" Grid.Column="2"
+				  HorizontalOptions="Center"
+				  VerticalOptions="Center"
+				  Source="ic_vouchers_arrow.png" />
+
+				<!-- Button -->
+				<common:CustomButton Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3"
+				  HorizontalOptions="FillAndExpand"
+				  VerticalOptions="FillAndExpand"
+				  FontSize="15"
+				  BorderRadius="2"
+				  Clicked="OnRequestVoucher_Clicked"
+				  Text="{x:Static app:AppResources.VoucherAquisitionButton}"
+				  TextColor="{x:Static resources:ColorResources.TextColorLight}"
+				  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+				  BackgroundColor="{x:Static resources:ColorResources.ANFGreen}" />
+			</Grid>
+		</ScrollView>
+		
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+    <!--<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />-->
+    <views:ApplicationBarUserCard x:Name="ApplicationBar" Grid.ColumnSpan="2"> </views:ApplicationBarUserCard>
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>

@@ -1,0 +1,200 @@
+<<<<<<< HEAD
+﻿<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.BarcodePage">
+	
+	<Grid RowSpacing="0" ColumnSpacing="0"
+		VerticalOptions="FillAndExpand"
+		HorizontalOptions="FillAndExpand">
+		
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Page -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+
+		<!-- Barcode -->
+		<StackLayout x:Name="BarCodeContainer" Grid.Row="1"
+			VerticalOptions="CenterAndExpand"
+			HorizontalOptions="CenterAndExpand"
+			Orientation="Vertical">
+			<!-- Rotation="270"> -->
+
+			<!-- Center the barcode if the OptNumber is shown -->
+			<ContentView
+				HeightRequest="34"
+				IsVisible="{Binding OptNumber, Converter={x:Static converters:ConverterResources.NotNullable}}" />
+
+			<!-- Center the barcode if the CardName is shown -->
+			<ContentView
+				HeightRequest="20"
+				IsVisible="{Binding CardName, Converter={x:Static converters:ConverterResources.NotNullable}}" />
+
+			<common:BarcodeView
+				WidthRequest="420"
+				HeightRequest="80"
+				HorizontalOptions="CenterAndExpand"
+				VerticalOptions="CenterAndExpand"
+				Code="{Binding CardNumber}"
+				BackgroundColor="Transparent" />
+
+			<!-- Barcode decimal representation -->
+			<common:CustomLabel
+				FontSize="20"
+				HorizontalOptions="CenterAndExpand"
+				VerticalOptions="CenterAndExpand"
+				Text="{Binding CardNumber}"
+				CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+				TextColor="Black" />
+
+			<!-- Optional Number Section-->
+			<ContentView
+				HeightRequest="18"
+				IsVisible="{Binding OptNumber, Converter={x:Static converters:ConverterResources.NotNullable}}" />
+
+			<!--
+			<common:CustomLabel
+				FontSize="15"
+				HorizontalOptions="CenterAndExpand"
+				VerticalOptions="CenterAndExpand"
+				Text="{x:Static app:AppResources.FamilyAccountCardNumberLabel}"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				TextColor="Black"
+				IsVisible="{Binding OptNumber, Converter={x:Static converters:ConverterResources.NotNullable}}" />
+			-->
+			<common:CustomLabel
+				FontSize="15"
+				HorizontalOptions="CenterAndExpand"
+				VerticalOptions="CenterAndExpand"
+				Text="{Binding OptNumber, StringFormat='Nº de Cartão: {0}'}"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				TextColor="Black"
+				IsVisible="{Binding OptNumber, Converter={x:Static converters:ConverterResources.NotNullable}}" />
+
+			<!-- Optional Name Section-->
+			<ContentView
+				HeightRequest="5"
+				IsVisible="{Binding CardName, Converter={x:Static converters:ConverterResources.NotNullable}}" />
+
+			<common:CustomLabel
+				FontSize="15"
+				HorizontalOptions="CenterAndExpand"
+				VerticalOptions="CenterAndExpand"
+				Text="{Binding CardName}"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				TextColor="Black"
+				IsVisible="{Binding CardName, Converter={x:Static converters:ConverterResources.NotNullable}}" />
+		</StackLayout>
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" />
+	</Grid>
+</pages:ANFPage>
+=======
+﻿<ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.BarcodePage">
+	
+	<Grid RowSpacing="0" ColumnSpacing="0"
+		VerticalOptions="FillAndExpand"
+		HorizontalOptions="FillAndExpand">
+		
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Page -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+
+		<!-- Barcode -->
+		<StackLayout x:Name="BarCodeContainer" Grid.Row="1"
+			VerticalOptions="CenterAndExpand"
+			HorizontalOptions="CenterAndExpand"
+			Orientation="Vertical">
+			<!-- Rotation="270"> -->
+
+			<!-- Center the barcode if the OptNumber is shown -->
+			<ContentView
+				HeightRequest="34"
+				IsVisible="{Binding OptNumber, Converter={x:Static converters:ConverterResources.NotNullable}}" />
+
+			<!-- Center the barcode if the CardName is shown -->
+			<ContentView
+				HeightRequest="20"
+				IsVisible="{Binding CardName, Converter={x:Static converters:ConverterResources.NotNullable}}" />
+
+			<common:BarcodeView
+				WidthRequest="420"
+				HeightRequest="80"
+				HorizontalOptions="CenterAndExpand"
+				VerticalOptions="CenterAndExpand"
+				Code="{Binding CardNumber}"
+				BackgroundColor="Transparent" />
+
+			<!-- Barcode decimal representation -->
+			<common:CustomLabel
+				FontSize="20"
+				HorizontalOptions="CenterAndExpand"
+				VerticalOptions="CenterAndExpand"
+				Text="{Binding CardNumber}"
+				CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+				TextColor="Black" />
+
+			<!-- Optional Number Section-->
+			<ContentView
+				HeightRequest="18"
+				IsVisible="{Binding OptNumber, Converter={x:Static converters:ConverterResources.NotNullable}}" />
+
+			<!--
+			<common:CustomLabel
+				FontSize="15"
+				HorizontalOptions="CenterAndExpand"
+				VerticalOptions="CenterAndExpand"
+				Text="{x:Static app:AppResources.FamilyAccountCardNumberLabel}"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				TextColor="Black"
+				IsVisible="{Binding OptNumber, Converter={x:Static converters:ConverterResources.NotNullable}}" />
+			-->
+			<common:CustomLabel
+				FontSize="15"
+				HorizontalOptions="CenterAndExpand"
+				VerticalOptions="CenterAndExpand"
+				Text="{Binding OptNumber, StringFormat='Nº de Cartão: {0}'}"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				TextColor="Black"
+				IsVisible="{Binding OptNumber, Converter={x:Static converters:ConverterResources.NotNullable}}" />
+
+			<!-- Optional Name Section-->
+			<ContentView
+				HeightRequest="5"
+				IsVisible="{Binding CardName, Converter={x:Static converters:ConverterResources.NotNullable}}" />
+
+			<common:CustomLabel
+				FontSize="15"
+				HorizontalOptions="CenterAndExpand"
+				VerticalOptions="CenterAndExpand"
+				Text="{Binding CardName}"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				TextColor="Black"
+				IsVisible="{Binding CardName, Converter={x:Static converters:ConverterResources.NotNullable}}" />
+		</StackLayout>
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" />
+	</Grid>
+</ANFPage>
+>>>>>>> maintenance_phase5_azure_notification

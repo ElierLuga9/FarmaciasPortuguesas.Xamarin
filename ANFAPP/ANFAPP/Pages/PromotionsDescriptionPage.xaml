@@ -1,0 +1,104 @@
+﻿<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+         xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+         xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+         xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+         xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+         xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+         xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+         x:Class="ANFAPP.Pages.PromotionsDescriptionPage">
+
+  <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RowSpacing="0" ColumnSpacing="0">
+    <Grid.RowDefinitions>
+      <!-- Application Bar -->
+      <RowDefinition Height="auto" />
+      <!-- Page -->
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="auto" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+
+    <!--Title and promotions Lead-->
+	<ScrollView Grid.Row="1" Grid.Column="1"  Orientation="Vertical" 
+                 HorizontalOptions="FillAndExpand">
+    <StackLayout 
+                 Padding="10,10,10,10"
+                 Orientation="Vertical" 
+                 HorizontalOptions="FillAndExpand"
+                 VerticalOptions="Start">
+			
+     <common:CustomLabel x:Name="PromoTypeTitle"
+                          Text="{Binding Promotion.Title}"
+                          TextColor="Black" FontSize="20"
+                          IsVisible="True"
+                          HorizontalOptions="StartAndExpand"
+                          VerticalOptions="Start"></common:CustomLabel>
+
+				<common:CustomImage x:Name="PromoImage"
+					Source="{Binding Promotion.FullPathImage}"
+					 HorizontalOptions="FillAndExpand"
+					VerticalOptions="StartAndExpand">
+    </common:CustomImage>
+
+      <common:CustomLabel x:Name="PromoTypeDescritpion"
+                          Text="{Binding Promotion.Description}"
+                          TextColor="Black" FontSize="16"
+                          IsVisible="True"
+                          HorizontalOptions="FillAndExpand"
+                          VerticalOptions="StartAndExpand"></common:CustomLabel>
+
+      <!--Date and promotion button-->
+              <StackLayout Orientation="Horizontal" 
+                           Padding="10" 
+                           HorizontalOptions="FillAndExpand">
+              <common:CustomLabel x:Name="PromoTypeDate"
+                                  HeightRequest="23" WidthRequest="250"
+                                  FontSize="10"
+                                  Text="{Binding Promotion.DateLabel}"
+                                  TextColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+                                  IsVisible="{Binding Promo2IsActive}"/>
+
+              <common:CustomButton x:Name="PromoTypeButton"
+                                   Text="{Binding Promotion.ButtonLabel}" FontSize="10"
+                                   BackgroundColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+                                   HeightRequest="30" WidthRequest="150"
+                                   HorizontalOptions="EndAndExpand"
+                                   BorderWidth="2"
+                                   BorderRadius="1"
+						           Clicked="OnButtonClicked"
+                                   BorderColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+                                   TextColor="White"
+                                   IsVisible="True"/>
+            </StackLayout>
+
+    </StackLayout>
+    </ScrollView>
+    <!-- MenuItem -->
+    <views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+    <!-- Application Bar -->
+    <views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+    <!-- Loading Container -->
+    <Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+      <!-- Loading Indicator -->
+      <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <common:CustomActivityIndicator
+					HorizontalOptions="CenterAndExpand"
+					VerticalOptions="CenterAndExpand"
+					IsRunning="True"
+					Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+      </StackLayout>
+
+    </Grid>
+  </Grid>
+  
+</pages:ANFPage>

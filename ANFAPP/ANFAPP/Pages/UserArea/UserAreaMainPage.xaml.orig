@@ -1,0 +1,876 @@
+<<<<<<< HEAD
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.UserArea.UserAreaMainPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar-->
+			<RowDefinition Height="auto"/>
+			<!-- Tab Bar-->
+			<RowDefinition Height="auto"/>
+			<!-- Main Content-->
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<ScrollView Grid.Row="2" Grid.Column="1" x:Name="MainArea">
+			
+			<!-- Tabs -->
+			<StackLayout Orientation="Vertical">
+
+				<!-- My Farmacy-->
+				<Grid BackgroundColor="{x:Static resources:ColorResources.ANFPaleGrey}" RowSpacing="0">
+					<Grid.RowDefinitions>
+						<!-- Top Margin -->
+						<RowDefinition Height="15"/>
+						<!-- Pharmacy Label -->
+						<RowDefinition Height="13"/>
+						<!-- Pharmacy Name and Button -->
+						<RowDefinition Height="auto"/>
+						<!-- Bottom Margin-->
+						<RowDefinition Height="15"/>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<!-- Left Margin-->
+						<ColumnDefinition Width="10"/>
+						<!-- Pharmacy Name -->
+						<ColumnDefinition Width="*"/>
+						<!-- Midle Margin-->
+						<ColumnDefinition Width="30"/>
+						<!-- Change Button-->
+						<ColumnDefinition Width="auto"/>
+						<!-- Right Margin -->
+						<ColumnDefinition Width="10"/>
+					</Grid.ColumnDefinitions>
+
+					<!-- Your pharmacy Label-->
+					<common:CustomLabel Text="{x:Static app:AppResources.UserAreaPageMyPharmacyLabel}" 
+						CustomFont="{x:Static resources:FontResources.RegularFont}" 
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" 
+						FontSize="11"
+						Grid.Column="1" 
+						Grid.Row="1" 
+						VerticalOptions="CenterAndExpand" 
+						HorizontalOptions="StartAndExpand"/>
+					
+					<!-- Your pharmacy Name and Location-->
+					<common:CustomLabel Text="{Binding MyFarmacyName}" 
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}" 
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" 
+						FontSize="13" 
+						Grid.Column="1" 
+						Grid.Row="2" 
+						VerticalOptions="Start" 
+						HorizontalOptions="StartAndExpand"/>
+
+					<!-- Change Pharmacy Button-->
+					<StackLayout Orientation="Horizontal" Grid.Column="3" Grid.Row="2">
+						<common:CustomImage Source="ic_change_pharm.png" 
+							HorizontalOptions="Start"
+							HeightRequest="20" 
+							WidthRequest="20" 
+							Aspect="AspectFit"/>
+						<common:CustomLabel Text="{x:Static app:AppResources.UserAreaPageChangePharmacy}" 
+							FontSize="13" 
+							VerticalOptions="CenterAndExpand" 
+							TextColor="{x:Static resources:ColorResources.ANFDarkerBlue}" 
+							CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+						<StackLayout.GestureRecognizers>
+							<TapGestureRecognizer Tapped="OnChangePharmButtonClick" />
+						</StackLayout.GestureRecognizers>
+					</StackLayout>
+				</Grid>
+
+				<!-- Id Content-->
+				<StackLayout Orientation="Vertical" Padding="15,15,15,15" Spacing="10">
+					<Grid RowSpacing="0" ColumnSpacing="0" >
+						<Grid.ColumnDefinitions>
+							<!-- Image area -->
+							<ColumnDefinition Width="auto"/>
+							<!-- Margin -->
+							<ColumnDefinition Width="30"/>
+							<!-- Identification and buttons-->
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+
+						<Grid.RowDefinitions>
+							<RowDefinition Height="*"/>
+						</Grid.RowDefinitions>
+						<!-- Image Area-->
+						<Grid RowSpacing="0" 
+							ColumnSpacing="0" 
+							Grid.Row="0" 
+							Grid.Column="0" 
+							HorizontalOptions="StartAndExpand" 
+							VerticalOptions="Center" 
+							HeightRequest="175">
+							<Grid.RowDefinitions>
+								<!-- Image-->
+								<RowDefinition Height="auto"/>
+								<!-- Change Photo Label-->
+								<RowDefinition Height="auto"/>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<!-- Image area -->
+								<ColumnDefinition Width="auto"/>
+							</Grid.ColumnDefinitions>
+							<common:CustomImage Source="{Binding ImageSource}"
+								WidthRequest="125" HeightRequest="125"
+								Grid.Row="0" 
+								HorizontalOptions="Center" 
+								Aspect="AspectFill" />
+							<common:CustomImage Source="img_use_mask.png" 
+								WidthRequest="125" HeightRequest="125"
+								Grid.Row="0" 
+								HorizontalOptions="Center" 
+								Aspect="AspectFill" />
+							<common:CustomLabel Text="{x:Static app:AppResources.UserAreaPageChangePhoto}" 
+								Grid.Row="1" 
+								TextColor="{x:Static resources:ColorResources.ANFDarkerPaleGrey}" 
+								FontSize="13" 
+								CustomFont="{x:Static resources:FontResources.RegularFont}" 
+								HorizontalOptions="Center" 
+								VerticalOptions="Center"/>
+							<Grid.GestureRecognizers>
+								<TapGestureRecognizer
+									Command="{Binding SelectPictureCommand}"/>
+							</Grid.GestureRecognizers>
+						</Grid>
+						<!-- Edit, Change pass, logout area buttons-->
+						<StackLayout Orientation="Vertical" Grid.Column="2" Spacing="3">
+							<!-- User Name-->
+							<common:CustomLabel
+								IsVisible="{Binding HasPharmacyCard}"
+								Text="{Binding Name}"
+								HorizontalOptions="Start"
+								FontSize="18"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}" 
+								CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+							
+							<!-- Edit Button-->
+							<StackLayout Orientation="Horizontal" IsVisible="True" >
+								<common:CustomImage Source="ic_edit_button.png" 
+									HorizontalOptions="Start" 
+									HeightRequest="15" 
+									WidthRequest="15" 
+									Aspect="AspectFit"/>
+								
+								<BoxView WidthRequest="11"/>
+								
+								<common:CustomLabel Text="{x:Static app:AppResources.UserAreaPageEditData}" 
+									FontSize="13" 
+									VerticalOptions="CenterAndExpand" 
+									TextColor="{x:Static resources:ColorResources.ANFDarkerBlue}" 
+									CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+								<StackLayout.GestureRecognizers>
+									<TapGestureRecognizer Tapped="OnEditDataButtonClick" />
+								</StackLayout.GestureRecognizers>
+
+							</StackLayout>
+							<!-- Change password Button-->
+							<StackLayout Orientation="Horizontal" >
+								<common:CustomImage Source="ic_change_pass.png" 
+									HorizontalOptions="Start" 
+									HeightRequest="25" 
+									WidthRequest="25" 
+									Aspect="AspectFit"/>
+								
+								<BoxView WidthRequest="1"/>
+								
+								<common:CustomLabel Text="{x:Static app:AppResources.UserAreaPageChangePassword}" 
+									FontSize="13" 
+									VerticalOptions="CenterAndExpand" 
+									TextColor="{x:Static resources:ColorResources.ANFDarkerBlue}" 
+									CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+								<StackLayout.GestureRecognizers>
+									<TapGestureRecognizer Tapped="OnChangePasswordButtonClick" />
+								</StackLayout.GestureRecognizers>
+							</StackLayout>
+							<!-- Logout Button-->
+							<StackLayout Orientation="Horizontal"  >
+								<common:CustomImage Source="ic_logout.png" 
+									HorizontalOptions="Start" 
+									HeightRequest="15" 
+									WidthRequest="15" 
+									Aspect="AspectFit"/>
+								<BoxView WidthRequest="11"/>
+								<common:CustomLabel Text="{x:Static app:AppResources.UserAreaPageLogout}" 
+									FontSize="13" 
+									VerticalOptions="CenterAndExpand" 
+									TextColor="{x:Static resources:ColorResources.ANFDarkerBlue}" 
+									CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+								<StackLayout.GestureRecognizers>
+									<TapGestureRecognizer Tapped="OnLogoutButtonClick" />
+								</StackLayout.GestureRecognizers>
+							</StackLayout>
+						</StackLayout>
+					</Grid>
+					<!-- Address Area-->
+					<StackLayout Orientation="Vertical" 
+						HorizontalOptions="Start" 
+						x:Name="AddressArea" 
+						IsVisible="{Binding HasPharmacyCard}">
+						<!-- Address Label-->
+						<common:CustomLabel Text="Morada" 
+							HeightRequest="14"   
+							FontSize="12" 
+							VerticalOptions="Start" 
+							TextColor="{x:Static resources:ColorResources.TextColorDark}" 
+							CustomFont="{x:Static resources:FontResources.RegularFont}"/>
+						<!-- Address Text-->
+						<common:CustomLabel Text="{Binding UserAddress}" 
+							MinimumHeightRequest="12" 
+							FontSize="12" 
+							VerticalOptions="StartAndExpand" 
+							HorizontalOptions="StartAndExpand" 
+							LineBreakMode="WordWrap" 
+							TextColor="{x:Static resources:ColorResources.TextColorDark}" 
+							CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+					</StackLayout>
+					<!-- Separator-->
+					<BoxView   HorizontalOptions="FillAndExpand" 
+						HeightRequest="1" 
+						Color="{x:Static resources:ColorResources.ANFPaleGrey}" 
+						x:Name="AddressAreaSeparator" 
+						IsVisible="{Binding HasPharmacyCard}"/>
+					<!-- Cell Phone-->
+					<StackLayout Orientation="Vertical" 
+						x:Name="CellPhoneArea" 
+						IsVisible="{Binding HasPharmacyCard}">
+						<!-- Cell Phone Label-->
+						<common:CustomLabel Text="Telemóvel" 
+							VerticalOptions="Start" 
+							HeightRequest="14"  
+							HorizontalOptions="StartAndExpand"
+							TextColor="{x:Static resources:ColorResources.TextColorDark}" 
+							CustomFont="{x:Static resources:FontResources.RegularFont}" 
+							FontSize="12"/>
+						<!-- Cell Phone Text-->
+						<common:CustomLabel Text="{Binding UserPhone}" 
+							MinimumHeightRequest="12" 
+							FontSize="12" 
+							VerticalOptions="Start" 
+							HorizontalOptions="StartAndExpand" 
+							TextColor="{x:Static resources:ColorResources.TextColorDark}" 
+							CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+					</StackLayout>
+					<!-- Separator-->
+					<BoxView HorizontalOptions="FillAndExpand" 
+						HeightRequest="1" 
+						Color="{x:Static resources:ColorResources.ANFPaleGrey}" 
+						x:Name="CellPhoneAreaSeparator" 
+						IsVisible="{Binding HasPharmacyCard}"/>
+					<!-- E-mail -->
+					<StackLayout Orientation="Vertical">
+						<!-- E-mail Label-->
+						<common:CustomLabel Text="Email" 
+							VerticalOptions="Start" 
+							HeightRequest="15" 
+							HorizontalOptions="StartAndExpand" 
+							TextColor="{x:Static resources:ColorResources.TextColorDark}" 
+							CustomFont="{x:Static resources:FontResources.RegularFont}" 
+							FontSize="12"/>
+						<!-- E-mail Text-->
+						<common:CustomLabel Text="{Binding Email}"  
+							FontSize="12" 
+							VerticalOptions="Start" 
+							HorizontalOptions="StartAndExpand" 
+							TextColor="{x:Static resources:ColorResources.TextColorDark}" 
+							CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+					</StackLayout>
+					<!-- Separator-->
+					<BoxView  HorizontalOptions="FillAndExpand"   
+						HeightRequest="1"   
+						Color="{x:Static resources:ColorResources.ANFPaleGrey}" 
+						IsVisible="{Binding HasPharmacyCard}" />
+					<!-- Birthdate -->
+					<StackLayout Orientation="Vertical" IsVisible="{Binding HasPharmacyCard}">
+
+						<!-- Birthdate Label -->
+						<common:CustomLabel
+							FontSize="12"
+							TextColor="{x:Static resources:ColorResources.TextColorDark}"
+							CustomFont="{x:Static resources:FontResources.RegularFont}"
+							Text="{x:Static app:AppResources.UserAreaBirthdateLabel}" />
+
+						<!-- Birthdate Value -->
+						<common:CustomLabel
+							FontSize="12"
+							TextColor="{x:Static resources:ColorResources.TextColorDark}"
+							CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+							Text="{Binding Birthdate, StringFormat='{0:dd/MM/yyyy}'}" />
+
+					</StackLayout>
+					<!-- Separator-->
+					<BoxView  HorizontalOptions="FillAndExpand"   
+						HeightRequest="1"   
+						Color="{x:Static resources:ColorResources.ANFPaleGrey}" 
+						IsVisible="{Binding HasPharmacyCard}" />
+					<!-- Identification Document-->
+					<StackLayout Orientation="Vertical" IsVisible="{Binding HasPharmacyCard}">
+
+						<!-- Document Type Label -->
+						<Grid>
+							<common:CustomLabel
+								FontSize="12"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}"
+								CustomFont="{x:Static resources:FontResources.RegularFont}"
+								IsVisible="{Binding IsBISelected}"
+								Text="Bilhete de identidade" />
+							<common:CustomLabel
+								IsVisible="{Binding IsBISelected, Converter={x:Static converters:ConverterResources.InverseBool}}"
+								FontSize="12"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}"
+								CustomFont="{x:Static resources:FontResources.RegularFont}"
+								Text="Passaporte" />
+						</Grid>
+
+						<!-- Identification Number -->
+						<common:CustomLabel
+						  FontSize="12"
+						  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						  Text="{Binding  IdNumber}" />
+
+					</StackLayout>
+					<!-- Separator-->
+					<BoxView  HorizontalOptions="FillAndExpand"   
+						HeightRequest="1"   
+						Color="{x:Static resources:ColorResources.ANFPaleGrey}" 
+						IsVisible="{Binding HasPharmacyCard}" />
+					<!-- Family Members Area-->
+					<StackLayout Orientation="Vertical" 
+						HorizontalOptions="Start"  
+						IsVisible="{Binding FamilyMembers, Converter={x:Static converters:ConverterResources.ZeroToFalse}}}" >
+						<!-- Family Members Label-->
+						<common:CustomLabel Text="Agregado Familiar" 
+							HeightRequest="14"   
+							FontSize="12" 
+							VerticalOptions="Start" 
+							TextColor="{x:Static resources:ColorResources.TextColorDark}" 
+							CustomFont="{x:Static resources:FontResources.RegularFont}"/>
+						<!-- Family Members Text-->
+
+						<common:CustomLabel Text="{Binding FamilyMembers, Converter={x:Static converters:ConverterResources.ZeroToNull}}}" 
+							MinimumHeightRequest="12" 
+							FontSize="12" 
+							VerticalOptions="StartAndExpand" 
+							HorizontalOptions="StartAndExpand" 
+							LineBreakMode="WordWrap" 
+							TextColor="{x:Static resources:ColorResources.TextColorDark}" 
+							CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+					</StackLayout>
+
+					<!-- Get Card Button-->
+					<common:CustomButton
+						IsVisible="{Binding HasPharmacyCard, Converter={x:Static converters:ConverterResources.InverseBool}}"
+						HorizontalOptions="FillAndExpand"
+						HeightRequest="32"
+						FontSize="13"
+						BorderWidth="1"
+						BorderRadius="1"
+						Text="{x:Static app:AppResources.UserAreaPageGetCardLabel}"
+						BorderColor="{x:Static resources:ColorResources.ANFDarkBlue}"
+						TextColor="{x:Static resources:ColorResources.ANFDarkBlue}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						BackgroundColor="{x:Static resources:ColorResources.ANFWhite}" 
+						Clicked="RegisterCardButton_Click" />
+
+					<!-- Associate Card-->
+					<common:CustomButton
+						IsVisible="{Binding HasPharmacyCard, Converter={x:Static converters:ConverterResources.InverseBool}}"
+						HorizontalOptions="FillAndExpand"
+						HeightRequest="32"
+						FontSize="13"
+						BorderWidth="1"
+						BorderRadius="1"
+						Text="{x:Static app:AppResources.UserAreaPageBindCardLabel}"
+						BorderColor="{x:Static resources:ColorResources.ANFDarkBlue}"
+						TextColor="{x:Static resources:ColorResources.ANFDarkBlue}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						BackgroundColor="{x:Static resources:ColorResources.ANFWhite}"
+						Clicked="AssociateCardButton_Click" />
+				</StackLayout>
+			</StackLayout>
+		</ScrollView>
+
+		<!-- Tab bar-->
+		<views:UserAreaTabbedBar Grid.Row="1" Grid.Column="1" x:Name="TabBar" 
+			HorizontalOptions="FillAndExpand"
+			SelectedTab="PersonalData" />
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" Grid.RowSpan="2" />
+
+		<!-- Application Bar -->
+    <!--<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />-->
+    <views:ApplicationBarUserCard x:Name="ApplicationBar" Grid.ColumnSpan="2"> </views:ApplicationBarUserCard>
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="3" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>
+=======
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.UserArea.UserAreaMainPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar-->
+			<RowDefinition Height="auto"/>
+			<!-- Tab Bar-->
+			<RowDefinition Height="auto"/>
+			<!-- Main Content-->
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<ScrollView Grid.Row="2" Grid.Column="1" x:Name="MainArea">
+			
+			<!-- Tabs -->
+			<StackLayout Orientation="Vertical">
+
+				<!-- My Farmacy-->
+				<Grid BackgroundColor="{x:Static resources:ColorResources.ANFPaleGrey}" RowSpacing="0">
+					<Grid.RowDefinitions>
+						<!-- Top Margin -->
+						<RowDefinition Height="15"/>
+						<!-- Pharmacy Label -->
+						<RowDefinition Height="13"/>
+						<!-- Pharmacy Name and Button -->
+						<RowDefinition Height="auto"/>
+						<!-- Bottom Margin-->
+						<RowDefinition Height="15"/>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<!-- Left Margin-->
+						<ColumnDefinition Width="10"/>
+						<!-- Pharmacy Name -->
+						<ColumnDefinition Width="*"/>
+						<!-- Midle Margin-->
+						<ColumnDefinition Width="30"/>
+						<!-- Change Button-->
+						<ColumnDefinition Width="auto"/>
+						<!-- Right Margin -->
+						<ColumnDefinition Width="10"/>
+					</Grid.ColumnDefinitions>
+
+					<!-- Your pharmacy Label-->
+					<common:CustomLabel Text="{x:Static app:AppResources.UserAreaPageMyPharmacyLabel}" 
+						CustomFont="{x:Static resources:FontResources.RegularFont}" 
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" 
+						FontSize="11"
+						Grid.Column="1" 
+						Grid.Row="1" 
+						VerticalOptions="CenterAndExpand" 
+						HorizontalOptions="StartAndExpand"/>
+					
+					<!-- Your pharmacy Name and Location-->
+					<common:CustomLabel Text="{Binding MyFarmacyName}" 
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}" 
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" 
+						FontSize="13" 
+						Grid.Column="1" 
+						Grid.Row="2" 
+						VerticalOptions="Start" 
+						HorizontalOptions="StartAndExpand"/>
+
+					<!-- Change Pharmacy Button-->
+					<StackLayout Orientation="Horizontal" Grid.Column="3" Grid.Row="2">
+						<common:CustomImage Source="ic_change_pharm.png" 
+							HorizontalOptions="Start"
+							HeightRequest="20" 
+							WidthRequest="20" 
+							Aspect="AspectFit"/>
+						<common:CustomLabel Text="{x:Static app:AppResources.UserAreaPageChangePharmacy}" 
+							FontSize="13" 
+							VerticalOptions="CenterAndExpand" 
+							TextColor="{x:Static resources:ColorResources.ANFDarkerBlue}" 
+							CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+						<StackLayout.GestureRecognizers>
+							<TapGestureRecognizer Tapped="OnChangePharmButtonClick" />
+						</StackLayout.GestureRecognizers>
+					</StackLayout>
+				</Grid>
+
+				<!-- Id Content-->
+				<StackLayout Orientation="Vertical" Padding="15,15,15,15" Spacing="10">
+					<Grid RowSpacing="0" ColumnSpacing="0" >
+						<Grid.ColumnDefinitions>
+							<!-- Image area -->
+							<ColumnDefinition Width="auto"/>
+							<!-- Margin -->
+							<ColumnDefinition Width="30"/>
+							<!-- Identification and buttons-->
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+
+						<Grid.RowDefinitions>
+							<RowDefinition Height="*"/>
+						</Grid.RowDefinitions>
+						<!-- Image Area-->
+						<Grid RowSpacing="0" 
+							ColumnSpacing="0" 
+							Grid.Row="0" 
+							Grid.Column="0" 
+							HorizontalOptions="StartAndExpand" 
+							VerticalOptions="Center" 
+							HeightRequest="175">
+							<Grid.RowDefinitions>
+								<!-- Image-->
+								<RowDefinition Height="auto"/>
+								<!-- Change Photo Label-->
+								<RowDefinition Height="auto"/>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<!-- Image area -->
+								<ColumnDefinition Width="auto"/>
+							</Grid.ColumnDefinitions>
+							<common:CustomImage Source="{Binding ImageSource}"
+								WidthRequest="125" HeightRequest="125"
+								Grid.Row="0" 
+								HorizontalOptions="Center" 
+								Aspect="AspectFill" />
+							<common:CustomImage Source="img_use_mask.png" 
+								WidthRequest="125" HeightRequest="125"
+								Grid.Row="0" 
+								HorizontalOptions="Center" 
+								Aspect="AspectFill" />
+							<common:CustomLabel Text="{x:Static app:AppResources.UserAreaPageChangePhoto}" 
+								Grid.Row="1" 
+								TextColor="{x:Static resources:ColorResources.ANFDarkerPaleGrey}" 
+								FontSize="13" 
+								CustomFont="{x:Static resources:FontResources.RegularFont}" 
+								HorizontalOptions="Center" 
+								VerticalOptions="Center"/>
+							<Grid.GestureRecognizers>
+								<TapGestureRecognizer
+									Command="{Binding SelectPictureCommand}"/>
+							</Grid.GestureRecognizers>
+						</Grid>
+						<!-- Edit, Change pass, logout area buttons-->
+						<StackLayout Orientation="Vertical" Grid.Column="2" Spacing="3">
+							<!-- User Name-->
+							<common:CustomLabel
+								IsVisible="{Binding HasPharmacyCard}"
+								Text="{Binding Name}"
+								HorizontalOptions="Start"
+								FontSize="18"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}" 
+								CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+							
+							<!-- Edit Button-->
+							<StackLayout Orientation="Horizontal" IsVisible="True" >
+								<common:CustomImage Source="ic_edit_button.png" 
+									HorizontalOptions="Start" 
+									HeightRequest="15" 
+									WidthRequest="15" 
+									Aspect="AspectFit"/>
+								
+								<BoxView WidthRequest="11"/>
+								
+								<common:CustomLabel Text="{x:Static app:AppResources.UserAreaPageEditData}" 
+									FontSize="13" 
+									VerticalOptions="CenterAndExpand" 
+									TextColor="{x:Static resources:ColorResources.ANFDarkerBlue}" 
+									CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+								<StackLayout.GestureRecognizers>
+									<TapGestureRecognizer Tapped="OnEditDataButtonClick" />
+								</StackLayout.GestureRecognizers>
+
+							</StackLayout>
+							<!-- Change password Button-->
+							<StackLayout Orientation="Horizontal" >
+								<common:CustomImage Source="ic_change_pass.png" 
+									HorizontalOptions="Start" 
+									HeightRequest="25" 
+									WidthRequest="25" 
+									Aspect="AspectFit"/>
+								
+								<BoxView WidthRequest="1"/>
+								
+								<common:CustomLabel Text="{x:Static app:AppResources.UserAreaPageChangePassword}" 
+									FontSize="13" 
+									VerticalOptions="CenterAndExpand" 
+									TextColor="{x:Static resources:ColorResources.ANFDarkerBlue}" 
+									CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+								<StackLayout.GestureRecognizers>
+									<TapGestureRecognizer Tapped="OnChangePasswordButtonClick" />
+								</StackLayout.GestureRecognizers>
+							</StackLayout>
+							<!-- Logout Button-->
+							<StackLayout Orientation="Horizontal"  >
+								<common:CustomImage Source="ic_logout.png" 
+									HorizontalOptions="Start" 
+									HeightRequest="15" 
+									WidthRequest="15" 
+									Aspect="AspectFit"/>
+								<BoxView WidthRequest="11"/>
+								<common:CustomLabel Text="{x:Static app:AppResources.UserAreaPageLogout}" 
+									FontSize="13" 
+									VerticalOptions="CenterAndExpand" 
+									TextColor="{x:Static resources:ColorResources.ANFDarkerBlue}" 
+									CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+								<StackLayout.GestureRecognizers>
+									<TapGestureRecognizer Tapped="OnLogoutButtonClick" />
+								</StackLayout.GestureRecognizers>
+							</StackLayout>
+						</StackLayout>
+					</Grid>
+					<!-- Address Area-->
+					<StackLayout Orientation="Vertical" 
+						HorizontalOptions="Start" 
+						x:Name="AddressArea" 
+						IsVisible="{Binding HasPharmacyCard}">
+						<!-- Address Label-->
+						<common:CustomLabel Text="Morada" 
+							HeightRequest="14"   
+							FontSize="12" 
+							VerticalOptions="Start" 
+							TextColor="{x:Static resources:ColorResources.TextColorDark}" 
+							CustomFont="{x:Static resources:FontResources.RegularFont}"/>
+						<!-- Address Text-->
+						<common:CustomLabel Text="{Binding UserAddress}" 
+							MinimumHeightRequest="12" 
+							FontSize="12" 
+							VerticalOptions="StartAndExpand" 
+							HorizontalOptions="StartAndExpand" 
+							LineBreakMode="WordWrap" 
+							TextColor="{x:Static resources:ColorResources.TextColorDark}" 
+							CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+					</StackLayout>
+					<!-- Separator-->
+					<BoxView   HorizontalOptions="FillAndExpand" 
+						HeightRequest="1" 
+						Color="{x:Static resources:ColorResources.ANFPaleGrey}" 
+						x:Name="AddressAreaSeparator" 
+						IsVisible="{Binding HasPharmacyCard}"/>
+					<!-- Cell Phone-->
+					<StackLayout Orientation="Vertical" 
+						x:Name="CellPhoneArea" 
+						IsVisible="{Binding HasPharmacyCard}">
+						<!-- Cell Phone Label-->
+						<common:CustomLabel Text="Telemóvel" 
+							VerticalOptions="Start" 
+							HeightRequest="14"  
+							HorizontalOptions="StartAndExpand"
+							TextColor="{x:Static resources:ColorResources.TextColorDark}" 
+							CustomFont="{x:Static resources:FontResources.RegularFont}" 
+							FontSize="12"/>
+						<!-- Cell Phone Text-->
+						<common:CustomLabel Text="{Binding UserPhone}" 
+							MinimumHeightRequest="12" 
+							FontSize="12" 
+							VerticalOptions="Start" 
+							HorizontalOptions="StartAndExpand" 
+							TextColor="{x:Static resources:ColorResources.TextColorDark}" 
+							CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+					</StackLayout>
+					<!-- Separator-->
+					<BoxView HorizontalOptions="FillAndExpand" 
+						HeightRequest="1" 
+						Color="{x:Static resources:ColorResources.ANFPaleGrey}" 
+						x:Name="CellPhoneAreaSeparator" 
+						IsVisible="{Binding HasPharmacyCard}"/>
+					<!-- E-mail -->
+					<StackLayout Orientation="Vertical">
+						<!-- E-mail Label-->
+						<common:CustomLabel Text="Email" 
+							VerticalOptions="Start" 
+							HeightRequest="15" 
+							HorizontalOptions="StartAndExpand" 
+							TextColor="{x:Static resources:ColorResources.TextColorDark}" 
+							CustomFont="{x:Static resources:FontResources.RegularFont}" 
+							FontSize="12"/>
+						<!-- E-mail Text-->
+						<common:CustomLabel Text="{Binding Email}"  
+							FontSize="12" 
+							VerticalOptions="Start" 
+							HorizontalOptions="StartAndExpand" 
+							TextColor="{x:Static resources:ColorResources.TextColorDark}" 
+							CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+					</StackLayout>
+					<!-- Separator-->
+					<BoxView  HorizontalOptions="FillAndExpand"   
+						HeightRequest="1"   
+						Color="{x:Static resources:ColorResources.ANFPaleGrey}" 
+						IsVisible="{Binding HasPharmacyCard}" />
+					<!-- Birthdate -->
+					<StackLayout Orientation="Vertical" IsVisible="{Binding HasPharmacyCard}">
+
+						<!-- Birthdate Label -->
+						<common:CustomLabel
+							FontSize="12"
+							TextColor="{x:Static resources:ColorResources.TextColorDark}"
+							CustomFont="{x:Static resources:FontResources.RegularFont}"
+							Text="{x:Static app:AppResources.UserAreaBirthdateLabel}" />
+
+						<!-- Birthdate Value -->
+						<common:CustomLabel
+							FontSize="12"
+							TextColor="{x:Static resources:ColorResources.TextColorDark}"
+							CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+							Text="{Binding Birthdate, StringFormat='{0:dd/MM/yyyy}'}" />
+
+					</StackLayout>
+					<!-- Separator-->
+					<BoxView  HorizontalOptions="FillAndExpand"   
+						HeightRequest="1"   
+						Color="{x:Static resources:ColorResources.ANFPaleGrey}" 
+						IsVisible="{Binding HasPharmacyCard}" />
+					<!-- Identification Document-->
+					<StackLayout Orientation="Vertical" IsVisible="{Binding HasPharmacyCard}">
+
+						<!-- Document Type Label -->
+						<Grid>
+							<common:CustomLabel
+								FontSize="12"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}"
+								CustomFont="{x:Static resources:FontResources.RegularFont}"
+								IsVisible="{Binding IsBISelected}"
+								Text="Bilhete de identidade" />
+							<common:CustomLabel
+								IsVisible="{Binding IsBISelected, Converter={x:Static converters:ConverterResources.InverseBool}}"
+								FontSize="12"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}"
+								CustomFont="{x:Static resources:FontResources.RegularFont}"
+								Text="Passaporte" />
+						</Grid>
+
+						<!-- Identification Number -->
+						<common:CustomLabel
+						  FontSize="12"
+						  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						  Text="{Binding  IdNumber}" />
+
+					</StackLayout>
+					<!-- Separator-->
+					<BoxView  HorizontalOptions="FillAndExpand"   
+						HeightRequest="1"   
+						Color="{x:Static resources:ColorResources.ANFPaleGrey}" 
+						IsVisible="{Binding HasPharmacyCard}" />
+					<!-- Family Members Area-->
+					<StackLayout Orientation="Vertical" 
+						HorizontalOptions="Start"  
+						IsVisible="{Binding FamilyMembers, Converter={x:Static converters:ConverterResources.ZeroToFalse}}}" >
+						<!-- Family Members Label-->
+						<common:CustomLabel Text="Agregado Familiar" 
+							HeightRequest="14"   
+							FontSize="12" 
+							VerticalOptions="Start" 
+							TextColor="{x:Static resources:ColorResources.TextColorDark}" 
+							CustomFont="{x:Static resources:FontResources.RegularFont}"/>
+						<!-- Family Members Text-->
+
+						<common:CustomLabel Text="{Binding FamilyMembers, Converter={x:Static converters:ConverterResources.ZeroToNull}}}" 
+							MinimumHeightRequest="12" 
+							FontSize="12" 
+							VerticalOptions="StartAndExpand" 
+							HorizontalOptions="StartAndExpand" 
+							LineBreakMode="WordWrap" 
+							TextColor="{x:Static resources:ColorResources.TextColorDark}" 
+							CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+					</StackLayout>
+
+					<!-- Get Card Button-->
+					<common:CustomButton
+						IsVisible="{Binding HasPharmacyCard, Converter={x:Static converters:ConverterResources.InverseBool}}"
+						HorizontalOptions="FillAndExpand"
+						HeightRequest="32"
+						FontSize="13"
+						BorderWidth="1"
+						BorderRadius="1"
+						Text="{x:Static app:AppResources.UserAreaPageGetCardLabel}"
+						BorderColor="{x:Static resources:ColorResources.ANFDarkBlue}"
+						TextColor="{x:Static resources:ColorResources.ANFDarkBlue}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						BackgroundColor="{x:Static resources:ColorResources.ANFWhite}" 
+						Clicked="RegisterCardButton_Click" />
+
+					<!-- Associate Card-->
+					<common:CustomButton
+						IsVisible="{Binding HasPharmacyCard, Converter={x:Static converters:ConverterResources.InverseBool}}"
+						HorizontalOptions="FillAndExpand"
+						HeightRequest="32"
+						FontSize="13"
+						BorderWidth="1"
+						BorderRadius="1"
+						Text="{x:Static app:AppResources.UserAreaPageBindCardLabel}"
+						BorderColor="{x:Static resources:ColorResources.ANFDarkBlue}"
+						TextColor="{x:Static resources:ColorResources.ANFDarkBlue}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						BackgroundColor="{x:Static resources:ColorResources.ANFWhite}"
+						Clicked="AssociateCardButton_Click" />
+				</StackLayout>
+			</StackLayout>
+		</ScrollView>
+
+		<!-- Tab bar-->
+		<views:UserAreaTabbedBar Grid.Row="1" Grid.Column="1" x:Name="TabBar" 
+			HorizontalOptions="FillAndExpand"
+			SelectedTab="PersonalData" />
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" Grid.RowSpan="2" />
+
+		<!-- Application Bar -->
+    <!--<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />-->
+    <views:ApplicationBarUserCard x:Name="ApplicationBar" Grid.ColumnSpan="2"> </views:ApplicationBarUserCard>
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="3" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</ANFPage>
+>>>>>>> maintenance_phase5_azure_notification

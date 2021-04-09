@@ -1,0 +1,409 @@
+<<<<<<< HEAD
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.Store.StoreSearchFilterPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Store Search Widget -->
+			<RowDefinition Height="auto" />
+      <!-- Store Filter Widget -->
+      <RowDefinition Height="auto" />
+			<!-- Page -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Store Search Widget -->
+    <views:FilterStoreSearchWidget Grid.Row="1" Grid.Column="1"
+			Padding="0, 15" />
+
+    <!-- Store Search Filter Widget -->
+    <views:FilterStoreSearchFilterWidget Grid.Row="2" Grid.Column="1"
+			OrderButtonClickedEvent="OrderButtonClicked"
+      SearchValue="{Binding SearchValue}"
+			Padding="0, 15" />
+    
+		<!-- Filter Panel -->
+		<Grid Padding="15, 10, 15, 20" Grid.Row="3" Grid.Column="1" Grid.ColumnSpacing="15" Grid.RowSpacing="10">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="125" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<!-- Points, Dosages, Brands, Pharmaceutical Formula -->
+				<RowDefinition Height="auto" />
+				<!-- Prices -->
+				<RowDefinition Height="auto" />
+				<!-- Spacing -->
+				<RowDefinition Height="0" />
+				<!-- Confirm Button -->
+				<RowDefinition Height="auto" />
+			</Grid.RowDefinitions>
+			
+			<!-- Left Column -->
+			<StackLayout Orientation="Vertical" Spacing="10">
+				
+				<!-- Points Label -->
+				<common:CustomLabel
+					FontSize="15"
+					Text="{x:Static app:AppResources.StoreSearchFilterPointsLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Points Picker -->
+				<common:BindablePicker HeightRequest="40"
+					HorizontalOptions="FillAndExpand"
+					FontSize="15"
+					CustomPadding="10, 0"
+					AutoSelectFirst="True"
+					BackgroundResource="bg_input.png"
+					ItemsSource="{Binding PointsFilter}"
+					SelectedItem="{Binding SelectedPoints}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Dosage Label -->
+				<common:CustomLabel
+					FontSize="15"
+					Text="{x:Static app:AppResources.StoreSearchFilterDosageLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Dosage Picker -->
+				<common:BindablePicker HeightRequest="40"
+					HorizontalOptions="FillAndExpand"
+					FontSize="15"
+					CustomPadding="10, 0"
+					AutoSelectFirst="True"
+					BackgroundResource="bg_input.png"
+					ItemsSource="{Binding DosageFilter}"
+					SelectedItem="{Binding SelectedDosage}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}" />
+			</StackLayout>
+
+			<!-- Right Column -->
+			<StackLayout Orientation="Vertical" Spacing="10" Grid.Column="1">
+
+				<!-- Brand Label -->
+				<common:CustomLabel
+					FontSize="15"
+					Text="{x:Static app:AppResources.StoreSearchFilterBrandLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Brand Picker -->
+				<common:BindablePicker HeightRequest="40"
+					HorizontalOptions="FillAndExpand"
+					FontSize="15"
+					CustomPadding="10, 0"
+					AutoSelectFirst="True"
+					BackgroundResource="bg_input.png"
+					ItemsSource="{Binding BrandsFilter}"
+					SelectedItem="{Binding SelectedBrand}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Pharmaceutical Formula Label -->
+				<common:CustomLabel
+					FontSize="15"
+					Text="{x:Static app:AppResources.StoreSearchFilterPharmaceuticalFormulaLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Pharmaceutical Formula Picker -->
+				<common:BindablePicker HeightRequest="40"
+					HorizontalOptions="FillAndExpand"
+					FontSize="15"
+					CustomPadding="10, 0"
+					AutoSelectFirst="True"
+					BackgroundResource="bg_input.png"
+					ItemsSource="{Binding FFFilter}"
+					SelectedItem="{Binding SelectedFF}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}" />
+			</StackLayout>
+
+			<!-- Price -->
+			<StackLayout Grid.Row="1" Grid.ColumnSpan="2" 
+				VerticalOptions="Start"
+				Orientation="Vertical" Spacing="10">
+
+				<!-- Price Label -->
+				<common:CustomLabel
+					FontSize="15"
+					Text="{x:Static app:AppResources.StoreSearchFilterPriceLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Price Picker -->
+				<common:BindablePicker HeightRequest="40"
+					HorizontalOptions="FillAndExpand"
+					FontSize="15"
+					CustomPadding="10, 0"
+					AutoSelectFirst="True"
+					BackgroundResource="bg_input.png"
+					ItemsSource="{Binding PriceFilter}"
+					SelectedItem="{Binding SelectedPrice}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}" />
+			</StackLayout>
+
+			<!-- Search Button -->
+			<common:CustomButton Grid.Row="3" Grid.ColumnSpan="2" 
+				HeightRequest="40"
+				FontSize="15"
+				BorderRadius="1"
+				BorderWidth="1"
+				Clicked="SearchButtonClicked"
+				HorizontalOptions="FillAndExpand"
+				BackgroundColor="White"
+				Text="{x:Static app:AppResources.StoreSearchFilterSearchButton}"
+				TextColor="{x:Static resources:ColorResources.ANFOrange}"
+				BorderColor="{x:Static resources:ColorResources.ANFOrange}"
+				CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+		</Grid>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" Grid.RowSpan="3" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="4" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>
+=======
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.Store.StoreSearchFilterPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Store Search Widget -->
+			<RowDefinition Height="auto" />
+      <!-- Store Filter Widget -->
+      <RowDefinition Height="auto" />
+			<!-- Page -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Store Search Widget -->
+    <views:FilterStoreSearchWidget Grid.Row="1" Grid.Column="1"
+			Padding="0, 15" />
+
+    <!-- Store Search Filter Widget -->
+    <views:FilterStoreSearchFilterWidget Grid.Row="2" Grid.Column="1"
+			OrderButtonClickedEvent="OrderButtonClicked"
+      SearchValue="{Binding SearchValue}"
+			Padding="0, 15" />
+    
+		<!-- Filter Panel -->
+		<ScrollView Orientation = "Vertical" Padding="15, 10, 15, 20" Grid.Row="3" Grid.Column="1" >
+        <Grid Grid.ColumnSpacing="15" Grid.RowSpacing="10">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="125" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<!-- Points, Dosages, Brands, Pharmaceutical Formula -->
+				<RowDefinition Height="auto" />
+				<!-- Prices -->
+				<RowDefinition Height="auto" />
+				<!-- Spacing -->
+				<RowDefinition Height="0" />
+				<!-- Confirm Button -->
+				<RowDefinition Height="auto" />
+			</Grid.RowDefinitions>
+			
+			<!-- Left Column -->
+			<StackLayout Orientation="Vertical" Spacing="10">
+				
+				<!-- Points Label -->
+				<common:CustomLabel
+					FontSize="15"
+					Text="{x:Static app:AppResources.StoreSearchFilterPointsLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Points Picker -->
+				<common:BindablePicker HeightRequest="40"
+					HorizontalOptions="FillAndExpand"
+					FontSize="15"
+					CustomPadding="10, 0"
+					AutoSelectFirst="True"
+					BackgroundResource="bg_input.png"
+					ItemsSource="{Binding PointsFilter}"
+					SelectedItem="{Binding SelectedPoints}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Dosage Label -->
+				<common:CustomLabel
+					FontSize="15"
+					Text="{x:Static app:AppResources.StoreSearchFilterDosageLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Dosage Picker -->
+				<common:BindablePicker HeightRequest="40"
+					HorizontalOptions="FillAndExpand"
+					FontSize="15"
+					CustomPadding="10, 0"
+					AutoSelectFirst="True"
+					BackgroundResource="bg_input.png"
+					ItemsSource="{Binding DosageFilter}"
+					SelectedItem="{Binding SelectedDosage}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}" />
+			</StackLayout>
+
+			<!-- Right Column -->
+			<StackLayout Orientation="Vertical" Spacing="10" Grid.Column="1">
+
+				<!-- Brand Label -->
+				<common:CustomLabel
+					FontSize="15"
+					Text="{x:Static app:AppResources.StoreSearchFilterBrandLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Brand Picker -->
+				<common:BindablePicker HeightRequest="40"
+					HorizontalOptions="FillAndExpand"
+					FontSize="15"
+					CustomPadding="10, 0"
+					AutoSelectFirst="True"
+					BackgroundResource="bg_input.png"
+					ItemsSource="{Binding BrandsFilter}"
+					SelectedItem="{Binding SelectedBrand}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Pharmaceutical Formula Label -->
+				<common:CustomLabel
+					FontSize="15"
+					Text="{x:Static app:AppResources.StoreSearchFilterPharmaceuticalFormulaLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Pharmaceutical Formula Picker -->
+				<common:BindablePicker HeightRequest="40"
+					HorizontalOptions="FillAndExpand"
+					FontSize="15"
+					CustomPadding="10, 0"
+					AutoSelectFirst="True"
+					BackgroundResource="bg_input.png"
+					ItemsSource="{Binding FFFilter}"
+					SelectedItem="{Binding SelectedFF}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}" />
+			</StackLayout>
+
+			<!-- Price -->
+			<StackLayout Grid.Row="1" Grid.ColumnSpan="2" 
+				VerticalOptions="Start"
+				Orientation="Vertical" Spacing="10">
+
+				<!-- Price Label -->
+				<common:CustomLabel
+					FontSize="15"
+					Text="{x:Static app:AppResources.StoreSearchFilterPriceLabel}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Price Picker -->
+				<common:BindablePicker HeightRequest="40"
+					HorizontalOptions="FillAndExpand"
+					FontSize="15"
+					CustomPadding="10, 0"
+					AutoSelectFirst="True"
+					BackgroundResource="bg_input.png"
+					ItemsSource="{Binding PriceFilter}"
+					SelectedItem="{Binding SelectedPrice}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}" />
+			</StackLayout>
+
+			<!-- Search Button -->
+			<common:CustomButton Grid.Row="3" Grid.ColumnSpan="2" 
+				HeightRequest="40"
+				FontSize="15"
+				BorderRadius="1"
+				BorderWidth="1"
+				Clicked="SearchButtonClicked"
+				HorizontalOptions="FillAndExpand"
+				BackgroundColor="White"
+				Text="{x:Static app:AppResources.StoreSearchFilterSearchButton}"
+				TextColor="{x:Static resources:ColorResources.ANFOrange}"
+				BorderColor="{x:Static resources:ColorResources.ANFOrange}"
+				CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+		</Grid>
+		</ScrollView>
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" Grid.RowSpan="3" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="4" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</ANFPage>
+>>>>>>> maintenance_phase5_azure_notification

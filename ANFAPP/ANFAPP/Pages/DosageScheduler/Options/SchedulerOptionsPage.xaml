@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.DosageScheduler.Options.SchedulerOptionsPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Tabbed Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Toggle -->
+			<RowDefinition Height="auto" />
+			<!--- Header -->
+			<RowDefinition Height="auto" />
+			<!--- List -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Tabbed Bar -->
+		<views:DosageSchedulerTabbedBar Grid.Row="1" Grid.Column="1" x:Name="TabBar" />
+
+		<!-- Toggle Section -->
+		<Grid Grid.Row="2" Grid.Column="1" ColumnSpacing="0" RowSpacing="0">
+			<Grid.ColumnDefinitions>
+				<!-- Left Margin -->
+				<ColumnDefinition Width="15" />
+				<!-- Label -->
+				<ColumnDefinition Width="auto" />
+				<!-- Center Padding -->
+				<ColumnDefinition Width="*" />
+				<!-- Button with labels -->
+				<ColumnDefinition Width="auto" />
+				<!-- Right Margin -->
+				<ColumnDefinition Width="15" />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<!-- Top Margin -->
+				<RowDefinition Height="20" />
+				<!-- Notifications toggle -->
+				<RowDefinition Height="auto" />
+				<!-- Spacing -->
+				<RowDefinition Height="auto" />
+				<!-- Schedules filter toggle -->
+				<RowDefinition Height="auto" />
+				<!-- Bottom Margin -->
+				<RowDefinition Height="15" />
+			</Grid.RowDefinitions>
+
+			<!-- Notifications Toggle Label -->
+			<common:CustomLabel Grid.Column="1" Grid.Row="1"
+				FontSize="15"
+				TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+				Text="{x:Static app:AppResources.SchedulerOptionsGetNotificationsToggleLabel}" />
+
+			<!-- Notifications Toggle -->
+			<StackLayout Grid.Column="3" Grid.Row="1"
+				Spacing="10"
+				Orientation="Horizontal"
+				HorizontalOptions="Start"
+				VerticalOptions="FillAndExpand">
+
+				<ContentView.GestureRecognizers>
+					<TapGestureRecognizer Tapped="TogglerViewTypeAction" />
+				</ContentView.GestureRecognizers>
+
+				<common:CustomLabel
+					Text="{x:Static app:AppResources.No}"
+					YAlign="Center"
+					VerticalOptions="Center"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					FontSize="15" />
+				<common:Toggler
+					x:Name="PNToggle"
+					HorizontalOptions="Center"
+					VerticalOptions="Center"
+					InputTransparent="True"
+					WidthRequest="38"
+					HeightRequest="24" />
+				<common:CustomLabel
+					Text="{x:Static app:AppResources.Yes}"
+					YAlign="Center"
+					VerticalOptions="Center"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					FontSize="15" />
+			</StackLayout>
+
+			<ContentView Padding="0, 30, 0, 25" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3">
+				<common:CustomLabel 
+					FontSize="15"
+					HorizontalOptions="StartAndExpand"
+					VerticalOptions="FillAndExpand"
+					InputTransparent="True"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					Text="{x:Static app:AppResources.SchedulerOptionsHeaderLabel}" />
+			</ContentView>
+
+			<!-- Schedules Filter Toggle Label -->
+			<common:CustomLabel Grid.Column="1" Grid.Row="3"
+				FontSize="15"
+				TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+				Text="{x:Static app:AppResources.SchedulerOptionsFilterToggleLabel}" />
+
+			<!-- Schedules Filter Toggle -->
+			<StackLayout Grid.Column="3" Grid.Row="3"
+				Spacing="10"
+				Orientation="Horizontal"
+				HorizontalOptions="Start"
+				VerticalOptions="FillAndExpand">
+
+				<ContentView.GestureRecognizers>
+					<TapGestureRecognizer Tapped="FilterToggleAction" />
+				</ContentView.GestureRecognizers>
+
+				<common:CustomLabel
+					Text="{x:Static app:AppResources.No}"
+					YAlign="Center"
+					VerticalOptions="Center"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					FontSize="15" />
+				<common:Toggler
+					x:Name="FilterToggle"
+					HorizontalOptions="Center"
+					VerticalOptions="Center"
+					InputTransparent="True"
+					State="true"
+					WidthRequest="38"
+					HeightRequest="24" />
+				<common:CustomLabel
+					Text="{x:Static app:AppResources.Yes}"
+					YAlign="Center"
+					VerticalOptions="Center"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					FontSize="15" />
+			</StackLayout>
+
+		</Grid>
+
+		<!--- Fixed Header (http://issue.innovagency.com/view.php?id=20583) -->
+
+
+	
+		<common:CustomListView Grid.Row="4" Grid.Column="1" x:Name="OptionList"
+			RowHeight="62"
+			HorizontalOptions="FillAndExpand"
+			VerticalOptions="FillAndExpand"
+			ItemsSource="{Binding Options}"
+			SeparatorColor="{x:Static resources:ColorResources.LocatorSeparatorColorLight}"
+			ItemSelected="OnOptionSelected">
+			<common:CustomListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<views:SchedulerOptionsListItem />
+					</ViewCell>
+				</DataTemplate>
+			</common:CustomListView.ItemTemplate>
+
+			<!-- Remove trailing lines. -->
+			<common:CustomListView.Footer>
+				<ContentView HeightRequest="0" />
+			</common:CustomListView.Footer>
+		</common:CustomListView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" Grid.RowSpan="4" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="5" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>

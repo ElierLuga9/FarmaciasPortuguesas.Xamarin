@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+  xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+  xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+  xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+  x:Class="ANFAPP.Views.MedicineListItem">
+
+	<ContentView.Content>
+
+		<Grid HeightRequest="78"
+			Grid.RowSpacing="0" Grid.ColumnSpacing="15"
+			HorizontalOptions="FillAndExpand"
+			VerticalOptions="FillAndExpand"
+			BackgroundColor="White">
+
+			<Grid.RowDefinitions>
+				<!-- Top Margin -->
+				<RowDefinition Height="12" />
+				<!-- Description Row -->
+				<RowDefinition Height="*" />
+				<!-- Medicine Row -->
+				<RowDefinition Height="*" />
+				<!-- Next Dosage Row -->
+				<RowDefinition Height="*" />
+				<!-- Bottom Margin -->
+				<RowDefinition Height="12" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<!-- Left Margin -->
+				<ColumnDefinition Width="0" />
+				<!-- Icon -->
+				<ColumnDefinition Width="auto" />
+				<!-- Labels -->
+				<ColumnDefinition Width="*" />
+				<!-- Delete Button -->
+				<ColumnDefinition Width="35" />
+				<!-- Right Margin -->
+				<ColumnDefinition Width="0" />
+			</Grid.ColumnDefinitions>
+
+			<!-- Icon -->
+			<common:CustomImage WidthRequest="22" HeightRequest="22"
+				Grid.Row="1" Grid.RowSpan="2" Grid.Column="1"
+				VerticalOptions="Start"
+				HorizontalOptions="Start"
+				Source="ic_medicine_list" />
+
+			<!-- ANF Logo -->
+			<common:CustomImage WidthRequest="16" HeightRequest="16"
+				Grid.Row="2" Grid.RowSpan="2" Grid.Column="1"
+				HorizontalOptions="Start"
+				VerticalOptions="End"
+				Source="ic_dosing_schedule_anf_item"         
+				IsVisible="{Binding HasScheduleSentByPharmacy}" />
+
+			<!-- Name -->
+			<common:CustomLabel Grid.Row="1" Grid.Column="2"
+				FontSize="15"
+				HorizontalOptions="Start"
+				VerticalOptions="Center"
+				InputTransparent="True"
+				CustomMargin="0, -5, 0, 0"
+				LineBreakMode="TailTruncation"
+				TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				Text="{Binding Name}" />
+
+			<!-- Medicine Label -->
+			<common:CustomLabel Grid.Row="2" Grid.Column="2"
+				FontSize="12"
+				HorizontalOptions="Start"
+				VerticalOptions="Center"
+				InputTransparent="True"
+				TextColor="{x:Static resources:ColorResources.TextColorGrey}"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				Text="{Binding Description}" />
+
+			<!-- Schedules -->
+			<common:CustomLabel Grid.Row="3" Grid.Column="2"
+				FontSize="12"
+				VerticalOptions="Center"
+				InputTransparent="True"
+				TextColor="{Binding ScheduledCount, Converter={x:Static converters:ConverterResources.MedicineListTextColor}}"
+				CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+				Text="{Binding ScheduledCount, StringFormat='{0} Planos de Tomas',Converter={x:Static converters:ConverterResources.ZeroToNone} }" />
+
+			<!-- Delete Icon -->
+			<common:CustomImage WidthRequest="19" HeightRequest="23"
+				Grid.Row="1" Grid.RowSpan="3" Grid.Column="3"
+				HorizontalOptions="End"
+				VerticalOptions="End"
+				Source="bt_trashbin2.png" />
+			
+			<!-- Delete Button -->
+			<common:CustomButton Grid.RowSpan="5" Grid.Column="3" Grid.ColumnSpan="2"
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="FillAndExpand"
+				Clicked="OnDeleteMedicineButtonClicked"
+				BackgroundColor="Transparent" />
+
+			<!-- Separator -->
+			<Grid Grid.Row="4" Grid.ColumnSpan="5"
+				HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand">
+				<BoxView HorizontalOptions="FillAndExpand" HeightRequest="1"
+					Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+			</Grid>
+		</Grid>
+
+	</ContentView.Content>
+</ContentView>

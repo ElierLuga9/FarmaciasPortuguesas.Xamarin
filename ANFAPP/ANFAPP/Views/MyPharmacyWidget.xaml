@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Views.MyPharmacyWidget">
+
+	<ContentView.Content>
+		<StackLayout Orientation="Vertical">
+			<!-- The user has a pharmacy. -->
+			<Grid RowSpacing="0" ColumnSpacing="8" Padding="15, 0"
+				IsVisible="{Binding Pharmacy, Converter={x:Static converters:ConverterResources.NotNullable}"
+				HeightRequest="{x:Static resources:DimenResources.PharmacyWidgetHeight}"
+				BackgroundColor="White">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition Width="auto" />
+				</Grid.ColumnDefinitions>
+
+				<StackLayout Spacing="0"
+					Orientation="Vertical"
+					HorizontalOptions="Start"
+					VerticalOptions="Center" 
+					BackgroundColor="Transparent">
+					
+					<StackLayout.GestureRecognizers>
+						<TapGestureRecognizer Tapped="OnPharmacyButtonClicked"/>
+					</StackLayout.GestureRecognizers>
+					
+					<!-- Top label -->
+					<common:CustomLabel 
+						HorizontalOptions="Start"
+						VerticalOptions="Start"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						FontSize="12"
+						TextColor="#8c8c8c"
+						Text="A minha farmácia" />
+
+					<common:CustomLabel
+						FontSize="19"
+						XAlign="Start"
+						WidthRequest="136"
+						VerticalOptions="StartAndExpand"
+						HorizontalOptions="Start"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						Text="{Binding Pharmacy.Name}" />
+				</StackLayout>
+
+				<!-- Arrow -->
+				<common:CustomImage Grid.Column="1"
+					WidthRequest="6" HeightRequest="10"
+					VerticalOptions="Center"
+					HorizontalOptions="Start"
+					Source="ic_button_arrow_black" />
+				
+        		<!-- Call button -->
+				<StackLayout Grid.Column="3" Spacing="4"
+					Orientation="Vertical"
+					HorizontalOptions="Start"
+					VerticalOptions="Center">
+
+					<StackLayout.GestureRecognizers>
+						<TapGestureRecognizer Tapped="OnCallButtonClicked"/>
+					</StackLayout.GestureRecognizers>
+
+					<common:CustomImage
+        				Source="ic_button_pcall"
+        				HorizontalOptions="Center" />
+					
+					<common:CustomLabel 
+						HorizontalOptions="Center"
+						FontSize="12"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						Text="{Binding Pharmacy.Phone}" />
+				</StackLayout>
+				
+        		<!-- Map button (http://issue.innovagency.com/view.php?id=20584) -->
+				<StackLayout Grid.Column="4" Spacing="4"
+					WidthRequest="68"
+					Orientation="Vertical"
+					HorizontalOptions="Start"
+					VerticalOptions="Center">
+
+					<StackLayout.GestureRecognizers>
+						<TapGestureRecognizer Tapped="OnMapButtonClicked"/>
+					</StackLayout.GestureRecognizers>
+
+					<common:CustomImage
+        				Source="ic_button_pgoto"
+        				HorizontalOptions="Center" />
+
+					<common:CustomLabel
+        				HorizontalOptions="Center"
+						FontSize="11"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+        				TextColor="{x:Static resources:ColorResources.TextColorDark}"
+        				Text="Ver no Mapa" />
+				</StackLayout>
+			</Grid>
+
+			<!-- No pharmacy is selected -->
+			<StackLayout Orientation="Horizontal" 
+				IsVisible="{Binding Pharmacy, Converter={x:Static converters:ConverterResources.Nullable}"
+				BackgroundColor="Transparent"
+				Padding="15, 0"
+				HeightRequest="64">
+				<common:CustomLabel
+					InputTransparent="True"
+        			VerticalOptions="CenterAndExpand"
+        			HorizontalOptions="Start"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"                          
+        			FontSize="20"
+        			TextColor="{x:Static resources:ColorResources.TextColorDark}"
+        			Text="Escolha a sua Farmácia" />
+
+        		<common:CustomImage
+        			InputTransparent="True"
+					WidthRequest="6" HeightRequest="10"
+					VerticalOptions="Center"
+					HorizontalOptions="Start"
+					Source="ic_button_arrow_black" />
+
+				<StackLayout.GestureRecognizers>
+        			<TapGestureRecognizer Tapped="OnSelectPharmacyButtonClicked"/>
+      			</StackLayout.GestureRecognizers>
+			</StackLayout>
+		</StackLayout>
+	</ContentView.Content>
+</ContentView>

@@ -1,0 +1,834 @@
+<<<<<<< HEAD
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.Store.Checkout.CheckoutDeliveryMethodPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Page -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Basket Items -->
+		<ScrollView Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+
+			<Grid RowSpacing="20" Padding="15">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="auto" />
+					<RowDefinition Height="auto" />
+					<RowDefinition Height="auto" />
+					<RowDefinition Height="auto" />
+				</Grid.RowDefinitions>
+
+				<!-- Title -->
+				<common:CustomLabel
+					FontSize="17"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					Text="{x:Static app:AppResources.CheckoutDeliveryMethodTitleLabel}" />
+
+				<!-- Mode Picker -->
+				<StackLayout Grid.Row="1"
+					Orientation="Horizontal" Spacing="10" HorizontalOptions="Fill">
+
+					<StackLayout.GestureRecognizers>
+						<TapGestureRecognizer Tapped="OnDeliveryModeToggleClicked" />
+					</StackLayout.GestureRecognizers>
+
+					<!-- Pharmacy Pickup Label -->
+					<common:CustomLabel						
+						FontSize="16"
+						InputTransparent="True"
+						VerticalOptions="Center"
+						HorizontalOptions="Start"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						Text="{x:Static app:AppResources.CheckoutDeliveryModePharmacyLabel}" />
+
+					<!-- Toggle -->
+					<common:Toggler WidthRequest="45" HeightRequest="30"
+						IsEnabled="False"
+						InputTransparent="True"
+						VerticalOptions="Center"
+						State="{Binding IsHomeDelivery}" />
+
+					<!-- Home Delivery Label -->
+					<common:CustomLabel
+						FontSize="16"
+						InputTransparent="True"
+						VerticalOptions="Center"
+						HorizontalOptions="Start"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						Text="{x:Static app:AppResources.CheckoutDeliveryModeHouseLabel}" />
+
+				</StackLayout>
+
+				<!-- Mode Picker Disabled Overlay -->
+				<Grid Grid.Row="1" BackgroundColor="White" Opacity="0.6" HorizontalOptions="FillAndExpand" 
+					IsVisible="{Binding HasHomeDelivery, Converter={x:Static converters:ConverterResources.InverseBool}}"/>
+
+				<!-- Mode Panel -->
+				<Grid Grid.Row="2" HorizontalOptions="Fill">
+
+					<!-- Pharmacy Pickup Panel -->
+					<common:CustomLabel
+						FontSize="15"
+						HorizontalOptions="Start"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						Text="{Binding AvailabilityText}"
+						IsVisible="{Binding IsHomeDelivery, Converter={x:Static converters:ConverterResources.InverseBool}"/>
+
+					<!-- Home Delivery Panel -->
+					<StackLayout HorizontalOptions="Fill" Orientation="Vertical"
+						Spacing="15" IsVisible="{Binding IsHomeDelivery}" >
+
+						<!-- Postage Info -->
+						<common:CustomLabel
+							IsVisible="{Binding Basket.HasPostageValue}"
+							FontSize="13"
+							HorizontalOptions="Start"
+							TextColor="{x:Static resources:ColorResources.TextColorDark}"
+							CustomFont="{x:Static resources:FontResources.RegularFont}"
+							Text="{Binding Basket.PostageValueDescription, StringFormat='(Portes: {0})'}" />
+
+						<!-- BO observations -->
+						<StackLayout HorizontalOptions="Fill" Orientation="Vertical" Spacing="1" 
+							IsVisible="{Binding Basket.BOInfo, Converter={x:Static converters:ConverterResources.HasElements}}">
+							<common:CustomLabel
+								FontSize="15"
+								Text="Observações sobre a Entrega"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}"
+								CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+							<common:CustomLabel
+								FontSize="13"
+								HorizontalOptions="Start"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}"
+								CustomFont="{x:Static resources:FontResources.RegularFont}"
+								Text="{Binding Basket.BOInfo}" />
+						</StackLayout>
+						<!-- Introdutory Text -->
+						<common:CustomLabel
+							IsVisible="{Binding ShowPhotoInput}"
+							FontSize="13"
+							HorizontalOptions="Start"
+							TextColor="{x:Static resources:ColorResources.TextColorDark}"
+							CustomFont="{x:Static resources:FontResources.RegularFont}"
+							Text="{x:Static app:AppResources.CheckoutHomeDeliveryDisclamer}" />
+
+						<!-- Photo Input Layouts -->
+						<StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Spacing="5" x:Name="PhotoInput" IsVisible="{Binding ShowPhotoInput}">
+
+							<!-- Take Photo Button -->
+							<Grid HeightRequest="40">
+								<common:CustomButton BackgroundColor="White"
+									BorderColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+									Clicked="OnTakeRecipePhotoButtonClicked"
+									HorizontalOptions="FillAndExpand"
+									BorderWidth="1"
+									BorderRadius="2" />
+
+								<StackLayout Orientation="Horizontal" Spacing="10" Padding="10, 0"
+									HorizontalOptions="Start"
+									InputTransparent="True"
+									VerticalOptions="FillAndExpand">
+
+									<common:CustomImage
+										Source="ic_photo.png"
+										VerticalOptions="Center"
+										InputTransparent="True" />
+
+									<common:CustomLabel
+										FontSize="15"
+										InputTransparent="True"
+										VerticalOptions="Center"
+										TextColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+										CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+										Text="{x:Static app:AppResources.CheckoutDeliveryRecipePhotoButton}" />
+
+								</StackLayout>
+							</Grid>
+
+							<!-- Recipe Filelist -->
+							<common:ANFRepeaterView ItemsSource="{Binding RecipeFiles}" Spacing="5">
+								<common:ANFRepeaterView.ItemTemplate>
+									<DataTemplate>
+										<ViewCell>
+											<Grid Padding="15, 0"
+												HeightRequest="40"
+												Grid.RowSpacing="10"
+												HorizontalOptions="Fill"
+												BackgroundColor="{x:Static resources:ColorResources.ANFPaleGrey}">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="*" />
+													<ColumnDefinition Width="auto" />
+												</Grid.ColumnDefinitions>
+
+												<!-- Filename -->
+												<common:CustomLabel
+													FontSize="15"
+													HorizontalOptions="Start"
+													VerticalOptions="Center"
+													TextColor="{x:Static resources:ColorResources.TextColorDark}"
+													CustomFont="{x:Static resources:FontResources.RegularFont}"
+													Text="{Binding Filename}" />
+
+												<!-- Close Button -->
+												<common:CustomButton Grid.Column="1"
+													WidthRequest="30"
+													HorizontalOptions="End"
+													VerticalOptions="Center"
+													Image="ic_remove_cross.png"
+													Clicked="OnPhotoRemoveButtonClicked"
+													BackgroundColor="Transparent" />
+											</Grid>
+										</ViewCell>
+									</DataTemplate>
+								</common:ANFRepeaterView.ItemTemplate>
+							</common:ANFRepeaterView>
+						</StackLayout>
+
+						<!-- Address -->
+						<StackLayout Spacing="7" Orientation="Vertical">
+
+							<!-- Label -->
+							<common:CustomLabel
+								FontSize="15"
+								Text="{x:Static app:AppResources.CheckoutDeliveryAddressLabel}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}"
+								CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+							<!-- Input -->
+							<common:CustomEntry HeightRequest="40"
+								HorizontalOptions="FillAndExpand"
+								FontSize="15"
+								CustomPadding="10, 0"
+								BackgroundResource="bg_input.png"
+								Text="{Binding Address, Mode=TwoWay}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}"
+								CustomFont="{x:Static resources:FontResources.RegularFont}" />
+						</StackLayout>
+
+						<!-- Postal Code -->
+						<Grid Grid.ColumnSpacing="10" Grid.RowSpacing="7">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="auto" />
+								<RowDefinition Height="auto" />
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="112"/>
+								<ColumnDefinition Width="80"/>
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+
+							<!-- Label -->
+							<common:CustomLabel
+								FontSize="15"
+								Text="{x:Static app:AppResources.CheckoutDeliveryPostalCodeLabel}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}"
+								CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+							<!-- 4 Digits -->
+							<common:CustomEntry Grid.Row="1" HeightRequest="40"
+								HorizontalOptions="FillAndExpand"
+								FontSize="15"
+								MaxLength="4"
+								Keyboard="Numeric"
+								CustomPadding="10, 0"
+								BackgroundResource="bg_input.png"
+								Text="{Binding PostalCode4, Mode=TwoWay}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}"
+								CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+							<!-- 3 Digits -->
+							<common:CustomEntry Grid.Column="1" Grid.Row="1" HeightRequest="40"
+								HorizontalOptions="FillAndExpand"
+								FontSize="15"
+								MaxLength="3"
+								Keyboard="Numeric"
+								CustomPadding="10, 0"
+								BackgroundResource="bg_input.png"
+								Text="{Binding PostalCode3, Mode=TwoWay}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}"
+								CustomFont="{x:Static resources:FontResources.RegularFont}" />
+						</Grid>
+
+						<!-- Location -->
+						<StackLayout Spacing="7" Orientation="Vertical">
+
+							<!-- Label -->
+							<common:CustomLabel
+								FontSize="15"
+								Text="{x:Static app:AppResources.CheckoutDeliveryLocaleLabel}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}"
+								CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+							<!-- Input -->
+							<common:CustomEntry HeightRequest="40"
+								HorizontalOptions="FillAndExpand"
+								FontSize="15"
+								CustomPadding="10, 0"
+								BackgroundResource="bg_input.png"
+								Text="{Binding Location, Mode=TwoWay}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}"
+								CustomFont="{x:Static resources:FontResources.RegularFont}" />
+						</StackLayout>
+					</StackLayout>
+				</Grid>
+
+				<!-- Confirm Button -->
+				<Frame Grid.Row="3" HasShadow="False" Padding="0, 10, 0, 0">
+					<common:CustomButton HeightRequest="40"
+						HorizontalOptions="FillAndExpand"
+						FontSize="15"
+						BorderRadius="2"
+						Clicked="OnConfirmButtonClicked"
+						Text="{x:Static app:AppResources.CheckoutDeliveryMethodConfirmButton}"
+						TextColor="{x:Static resources:ColorResources.TextColorLight}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						BackgroundColor="{x:Static resources:ColorResources.ANFDarkOrange}" />
+				</Frame>
+			</Grid>
+		</ScrollView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>
+=======
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.Store.Checkout.CheckoutDeliveryMethodPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Page -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Basket Items -->
+		<ScrollView Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+
+			<Grid RowSpacing="20" Padding="15">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="auto" />
+					<RowDefinition Height="auto" />
+					<RowDefinition Height="auto" />
+					<RowDefinition Height="auto" />
+					<RowDefinition Height="auto" />
+					<RowDefinition Height="auto" />
+				</Grid.RowDefinitions>
+
+				<!-- Title -->
+				<common:CustomLabel
+					FontSize="17"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.BoldFont}"
+					Text="{x:Static app:AppResources.CheckoutDeliveryMethodTitleLabel}" />
+
+				<!-- Mode Picker -->
+				<StackLayout Grid.Row="1"
+					Orientation="Horizontal" Spacing="10" HorizontalOptions="Fill">
+
+					<StackLayout.GestureRecognizers>
+						<TapGestureRecognizer Tapped="OnDeliveryModeToggleClicked" />
+					</StackLayout.GestureRecognizers>
+
+					<!-- Pharmacy Pickup Label -->
+					<common:CustomLabel						
+						FontSize="16"
+						InputTransparent="True"
+						VerticalOptions="Center"
+						HorizontalOptions="Start"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						Text="{x:Static app:AppResources.CheckoutDeliveryModePharmacyLabel}" />
+
+					<!-- Toggle -->
+					<common:Toggler WidthRequest="45" HeightRequest="30"
+						IsEnabled="False"
+						InputTransparent="True"
+						VerticalOptions="Center"
+						State="{Binding IsHomeDelivery}" />
+
+					<!-- Home Delivery Label -->
+					<common:CustomLabel
+						FontSize="16"
+						InputTransparent="True"
+						VerticalOptions="Center"
+						HorizontalOptions="Start"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						Text="{x:Static app:AppResources.CheckoutDeliveryModeHouseLabel}" />
+
+				</StackLayout>
+
+				<!-- Mode Picker Disabled Overlay -->
+				<Grid Grid.Row="1" BackgroundColor="White" Opacity="0.6" HorizontalOptions="FillAndExpand" 
+					IsVisible="{Binding HasHomeDelivery, Converter={x:Static converters:ConverterResources.InverseBool}}"/>
+
+				<!-- Mode Panel -->
+				<Grid Grid.Row="2" HorizontalOptions="Fill">
+
+					<!-- Pharmacy Pickup Panel -->
+					<common:CustomLabel
+						FontSize="15"
+						HorizontalOptions="Start"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						Text="{Binding AvailabilityText}"
+						IsVisible="{Binding IsHomeDelivery, Converter={x:Static converters:ConverterResources.InverseBool}"/>
+
+					<!-- Home Delivery Panel -->
+					<StackLayout HorizontalOptions="Fill" Orientation="Vertical"
+						Spacing="15" IsVisible="{Binding IsHomeDelivery}" >
+
+						<!-- Postage Info -->
+						<common:CustomLabel
+							IsVisible="{Binding Basket.HasPostageValue}"
+							FontSize="13"
+							HorizontalOptions="Start"
+							TextColor="{x:Static resources:ColorResources.TextColorDark}"
+							CustomFont="{x:Static resources:FontResources.RegularFont}"
+							Text="{Binding Basket.PostageValueDescription, StringFormat='(Portes: {0})'}" />
+
+						<!-- BO observations -->
+						<StackLayout HorizontalOptions="Fill" Orientation="Vertical" Spacing="1" 
+							IsVisible="{Binding Basket.BOInfo, Converter={x:Static converters:ConverterResources.HasElements}}">
+							<common:CustomLabel
+								FontSize="15"
+								Text="Observações sobre a Entrega"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}"
+								CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+							<common:CustomLabel
+								FontSize="13"
+								HorizontalOptions="Start"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}"
+								CustomFont="{x:Static resources:FontResources.RegularFont}"
+								Text="{Binding Basket.BOInfo}" />
+						</StackLayout>
+						<!-- Introdutory Text -->
+						<common:CustomLabel
+							IsVisible="{Binding ShowPhotoInput}"
+							FontSize="13"
+							HorizontalOptions="Start"
+							TextColor="{x:Static resources:ColorResources.TextColorDark}"
+							CustomFont="{x:Static resources:FontResources.RegularFont}"
+							Text="{x:Static app:AppResources.CheckoutHomeDeliveryDisclamer}" />
+
+						<!-- Photo Input Layouts -->
+						<StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Spacing="5" x:Name="PhotoInput" IsVisible="{Binding ShowPhotoInput}">
+
+							<!-- Take Photo Button -->
+							<Grid HeightRequest="40">
+								<common:CustomButton BackgroundColor="White"
+									BorderColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+									Clicked="OnTakeRecipePhotoButtonClicked"
+									HorizontalOptions="FillAndExpand"
+									BorderWidth="1"
+									BorderRadius="2" />
+
+								<StackLayout Orientation="Horizontal" Spacing="10" Padding="10, 0"
+									HorizontalOptions="Start"
+									InputTransparent="True"
+									VerticalOptions="FillAndExpand">
+
+									<common:CustomImage
+										Source="ic_photo.png"
+										VerticalOptions="Center"
+										InputTransparent="True" />
+
+									<common:CustomLabel
+										FontSize="15"
+										InputTransparent="True"
+										VerticalOptions="Center"
+										TextColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+										CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+										Text="{x:Static app:AppResources.CheckoutDeliveryRecipePhotoButton}" />
+
+								</StackLayout>
+							</Grid>
+
+							<!-- Recipe Filelist -->
+							<common:ANFRepeaterView ItemsSource="{Binding RecipeFiles}" Spacing="5">
+								<common:ANFRepeaterView.ItemTemplate>
+									<DataTemplate>
+										<ViewCell>
+											<Grid Padding="15, 0"
+												HeightRequest="40"
+												Grid.RowSpacing="10"
+												HorizontalOptions="Fill"
+												BackgroundColor="{x:Static resources:ColorResources.ANFPaleGrey}">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="*" />
+													<ColumnDefinition Width="auto" />
+												</Grid.ColumnDefinitions>
+
+												<!-- Filename -->
+												<common:CustomLabel
+													FontSize="15"
+													HorizontalOptions="Start"
+													VerticalOptions="Center"
+													TextColor="{x:Static resources:ColorResources.TextColorDark}"
+													CustomFont="{x:Static resources:FontResources.RegularFont}"
+													Text="{Binding Filename}" />
+
+												<!-- Close Button -->
+												<common:CustomButton Grid.Column="1"
+													WidthRequest="30"
+													HorizontalOptions="End"
+													VerticalOptions="Center"
+													Image="ic_remove_cross.png"
+													Clicked="OnPhotoRemoveButtonClicked"
+													BackgroundColor="Transparent" />
+											</Grid>
+										</ViewCell>
+									</DataTemplate>
+								</common:ANFRepeaterView.ItemTemplate>
+							</common:ANFRepeaterView>
+						</StackLayout>
+						<common:CustomLabel
+									FontSize="17"
+									Text="Morada de Entrega"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									CustomFont="{x:Static resources:FontResources.BoldFont}" />
+						<StackLayout x:Name="AdressShortInfo" IsVisible="true">
+							
+							<Grid RowSpacing="0">
+								<Grid.RowDefinitions>
+									<RowDefinition Height="auto"/>
+									<RowDefinition Height="auto"/>
+									<RowDefinition Height="auto"/>
+
+								</Grid.RowDefinitions>
+								<!-- Label -->
+								<common:CustomLabel Grid.Row="1"
+									FontSize="15"
+									Text="{Binding Address}"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+								<!-- Label -->
+
+								<Grid ColumnSpacing="0" Grid.Row="2">
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="auto"/>
+										<ColumnDefinition Width="auto"/>
+										<ColumnDefinition Width="auto"/>
+										<ColumnDefinition Width="auto"/>
+
+									</Grid.ColumnDefinitions>
+									<!-- Cod Postal 4 digitos -->
+									<common:CustomLabel Grid.Column="0"
+										FontSize="15"
+										Text="{Binding PostalCode4}"
+										TextColor="{x:Static resources:ColorResources.TextColorDark}"
+										CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+									
+									<!-- Separador Cod Postal -->
+									<common:CustomLabel Grid.Column="1"
+										FontSize="15"
+										Text="-"
+										TextColor="{x:Static resources:ColorResources.TextColorDark}"
+										CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+									<!-- Cod Postal 3 digitos -->
+									<common:CustomLabel Grid.Column="2"
+										FontSize="15"
+										Text="{Binding PostalCode3}"
+										TextColor="{x:Static resources:ColorResources.TextColorDark}"
+										CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+									<!-- Localidade -->
+									<common:CustomLabel Grid.Column="3"
+										FontSize="15"
+										Text="{Binding Location}"
+										TextColor="{x:Static resources:ColorResources.TextColorDark}"
+										CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+								</Grid>
+								<common:CustomLabel Grid.Row="3"
+										FontSize="16"
+										Text="ALTERAR"
+										IsUnderline="true"
+										TextColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+										CustomFont="{x:Static resources:FontResources.SemiBoldFont}" >
+
+										<common:CustomLabel.GestureRecognizers>
+										        <TapGestureRecognizer
+										                Tapped="OnChangeAdressDataTapped"
+										                />
+										</common:CustomLabel.GestureRecognizers>
+								</common:CustomLabel>
+								
+
+
+							</Grid>
+						</StackLayout>
+						<StackLayout IsVisible="false" x:Name="AdressEditMode">
+							<!-- Address -->
+							<StackLayout Spacing="7" Orientation="Vertical">
+
+								<!-- Label -->
+								<common:CustomLabel
+									FontSize="15"
+									Text="{x:Static app:AppResources.CheckoutDeliveryAddressLabel}"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+								<!-- Input -->
+								<common:CustomEntry HeightRequest="40"
+									HorizontalOptions="FillAndExpand"
+									FontSize="15"
+									x:Name="xAdress"
+									CustomPadding="10, 0"
+									BackgroundResource="bg_input.png"
+									Text="{Binding Address, Mode=TwoWay}"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									CustomFont="{x:Static resources:FontResources.RegularFont}" />
+							</StackLayout>
+
+							<!-- Postal Code -->
+							<Grid Grid.ColumnSpacing="10" Grid.RowSpacing="7">
+								<Grid.RowDefinitions>
+									<RowDefinition Height="auto" />
+									<RowDefinition Height="auto" />
+								</Grid.RowDefinitions>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="112"/>
+									<ColumnDefinition Width="80"/>
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- Label -->
+								<common:CustomLabel
+									FontSize="15"
+									Text="{x:Static app:AppResources.CheckoutDeliveryPostalCodeLabel}"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+								<!-- 4 Digits -->
+								<common:CustomEntry Grid.Row="1" HeightRequest="40"
+									HorizontalOptions="FillAndExpand"
+									FontSize="15"
+									MaxLength="4"
+									Keyboard="Numeric"
+									x:Name="xPostalCode4"
+									CustomPadding="10, 0"
+									BackgroundResource="bg_input.png"
+									Text="{Binding PostalCode4, Mode=TwoWay}"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+								<!-- 3 Digits -->
+								<common:CustomEntry Grid.Column="1" Grid.Row="1" HeightRequest="40"
+									HorizontalOptions="FillAndExpand"
+									FontSize="15"
+									MaxLength="3"
+									Keyboard="Numeric"
+									CustomPadding="10, 0"
+									BackgroundResource="bg_input.png"
+									Text="{Binding PostalCode3, Mode=TwoWay}"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									CustomFont="{x:Static resources:FontResources.RegularFont}" />
+							</Grid>
+
+							<!-- Location -->
+							<StackLayout Spacing="7" Orientation="Vertical">
+
+								<!-- Label -->
+								<common:CustomLabel
+									FontSize="15"
+									Text="{x:Static app:AppResources.CheckoutDeliveryLocaleLabel}"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+								<!-- Input -->
+								<common:CustomEntry HeightRequest="40"
+									HorizontalOptions="FillAndExpand"
+									FontSize="15"
+									CustomPadding="10, 0"
+									x:Name="xLocation"
+
+									BackgroundResource="bg_input.png"
+									Text="{Binding Location, Mode=TwoWay}"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									CustomFont="{x:Static resources:FontResources.RegularFont}" />
+							</StackLayout>
+						</StackLayout>
+					</StackLayout>
+				</Grid>
+
+				<!-- Phone -->
+				<Grid Grid.Row="3" RowSpacing="2">
+				    <Grid.RowDefinitions>
+						<RowDefinition Height="auto" />
+						<RowDefinition Height="auto" />
+					</Grid.RowDefinitions>
+					
+					<StackLayout Grid.Row="1" Padding="0,0,0,10">
+						<common:CustomLabel
+						FontSize="17"
+						Text="Telefone"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.BoldFont}" />
+					</StackLayout>
+					
+
+					<!-- Input -->
+					<common:CustomEntry Grid.Row="2" HeightRequest="40"
+						HorizontalOptions="FillAndExpand"
+						FontSize="15"
+						MaxLength="9"
+						Keyboard="Numeric"
+						CustomPadding="10, 0"
+							x:Name="xPhone"
+						BackgroundResource="bg_input.png"
+						Text="{Binding Phone, Mode=TwoWay}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}" />
+				</Grid>
+
+
+				<StackLayout  x:Name="BilingDataEditMode" Orientation="Vertical" IsVisible="false" Grid.Row="4">
+					<!-- Title -->
+					<common:CustomLabel 
+						FontSize="17"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.BoldFont}"
+						Text="{x:Static app:AppResources.CheckoutBillingDataTitleLabel}" />
+
+					
+					<!-- Name -->
+					<StackLayout Spacing="5" Orientation="Vertical">
+
+						<!-- Label -->
+						<common:CustomLabel
+							FontSize="15"
+							Text="{x:Static app:AppResources.CheckoutBillingNameLabel}"
+							TextColor="{x:Static resources:ColorResources.TextColorDark}"
+							CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+						<!-- Input -->
+						<common:CustomEntry HeightRequest="40"
+							HorizontalOptions="FillAndExpand"
+							FontSize="15"
+							CustomPadding="10, 0"
+							x:Name="xBindingName"
+							BackgroundResource="bg_input.png"
+							Text="{Binding Name, Mode=TwoWay}"
+							TextColor="{x:Static resources:ColorResources.TextColorDark}"
+							CustomFont="{x:Static resources:FontResources.RegularFont}" />
+					</StackLayout>
+
+					<!-- NIF -->
+					<StackLayout Spacing="7" Orientation="Vertical">
+
+						<!-- Label -->
+						<common:CustomLabel
+							FontSize="15"
+							Text="{x:Static app:AppResources.CheckoutBillingNIFLabel}"
+							TextColor="{x:Static resources:ColorResources.TextColorDark}"
+							CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+						<!-- Input -->
+						<common:CustomEntry HeightRequest="40"
+							HorizontalOptions="FillAndExpand"
+							FontSize="15"
+							MaxLength="9"
+							Keyboard="Numeric"
+							CustomPadding="10, 0"
+							x:Name="xBindingNIF"
+							BackgroundResource="bg_input.png"
+							Text="{Binding NIF, Mode=TwoWay}"
+							TextColor="{x:Static resources:ColorResources.TextColorDark}"
+							CustomFont="{x:Static resources:FontResources.RegularFont}" />
+					</StackLayout>
+
+
+				</StackLayout>
+				<!-- Confirm Button -->
+				<Frame Grid.Row="5" HasShadow="False" Padding="0, 10, 0, 0">
+					<common:CustomButton HeightRequest="40"
+						HorizontalOptions="FillAndExpand"
+						FontSize="15"
+						BorderRadius="2"
+						Clicked="OnConfirmButtonClicked"
+						Text="{x:Static app:AppResources.CheckoutDeliveryMethodConfirmButton}"
+						TextColor="{x:Static resources:ColorResources.TextColorLight}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						BackgroundColor="{x:Static resources:ColorResources.ANFDarkOrange}" />
+				</Frame>
+			</Grid>
+		</ScrollView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</ANFPage>
+>>>>>>> maintenance_phase5_azure_notification

@@ -1,0 +1,450 @@
+<<<<<<< HEAD
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.Store.Checkout.CheckoutPayReservationRatePage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Page -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Items -->
+		<ScrollView Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+
+			<StackLayout Orientation="Vertical">
+
+				<!-- Title -->
+				<ContentView Padding="15, 20">
+					<common:CustomLabel
+						FontSize="17"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						Text="{x:Static app:AppResources.CheckoutReservationTaxTitle}" />
+				</ContentView>
+
+				<!-- Disclaimer Text -->
+				<Grid Padding="15, 0, 15, 15">
+					<common:CustomLabel
+						FontSize="13"
+						HorizontalOptions="Start"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						Text="{Binding Basket.ReservationParams.ReservationTaxDisclaimer}" />
+				</Grid>
+
+				<!-- Ammount to pay -->
+				<Grid HorizontalOptions="Fill" VerticalOptions="Fill">
+
+					<!-- Background - because.. xamarin -->
+					<BoxView HorizontalOptions="Fill" VerticalOptions="Fill"
+						Color="{x:Static resources:ColorResources.ANFPaleGrey}" />
+
+					<!-- Totals -->
+					<StackLayout Orientation="Vertical"
+						BindingContext="{Binding Basket.ReservationParams}"
+						HorizontalOptions="Fill" VerticalOptions="Center"
+						Padding="15, 10" Spacing="0">
+
+						<Grid RowSpacing="0" ColumnSpacing="2">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="120" />
+								<ColumnDefinition Width="100" />
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<!-- Total -->
+								<RowDefinition Height="auto" />
+							</Grid.RowDefinitions>
+							
+							<!-- Total Amount -->
+							<common:CustomLabel Grid.Column="1"
+								FontSize="20"
+								HorizontalOptions="End"
+								VerticalOptions="Center"
+								Text="Total:"
+								CustomFont="{x:Static resources:FontResources.RegularFont}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+							<common:CustomLabel Grid.Column="2"
+								FontSize="20"
+								HorizontalOptions="End"
+								VerticalOptions="Center"
+								Text="{Binding ValueDescription}"
+								CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+						</Grid>
+
+					</StackLayout>
+				</Grid>
+
+				<!-- Additional space -->
+				<ContentView HeightRequest="30" />
+
+				<!-- Separator -->
+				<BoxView HeightRequest="1" HorizontalOptions="Fill" Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+
+				<!-- Hi-Pay -->
+				<Grid x:Name="HiPay" RowSpacing="0" ColumnSpacing="0"
+					HeightRequest="55" 
+					HorizontalOptions="Fill"
+					IsVisible="False">
+					<Grid.ColumnDefinitions>
+						<!-- Spacing -->
+						<ColumnDefinition Width="15" />
+						<!-- Image -->
+						<ColumnDefinition Width="60" />
+						<!-- Content -->
+						<ColumnDefinition Width="*" />
+						<!-- Spacing -->
+						<ColumnDefinition Width="15" />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>						
+						<RowDefinition Height="54" />
+						<!-- Separator -->
+						<RowDefinition Height="1" />
+					</Grid.RowDefinitions>
+
+					<!-- Visa Logo -->
+					<common:CustomImage Grid.Row="0" Grid.Column="1"
+						HorizontalOptions="Start"
+						VerticalOptions="Center"
+						Source="ic_visa_logo.png" />
+
+					<!-- Visa Indicator -->
+					<common:CustomImage Grid.Row="0" Grid.Column="2"
+						HorizontalOptions="End"
+						VerticalOptions="Center"
+						Source="ic_button_arrow_black.png" />
+
+					<!-- Visa Label -->
+					<common:CustomLabel x:Name="VisaLabel" Grid.Row="0" Grid.Column="2" 
+						FontSize="15"
+						HorizontalOptions="Start"
+						VerticalOptions="Center"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+
+					<!-- Visa Button -->
+					<common:CustomButton Grid.Row="0" Grid.ColumnSpan="4"
+						HorizontalOptions="Fill"
+						VerticalOptions="Fill"
+						BackgroundColor="Transparent"
+						Clicked="OnVISAButtonClicked" />
+
+					<!-- Separator -->
+					<BoxView Grid.Row="1" Grid.ColumnSpan="4"
+						HeightRequest="1"
+						HorizontalOptions="Fill"
+						Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+				</Grid>
+
+				<!-- MB -->
+				<Grid x:Name="MB" Grid.RowSpacing="0" Grid.ColumnSpacing="0" 
+					IsVisible="False"
+					HorizontalOptions="Fill">
+					<Grid.ColumnDefinitions>
+						<!-- Spacing -->
+						<ColumnDefinition Width="15" />
+						<!-- Content -->
+						<ColumnDefinition Width="*" />
+						<!-- Spacing -->
+						<ColumnDefinition Width="15" />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>						
+						<RowDefinition Height="54" />
+						<!-- Separator -->
+						<RowDefinition Height="1" />
+					</Grid.RowDefinitions>
+
+					<!-- MB Logo -->
+					<common:CustomImage Grid.Row="0" Grid.Column="1"
+						HorizontalOptions="Start"
+						VerticalOptions="Center"
+						Source="ic_atm_logo.png" />
+
+					<!-- MB Indicator -->
+					<common:CustomImage Grid.Row="0" Grid.Column="1"
+						HorizontalOptions="End"
+						VerticalOptions="Center"
+						Source="ic_button_arrow_black.png" />
+
+					<!-- MB Button -->
+					<common:CustomButton Grid.Row="0" Grid.ColumnSpan="3"
+						HorizontalOptions="Fill"
+						VerticalOptions="Fill"
+						BackgroundColor="Transparent"
+						Clicked="OnATMButtonClicked" />
+
+					<!-- Separator -->
+					<BoxView Grid.Row="1" Grid.ColumnSpan="3"
+						HeightRequest="1"
+						HorizontalOptions="Fill"
+						Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+				</Grid>
+
+			</StackLayout>
+		</ScrollView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>
+=======
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.Store.Checkout.CheckoutPayReservationRatePage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Page -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Items -->
+		<ScrollView Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+
+			<StackLayout Orientation="Vertical">
+
+				<!-- Title -->
+				<ContentView Padding="15, 20">
+					<common:CustomLabel
+						FontSize="17"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						Text="{x:Static app:AppResources.CheckoutReservationTaxTitle}" />
+				</ContentView>
+
+				<!-- Disclaimer Text -->
+				<Grid Padding="15, 0, 15, 15">
+					<common:CustomLabel
+						FontSize="13"
+						HorizontalOptions="Start"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						Text="{Binding Basket.ReservationParams.ReservationTaxDisclaimer}" />
+				</Grid>
+
+				<!-- Ammount to pay -->
+				<Grid HorizontalOptions="Fill" VerticalOptions="Fill">
+
+					<!-- Background - because.. xamarin -->
+					<BoxView HorizontalOptions="Fill" VerticalOptions="Fill"
+						Color="{x:Static resources:ColorResources.ANFPaleGrey}" />
+
+					<!-- Totals -->
+					<StackLayout Orientation="Vertical"
+						BindingContext="{Binding Basket.ReservationParams}"
+						HorizontalOptions="Fill" VerticalOptions="Center"
+						Padding="15, 10" Spacing="0">
+
+						<Grid RowSpacing="0" ColumnSpacing="2">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="120" />
+								<ColumnDefinition Width="100" />
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<!-- Total -->
+								<RowDefinition Height="auto" />
+							</Grid.RowDefinitions>
+							
+							<!-- Total Amount -->
+							<common:CustomLabel Grid.Column="1"
+								FontSize="20"
+								HorizontalOptions="End"
+								VerticalOptions="Center"
+								Text="Total:"
+								CustomFont="{x:Static resources:FontResources.RegularFont}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+							<common:CustomLabel Grid.Column="2"
+								FontSize="20"
+								HorizontalOptions="End"
+								VerticalOptions="Center"
+								Text="{Binding ValueDescription}"
+								CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+						</Grid>
+
+					</StackLayout>
+				</Grid>
+
+				<!-- Additional space -->
+				<ContentView HeightRequest="30" />
+
+				<!-- Separator -->
+				<BoxView HeightRequest="1" HorizontalOptions="Fill" Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+
+				<!-- Hi-Pay -->
+				<Grid x:Name="HiPay" RowSpacing="0" ColumnSpacing="0"
+					HeightRequest="55" 
+					HorizontalOptions="Fill"
+					IsVisible="False">
+					<Grid.ColumnDefinitions>
+						<!-- Spacing -->
+						<ColumnDefinition Width="15" />
+						<!-- Image -->
+						<ColumnDefinition Width="60" />
+						<!-- Content -->
+						<ColumnDefinition Width="*" />
+						<!-- Spacing -->
+						<ColumnDefinition Width="15" />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>						
+						<RowDefinition Height="54" />
+						<!-- Separator -->
+						<RowDefinition Height="1" />
+					</Grid.RowDefinitions>
+
+					<!-- Visa Logo -->
+					<common:CustomImage Grid.Row="0" Grid.Column="1"
+						HorizontalOptions="Start"
+						VerticalOptions="Center"
+						Source="ic_visa_logo.png" />
+
+					<!-- Visa Indicator -->
+					<common:CustomImage Grid.Row="0" Grid.Column="2"
+						HorizontalOptions="End"
+						VerticalOptions="Center"
+						Source="ic_button_arrow_black.png" />
+
+					<!-- Visa Label -->
+					<common:CustomLabel x:Name="VisaLabel" Grid.Row="0" Grid.Column="2" 
+						FontSize="15"
+						HorizontalOptions="Start"
+						VerticalOptions="Center"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+
+					<!-- Visa Button -->
+					<common:CustomButton Grid.Row="0" Grid.ColumnSpan="4"
+						HorizontalOptions="Fill"
+						VerticalOptions="Fill"
+						BackgroundColor="Transparent"
+						Clicked="OnVISAButtonClicked" />
+
+					<!-- Separator -->
+					<BoxView Grid.Row="1" Grid.ColumnSpan="4"
+						HeightRequest="1"
+						HorizontalOptions="Fill"
+						Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+				</Grid>
+
+				<!-- MB -->
+				<Grid x:Name="MB" Grid.RowSpacing="0" Grid.ColumnSpacing="0" 
+					IsVisible="False"
+					HorizontalOptions="Fill">
+					<Grid.ColumnDefinitions>
+						<!-- Spacing -->
+						<ColumnDefinition Width="15" />
+						<!-- Content -->
+						<ColumnDefinition Width="*" />
+						<!-- Spacing -->
+						<ColumnDefinition Width="15" />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>						
+						<RowDefinition Height="54" />
+						<!-- Separator -->
+						<RowDefinition Height="1" />
+					</Grid.RowDefinitions>
+
+					<!-- MB Logo -->
+					<common:CustomImage Grid.Row="0" Grid.Column="1"
+						HorizontalOptions="Start"
+						VerticalOptions="Center"
+						Source="ic_atm_logo.png" />
+
+					<!-- MB Indicator -->
+					<common:CustomImage Grid.Row="0" Grid.Column="1"
+						HorizontalOptions="End"
+						VerticalOptions="Center"
+						Source="ic_button_arrow_black.png" />
+
+					<!-- MB Button -->
+					<common:CustomButton Grid.Row="0" Grid.ColumnSpan="3"
+						HorizontalOptions="Fill"
+						VerticalOptions="Fill"
+						BackgroundColor="Transparent"
+						Clicked="OnATMButtonClicked" />
+
+					<!-- Separator -->
+					<BoxView Grid.Row="1" Grid.ColumnSpan="3"
+						HeightRequest="1"
+						HorizontalOptions="Fill"
+						Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+				</Grid>
+
+			</StackLayout>
+		</ScrollView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</ANFPage>
+>>>>>>> maintenance_phase5_azure_notification

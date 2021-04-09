@@ -1,0 +1,342 @@
+<<<<<<< HEAD
+﻿<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+         xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+         xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+         xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+         xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+         xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+         xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+         x:Class="ANFAPP.Pages.PromotionsListPage">
+
+
+  <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RowSpacing="0" ColumnSpacing="0">
+    <Grid.RowDefinitions>
+      <!-- Application Bar -->
+      <RowDefinition Height="auto" />
+      <!-- Page -->
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="auto" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+
+
+    <!-- Page -->
+    <ScrollView Grid.Row="1" Grid.Column="1"
+    		Orientation="Vertical"
+    		VerticalOptions="FillAndExpand"
+    		HorizontalOptions="FillAndExpand">
+      <StackLayout Orientation="Vertical" Spacing="0">
+        
+        <!-- Promotions -->
+        <common:ANFRepeaterView
+					VerticalOptions="Start"
+					ItemsSource="{Binding PromoList}"
+					IsVisible="True">
+    <!-- Article Template -->
+    <common:ANFRepeaterView.ItemTemplate>
+      <DataTemplate>
+        <Grid>
+          <Grid.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnArticleTapped" />
+          </Grid.GestureRecognizers>
+
+          <ContentView.Content>
+    <Grid  Grid.RowSpacing="0" Grid.ColumnSpacing="0"
+      VerticalOptions="Start"
+      BackgroundColor="White">
+
+      <Grid.ColumnDefinitions>
+        <!--0 Left Margin-->
+        <ColumnDefinition Width="15" />
+        <!--1-->
+        <ColumnDefinition Width="120" />
+        <!--2-->
+        <ColumnDefinition Width="15" />
+        <!--3-->
+        <ColumnDefinition Width="*" />
+        <!--4 Right Margin-->
+        <ColumnDefinition Width="15" />
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <!--0 Top Margin-->
+        <RowDefinition Height="5"/>
+        <!--1 Title-->
+        <RowDefinition Height="auto"/>
+        <!--2 Margin-->
+        <RowDefinition Height="5"/>
+        <!--3 Image and Lead-->
+        <RowDefinition Height="auto"/>
+        <!--4 Margin-->
+        <RowDefinition Height="5"/>
+        <!--5 Date and Button-->
+        <RowDefinition Height="auto"/>
+        <!--6 Bottom Margin-->
+        <RowDefinition Height="10"/>
+      </Grid.RowDefinitions>
+
+      <!-- Promotions Type 1 -->
+      <common:CustomLabel x:Name="Title" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
+                          HeightRequest="26" WidthRequest="437"
+                          Text="{Binding Title}"
+                          TextColor="Black" FontSize="20"
+                          IsVisible="{Binding Promo3IsActive}"></common:CustomLabel>
+
+      <common:CustomImage x:Name="Image" Grid.Row="3" Grid.Column="1"
+                          HeightRequest="110"
+                          VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+                          Source="{Binding Image}"
+                          IsVisible="{Binding Promo3IsActive}"></common:CustomImage>
+
+      <common:CustomLabel x:Name="Description" Grid.Row="3" Grid.Column="3"
+                          FontSize="12"
+                          TextColor="Black"
+                          Text="{Binding Description}"
+                          IsVisible="{Binding Promo3IsActive}"></common:CustomLabel>
+
+
+      <common:CustomButton x:Name="PromoType3Button" Grid.Row="5" Grid.Column="3"
+                           HeightRequest="30" WidthRequest="150"
+                           HorizontalOptions="EndAndExpand"
+                           Text="Ver Produto" FontSize="10"
+                           BackgroundColor="White"
+                           BorderWidth="2"
+                           BorderRadius="1"
+						   Clicked="OnPromotionSelect"
+                           BorderColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+                           TextColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+                           IsVisible="{Binding Promo3IsActive}"></common:CustomButton>
+
+    </Grid>
+  </ContentView.Content>
+          <BoxView
+							
+            HeightRequest="1"
+            VerticalOptions="End"
+            HorizontalOptions="FillAndExpand"
+            Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+        </Grid>
+      </DataTemplate>
+    </common:ANFRepeaterView.ItemTemplate>
+  </common:ANFRepeaterView>
+      
+        
+        <!-- Highlights. -->
+        <views:PromotionsHighlightsWidget x:Name="HighlightWidget"
+	    			Title="Promoções e Destaques"
+	    			FromCatalog="False"
+	    			IsVisible="{Binding Products, Converter={x:Static converters:ConverterResources.HasElements}" />
+
+        <!-- Campaigns. -->
+        <!--<views:PromotionsHighlightsWidget x:Name="CampaignWidget"
+	    			Title="Catálogo"
+	    			FromCatalog="True"
+	    			IsVisible="{Binding Products, Converter={x:Static converters:ConverterResources.HasElements}" />-->
+        
+        
+
+        
+      </StackLayout>
+    </ScrollView>
+    
+    
+    <!-- MenuItem -->
+    <views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+    <!-- Application Bar -->
+    <views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+    <!-- Loading Container -->
+    <Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+      <!-- Loading Indicator -->
+      <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <common:CustomActivityIndicator
+					HorizontalOptions="CenterAndExpand"
+					VerticalOptions="CenterAndExpand"
+					IsRunning="True"
+					Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+      </StackLayout>
+
+    </Grid>
+  </Grid>
+ 
+</pages:ANFPage>
+=======
+﻿<ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+         xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+         xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+         xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+         xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+         xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+         xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+         x:Class="ANFAPP.Pages.PromotionsListPage">
+
+
+  <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RowSpacing="0" ColumnSpacing="0">
+    <Grid.RowDefinitions>
+      <!-- Application Bar -->
+      <RowDefinition Height="auto" />
+      <!-- Page -->
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="auto" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+
+
+    <!-- Page -->
+    <ScrollView Grid.Row="1" Grid.Column="1"
+    		Orientation="Vertical"
+    		VerticalOptions="FillAndExpand"
+    		HorizontalOptions="FillAndExpand">
+      <StackLayout Orientation="Vertical" Spacing="0">
+        
+        <!-- Promotions -->
+        <common:ANFRepeaterView
+					VerticalOptions="Start"
+					ItemsSource="{Binding PromoList}"
+					IsVisible="True">
+    <!-- Article Template -->
+    <common:ANFRepeaterView.ItemTemplate>
+      <DataTemplate>
+        <Grid>
+          <Grid.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnArticleTapped" />
+          </Grid.GestureRecognizers>
+
+          <ContentView.Content>
+    <Grid  Grid.RowSpacing="0" Grid.ColumnSpacing="0"
+      VerticalOptions="Start"
+      BackgroundColor="White">
+
+      <Grid.ColumnDefinitions>
+        <!--0 Left Margin-->
+        <ColumnDefinition Width="15" />
+        <!--1-->
+        <ColumnDefinition Width="120" />
+        <!--2-->
+        <ColumnDefinition Width="15" />
+        <!--3-->
+        <ColumnDefinition Width="*" />
+        <!--4 Right Margin-->
+        <ColumnDefinition Width="15" />
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <!--0 Top Margin-->
+        <RowDefinition Height="5"/>
+        <!--1 Title-->
+        <RowDefinition Height="auto"/>
+        <!--2 Margin-->
+        <RowDefinition Height="5"/>
+        <!--3 Image and Lead-->
+        <RowDefinition Height="auto"/>
+        <!--4 Margin-->
+        <RowDefinition Height="5"/>
+        <!--5 Date and Button-->
+        <RowDefinition Height="auto"/>
+        <!--6 Bottom Margin-->
+        <RowDefinition Height="10"/>
+      </Grid.RowDefinitions>
+
+      <!-- Promotions Type 1 -->
+      <common:CustomLabel x:Name="Title" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
+                          HeightRequest="26" WidthRequest="437"
+                          Text="{Binding Title}"
+                          TextColor="Black" FontSize="20"
+                          IsVisible="{Binding Promo3IsActive}"></common:CustomLabel>
+
+      <common:CustomImage x:Name="Image" Grid.Row="3" Grid.Column="1"
+                          HeightRequest="110"
+                          VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+                          Source="{Binding Image}"
+                          IsVisible="{Binding Promo3IsActive}"></common:CustomImage>
+
+      <common:CustomLabel x:Name="Description" Grid.Row="3" Grid.Column="3"
+                          FontSize="12"
+                          TextColor="Black"
+                          Text="{Binding Description}"
+                          IsVisible="{Binding Promo3IsActive}"></common:CustomLabel>
+
+
+      <common:CustomButton x:Name="PromoType3Button" Grid.Row="5" Grid.Column="3"
+                           HeightRequest="30" WidthRequest="150"
+                           HorizontalOptions="EndAndExpand"
+                           Text="Ver Produto" FontSize="10"
+                           BackgroundColor="White"
+                           BorderWidth="2"
+                           BorderRadius="1"
+						   Clicked="OnPromotionSelect"
+                           BorderColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+                           TextColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+                           IsVisible="{Binding Promo3IsActive}"></common:CustomButton>
+
+    </Grid>
+  </ContentView.Content>
+          <BoxView
+							
+            HeightRequest="1"
+            VerticalOptions="End"
+            HorizontalOptions="FillAndExpand"
+            Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+        </Grid>
+      </DataTemplate>
+    </common:ANFRepeaterView.ItemTemplate>
+  </common:ANFRepeaterView>
+      
+        
+        <!-- Highlights. -->
+        <views:PromotionsHighlightsWidget x:Name="HighlightWidget"
+	    			Title="Promoções e Destaques"
+	    			FromCatalog="False"
+	    			IsVisible="{Binding Products, Converter={x:Static converters:ConverterResources.HasElements}" />
+
+        <!-- Campaigns. -->
+        <!--<views:PromotionsHighlightsWidget x:Name="CampaignWidget"
+	    			Title="Catálogo"
+	    			FromCatalog="True"
+	    			IsVisible="{Binding Products, Converter={x:Static converters:ConverterResources.HasElements}" />-->
+        
+        
+
+        
+      </StackLayout>
+    </ScrollView>
+    
+    
+    <!-- MenuItem -->
+    <views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+    <!-- Application Bar -->
+    <views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+    <!-- Loading Container -->
+    <Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+      <!-- Loading Indicator -->
+      <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <common:CustomActivityIndicator
+					HorizontalOptions="CenterAndExpand"
+					VerticalOptions="CenterAndExpand"
+					IsRunning="True"
+					Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+      </StackLayout>
+
+    </Grid>
+  </Grid>
+ 
+</ANFPage>
+>>>>>>> maintenance_phase5_azure_notification

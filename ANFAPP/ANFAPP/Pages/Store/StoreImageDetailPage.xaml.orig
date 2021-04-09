@@ -1,0 +1,280 @@
+<<<<<<< HEAD
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.Store.StoreImageDetailPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Page -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<ScrollView Grid.Row="1" Grid.Column="1">
+			<!-- StackLayout with the default margin -->
+			<StackLayout Orientation="Vertical"
+				Spacing="10"
+				Padding="15, 10">
+
+				<StackLayout Orientation="Vertical" Spacing="1">
+					<common:CustomLabel
+						FontSize="15"
+						HeightRequest="22"
+						Text="{Binding Product.Name}"
+						VerticalOptions="Start"
+						HorizontalOptions="Start"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+					<common:CustomLabel
+						FontSize="11"
+						Text="{Binding Product.Brand}"
+						VerticalOptions="End"
+						HorizontalOptions="Start"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+					<common:CustomLabel
+						FontSize="11"
+						Text="{Binding Product.Presentation}"
+						VerticalOptions="Start"
+						HorizontalOptions="Start"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+				</StackLayout>
+
+				<!-- Thumbnails -->
+				<ScrollView Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+					<common:ANFRepeaterView
+						Padding="10, 10"
+						Spacing="10"
+						Orientation="Horizontal"
+						IsClippedToBounds="False"
+						VerticalOptions="StartAndExpand"
+						HorizontalOptions="StartAndExpand"
+						ItemsSource="{Binding Thumbnails}"
+						IsVisible="{Binding HasEnoughThumbnails}">
+						<common:ANFRepeaterView.ItemTemplate>
+							<DataTemplate>
+								<ViewCell>
+									<ContentView
+										VerticalOptions="Start"
+										HorizontalOptions="Start"
+										WidthRequest="100">
+										<common:CustomImage Source="{Binding .}">
+											<common:CustomImage.GestureRecognizers>
+												<TapGestureRecognizer Tapped="ThumbnailTapped" />
+											</common:CustomImage.GestureRecognizers>
+										</common:CustomImage>
+									</ContentView>
+								</ViewCell>
+							</DataTemplate>
+						</common:ANFRepeaterView.ItemTemplate>
+					</common:ANFRepeaterView>
+				</ScrollView>
+
+				<Grid>
+
+					<!--- Product Image -->
+					<common:CustomImage Source="{Binding SelectedImage}"
+						Aspect="AspectFit"
+						HeightRequest="380"
+						HorizontalOptions="FillAndExpand">
+						<common:CustomImage.GestureRecognizers>
+							<TapGestureRecognizer Tapped="OnProductImageTapped" />
+						</common:CustomImage.GestureRecognizers>
+
+					</common:CustomImage>
+
+					<common:CustomImage Source="icon_expand.png" 
+						HorizontalOptions="Start" 
+						VerticalOptions="End"
+						InputTransparent="True"/>
+				</Grid>
+
+
+
+				<Grid Padding="0, 5, 0, 0" Grid.Row="5">
+
+					<common:CustomLabel
+						FontSize="9"
+						HorizontalOptions="Center"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						Text="{x:Static app:AppResources.ProductDetailImageDisclaimer}"
+						TextColor="#8c8c8c" />
+				</Grid>
+			</StackLayout>
+		</ScrollView>
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>
+=======
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.Store.StoreImageDetailPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Page -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<ScrollView Grid.Row="1" Grid.Column="1">
+			<!-- StackLayout with the default margin -->
+			<StackLayout Orientation="Vertical"
+				Spacing="10"
+				Padding="15, 10">
+
+				<StackLayout Orientation="Vertical" Spacing="1">
+					<common:CustomLabel
+						FontSize="15"
+						HeightRequest="22"
+						Text="{Binding Product.Name}"
+						VerticalOptions="Start"
+						HorizontalOptions="Start"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+					<common:CustomLabel
+						FontSize="11"
+						Text="{Binding Product.Brand}"
+						VerticalOptions="End"
+						HorizontalOptions="Start"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+					<common:CustomLabel
+						FontSize="11"
+						Text="{Binding Product.Presentation}"
+						VerticalOptions="Start"
+						HorizontalOptions="Start"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+				</StackLayout>
+
+				<!-- Thumbnails -->
+				<ScrollView Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+					<common:ANFRepeaterView
+						Padding="10, 10"
+						Spacing="10"
+						Orientation="Horizontal"
+						IsClippedToBounds="False"
+						VerticalOptions="StartAndExpand"
+						HorizontalOptions="StartAndExpand"
+						ItemsSource="{Binding Thumbnails}"
+						IsVisible="{Binding HasEnoughThumbnails}">
+						<common:ANFRepeaterView.ItemTemplate>
+							<DataTemplate>
+								<ViewCell>
+									<ContentView
+										VerticalOptions="Start"
+										HorizontalOptions="Start"
+										WidthRequest="100">
+										<common:CustomImage Source="{Binding .}">
+											<common:CustomImage.GestureRecognizers>
+												<TapGestureRecognizer Tapped="ThumbnailTapped" />
+											</common:CustomImage.GestureRecognizers>
+										</common:CustomImage>
+									</ContentView>
+								</ViewCell>
+							</DataTemplate>
+						</common:ANFRepeaterView.ItemTemplate>
+					</common:ANFRepeaterView>
+				</ScrollView>
+
+				<Grid>
+
+					<!--- Product Image -->
+					<common:CustomImage Source="{Binding SelectedImage}"
+						Aspect="AspectFit"
+						HeightRequest="380"
+						HorizontalOptions="FillAndExpand">
+						<common:CustomImage.GestureRecognizers>
+							<TapGestureRecognizer Tapped="OnProductImageTapped" />
+						</common:CustomImage.GestureRecognizers>
+
+					</common:CustomImage>
+
+					<common:CustomImage Source="icon_expand.png" 
+						HorizontalOptions="Start" 
+						VerticalOptions="End"
+						InputTransparent="True"/>
+				</Grid>
+
+
+
+				<Grid Padding="0, 5, 0, 0" Grid.Row="5">
+
+					<common:CustomLabel
+						FontSize="9"
+						HorizontalOptions="Center"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						Text="{x:Static app:AppResources.ProductDetailImageDisclaimer}"
+						TextColor="#8c8c8c" />
+				</Grid>
+			</StackLayout>
+		</ScrollView>
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</ANFPage>
+>>>>>>> maintenance_phase5_azure_notification

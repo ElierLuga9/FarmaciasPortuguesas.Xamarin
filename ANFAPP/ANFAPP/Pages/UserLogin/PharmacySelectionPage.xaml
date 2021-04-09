@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.UserLogin.PharmacySelectionPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Content -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+
+		<!-- Content -->
+		<ScrollView Grid.Row="1" Orientation="Vertical" IsClippedToBounds="False" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+			<StackLayout Orientation="Vertical" Padding="15" Spacing="8">
+				<!-- Idiom Specific Params -->
+				<StackLayout.HorizontalOptions>
+					<OnIdiom x:TypeArguments="LayoutOptions">
+						<OnIdiom.Phone>FillAndExpand</OnIdiom.Phone>
+						<OnIdiom.Tablet>Center</OnIdiom.Tablet>
+					</OnIdiom>
+				</StackLayout.HorizontalOptions>
+				<StackLayout.WidthRequest>
+					<OnIdiom x:TypeArguments="x:Double">
+						<OnIdiom.Phone>-1</OnIdiom.Phone>
+						<OnIdiom.Tablet>480</OnIdiom.Tablet>
+					</OnIdiom>
+				</StackLayout.WidthRequest>
+
+				<!-- Description Label -->
+				<common:CustomLabel
+					HeightRequest="80"
+					FontSize="15"
+					CustomMargin="0, 0, 0, 0"
+					VerticalOptions="StartAndExpand"
+					HorizontalOptions="StartAndExpand"
+					Text="Para que a sua experiência com a aplicação das Farmácias Portuguesas seja a melhor, sugerimos que escolha uma farmácia perto da sua zona de residência."
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					IsVisible="{Binding HasPharmacy}" />
+
+				<common:CustomLabel
+					FontSize="15"
+					CustomMargin="0, 0, 0, 5"
+					HorizontalOptions="Start"
+					Text="Sugerimos a"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					IsVisible="{Binding HasPharmacy}" />
+
+				<common:CustomLabel
+					FontSize="17"
+					CustomMargin="0, 0, 0, 10"
+					VerticalOptions="StartAndExpand"
+					HorizontalOptions="Start"
+					LineBreakMode="WordWrap"
+					Text="{Binding PharmacyName}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.BoldFont}"
+					IsVisible="{Binding HasPharmacy}" />
+
+				<common:CustomLabel
+					HeightRequest="100"
+					FontSize="15"
+					CustomMargin="0, 0, 0, 0"
+					VerticalOptions="StartAndExpand"
+					HorizontalOptions="StartAndExpand"
+					Text="{x:Static app:AppResources.PharmacySelectionNoPharmacyMessage}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					IsVisible="{Binding HasPharmacy, Converter={x:Static converters:ConverterResources.InverseBool}" />
+
+				<!-- Another Pharm Button -->
+				<!-- http://issue.innovagency.com/view.php?id=20614
+				<Grid Grid.RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+					<common:CustomLabel
+						InputTransparent="True"
+						VerticalOptions="Center"
+						HorizontalOptions="EndAndExpand"
+						FontSize="15"
+						IsUnderline="True"
+						Text="ESCOLHER OUTRA FARMÁCIA"
+						IsVisible="{Binding HasPharmacy}"
+						TextColor="{x:Static resources:ColorResources.ANFGreen}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+					<common:CustomLabel
+						InputTransparent="True"
+						VerticalOptions="Center"
+						HorizontalOptions="EndAndExpand"
+						FontSize="15"
+						IsUnderline="True"
+						Text="ESCOLHER UMA FARMÁCIA"
+						TextColor="{x:Static resources:ColorResources.ANFGreen}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						IsVisible="{Binding HasPharmacy, Converter={x:Static converters:ConverterResources.InverseBool}" />
+
+					<common:CustomButton
+						HeightRequest="40"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						Clicked="GoToLocatorClicked" />
+				</Grid>
+				-->
+				<common:CustomButton
+					HeightRequest="40"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="StartAndExpand"
+					FontSize="15"
+					BorderRadius="0"
+					Clicked="GoToLocatorClicked"
+					Text="{Binding PickPharmacyText}"
+					TextColor="{x:Static resources:ColorResources.TextColorLight}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					BackgroundColor="{x:Static resources:ColorResources.ANFGreen}" />
+
+				<!-- Submit Button -->
+				<common:CustomButton
+					HeightRequest="40"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="StartAndExpand"
+					FontSize="15"
+					BorderRadius="0"
+					Clicked="SaveSelectionClicked"
+					Text="{x:Static app:AppResources.GenericSaveButton}"
+					TextColor="{x:Static resources:ColorResources.TextColorLight}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					BackgroundColor="{x:Static resources:ColorResources.ANFGreen}"
+					IsVisible="{Binding HasPharmacy}" />
+
+				<!-- Later Button -->
+				<common:CustomButton
+					HeightRequest="40"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="StartAndExpand"
+					FontSize="15"
+					BorderRadius="1"
+					BorderWidth="1"
+					Clicked="SelectLaterClicked"
+					Text="ESCOLHER MAIS TARDE"
+					TextColor="{x:Static resources:ColorResources.ANFGreen}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					BackgroundColor="White"
+					BorderColor="{x:Static resources:ColorResources.ANFGreen}" />
+			</StackLayout>
+		</ScrollView>
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.Row="1"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" />
+	</Grid>
+</pages:ANFPage>

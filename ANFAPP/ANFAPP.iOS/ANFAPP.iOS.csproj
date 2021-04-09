@@ -1,0 +1,1520 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug_QA</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{960905D6-715D-4106-BEB7-9C4AC9C31B3B}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>ANFAPP.iOS</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>ANFAPPiOS</AssemblyName>
+    <NuGetPackageImportStamp>c1bc9c7c</NuGetPackageImportStamp>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <ReleaseVersion>2.0</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_QA|AnyCPU' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug_QA</OutputPath>
+    <DefineConstants></DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <AssemblyName>ANFAPP.iOS</AssemblyName>
+    <MtouchArch>ARMv7</MtouchArch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_Prod|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug_Prod</OutputPath>
+    <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;DEBUG;PROD</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignProvision></CodesignProvision>
+    <MtouchTlsProvider>Legacy</MtouchTlsProvider>
+    <DeviceSpecificBuild>false</DeviceSpecificBuild>
+<MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+<MtouchHttpClientHandler>CFNetworkHandler</MtouchHttpClientHandler>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release_Prod|iPhoneSimulator' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release_Prod</OutputPath>
+    <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;PROD</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_Prod|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug_Prod</OutputPath>
+    <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;DEBUG;PROD</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchI18n></MtouchI18n>
+    <IpaPackageName></IpaPackageName>
+    <CodesignProvision></CodesignProvision>
+    <DeviceSpecificBuild>false</DeviceSpecificBuild>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release_Prod|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release_Prod</OutputPath>
+    <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;PROD</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchI18n></MtouchI18n>
+    <MtouchTlsProvider>Legacy</MtouchTlsProvider>
+    <CodesignProvision></CodesignProvision>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release_QA|AnyCPU' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release_QA</OutputPath>
+    <DefineConstants></DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchLink></MtouchLink>
+    <MtouchHttpClientHandler></MtouchHttpClientHandler>
+    <AssemblyName>ANFAPP.iOS</AssemblyName>
+    <MtouchArch>ARMv7</MtouchArch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release_QA|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release_QA</OutputPath>
+    <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;QA</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchI18n></MtouchI18n>
+    <MtouchTlsProvider>Legacy</MtouchTlsProvider>
+    <CodesignProvision></CodesignProvision>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release_QA|iPhoneSimulator' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release_QA</OutputPath>
+    <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;QA</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_QA|iPhone' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug_QA</OutputPath>
+    <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;QA</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <AssemblyName>ANFAPP.iOS</AssemblyName>
+    <MtouchArch></MtouchArch>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchSdkVersion>12.1</MtouchSdkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_QA|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug_QA</OutputPath>
+    <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;DEBUG;QA</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignProvision></CodesignProvision>
+    <MtouchTlsProvider>Legacy</MtouchTlsProvider>
+    <DeviceSpecificBuild>false</DeviceSpecificBuild>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="PlatformSpecific\FacebookSDK_iOS.cs" />
+    <Compile Include="PlatformSpecific\RaygunHelper.cs" />
+    <Compile Include="Renderer\CustomTimePickerRenderer.cs" />
+    <Compile Include="Renderer\CustomWebViewRenderer.cs" />
+    <Compile Include="Utils\SQLite_iOS.cs" />
+    <None Include="app.config" />
+    <None Include="Entitlements.plist" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <ITunesArtwork Include="iTunesArtwork" />
+    <None Include="packages.config" />
+    <ITunesArtwork Include="iTunesArtwork%402x" />
+    <Compile Include="PlatformSpecific\LocationServices_iOS.cs" />
+    <None Include="Info-QA.plist" Condition=" $(Configuration.Contains('QA')) "><LogicalName>Info.plist</LogicalName></None>
+    <None Include="Info-Prod.plist" Condition=" $(Configuration.Contains('Prod')) "><LogicalName>Info.plist</LogicalName></None>
+    <Compile Include="Renderer\BarcodeViewRenderer.cs" />
+    <Compile Include="Renderer\CustomDatePickerRenderer.cs" />
+    <Compile Include="Renderer\CustomLabelRenderer.cs" />
+    <Compile Include="Renderer\CustomEntryRenderer.cs" />
+    <Compile Include="Renderer\PharmacyAnnotation.cs" />
+    <Compile Include="Renderer\CustomWebImageRenderer.cs" />
+    <Compile Include="Renderer\MapRenderer_iOS.cs" />
+    <Compile Include="Renderer\CustomButtonRenderer.cs" />
+    <BundleResource Include="Resources\en.lproj\InfoPlist.strings" />
+    <BundleResource Include="Resources\pt.lproj\InfoPlist.strings" />
+    <Compile Include="PlatformSpecific\MixPanel_iOS.cs" />
+    <Compile Include="Renderer\CustomListViewRenderer.cs" />
+    <Compile Include="Renderer\ANFTextField.cs" />
+    <Compile Include="Renderer\CustomEditorRenderer.cs" />
+    <Compile Include="Renderer\BindablePickerRenderer.cs" />
+    <Compile Include="PlatformSpecific\MediaWriter_iOS.cs" />
+    <Compile Include="PlatformSpecific\HealthDataProvider_iOS.cs" />
+    <Compile Include="PlatformSpecific\iOSUtils.cs" />
+    <Compile Include="Renderer\CustomViewCellRenderer.cs" />
+    <Compile Include="Helpers\Settings.cs" />
+    <BundleResource Include="Resources\Default-375w-667h%402x~iphone.png" />
+    <BundleResource Include="Resources\Icon60.png" />
+    <BundleResource Include="Resources\Icon60%403x.png" />
+    <BundleResource Include="Resources\Default-736h%403x.png" />
+    <BundleResource Include="Resources\acessory.png" />
+    <BundleResource Include="Resources\adddrugbarcodelarge.png" />
+    <BundleResource Include="Resources\annotation_card.png" />
+    <BundleResource Include="Resources\annotation_list.png" />
+    <BundleResource Include="Resources\annotation_no_card.png" />
+    <BundleResource Include="Resources\arrow_green_right.png" />
+    <BundleResource Include="Resources\arrow_green_up.png" />
+    <BundleResource Include="Resources\bg_app_intro.png" />
+    <BundleResource Include="Resources\bg_appbar_points.png" />
+    <BundleResource Include="Resources\bg_biometric_gauge_darkyellow.png" />
+    <BundleResource Include="Resources\bg_biometric_gauge_green.png" />
+    <BundleResource Include="Resources\bg_biometric_gauge_grey.png" />
+    <BundleResource Include="Resources\bg_biometric_gauge_orange.png" />
+    <BundleResource Include="Resources\bg_biometric_gauge_red.png" />
+    <BundleResource Include="Resources\bg_biometric_gauge_yellow.png" />
+    <BundleResource Include="Resources\bg_card.png" />
+    <BundleResource Include="Resources\bg_card_benefits.png" />
+    <BundleResource Include="Resources\bg_checkbox.png" />
+    <BundleResource Include="Resources\bg_checkbox_selected.png" />
+    <BundleResource Include="Resources\bg_input.png" />
+    <BundleResource Include="Resources\bg_or_circle.png" />
+    <BundleResource Include="Resources\bg_voucher.png" />
+    <BundleResource Include="Resources\blank_image.png" />
+    <BundleResource Include="Resources\bt_biometric_imc_height.png" />
+    <BundleResource Include="Resources\bt_biometric_imc_weight.png" />
+    <BundleResource Include="Resources\bt_trashbin.png" />
+    <BundleResource Include="Resources\byPlace.png" />
+    <BundleResource Include="Resources\clock.png" />
+    <BundleResource Include="Resources\cursor.png" />
+    <BundleResource Include="Resources\envelope.png" />
+    <BundleResource Include="Resources\favorits.png" />
+    <BundleResource Include="Resources\ic_alert_small.png" />
+    <BundleResource Include="Resources\ic_anf_logo.png" />
+    <BundleResource Include="Resources\ic_anf_logo_large.png" />
+    <BundleResource Include="Resources\ic_appbar_back.png" />
+    <BundleResource Include="Resources\ic_appbar_logged.png" />
+    <BundleResource Include="Resources\ic_appbar_menu.png" />
+    <BundleResource Include="Resources\ic_appbar_not_logged.png" />
+    <BundleResource Include="Resources\ic_biometric_abdominal_perimeter.png" />
+    <BundleResource Include="Resources\ic_biometric_arrow.png" />
+    <BundleResource Include="Resources\ic_biometric_arrow_green.png" />
+    <BundleResource Include="Resources\ic_biometric_arterial_pressure.png" />
+    <BundleResource Include="Resources\ic_biometric_cholesterol.png" />
+    <BundleResource Include="Resources\ic_biometric_glicemia.png" />
+    <BundleResource Include="Resources\ic_biometric_triglycerides.png" />
+    <BundleResource Include="Resources\ic_bulletpoint.png" />
+    <BundleResource Include="Resources\ic_button_arrow.png" />
+    <BundleResource Include="Resources\ic_button_link.png" />
+    <BundleResource Include="Resources\ic_check_small.png" />
+    <BundleResource Include="Resources\ic_delete.png" />
+    <BundleResource Include="Resources\ic_dosing_schedule_anf_item.png" />
+    <BundleResource Include="Resources\ic_dosing_schedule_list.png" />
+    <BundleResource Include="Resources\ic_dosing_schedule_tab_selected.png" />
+    <BundleResource Include="Resources\ic_dosing_schedule_tab_unselected.png" />
+    <BundleResource Include="Resources\ic_family_logo.png" />
+    <BundleResource Include="Resources\ic_female.png" />
+    <BundleResource Include="Resources\ic_female_selected.png" />
+    <BundleResource Include="Resources\ic_male.png" />
+    <BundleResource Include="Resources\ic_male_selected.png" />
+    <BundleResource Include="Resources\ic_medicine_list.png" />
+    <BundleResource Include="Resources\ic_medicine_tab_selected.png" />
+    <BundleResource Include="Resources\ic_medicine_tab_unselected.png" />
+    <BundleResource Include="Resources\ic_menu_biometric_data.png" />
+    <BundleResource Include="Resources\ic_menu_card_sauda.png" />
+    <BundleResource Include="Resources\ic_menu_catalog.png" />
+    <BundleResource Include="Resources\ic_menu_pharmacies.png" />
+    <BundleResource Include="Resources\ic_options_tab_selected.png" />
+    <BundleResource Include="Resources\ic_options_tab_unselected.png" />
+    <BundleResource Include="Resources\ic_plus.png" />
+    <BundleResource Include="Resources\ic_sauda_logo.png" />
+    <BundleResource Include="Resources\ic_sauda_logo_large.png" />
+    <BundleResource Include="Resources\ic_sauda_logos.png" />
+    <BundleResource Include="Resources\ic_trash_blue.png" />
+    <BundleResource Include="Resources\ic_usercard_img1.png" />
+    <BundleResource Include="Resources\ic_usercard_img2.png" />
+    <BundleResource Include="Resources\ic_usercard_img3.png" />
+    <BundleResource Include="Resources\ic_vouchers_arrow.png" />
+    <BundleResource Include="Resources\ic_warning.png" />
+    <BundleResource Include="Resources\magnifier.png" />
+    <BundleResource Include="Resources\nearMe.png" />
+    <BundleResource Include="Resources\next_arrow.png" />
+    <BundleResource Include="Resources\phone.png" />
+    <BundleResource Include="Resources\pointer_gray.png" />
+    <BundleResource Include="Resources\recent.png" />
+    <BundleResource Include="Resources\slider_left.png" />
+    <BundleResource Include="Resources\slider_right.png" />
+    <BundleResource Include="Resources\star.png" />
+    <BundleResource Include="Resources\star_selected.png" />
+    <BundleResource Include="Resources\switch_left.png" />
+    <BundleResource Include="Resources\switch_midle.png" />
+    <BundleResource Include="Resources\switch_right.png" />
+    <BundleResource Include="Resources\acessory%402x.png" />
+    <BundleResource Include="Resources\adddrugbarcodelarge%402x.png" />
+    <BundleResource Include="Resources\annotation_card%402x.png" />
+    <BundleResource Include="Resources\annotation_list%402x.png" />
+    <BundleResource Include="Resources\annotation_no_card%402x.png" />
+    <BundleResource Include="Resources\arrow_green_right%402x.png" />
+    <BundleResource Include="Resources\arrow_green_up%402x.png" />
+    <BundleResource Include="Resources\bg_app_intro%402x.png" />
+    <BundleResource Include="Resources\bg_appbar_points%402x.png" />
+    <BundleResource Include="Resources\bg_biometric_gauge_darkyellow%402x.png" />
+    <BundleResource Include="Resources\bg_biometric_gauge_green%402x.png" />
+    <BundleResource Include="Resources\bg_biometric_gauge_grey%402x.png" />
+    <BundleResource Include="Resources\bg_biometric_gauge_orange%402x.png" />
+    <BundleResource Include="Resources\bg_biometric_gauge_red%402x.png" />
+    <BundleResource Include="Resources\bg_biometric_gauge_yellow%402x.png" />
+    <BundleResource Include="Resources\bg_card%402x.png" />
+    <BundleResource Include="Resources\bg_card_benefits%402x.png" />
+    <BundleResource Include="Resources\bg_checkbox%402x.png" />
+    <BundleResource Include="Resources\bg_checkbox_selected%402x.png" />
+    <BundleResource Include="Resources\bg_input%402x.png" />
+    <BundleResource Include="Resources\bg_or_circle%402x.png" />
+    <BundleResource Include="Resources\bg_voucher%402x.png" />
+    <BundleResource Include="Resources\bt_biometric_imc_height%402x.png" />
+    <BundleResource Include="Resources\bt_biometric_imc_weight%402x.png" />
+    <BundleResource Include="Resources\bt_trashbin%402x.png" />
+    <BundleResource Include="Resources\byPlace%402x.png" />
+    <BundleResource Include="Resources\catalog_detail%402x.png" />
+    <BundleResource Include="Resources\catalog_thumbnail%402x.png" />
+    <BundleResource Include="Resources\clock%402x.png" />
+    <BundleResource Include="Resources\cursor%402x.png" />
+    <BundleResource Include="Resources\envelope%402x.png" />
+    <BundleResource Include="Resources\familia_bemestar%402x.png" />
+    <BundleResource Include="Resources\familia_veterinaria%402x.png" />
+    <BundleResource Include="Resources\favorits%402x.png" />
+    <BundleResource Include="Resources\ic_alert_small%402x.png" />
+    <BundleResource Include="Resources\ic_anf_logo%402x.png" />
+    <BundleResource Include="Resources\ic_anf_logo_large%402x.png" />
+    <BundleResource Include="Resources\ic_appbar_back%402x.png" />
+    <BundleResource Include="Resources\ic_appbar_logged%402x.png" />
+    <BundleResource Include="Resources\ic_appbar_menu%402x.png" />
+    <BundleResource Include="Resources\ic_appbar_not_logged%402x.png" />
+    <BundleResource Include="Resources\ic_biometric_abdominal_perimeter%402x.png" />
+    <BundleResource Include="Resources\ic_biometric_arrow%402x.png" />
+    <BundleResource Include="Resources\ic_biometric_arrow_green%402x.png" />
+    <BundleResource Include="Resources\ic_biometric_arterial_pressure%402x.png" />
+    <BundleResource Include="Resources\ic_biometric_cholesterol%402x.png" />
+    <BundleResource Include="Resources\ic_biometric_glicemia%402x.png" />
+    <BundleResource Include="Resources\ic_biometric_triglycerides%402x.png" />
+    <BundleResource Include="Resources\ic_bulletpoint%402x.png" />
+    <BundleResource Include="Resources\ic_button_arrow%402x.png" />
+    <BundleResource Include="Resources\ic_button_link%402x.png" />
+    <BundleResource Include="Resources\ic_check_small%402x.png" />
+    <BundleResource Include="Resources\ic_delete%402x.png" />
+    <BundleResource Include="Resources\ic_dosing_schedule_anf_item%402x.png" />
+    <BundleResource Include="Resources\ic_dosing_schedule_list%402x.png" />
+    <BundleResource Include="Resources\ic_dosing_schedule_tab_selected%402x.png" />
+    <BundleResource Include="Resources\ic_dosing_schedule_tab_unselected%402x.png" />
+    <BundleResource Include="Resources\ic_family_logo%402x.png" />
+    <BundleResource Include="Resources\ic_female%402x.png" />
+    <BundleResource Include="Resources\ic_female_selected%402x.png" />
+    <BundleResource Include="Resources\ic_male%402x.png" />
+    <BundleResource Include="Resources\ic_male_selected%402x.png" />
+    <BundleResource Include="Resources\ic_medicine_list%402x.png" />
+    <BundleResource Include="Resources\ic_medicine_tab_selected%402x.png" />
+    <BundleResource Include="Resources\ic_medicine_tab_unselected%402x.png" />
+    <BundleResource Include="Resources\ic_menu_biometric_data%402x.png" />
+    <BundleResource Include="Resources\ic_menu_card_sauda%402x.png" />
+    <BundleResource Include="Resources\ic_menu_catalog%402x.png" />
+    <BundleResource Include="Resources\ic_menu_pharmacies%402x.png" />
+    <BundleResource Include="Resources\ic_options_tab_selected%402x.png" />
+    <BundleResource Include="Resources\ic_options_tab_unselected%402x.png" />
+    <BundleResource Include="Resources\ic_plus%402x.png" />
+    <BundleResource Include="Resources\ic_sauda_logo%402x.png" />
+    <BundleResource Include="Resources\ic_sauda_logo_large%402x.png" />
+    <BundleResource Include="Resources\ic_sauda_logos%402x.png" />
+    <BundleResource Include="Resources\ic_trash_blue%402x.png" />
+    <BundleResource Include="Resources\ic_usercard_img1%402x.png" />
+    <BundleResource Include="Resources\ic_usercard_img2%402x.png" />
+    <BundleResource Include="Resources\ic_usercard_img3%402x.png" />
+    <BundleResource Include="Resources\ic_vouchers_arrow%402x.png" />
+    <BundleResource Include="Resources\ic_warning%402x.png" />
+    <BundleResource Include="Resources\magnifier%402x.png" />
+    <BundleResource Include="Resources\nearMe%402x.png" />
+    <BundleResource Include="Resources\next_arrow%402x.png" />
+    <BundleResource Include="Resources\pharmacy_annotation_1%402x.png" />
+    <BundleResource Include="Resources\pharmacy_annotation_2%402x.png" />
+    <BundleResource Include="Resources\pharmacy_annotation_3%402x.png" />
+    <BundleResource Include="Resources\pharmacy_annotation_4%402x.png" />
+    <BundleResource Include="Resources\phone%402x.png" />
+    <BundleResource Include="Resources\pointer_gray%402x.png" />
+    <BundleResource Include="Resources\recent%402x.png" />
+    <BundleResource Include="Resources\slider_left%402x.png" />
+    <BundleResource Include="Resources\slider_right%402x.png" />
+    <BundleResource Include="Resources\star%402x.png" />
+    <BundleResource Include="Resources\star_selected%402x.png" />
+    <BundleResource Include="Resources\switch_left%402x.png" />
+    <BundleResource Include="Resources\switch_midle%402x.png" />
+    <BundleResource Include="Resources\switch_right%402x.png" />
+    <BundleResource Include="Resources\acessory%403x.png" />
+    <BundleResource Include="Resources\adddrugbarcodelarge%403x.png" />
+    <BundleResource Include="Resources\annotation_card%403x.png" />
+    <BundleResource Include="Resources\annotation_list%403x.png" />
+    <BundleResource Include="Resources\annotation_no_card%403x.png" />
+    <BundleResource Include="Resources\arrow_green_right%403x.png" />
+    <BundleResource Include="Resources\arrow_green_up%403x.png" />
+    <BundleResource Include="Resources\bg_app_intro%403x.png" />
+    <BundleResource Include="Resources\bg_appbar_points%403x.png" />
+    <BundleResource Include="Resources\bg_biometric_gauge_darkyellow%403x.png" />
+    <BundleResource Include="Resources\bg_biometric_gauge_green%403x.png" />
+    <BundleResource Include="Resources\bg_biometric_gauge_grey%403x.png" />
+    <BundleResource Include="Resources\bg_biometric_gauge_orange%403x.png" />
+    <BundleResource Include="Resources\bg_biometric_gauge_red%403x.png" />
+    <BundleResource Include="Resources\bg_biometric_gauge_yellow%403x.png" />
+    <BundleResource Include="Resources\bg_card%403x.png" />
+    <BundleResource Include="Resources\bg_card_benefits%403x.png" />
+    <BundleResource Include="Resources\bg_checkbox%403x.png" />
+    <BundleResource Include="Resources\bg_checkbox_selected%403x.png" />
+    <BundleResource Include="Resources\bg_input%403x.png" />
+    <BundleResource Include="Resources\bg_or_circle%403x.png" />
+    <BundleResource Include="Resources\bg_voucher%403x.png" />
+    <BundleResource Include="Resources\bt_biometric_imc_height%403x.png" />
+    <BundleResource Include="Resources\bt_biometric_imc_weight%403x.png" />
+    <BundleResource Include="Resources\bt_trashbin%403x.png" />
+    <BundleResource Include="Resources\byPlace%403x.png" />
+    <BundleResource Include="Resources\catalog_detail%403x.png" />
+    <BundleResource Include="Resources\catalog_thumbnail%403x.png" />
+    <BundleResource Include="Resources\clock%403x.png" />
+    <BundleResource Include="Resources\cursor%403x.png" />
+    <BundleResource Include="Resources\envelope%403x.png" />
+    <BundleResource Include="Resources\familia_bemestar%403x.png" />
+    <BundleResource Include="Resources\familia_saude%403x.png" />
+    <BundleResource Include="Resources\familia_veterinaria%403x.png" />
+    <BundleResource Include="Resources\favorits%403x.png" />
+    <BundleResource Include="Resources\ic_alert_small%403x.png" />
+    <BundleResource Include="Resources\ic_anf_logo%403x.png" />
+    <BundleResource Include="Resources\ic_anf_logo_large%403x.png" />
+    <BundleResource Include="Resources\ic_appbar_back%403x.png" />
+    <BundleResource Include="Resources\ic_appbar_logged%403x.png" />
+    <BundleResource Include="Resources\ic_appbar_menu%403x.png" />
+    <BundleResource Include="Resources\ic_appbar_not_logged%403x.png" />
+    <BundleResource Include="Resources\ic_biometric_abdominal_perimeter%403x.png" />
+    <BundleResource Include="Resources\ic_biometric_arrow%403x.png" />
+    <BundleResource Include="Resources\ic_biometric_arrow_green%403x.png" />
+    <BundleResource Include="Resources\ic_biometric_arterial_pressure%403x.png" />
+    <BundleResource Include="Resources\ic_biometric_cholesterol%403x.png" />
+    <BundleResource Include="Resources\ic_biometric_glicemia%403x.png" />
+    <BundleResource Include="Resources\ic_biometric_triglycerides%403x.png" />
+    <BundleResource Include="Resources\ic_bulletpoint%403x.png" />
+    <BundleResource Include="Resources\ic_button_arrow%403x.png" />
+    <BundleResource Include="Resources\ic_button_link%403x.png" />
+    <BundleResource Include="Resources\ic_check_small%403x.png" />
+    <BundleResource Include="Resources\ic_delete%403x.png" />
+    <BundleResource Include="Resources\ic_dosing_schedule_anf_item%403x.png" />
+    <BundleResource Include="Resources\ic_dosing_schedule_list%403x.png" />
+    <BundleResource Include="Resources\ic_dosing_schedule_tab_selected%403x.png" />
+    <BundleResource Include="Resources\ic_dosing_schedule_tab_unselected%403x.png" />
+    <BundleResource Include="Resources\ic_family_logo%403x.png" />
+    <BundleResource Include="Resources\ic_female%403x.png" />
+    <BundleResource Include="Resources\ic_female_selected%403x.png" />
+    <BundleResource Include="Resources\ic_male%403x.png" />
+    <BundleResource Include="Resources\ic_male_selected%403x.png" />
+    <BundleResource Include="Resources\ic_medicine_list%403x.png" />
+    <BundleResource Include="Resources\ic_medicine_tab_selected%403x.png" />
+    <BundleResource Include="Resources\ic_medicine_tab_unselected%403x.png" />
+    <BundleResource Include="Resources\ic_menu_biometric_data%403x.png" />
+    <BundleResource Include="Resources\ic_menu_card_sauda%403x.png" />
+    <BundleResource Include="Resources\ic_menu_catalog%403x.png" />
+    <BundleResource Include="Resources\ic_menu_pharmacies%403x.png" />
+    <BundleResource Include="Resources\ic_options_tab_selected%403x.png" />
+    <BundleResource Include="Resources\ic_options_tab_unselected%403x.png" />
+    <BundleResource Include="Resources\ic_plus%403x.png" />
+    <BundleResource Include="Resources\ic_sauda_logo%403x.png" />
+    <BundleResource Include="Resources\ic_sauda_logo_large%403x.png" />
+    <BundleResource Include="Resources\ic_sauda_logos%403x.png" />
+    <BundleResource Include="Resources\ic_trash_blue%403x.png" />
+    <BundleResource Include="Resources\ic_usercard_img1%403x.png" />
+    <BundleResource Include="Resources\ic_usercard_img2%403x.png" />
+    <BundleResource Include="Resources\ic_usercard_img3%403x.png" />
+    <BundleResource Include="Resources\ic_vouchers_arrow%403x.png" />
+    <BundleResource Include="Resources\ic_warning%403x.png" />
+    <BundleResource Include="Resources\magnifier%403x.png" />
+    <BundleResource Include="Resources\nearMe%403x.png" />
+    <BundleResource Include="Resources\next_arrow%403x.png" />
+    <BundleResource Include="Resources\pharmacy_annotation_1%403x.png" />
+    <BundleResource Include="Resources\pharmacy_annotation_2%403x.png" />
+    <BundleResource Include="Resources\pharmacy_annotation_3%403x.png" />
+    <BundleResource Include="Resources\pharmacy_annotation_4%403x.png" />
+    <BundleResource Include="Resources\phone%403x.png" />
+    <BundleResource Include="Resources\pointer_gray%403x.png" />
+    <BundleResource Include="Resources\recent%403x.png" />
+    <BundleResource Include="Resources\slider_left%403x.png" />
+    <BundleResource Include="Resources\slider_right%403x.png" />
+    <BundleResource Include="Resources\star%403x.png" />
+    <BundleResource Include="Resources\star_selected%403x.png" />
+    <BundleResource Include="Resources\switch_left%403x.png" />
+    <BundleResource Include="Resources\switch_midle%403x.png" />
+    <BundleResource Include="Resources\switch_right%403x.png" />
+    <BundleResource Include="Resources\magnifier_blue.png" />
+    <BundleResource Include="Resources\magnifier_blue%402x.png" />
+    <BundleResource Include="Resources\magnifier_blue%403x.png" />
+    <BundleResource Include="Resources\ic_button_arrow_black.png" />
+    <BundleResource Include="Resources\ic_button_arrow_black%402x.png" />
+    <BundleResource Include="Resources\ic_button_arrow_black%403x.png" />
+    <BundleResource Include="Resources\ic_menu_card.png" />
+    <BundleResource Include="Resources\ic_menu_cart.png" />
+    <BundleResource Include="Resources\ic_menu_params.png" />
+    <BundleResource Include="Resources\ic_menu_tomas.png" />
+    <BundleResource Include="Resources\points_bg2.png" />
+    <BundleResource Include="Resources\ic_menu_card%402x.png" />
+    <BundleResource Include="Resources\ic_menu_cart%402x.png" />
+    <BundleResource Include="Resources\ic_menu_params%402x.png" />
+    <BundleResource Include="Resources\ic_menu_tomas%402x.png" />
+    <BundleResource Include="Resources\points_bg2%402x.png" />
+    <BundleResource Include="Resources\ic_menu_card%403x.png" />
+    <BundleResource Include="Resources\ic_menu_cart%403x.png" />
+    <BundleResource Include="Resources\ic_menu_params%403x.png" />
+    <BundleResource Include="Resources\ic_menu_tomas%403x.png" />
+    <BundleResource Include="Resources\points_bg2%403x.png" />
+    <BundleResource Include="Resources\ic_menu_health.png" />
+    <BundleResource Include="Resources\ic_menu_home.png" />
+    <BundleResource Include="Resources\ic_menu_locator.png" />
+    <BundleResource Include="Resources\ic_menu_points.png" />
+    <BundleResource Include="Resources\ic_menu_health%402x.png" />
+    <BundleResource Include="Resources\ic_menu_home%402x.png" />
+    <BundleResource Include="Resources\ic_menu_locator%402x.png" />
+    <BundleResource Include="Resources\ic_menu_points%402x.png" />
+    <BundleResource Include="Resources\ic_menu_health%403x.png" />
+    <BundleResource Include="Resources\ic_menu_home%403x.png" />
+    <BundleResource Include="Resources\ic_menu_locator%403x.png" />
+    <BundleResource Include="Resources\ic_menu_points%403x.png" />
+    <BundleResource Include="Resources\ic_navbar_cart.png" />
+    <BundleResource Include="Resources\ic_navbar_star_white.png" />
+    <BundleResource Include="Resources\ic_product_availability.png" />
+    <BundleResource Include="Resources\ic_product_mag_img.png" />
+    <BundleResource Include="Resources\ic_product_mag_search.png" />
+    <BundleResource Include="Resources\ic_product_notrecomended.png" />
+    <BundleResource Include="Resources\ic_star_orange.png" />
+    <BundleResource Include="Resources\ic_navbar_cart%402x.png" />
+    <BundleResource Include="Resources\ic_navbar_star_white%402x.png" />
+    <BundleResource Include="Resources\ic_product_availability%402x.png" />
+    <BundleResource Include="Resources\ic_product_mag_img%402x.png" />
+    <BundleResource Include="Resources\ic_product_mag_search%402x.png" />
+    <BundleResource Include="Resources\ic_product_notrecomended%402x.png" />
+    <BundleResource Include="Resources\ic_star_orange%402x.png" />
+    <BundleResource Include="Resources\ic_navbar_cart%403x.png" />
+    <BundleResource Include="Resources\ic_navbar_star_white%403x.png" />
+    <BundleResource Include="Resources\ic_product_availability%403x.png" />
+    <BundleResource Include="Resources\ic_product_mag_img%403x.png" />
+    <BundleResource Include="Resources\ic_product_mag_search%403x.png" />
+    <BundleResource Include="Resources\ic_product_notrecomended%403x.png" />
+    <BundleResource Include="Resources\ic_star_orange%403x.png" />
+    <BundleResource Include="Resources\bg_banner_join.png" />
+    <BundleResource Include="Resources\ic_button_pcall.png" />
+    <BundleResource Include="Resources\ic_button_pgoto.png" />
+    <BundleResource Include="Resources\ic_cart.png" />
+    <BundleResource Include="Resources\ic_sauda_logo_w.png" />
+    <BundleResource Include="Resources\bg_banner_join%402x.png" />
+    <BundleResource Include="Resources\ic_button_pcall%402x.png" />
+    <BundleResource Include="Resources\ic_cart%402x.png" />
+    <BundleResource Include="Resources\ic_sauda_logo_w%402x.png" />
+    <BundleResource Include="Resources\ic_button_pgoto%402x.png" />
+    <BundleResource Include="Resources\bg_banner_join%403x.png" />
+    <BundleResource Include="Resources\ic_cart%403x.png" />
+    <BundleResource Include="Resources\ic_sauda_logo_w%403x.png" />
+    <BundleResource Include="Resources\ic_button_pcall%403x.png" />
+    <BundleResource Include="Resources\ic_button_pgoto%403x.png" />
+    <BundleResource Include="Resources\ic_cart_button.png" />
+    <BundleResource Include="Resources\ic_menu_tomas2.png" />
+    <BundleResource Include="Resources\ic_product_warning.png" />
+    <BundleResource Include="Resources\points_bg3.png" />
+    <BundleResource Include="Resources\ic_cart_button%402x.png" />
+    <BundleResource Include="Resources\ic_menu_tomas2%402x.png" />
+    <BundleResource Include="Resources\ic_product_warning%402x.png" />
+    <BundleResource Include="Resources\points_bg3%402x.png" />
+    <BundleResource Include="Resources\ic_cart_button%403x.png" />
+    <BundleResource Include="Resources\ic_menu_tomas2%403x.png" />
+    <BundleResource Include="Resources\ic_product_warning%403x.png" />
+    <BundleResource Include="Resources\points_bg3%403x.png" />
+    <BundleResource Include="Resources\ic_menu_health2.png" />
+    <BundleResource Include="Resources\ic_menu_home2.png" />
+    <BundleResource Include="Resources\ic_menu_health2%402x.png" />
+    <BundleResource Include="Resources\ic_menu_home2%402x.png" />
+    <BundleResource Include="Resources\ic_menu_health2%403x.png" />
+    <BundleResource Include="Resources\ic_menu_home2%403x.png" />
+    <BundleResource Include="Resources\ic_appbar_menu2%403x.png" />
+    <BundleResource Include="Resources\ic_appbar_menu2%402x.png" />
+    <BundleResource Include="Resources\ic_appbar_menu2.png" />
+    <BundleResource Include="Resources\ic_navbar_star_green.png" />
+    <BundleResource Include="Resources\ic_navbar_star_green%402x.png" />
+    <BundleResource Include="Resources\ic_navbar_star_green%403x.png" />
+    <BundleResource Include="Resources\ic_add_drug_large.png" />
+    <BundleResource Include="Resources\ic_add_drug_large%402x.png" />
+    <BundleResource Include="Resources\ic_add_drug_large%403x.png" />
+    <BundleResource Include="Resources\bt_trashbin2.png" />
+    <BundleResource Include="Resources\bt_trashbin2%402x.png" />
+    <BundleResource Include="Resources\bt_trashbin2%403x.png" />
+    <BundleResource Include="Resources\ic_barcode_scan_small.png" />
+    <BundleResource Include="Resources\ic_barcode_scan_small%402x.png" />
+    <BundleResource Include="Resources\ic_barcode_scan_small%403x.png" />
+    <BundleResource Include="Resources\ic_plus_blue.png" />
+    <BundleResource Include="Resources\ic_switch_drug.png" />
+    <BundleResource Include="Resources\ic_plus_blue%402x.png" />
+    <BundleResource Include="Resources\ic_switch_drug%402x.png" />
+    <BundleResource Include="Resources\ic_plus_blue%403x.png" />
+    <BundleResource Include="Resources\ic_switch_drug%403x.png" />
+    <BundleResource Include="Resources\ic_change_pharm.png" />
+    <BundleResource Include="Resources\ic_change_pharm%402x.png" />
+    <BundleResource Include="Resources\ic_change_pharm%403x.png" />
+    <BundleResource Include="Resources\ic_logout.png" />
+    <BundleResource Include="Resources\ic_logout%402x.png" />
+    <BundleResource Include="Resources\ic_logout%403x.png" />
+    <BundleResource Include="Resources\ic_change_pass.png" />
+    <BundleResource Include="Resources\ic_change_pass%402x.png" />
+    <BundleResource Include="Resources\ic_change_pass%403x.png" />
+    <BundleResource Include="Resources\ic_barcode_scan_large.png" />
+    <BundleResource Include="Resources\ic_barcode_scan_large%402x.png" />
+    <BundleResource Include="Resources\ic_barcode_scan_large%403x.png" />
+    <BundleResource Include="Resources\img_user.png" />
+    <BundleResource Include="Resources\img_user%402x.png" />
+    <BundleResource Include="Resources\img_user%403x.png" />
+    <BundleResource Include="Resources\bg_checkbox_selected_blue.png" />
+    <BundleResource Include="Resources\bg_checkbox_selected_blue%402x.png" />
+    <BundleResource Include="Resources\bg_checkbox_selected_blue%403x.png" />
+    <BundleResource Include="Resources\img_use_mask.png" />
+    <BundleResource Include="Resources\img_use_mask%402x.png" />
+    <BundleResource Include="Resources\img_use_mask%403x.png" />
+    <BundleResource Include="Resources\ic_cat_annotation1.png" />
+    <BundleResource Include="Resources\ic_cat_annotation2.png" />
+    <BundleResource Include="Resources\ic_cat_annotation3.png" />
+    <BundleResource Include="Resources\ic_drug_annotation.png" />
+    <BundleResource Include="Resources\ic_prescription_annotation.png" />
+    <BundleResource Include="Resources\ic_cat_annotation1%402x.png" />
+    <BundleResource Include="Resources\ic_cat_annotation2%402x.png" />
+    <BundleResource Include="Resources\ic_cat_annotation3%402x.png" />
+    <BundleResource Include="Resources\ic_drug_annotation%402x.png" />
+    <BundleResource Include="Resources\ic_prescription_annotation%402x.png" />
+    <BundleResource Include="Resources\ic_cat_annotation1%403x.png" />
+    <BundleResource Include="Resources\ic_cat_annotation2%403x.png" />
+    <BundleResource Include="Resources\ic_cat_annotation3%403x.png" />
+    <BundleResource Include="Resources\ic_drug_annotation%403x.png" />
+    <BundleResource Include="Resources\ic_prescription_annotation%403x.png" />
+    <BundleResource Include="Resources\ic_star_orange_filled.png" />
+    <BundleResource Include="Resources\ic_star_orange_filled%402x.png" />
+    <BundleResource Include="Resources\ic_star_orange_filled%403x.png" />
+    <BundleResource Include="Resources\msrmplaceholder.png" />
+    <BundleResource Include="Resources\msrmplaceholder%402x.png" />
+    <BundleResource Include="Resources\msrmplaceholder%403x.png" />
+    <BundleResource Include="Resources\prescriptionplaceholder.png" />
+    <BundleResource Include="Resources\prescriptionplaceholder%402x.png" />
+    <BundleResource Include="Resources\prescriptionplaceholder%403x.png" />
+    <BundleResource Include="Resources\img_use_mask_green.png" />
+    <BundleResource Include="Resources\img_use_mask_green%402x.png" />
+    <BundleResource Include="Resources\img_use_mask_green%403x.png" />
+    <BundleResource Include="Resources\catalog_detail.png" />
+    <BundleResource Include="Resources\catalog_thumbnail.png" />
+    <BundleResource Include="Resources\star_favourite.png" />
+    <BundleResource Include="Resources\star_favourite%402x.png" />
+    <BundleResource Include="Resources\star_favourite%403x.png" />
+    <BundleResource Include="Resources\star_unfavourite.png" />
+    <BundleResource Include="Resources\star_unfavourite%402x.png" />
+    <BundleResource Include="Resources\star_unfavourite%403x.png" />
+    <BundleResource Include="Resources\bt_sections%403x.png" />
+    <BundleResource Include="Resources\bt_sections%402x.png" />
+    <BundleResource Include="Resources\bt_sections.png" />
+    <BundleResource Include="Resources\arrow_black_down.png" />
+    <BundleResource Include="Resources\arrow_black_down%402x.png" />
+    <BundleResource Include="Resources\arrow_black_down%403x.png" />
+    <BundleResource Include="Resources\arrow_black_up.png" />
+    <BundleResource Include="Resources\arrow_black_up%402x.png" />
+    <BundleResource Include="Resources\arrow_black_up%403x.png" />
+    <BundleResource Include="Resources\star_point_achieved.png" />
+    <BundleResource Include="Resources\star_point_achieved%402x.png" />
+    <BundleResource Include="Resources\star_point_achieved%403x.png" />
+    <BundleResource Include="Resources\star_point_unachieved.png" />
+    <BundleResource Include="Resources\star_point_unachieved%402x.png" />
+    <BundleResource Include="Resources\star_point_unachieved%403x.png" />
+    <BundleResource Include="Resources\f.png" />
+    <BundleResource Include="Resources\f%402x.png" />
+    <BundleResource Include="Resources\f%403x.png" />
+    <BundleResource Include="Resources\g.png" />
+    <BundleResource Include="Resources\g%402x.png" />
+    <BundleResource Include="Resources\g%403x.png" />
+    <BundleResource Include="Resources\t.png" />
+    <BundleResource Include="Resources\t%402x.png" />
+    <BundleResource Include="Resources\t%403x.png" />
+    <BundleResource Include="Resources\get_card_points_screen.png" />
+    <BundleResource Include="Resources\get_card_points_screen%402x.png" />
+    <BundleResource Include="Resources\get_card_points_screen%403x.png" />
+    <BundleResource Include="Resources\ic_locate_services.png" />
+    <BundleResource Include="Resources\ic_locate_services%402x.png" />
+    <BundleResource Include="Resources\ic_locate_services%403x.png" />
+    <BundleResource Include="Resources\ic_orange_circle.png" />
+    <BundleResource Include="Resources\ic_orange_circle%402x.png" />
+    <BundleResource Include="Resources\ic_orange_circle%403x.png" />
+    <BundleResource Include="Resources\pharmacy_annotation_4.png" />
+    <BundleResource Include="Resources\pharmacy_annotation_3.png" />
+    <BundleResource Include="Resources\pharmacy_annotation_2.png" />
+    <BundleResource Include="Resources\pharmacy_annotation_1.png" />
+    <BundleResource Include="Resources\ic_cat_1.png" />
+    <BundleResource Include="Resources\ic_cat_2.png" />
+    <BundleResource Include="Resources\ic_cat_3.png" />
+    <BundleResource Include="Resources\ic_cat_4.png" />
+    <BundleResource Include="Resources\ic_cat_5.png" />
+    <BundleResource Include="Resources\ic_cat_6.png" />
+    <BundleResource Include="Resources\ic_cat_7.png" />
+    <BundleResource Include="Resources\ic_cat_8.png" />
+    <BundleResource Include="Resources\ic_cat_9.png" />
+    <BundleResource Include="Resources\ic_cat_1%402x.png" />
+    <BundleResource Include="Resources\ic_cat_2%402x.png" />
+    <BundleResource Include="Resources\ic_cat_3%402x.png" />
+    <BundleResource Include="Resources\ic_cat_4%402x.png" />
+    <BundleResource Include="Resources\ic_cat_5%402x.png" />
+    <BundleResource Include="Resources\ic_cat_6%402x.png" />
+    <BundleResource Include="Resources\ic_cat_7%402x.png" />
+    <BundleResource Include="Resources\ic_cat_8%402x.png" />
+    <BundleResource Include="Resources\ic_cat_9%402x.png" />
+    <BundleResource Include="Resources\ic_cat_1%403x.png" />
+    <BundleResource Include="Resources\ic_cat_2%403x.png" />
+    <BundleResource Include="Resources\ic_cat_3%403x.png" />
+    <BundleResource Include="Resources\ic_cat_4%403x.png" />
+    <BundleResource Include="Resources\ic_cat_5%403x.png" />
+    <BundleResource Include="Resources\ic_cat_6%403x.png" />
+    <BundleResource Include="Resources\ic_cat_7%403x.png" />
+    <BundleResource Include="Resources\ic_cat_8%403x.png" />
+    <BundleResource Include="Resources\ic_cat_9%403x.png" />
+    <BundleResource Include="Resources\ic_drug_warning.png" />
+    <BundleResource Include="Resources\ic_drug_warning%402x.png" />
+    <BundleResource Include="Resources\ic_drug_warning%403x.png" />
+    <BundleResource Include="Resources\ic_edit_button%402x.png" />
+    <BundleResource Include="Resources\ic_clone_button%402x.png" />
+    <BundleResource Include="Resources\ic_clone_button.png" />
+    <BundleResource Include="Resources\ic_edit_button.png" />
+    <BundleResource Include="Resources\ic_edit_button%403x.png" />
+    <BundleResource Include="Resources\ic_clone_button%403x.png" />
+    <BundleResource Include="Resources\magnifier_gray%402x.png" />
+    <BundleResource Include="Resources\magnifier_gray%403x.png" />
+    <BundleResource Include="Resources\ic_filter%402x.png" />
+    <BundleResource Include="Resources\ic_filter%403x.png" />
+    <BundleResource Include="Resources\ic_order%402x.png" />
+    <BundleResource Include="Resources\ic_order%403x.png" />
+    <BundleResource Include="Resources\ic_prescription%402x.png" />
+    <BundleResource Include="Resources\ic_prescription%403x.png" />
+    <BundleResource Include="Resources\ic_prescription_selected%402x.png" />
+    <BundleResource Include="Resources\ic_prescription_selected%403x.png" />
+    <BundleResource Include="Resources\ic_filter.png" />
+    <BundleResource Include="Resources\ic_order.png" />
+    <BundleResource Include="Resources\ic_prescription.png" />
+    <BundleResource Include="Resources\ic_prescription_selected.png" />
+    <BundleResource Include="Resources\magnifier_gray.png" />
+    <BundleResource Include="Resources\bt_trashbin_orange%403x.png" />
+    <BundleResource Include="Resources\bt_trashbin_orange.png" />
+    <BundleResource Include="Resources\bt_trashbin_orange%402x.png" />
+    <BundleResource Include="Resources\ic_navbar_cart_green.png" />
+    <BundleResource Include="Resources\ic_navbar_cart_green%402x.png" />
+    <BundleResource Include="Resources\ic_navbar_cart_green%403x.png" />
+    <BundleResource Include="Resources\ic_photo.png" />
+    <BundleResource Include="Resources\ic_photo%402x.png" />
+    <BundleResource Include="Resources\ic_photo%403x.png" />
+    <BundleResource Include="Resources\ic_remove_cross.png" />
+    <BundleResource Include="Resources\ic_remove_cross%402x.png" />
+    <BundleResource Include="Resources\ic_remove_cross%403x.png" />
+    <BundleResource Include="Resources\ic_atm_logo.png" />
+    <BundleResource Include="Resources\ic_atm_logo%402x.png" />
+    <BundleResource Include="Resources\ic_atm_logo%403x.png" />
+    <BundleResource Include="Resources\ic_visa_logo.png" />
+    <BundleResource Include="Resources\ic_visa_logo%402x.png" />
+    <BundleResource Include="Resources\ic_visa_logo%403x.png" />
+    <BundleResource Include="Resources\ic_plus_orange.png" />
+    <BundleResource Include="Resources\ic_plus_orange%402x.png" />
+    <BundleResource Include="Resources\ic_plus_orange%403x.png" />
+    <BundleResource Include="Resources\ic_user_appbar.png" />
+    <BundleResource Include="Resources\ic_user_appbar%402x.png" />
+    <BundleResource Include="Resources\ic_user_appbar%403x.png" />
+    <BundleResource Include="Resources\ic_back_arrow_green.png" />
+    <BundleResource Include="Resources\ic_back_arrow_green%402x.png" />
+    <BundleResource Include="Resources\ic_back_arrow_green%403x.png" />
+    <BundleResource Include="Resources\ic_menu_contacts.png" />
+    <BundleResource Include="Resources\ic_menu_contacts%402x.png" />
+    <BundleResource Include="Resources\ic_menu_contacts%403x.png" />
+    <BundleResource Include="Resources\ic_product_mnsrm_warning.png" />
+    <BundleResource Include="Resources\ic_product_mnsrm_warning%402x.png" />
+    <BundleResource Include="Resources\ic_product_mnsrm_warning%403x.png" />
+    <Compile Include="Utils\BitmapUtils.cs" />
+    <BundleResource Include="Resources\ic_link.png" />
+    <BundleResource Include="Resources\ic_link%402x.png" />
+    <BundleResource Include="Resources\ic_link%403x.png" />
+    <BundleResource Include="Resources\bg_pharmacy_image_default1.png" />
+    <BundleResource Include="Resources\bg_pharmacy_image_default1%402x.png" />
+    <BundleResource Include="Resources\bg_pharmacy_image_default1%403x.png" />
+    <BundleResource Include="Resources\bg_pharmacy_image_default2.png" />
+    <BundleResource Include="Resources\bg_pharmacy_image_default2%402x.png" />
+    <BundleResource Include="Resources\bg_pharmacy_image_default2%403x.png" />
+    <BundleResource Include="Resources\ic_msrm_alert.png" />
+    <BundleResource Include="Resources\ic_msrm_alert%402x.png" />
+    <BundleResource Include="Resources\ic_msrm_alert%403x.png" />
+    <BundleResource Include="Resources\txt_tutorial1_step1.png" />
+    <BundleResource Include="Resources\txt_tutorial1_step1%402x.png" />
+    <BundleResource Include="Resources\txt_tutorial1_step1%403x.png" />
+    <BundleResource Include="Resources\txt_tutorial1_step2.png" />
+    <BundleResource Include="Resources\txt_tutorial1_step2%402x.png" />
+    <BundleResource Include="Resources\txt_tutorial1_step2%403x.png" />
+    <BundleResource Include="Resources\txt_tutorial1_step3.png" />
+    <BundleResource Include="Resources\txt_tutorial1_step3%402x.png" />
+    <BundleResource Include="Resources\txt_tutorial1_step3%403x.png" />
+    <BundleResource Include="Resources\txt_tutorial2_step1.png" />
+    <BundleResource Include="Resources\txt_tutorial2_step1%402x.png" />
+    <BundleResource Include="Resources\txt_tutorial2_step1%403x.png" />
+    <BundleResource Include="Resources\txt_tutorial2_step2.png" />
+    <BundleResource Include="Resources\txt_tutorial2_step2%402x.png" />
+    <BundleResource Include="Resources\txt_tutorial2_step2%403x.png" />
+    <BundleResource Include="Resources\txt_tutorial2_step3.png" />
+    <BundleResource Include="Resources\txt_tutorial2_step3%402x.png" />
+    <BundleResource Include="Resources\txt_tutorial2_step3%403x.png" />
+    <BundleResource Include="Resources\txt_tutorial3_step1.png" />
+    <BundleResource Include="Resources\txt_tutorial3_step1%402x.png" />
+    <BundleResource Include="Resources\txt_tutorial3_step1%403x.png" />
+    <BundleResource Include="Resources\txt_tutorial3_step2.png" />
+    <BundleResource Include="Resources\txt_tutorial3_step2%402x.png" />
+    <BundleResource Include="Resources\txt_tutorial3_step2%403x.png" />
+    <BundleResource Include="Resources\txt_tutorial3_step3.png" />
+    <BundleResource Include="Resources\txt_tutorial3_step3%402x.png" />
+    <BundleResource Include="Resources\txt_tutorial3_step3%403x.png" />
+    <BundleResource Include="Resources\txt_tutorial4_step1.png" />
+    <BundleResource Include="Resources\txt_tutorial4_step1%402x.png" />
+    <BundleResource Include="Resources\txt_tutorial4_step1%403x.png" />
+    <BundleResource Include="Resources\txt_tutorial4_step2.png" />
+    <BundleResource Include="Resources\txt_tutorial4_step2%402x.png" />
+    <BundleResource Include="Resources\txt_tutorial4_step2%403x.png" />
+    <BundleResource Include="Resources\txt_tutorial4_step3.png" />
+    <BundleResource Include="Resources\txt_tutorial4_step3%402x.png" />
+    <BundleResource Include="Resources\txt_tutorial4_step3%403x.png" />
+    <BundleResource Include="Resources\txt_tutorial4_step4.png" />
+    <BundleResource Include="Resources\txt_tutorial4_step4%402x.png" />
+    <BundleResource Include="Resources\txt_tutorial4_step4%403x.png" />
+    <BundleResource Include="Resources\txt_tutorial5_step1.png" />
+    <BundleResource Include="Resources\txt_tutorial5_step1%402x.png" />
+    <BundleResource Include="Resources\txt_tutorial5_step1%403x.png" />
+    <BundleResource Include="Resources\txt_tutorial5_step2.png" />
+    <BundleResource Include="Resources\txt_tutorial5_step2%402x.png" />
+    <BundleResource Include="Resources\txt_tutorial5_step2%403x.png" />
+    <BundleResource Include="Resources\txt_tutorial5_step3.png" />
+    <BundleResource Include="Resources\txt_tutorial5_step3%402x.png" />
+    <BundleResource Include="Resources\txt_tutorial5_step3%403x.png" />
+    <BundleResource Include="Resources\ic_tutorial_nav_left.png" />
+    <BundleResource Include="Resources\ic_tutorial_nav_left%402x.png" />
+    <BundleResource Include="Resources\ic_tutorial_nav_left%403x.png" />
+    <BundleResource Include="Resources\ic_tutorial_nav_right.png" />
+    <BundleResource Include="Resources\ic_tutorial_nav_right%402x.png" />
+    <BundleResource Include="Resources\ic_tutorial_nav_right%403x.png" />
+    <BundleResource Include="Resources\ic_tutorial_indicator.png" />
+    <BundleResource Include="Resources\ic_tutorial_indicator%402x.png" />
+    <BundleResource Include="Resources\ic_tutorial_indicator%403x.png" />
+    <BundleResource Include="Resources\bg_tutorial1_step1.png" />
+    <BundleResource Include="Resources\bg_tutorial1_step1%402x.png" />
+    <BundleResource Include="Resources\bg_tutorial1_step1%403x.png" />
+    <BundleResource Include="Resources\bg_tutorial1_step2.png" />
+    <BundleResource Include="Resources\bg_tutorial1_step2%402x.png" />
+    <BundleResource Include="Resources\bg_tutorial1_step2%403x.png" />
+    <BundleResource Include="Resources\bg_tutorial1_step3.png" />
+    <BundleResource Include="Resources\bg_tutorial1_step3%402x.png" />
+    <BundleResource Include="Resources\bg_tutorial1_step3%403x.png" />
+    <BundleResource Include="Resources\bg_tutorial2_step1.png" />
+    <BundleResource Include="Resources\bg_tutorial2_step1%402x.png" />
+    <BundleResource Include="Resources\bg_tutorial2_step1%403x.png" />
+    <BundleResource Include="Resources\bg_tutorial3_step1.png" />
+    <BundleResource Include="Resources\bg_tutorial3_step1%402x.png" />
+    <BundleResource Include="Resources\bg_tutorial3_step1%403x.png" />
+    <BundleResource Include="Resources\bg_tutorial3_step2.png" />
+    <BundleResource Include="Resources\bg_tutorial3_step2%402x.png" />
+    <BundleResource Include="Resources\bg_tutorial3_step2%403x.png" />
+    <BundleResource Include="Resources\bg_tutorial3_step3.png" />
+    <BundleResource Include="Resources\bg_tutorial3_step3%402x.png" />
+    <BundleResource Include="Resources\bg_tutorial3_step3%403x.png" />
+    <BundleResource Include="Resources\bg_tutorial4_step1.png" />
+    <BundleResource Include="Resources\bg_tutorial4_step1%402x.png" />
+    <BundleResource Include="Resources\bg_tutorial4_step1%403x.png" />
+    <BundleResource Include="Resources\bg_tutorial4_step2.png" />
+    <BundleResource Include="Resources\bg_tutorial4_step2%402x.png" />
+    <BundleResource Include="Resources\bg_tutorial4_step2%403x.png" />
+    <BundleResource Include="Resources\bg_tutorial4_step3.png" />
+    <BundleResource Include="Resources\bg_tutorial4_step3%402x.png" />
+    <BundleResource Include="Resources\bg_tutorial4_step3%403x.png" />
+    <BundleResource Include="Resources\bg_tutorial4_step4.png" />
+    <BundleResource Include="Resources\bg_tutorial4_step4%402x.png" />
+    <BundleResource Include="Resources\bg_tutorial4_step4%403x.png" />
+    <BundleResource Include="Resources\bg_tutorial5_step1.png" />
+    <BundleResource Include="Resources\bg_tutorial5_step1%402x.png" />
+    <BundleResource Include="Resources\bg_tutorial5_step1%403x.png" />
+    <BundleResource Include="Resources\bg_tutorial5_step2.png" />
+    <BundleResource Include="Resources\bg_tutorial5_step2%402x.png" />
+    <BundleResource Include="Resources\bg_tutorial5_step2%403x.png" />
+    <BundleResource Include="Resources\bg_tutorial5_step3.png" />
+    <BundleResource Include="Resources\bg_tutorial5_step3%402x.png" />
+    <BundleResource Include="Resources\bg_tutorial5_step3%403x.png" />
+    <BundleResource Include="Resources\bg_tutorial2_step2.png" />
+    <BundleResource Include="Resources\bg_tutorial2_step2%402x.png" />
+    <BundleResource Include="Resources\bg_tutorial2_step2%403x.png" />
+    <BundleResource Include="Resources\bg_tutorial2_step3.png" />
+    <BundleResource Include="Resources\bg_tutorial2_step3%402x.png" />
+    <BundleResource Include="Resources\bg_tutorial2_step3%403x.png" />
+    <BundleResource Include="Resources\ic_tutorial2.png" />
+    <BundleResource Include="Resources\ic_tutorial2%402x.png" />
+    <BundleResource Include="Resources\ic_tutorial2%403x.png" />
+    <BundleResource Include="Resources\ic_button_link_blue.png" />
+    <BundleResource Include="Resources\ic_button_link_blue%402x.png" />
+    <BundleResource Include="Resources\ic_button_link_blue%403x.png" />
+    <BundleResource Include="Resources\icon_gallery.png" />
+    <BundleResource Include="Resources\icon_gallery%402x.png" />
+    <BundleResource Include="Resources\icon_gallery%403x.png" />
+    <BundleResource Include="Resources\icon_zoom.png" />
+    <BundleResource Include="Resources\icon_zoom%402x.png" />
+    <BundleResource Include="Resources\icon_zoom%403x.png" />
+    <BundleResource Include="Resources\icon_expand.png" />
+    <BundleResource Include="Resources\icon_expand%402x.png" />
+    <BundleResource Include="Resources\icon_expand%403x.png" />
+    <BundleResource Include="Resources\icon_galeria.png" />
+    <BundleResource Include="Resources\icon_galeria%402x.png" />
+    <BundleResource Include="Resources\icon_galeria%403x.png" />
+    <BundleResource Include="Resources\points_bg4.png" />
+    <BundleResource Include="Resources\points_bg4%402x.png" />
+    <BundleResource Include="Resources\points_bg4%403x.png" />
+    <BundleResource Include="Resources\cartao_vale_sauda_10_disabled.png" />
+    <BundleResource Include="Resources\cartao_vale_sauda_10_disabled%402x.png" />
+    <BundleResource Include="Resources\cartao_vale_sauda_10_disabled%403x.png" />
+    <BundleResource Include="Resources\cartao_vale_sauda_2_disabled.png" />
+    <BundleResource Include="Resources\cartao_vale_sauda_2_disabled%402x.png" />
+    <BundleResource Include="Resources\cartao_vale_sauda_2_disabled%403x.png" />
+    <BundleResource Include="Resources\cartao_vale_sauda_20_disabled.png" />
+    <BundleResource Include="Resources\cartao_vale_sauda_20_disabled%402x.png" />
+    <BundleResource Include="Resources\cartao_vale_sauda_20_disabled%403x.png" />
+    <BundleResource Include="Resources\cartao_vale_sauda_5_disabled.png" />
+    <BundleResource Include="Resources\cartao_vale_sauda_5_disabled%402x.png" />
+    <BundleResource Include="Resources\cartao_vale_sauda_5_disabled%403x.png" />
+    <None Include="Resources\_50_points.png" />
+    <None Include="Resources\_120_points.png" />
+    <None Include="Resources\_230_points.png" />
+    <None Include="Resources\_440_points.png" />
+    <None Include="Resources\_50_points%402x.png" />
+    <None Include="Resources\_120_points%402x.png" />
+    <None Include="Resources\_230_points%402x.png" />
+    <None Include="Resources\_440_points%402x.png" />
+    <None Include="Resources\_50_points%403x.png" />
+    <None Include="Resources\_120_points%403x.png" />
+    <None Include="Resources\_230_points%403x.png" />
+    <None Include="Resources\_440_points%403x.png" />
+    <BundleResource Include="Resources\pharmacy_annotation_6.png" />
+    <BundleResource Include="Resources\pharmacy_annotation_6%402x.png" />
+    <BundleResource Include="Resources\pharmacy_annotation_6%403x.png" />
+    <BundleResource Include="Resources\cartao_vale_sauda_10.png" />
+    <BundleResource Include="Resources\cartao_vale_sauda_2.png" />
+    <BundleResource Include="Resources\cartao_vale_sauda_20.png" />
+    <BundleResource Include="Resources\cartao_vale_sauda_5.png" />
+    <BundleResource Include="Resources\cartao_vale_sauda_10%402x.png" />
+    <BundleResource Include="Resources\cartao_vale_sauda_10%403x.png" />
+    <BundleResource Include="Resources\cartao_vale_sauda_2%402x.png" />
+    <BundleResource Include="Resources\cartao_vale_sauda_2%403x.png" />
+    <BundleResource Include="Resources\cartao_vale_sauda_20%402x.png" />
+    <BundleResource Include="Resources\cartao_vale_sauda_20%403x.png" />
+    <BundleResource Include="Resources\cartao_vale_sauda_5%402x.png" />
+    <BundleResource Include="Resources\cartao_vale_sauda_5%403x.png" />
+    <BundleResource Include="Resources\double_arrow.png" />
+    <BundleResource Include="Resources\double_arrow%402x.png" />
+    <BundleResource Include="Resources\double_arrow%403x.png" />
+    <BundleResource Include="Resources\vcardb.png" />
+    <BundleResource Include="Resources\vcardb%402x.png" />
+    <BundleResource Include="Resources\vcardb%403x.png" />
+    <BundleResource Include="Resources\initialpagebackgroundimage.png" />
+    <BundleResource Include="Resources\initialpagebackgroundimage%402x.png" />
+    <BundleResource Include="Resources\initialpagebackgroundimage%403x.png" />
+    <BundleResource Include="Resources\cardpromotionalbanner.png" />
+    <BundleResource Include="Resources\cardpromotionalbanner%402x.png" />
+    <BundleResource Include="Resources\cardpromotionalbanner%403x.png" />
+    <BundleResource Include="Resources\Fonts\Cabin-Bold.ttf" />
+    <BundleResource Include="Resources\Fonts\Cabin-Medium.ttf" />
+    <BundleResource Include="Resources\Fonts\Cabin-Regular.ttf" />
+    <BundleResource Include="Resources\Fonts\Cabin-SemiBold.ttf" />
+    <BundleResource Include="Resources\Fonts\Roboto-Bold.ttf" />
+    <BundleResource Include="Resources\Fonts\Roboto-Italic.ttf" />
+    <BundleResource Include="Resources\Fonts\Roboto-Light.ttf" />
+    <BundleResource Include="Resources\Fonts\Roboto-Medium.ttf" />
+    <BundleResource Include="Resources\Fonts\Roboto-Regular.ttf" />
+    <Compile Include="Renderer\ZoomableWebViewRenderer.cs" />
+    <BundleResource Include="Resources\vcardpharm.png" />
+    <BundleResource Include="Resources\vcardpharm%402x.png" />
+    <BundleResource Include="Resources\vcardpharm%403x.png" />
+    <BundleResource Include="Resources\ic_mbway.png" />
+    <BundleResource Include="Resources\ic_mbway%402x.png" />
+    <BundleResource Include="Resources\ic_mbway%403x.png" />
+    <BundleResource Include="Resources\ic_cat_26%403x.png" />
+    <BundleResource Include="Resources\ic_cat_26%402x.png" />
+    <BundleResource Include="Resources\ic_cat_26.png" />
+    <BundleResource Include="Resources\ic_cat_25%403x.png" />
+    <BundleResource Include="Resources\ic_cat_25%402x.png" />
+    <BundleResource Include="Resources\ic_cat_25.png" />
+    <BundleResource Include="Resources\ic_cat_24%403x.png" />
+    <BundleResource Include="Resources\ic_cat_24%402x.png" />
+    <BundleResource Include="Resources\ic_cat_24.png" />
+    <BundleResource Include="Resources\ic_cat_23%403x.png" />
+    <BundleResource Include="Resources\ic_cat_23%402x.png" />
+    <BundleResource Include="Resources\ic_cat_23.png" />
+    <BundleResource Include="Resources\ic_cat_22%403x.png" />
+    <BundleResource Include="Resources\ic_cat_22%402x.png" />
+    <BundleResource Include="Resources\ic_cat_22.png" />
+    <BundleResource Include="Resources\ic_cat_21%403x.png" />
+    <BundleResource Include="Resources\ic_cat_21%402x.png" />
+    <BundleResource Include="Resources\ic_cat_21.png" />
+    <BundleResource Include="Resources\ic_cat_20%403x.png" />
+    <BundleResource Include="Resources\ic_cat_20%402x.png" />
+    <BundleResource Include="Resources\ic_cat_20.png" />
+    <BundleResource Include="Resources\ic_cat_19%403x.png" />
+    <BundleResource Include="Resources\ic_cat_19%402x.png" />
+    <BundleResource Include="Resources\ic_cat_19.png" />
+    <BundleResource Include="Resources\ic_cat_18%403x.png" />
+    <BundleResource Include="Resources\ic_cat_18%402x.png" />
+    <BundleResource Include="Resources\ic_cat_18.png" />
+    <BundleResource Include="Resources\ic_cat_17%403x.png" />
+    <BundleResource Include="Resources\ic_cat_17%402x.png" />
+    <BundleResource Include="Resources\ic_cat_17.png" />
+    <BundleResource Include="Resources\ic_cat_16%403x.png" />
+    <BundleResource Include="Resources\ic_cat_16%402x.png" />
+    <BundleResource Include="Resources\ic_cat_16.png" />
+    <BundleResource Include="Resources\ic_cat_15%403x.png" />
+    <BundleResource Include="Resources\ic_cat_15%402x.png" />
+    <BundleResource Include="Resources\ic_cat_15.png" />
+    <BundleResource Include="Resources\ic_cat_14%403x.png" />
+    <BundleResource Include="Resources\ic_cat_14%402x.png" />
+    <BundleResource Include="Resources\ic_cat_14.png" />
+    <BundleResource Include="Resources\ic_cat_13%403x.png" />
+    <BundleResource Include="Resources\ic_cat_13%402x.png" />
+    <BundleResource Include="Resources\ic_cat_13.png" />
+    <BundleResource Include="Resources\ic_cat_12%403x.png" />
+    <BundleResource Include="Resources\ic_cat_12%402x.png" />
+    <BundleResource Include="Resources\ic_cat_12.png" />
+    <BundleResource Include="Resources\ic_cat_11%403x.png" />
+    <BundleResource Include="Resources\ic_cat_11%402x.png" />
+    <BundleResource Include="Resources\ic_cat_11.png" />
+    <BundleResource Include="Resources\ic_cat_10%403x.png" />
+    <BundleResource Include="Resources\ic_cat_10%402x.png" />
+    <BundleResource Include="Resources\ic_cat_10.png" />
+    <BundleResource Include="Resources\banner_safe_fixo.png" />
+    <BundleResource Include="Resources\banner_safe_fixo%402x.png" />
+    <BundleResource Include="Resources\banner_safe_fixo%403x.png" />
+    <BundleResource Include="Resources\icon_72.png" />
+    <BundleResource Include="Resources\icon_100.png" />
+    <BundleResource Include="Resources\icon_114.png" />
+    <BundleResource Include="Resources\icon_144.png" />
+    <BundleResource Include="Resources\icon_29.png" />
+    <BundleResource Include="Resources\icon_40.png" />
+    <BundleResource Include="Resources\icon_152.png" />
+    <BundleResource Include="Resources\icon_50.png" />
+    <BundleResource Include="Resources\icon_180.png" />
+    <BundleResource Include="Resources\icon_58.png" />
+    <BundleResource Include="Resources\icon_167.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ANFAPP.Logic\ANFAPP.Logic.csproj">
+      <Project>{67F9D3A8-F71E-4428-913F-C37AE82CDB24}</Project>
+      <Name>ANFAPP.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ANFAPP\ANFAPP.csproj">
+      <Name>ANFAPP</Name>
+      <Project>{9284DBFA-35B8-4B85-9926-5CD854F57016}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="zxing.ios">
+      <HintPath>..\..\packages\ZXing.Net.Mobile.1.4.7.1\lib\Xamarin.iOS\zxing.ios.dll</HintPath>
+    </Reference>
+    <Reference Include="ZXing.Net.Mobile">
+      <HintPath>..\..\packages\ZXing.Net.Mobile.1.4.7.1\lib\Xamarin.iOS\ZXing.Net.Mobile.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="Mixpanel">
+      <HintPath>lib\Mixpanel.dll</HintPath>
+    </Reference>
+    <Reference Include="ExifLib">
+      <HintPath>..\..\packages\ExifLib.PCL.1.0.1\lib\portable-net45+sl50+win+WindowsPhoneApp81+wp80+Xamarin.iOS10+MonoAndroid10+MonoTouch10\ExifLib.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite.Net">
+      <HintPath>..\..\SQLite.Net-PCL\SQLite.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite.Net.Platform.XamarinIOS.Unified">
+      <HintPath>..\..\SQLite.Net-PCL\SQLite.Net.Platform.XamarinIOS.Unified.dll</HintPath>
+    </Reference>
+    <Reference Include="Acr.BarCodes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Acr.BarCodes.3.1.0\lib\Xamarin.iOS10\Acr.BarCodes.dll</HintPath>
+    </Reference>
+    <Reference Include="Acr.BarCodes.Interface, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Acr.BarCodes.3.1.0\lib\Xamarin.iOS10\Acr.BarCodes.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsXF">
+      <HintPath>..\..\packages\Infragistics.Xamarin.Core.15.1.20151.169\lib\Xamarin.iOS10\InfragisticsXF.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsXF.iOS">
+      <HintPath>..\..\packages\Infragistics.Xamarin.Core.15.1.20151.169\lib\Xamarin.iOS10\InfragisticsXF.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="IG.Unified">
+      <HintPath>..\..\packages\Infragistics.Xamarin.Core.15.1.20151.169\lib\Xamarin.iOS10\IG.Unified.dll</HintPath>
+    </Reference>
+    <Reference Include="IGChart.Unified">
+      <HintPath>..\..\packages\Infragistics.Xamarin.Core.15.1.20151.169\lib\Xamarin.iOS10\IGChart.Unified.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsXF.Controls.Barcodes">
+      <HintPath>..\..\packages\Infragistics.Xamarin.Barcodes.15.1.20151.169\lib\Xamarin.iOS10\InfragisticsXF.Controls.Barcodes.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsXF.Controls.Barcodes.iOS">
+      <HintPath>..\..\packages\Infragistics.Xamarin.Barcodes.15.1.20151.169\lib\Xamarin.iOS10\InfragisticsXF.Controls.Barcodes.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsXF.Controls.Gauges">
+      <HintPath>..\..\packages\Infragistics.Xamarin.Gauges.15.1.20151.169\lib\Xamarin.iOS10\InfragisticsXF.Controls.Gauges.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsXF.Controls.Gauges.iOS">
+      <HintPath>..\..\packages\Infragistics.Xamarin.Gauges.15.1.20151.169\lib\Xamarin.iOS10\InfragisticsXF.Controls.Gauges.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsXF.Controls.Grids">
+      <HintPath>..\..\packages\Infragistics.Xamarin.Grids.15.1.20151.169\lib\Xamarin.iOS10\InfragisticsXF.Controls.Grids.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsXF.Controls.Grids.iOS">
+      <HintPath>..\..\packages\Infragistics.Xamarin.Grids.15.1.20151.169\lib\Xamarin.iOS10\InfragisticsXF.Controls.Grids.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsXF.Controls.Charts">
+      <HintPath>..\..\packages\Infragistics.Xamarin.Charts.15.1.20151.169\lib\Xamarin.iOS10\InfragisticsXF.Controls.Charts.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsXF.Controls.Charts.iOS">
+      <HintPath>..\..\packages\Infragistics.Xamarin.Charts.15.1.20151.169\lib\Xamarin.iOS10\InfragisticsXF.Controls.Charts.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\Xamarin.iOS10\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\Xamarin.iOS10\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Branch-Xamarin-SDK.iOS">
+      <HintPath>..\..\packages\Branch-Xamarin-Linking-SDK.1.2.1\lib\Xamarin.iOS10\Branch-Xamarin-SDK.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Branch-Xamarin-SDK">
+      <HintPath>..\..\packages\Branch-Xamarin-Linking-SDK.1.2.1\lib\Xamarin.iOS10\Branch-Xamarin-SDK.dll</HintPath>
+    </Reference>
+    <Reference Include="ModernHttpClient">
+      <HintPath>..\..\packages\modernhttpclient.2.4.2\lib\Xamarin.iOS10\ModernHttpClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Mindscape.Raygun4Net.Xamarin.iOS.Unified">
+      <HintPath>..\..\packages\Mindscape.Raygun4Net.5.4.0\lib\Xamarin.iOS10\Mindscape.Raygun4Net.Xamarin.iOS.Unified.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Core">
+      <HintPath>..\..\packages\XLabs.Core.2.0.5782\lib\Xamarin.iOS10\XLabs.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Ioc">
+      <HintPath>..\..\packages\XLabs.IoC.2.0.5782\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Ioc.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Azure.NotificationHubs.iOS">
+      <HintPath>..\..\packages\Xamarin.Azure.NotificationHubs.iOS.1.2.5.2\lib\Xamarin.iOS10\Xamarin.Azure.NotificationHubs.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Platform">
+      <HintPath>..\..\packages\XLabs.Platform.2.0.5782\lib\Xamarin.iOS10\XLabs.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Platform.iOS">
+      <HintPath>..\..\packages\XLabs.Platform.2.0.5782\lib\Xamarin.iOS10\XLabs.Platform.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Serialization">
+      <HintPath>..\..\packages\XLabs.Serialization.2.0.5782\lib\Xamarin.iOS10\XLabs.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Forms">
+      <HintPath>..\..\packages\XLabs.Forms.2.0.5782\lib\Xamarin.iOS10\XLabs.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Forms.iOS">
+      <HintPath>..\..\packages\XLabs.Forms.2.0.5782\lib\Xamarin.iOS10\XLabs.Forms.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Forms.Charting">
+      <HintPath>..\..\packages\XLabs.Forms.Charting.2.0.5782\lib\Xamarin.iOS10\XLabs.Forms.Charting.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Forms.Charting.iOS">
+      <HintPath>..\..\packages\XLabs.Forms.Charting.2.0.5782\lib\Xamarin.iOS10\XLabs.Forms.Charting.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Settings.Abstractions">
+      <HintPath>..\..\packages\Xam.Plugins.Settings.2.5.1.0\lib\Xamarin.iOS10\Plugin.Settings.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Settings">
+      <HintPath>..\..\packages\Xam.Plugins.Settings.2.5.1.0\lib\Xamarin.iOS10\Plugin.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="Facebook">
+      <HintPath>..\..\packages\Xamarin.Facebook.4.3.0.0\lib\Xamarin.iOS10\Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Core">
+      <HintPath>..\..\packages\Xamarin.Forms.2.3.2.127\lib\Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform">
+      <HintPath>..\..\packages\Xamarin.Forms.2.3.2.127\lib\Xamarin.iOS10\Xamarin.Forms.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform.iOS">
+      <HintPath>..\..\packages\Xamarin.Forms.2.3.2.127\lib\Xamarin.iOS10\Xamarin.Forms.Platform.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml">
+      <HintPath>..\..\packages\Xamarin.Forms.2.3.2.127\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Maps">
+      <HintPath>..\..\packages\Xamarin.Forms.Maps.2.3.2.127\lib\Xamarin.iOS10\Xamarin.Forms.Maps.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Maps.iOS">
+      <HintPath>..\..\packages\Xamarin.Forms.Maps.2.3.2.127\lib\Xamarin.iOS10\Xamarin.Forms.Maps.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Connectivity.Abstractions">
+      <HintPath>..\..\packages\Xam.Plugin.Connectivity.2.3.0\lib\Xamarin.iOS10\Plugin.Connectivity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Connectivity">
+      <HintPath>..\..\packages\Xam.Plugin.Connectivity.2.3.0\lib\Xamarin.iOS10\Plugin.Connectivity.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.core">
+      <HintPath>..\..\packages\SQLitePCLRaw.core.1.1.11\lib\Xamarin.iOS10\SQLitePCLRaw.core.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.provider.sqlite3">
+      <HintPath>..\..\packages\SQLitePCLRaw.provider.sqlite3.ios_unified.1.1.11\lib\Xamarin.iOS10\SQLitePCLRaw.provider.sqlite3.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_green">
+      <HintPath>..\..\packages\SQLitePCLRaw.bundle_green.1.1.11\lib\Xamarin.iOS10\SQLitePCLRaw.batteries_green.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_v2">
+      <HintPath>..\..\packages\SQLitePCLRaw.bundle_green.1.1.11\lib\Xamarin.iOS10\SQLitePCLRaw.batteries_v2.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite-net">
+      <HintPath>..\..\packages\sqlite-net-pcl.1.5.231\lib\netstandard1.1\SQLite-net.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <Import Project="..\..\packages\Xamarin.Forms.1.3.1.6296\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.1.3.1.6296\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Xamarin.Forms.1.3.1.6296\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.1.3.1.6296\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets'))" />
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <ItemGroup>
+    <XamarinComponentReference Include="facebookios">
+      <Version>4.0.1.2</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="azure-messaging">
+      <Version>1.2.5.2</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_cartao_pontos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_cartao_pontos%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_cartao_pontos%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_alerta.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_alerta%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_alerta%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_cartao.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_cartao%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_cartao%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_dados_saude.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_dados_saude%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_dados_saude%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_entrada.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_entrada%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_entrada%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_localizar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_localizar%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_localizar%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_loja.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_loja%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_loja%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_promocoes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_promocoes%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_promocoes%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_saude_a_z.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_saude_a_z%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_saude_a_z%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_utilizador.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_utilizador%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_utilizador%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Icon57.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_cartao_pontos_branco.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_cartao_pontos_branco%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_cartao_pontos_branco%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_4icons_branco.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_4icons_branco%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_4icons_branco%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_4icons_verde.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_4icons_verde%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_4icons_verde%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_4icons_64x64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_4icons_64x64%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_4icons_64x64%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_smile_56x56_branco.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_smile_56x56_branco%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_smile_56x56_branco%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_smile_56x56_verde.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_smile_56x56_verde%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_smile_56x56_verde%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_smile_64x64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_smile_64x64%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_smile_64x64%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\points_bg5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\points_bg5%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\points_bg5%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\points_bg6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\points_bg6%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\points_bg6%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\promo1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\promo1%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\promo1%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\promo2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\promo2%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\promo2%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_promo1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_promo1%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_promo1%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_promo2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_promo2%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_promo2%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_promocoes3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_promocoes3%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_promocoes3%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_promocoes4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_promocoes4%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu_promocoes4%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pharmacy_annotation_5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pharmacy_annotation_5%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pharmacy_annotation_5%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default%402x.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default-568h%402x.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default-Portrait%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\Icon.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\Icon60%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\Icon76.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\Icon76%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\Icon-Small-40%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\167.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\icon_72.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\icon_100.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\icon_114.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\icon_29.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\icon_40.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\icon_50.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\icon_58.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\icon_144.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\icon_180.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\icon_87.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\icon_120.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
+  </ItemGroup>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Import Project="..\..\packages\Xamarin.Forms.2.3.2.127\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.2.127\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
+</Project>

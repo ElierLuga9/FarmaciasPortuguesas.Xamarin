@@ -1,0 +1,260 @@
+<<<<<<< HEAD
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.NewUserPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Page -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Page -->
+		<Grid Grid.Row="1" Grid.Column="1"
+			RowSpacing="0" ColumnSpacing="1">
+
+			<Grid.ColumnDefinitions>
+				<!-- Right Margin -->
+				<ColumnDefinition Width="15" />
+				<!-- Left Row -->
+				<ColumnDefinition Width="*" />
+				<!-- Right Row -->
+				<ColumnDefinition Width="*" />
+				<!-- Right Margin -->
+				<ColumnDefinition Width="15" />
+			</Grid.ColumnDefinitions>
+
+			<Grid.RowDefinitions>
+				<!-- Application Bar -->
+				<RowDefinition Height="auto" />
+				<!-- Label -->
+				<RowDefinition Height="40" />
+				<!-- Spacing -->
+				<RowDefinition Height="17" />
+				<!-- Gender Input -->
+				<RowDefinition Height="75" />
+				<!-- Blank -->
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+
+			<!-- Label -->
+			<common:CustomLabel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
+			  VerticalOptions="End"
+			  FontSize="15"
+			  Text="{x:Static app:AppResources.NewUserLabel}"
+			  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+			  CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+			<!-- Male Button -->
+			<ContentView Grid.Row="3" Grid.Column="1"
+			  HorizontalOptions="FillAndExpand"
+			  VerticalOptions="FillAndExpand"
+			  BackgroundColor="{x:Static resources:ColorResources.APPBackgroundGrey}">
+
+				<common:CustomImage
+				   HorizontalOptions="Center"
+				   VerticalOptions="Center"
+				   Source="ic_male.png" />
+
+				<ContentView.GestureRecognizers>
+					<TapGestureRecognizer Tapped="MaleButton_Clicked" />
+				</ContentView.GestureRecognizers>
+			</ContentView>
+
+			<!-- Female Button -->
+			<ContentView Grid.Row="3" Grid.Column="2"
+			  HorizontalOptions="FillAndExpand"
+			  VerticalOptions="FillAndExpand"
+			  BackgroundColor="{x:Static resources:ColorResources.APPBackgroundGrey}">
+
+				<common:CustomImage
+				   HorizontalOptions="Center"
+				   VerticalOptions="Center"
+				   Source="ic_female.png" />
+
+				<ContentView.GestureRecognizers>
+					<TapGestureRecognizer Tapped="FemaleButton_Clicked" />
+				</ContentView.GestureRecognizers>
+			</ContentView>
+
+			<!-- Center Circle -->
+			<common:CustomImage Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
+			  HorizontalOptions="Center"
+			  VerticalOptions="Center"
+			  Source="bg_or_circle.png" />
+
+			<!-- Center Circle Label -->
+			<common:CustomLabel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
+			  HorizontalOptions="Center"
+			  VerticalOptions="Center"
+			  FontSize="15"
+			  Text="{x:Static app:AppResources.NewUserOrLabel}"
+			  TextColor="{x:Static resources:ColorResources.TextColorLight}"
+			  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+		</Grid>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>
+=======
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.NewUserPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Page -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Page -->
+		<Grid Grid.Row="1" Grid.Column="1"
+			RowSpacing="0" ColumnSpacing="1">
+
+			<Grid.ColumnDefinitions>
+				<!-- Right Margin -->
+				<ColumnDefinition Width="15" />
+				<!-- Left Row -->
+				<ColumnDefinition Width="*" />
+				<!-- Right Row -->
+				<ColumnDefinition Width="*" />
+				<!-- Right Margin -->
+				<ColumnDefinition Width="15" />
+			</Grid.ColumnDefinitions>
+
+			<Grid.RowDefinitions>
+				<!-- Application Bar -->
+				<RowDefinition Height="auto" />
+				<!-- Label -->
+				<RowDefinition Height="40" />
+				<!-- Spacing -->
+				<RowDefinition Height="17" />
+				<!-- Gender Input -->
+				<RowDefinition Height="75" />
+				<!-- Blank -->
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+
+			<!-- Label -->
+			<common:CustomLabel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
+			  VerticalOptions="End"
+			  FontSize="15"
+			  Text="{x:Static app:AppResources.NewUserLabel}"
+			  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+			  CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+			<!-- Male Button -->
+			<ContentView Grid.Row="3" Grid.Column="1"
+			  HorizontalOptions="FillAndExpand"
+			  VerticalOptions="FillAndExpand"
+			  BackgroundColor="{x:Static resources:ColorResources.APPBackgroundGrey}">
+
+				<common:CustomImage
+				   HorizontalOptions="Center"
+				   VerticalOptions="Center"
+				   Source="ic_male.png" />
+
+				<ContentView.GestureRecognizers>
+					<TapGestureRecognizer Tapped="MaleButton_Clicked" />
+				</ContentView.GestureRecognizers>
+			</ContentView>
+
+			<!-- Female Button -->
+			<ContentView Grid.Row="3" Grid.Column="2"
+			  HorizontalOptions="FillAndExpand"
+			  VerticalOptions="FillAndExpand"
+			  BackgroundColor="{x:Static resources:ColorResources.APPBackgroundGrey}">
+
+				<common:CustomImage
+				   HorizontalOptions="Center"
+				   VerticalOptions="Center"
+				   Source="ic_female.png" />
+
+				<ContentView.GestureRecognizers>
+					<TapGestureRecognizer Tapped="FemaleButton_Clicked" />
+				</ContentView.GestureRecognizers>
+			</ContentView>
+
+			<!-- Center Circle -->
+			<common:CustomImage Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
+			  HorizontalOptions="Center"
+			  VerticalOptions="Center"
+			  Source="bg_or_circle.png" />
+
+			<!-- Center Circle Label -->
+			<common:CustomLabel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
+			  HorizontalOptions="Center"
+			  VerticalOptions="Center"
+			  FontSize="15"
+			  Text="{x:Static app:AppResources.NewUserOrLabel}"
+			  TextColor="{x:Static resources:ColorResources.TextColorLight}"
+			  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+		</Grid>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</ANFPage>
+>>>>>>> maintenance_phase5_azure_notification

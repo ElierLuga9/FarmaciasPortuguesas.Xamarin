@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+  xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+  xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+  xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+  xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+  xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+  x:Class="ANFAPP.Pages.UserArea.FamilyCard.FamilyAccountMasterPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Content -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Page -->
+		<ScrollView Orientation="Vertical" Grid.Row="1" Grid.Column="1"
+		  VerticalOptions="FillAndExpand">
+			<Grid Grid.RowSpacing="0" Grid.ColumnSpacing="0">
+				<Grid.RowDefinitions>
+					<!-- Association Requests Title -->
+					<RowDefinition Height="auto" />
+					<!-- Association Requests -->
+					<RowDefinition Height="auto" />
+					<!-- Separator -->
+					<RowDefinition Height="auto" />
+					<!-- Table Header -->
+					<RowDefinition Height="auto" />
+					<!-- Separator -->
+					<RowDefinition Height="1" />
+					<!-- Table Contents -->
+					<RowDefinition Height="auto" />
+					<!-- Add Card Button -->
+					<RowDefinition Height="auto" />
+				</Grid.RowDefinitions>
+
+				<!-- Association Requests Title -->
+				<Grid Grid.RowSpacing="0" Grid.ColumnSpacing="0"
+				  IsVisible="{Binding AssociationRequests, Converter={x:Static converters:ConverterResources.NotNullable}">
+					<Grid.RowDefinitions>
+						<!-- Top Margin -->
+						<RowDefinition Height="15" />
+						<!-- Content -->
+						<RowDefinition Height="auto" />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<!-- Left Margin -->
+						<ColumnDefinition Width="15" />
+						<!-- Icon -->
+						<ColumnDefinition Width="auto" />
+						<!-- Spacing -->
+						<ColumnDefinition Width="15" />
+						<!-- Association Requests Label -->
+						<ColumnDefinition Width="auto" />
+					</Grid.ColumnDefinitions>
+
+					<common:CustomImage Grid.Row="1" Grid.Column="1"
+					  VerticalOptions="Center"
+					  Source="ic_warning.png"
+					  IsVisible="{Binding HasFamilyWarning}" />
+
+					<!-- Card Number Label -->
+					<common:CustomLabel Grid.Row="1" Grid.Column="3"
+					  HorizontalOptions="Start"
+					  VerticalOptions="Center"
+					  FontSize="15"
+					  Text="{x:Static app:AppResources.FamilyAccountAssociationRequestsLabel}"
+					  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+
+				</Grid>
+
+				<!-- Association Requests -->
+				<common:ANFRepeaterView Grid.Row="1"
+				  ItemsSource="{Binding AssociationRequests}"
+				  IsVisible="{Binding AssociationRequests, Converter={x:Static converters:ConverterResources.NotNullable}">
+					<common:ANFRepeaterView.ItemTemplate>
+						<DataTemplate>
+							<Grid Grid.RowSpacing="0" Grid.ColumnSpacing="0"
+							  BackgroundColor="{Binding Order, Converter={x:Static converters:ConverterResources.TableOrderBackground}}">
+								<Grid.ColumnDefinitions>
+									<!-- Left Margin -->
+									<ColumnDefinition Width="15" />
+									<!-- Member Label -->
+									<ColumnDefinition Width="*" />
+									<!-- Center Margin -->
+									<ColumnDefinition Width="10" />
+									<!-- Card Number Label -->
+									<ColumnDefinition Width="*" />
+									<!-- Right Margin -->
+									<ColumnDefinition Width="15" />
+								</Grid.ColumnDefinitions>
+								<Grid.RowDefinitions>
+									<!-- Top Margin -->
+									<RowDefinition Height="15" />
+									<!-- Name Label -->
+									<RowDefinition Height="auto" />
+									<!-- Card Number Label -->
+									<RowDefinition Height="auto" />
+									<!-- Spacing -->
+									<RowDefinition Height="15" />
+									<!-- Buttons -->
+									<RowDefinition Height="40" />
+									<!-- Bottom Margin -->
+									<RowDefinition Height="15" />
+								</Grid.RowDefinitions>
+
+								<!-- Name Label -->
+								<StackLayout Grid.Row="1" Grid.Column="1"
+								  Grid.ColumnSpan="3" Spacing="5"
+								  Orientation="Horizontal">
+
+									<!-- Name Label -->
+									<common:CustomLabel
+									  HorizontalOptions="Start"
+									  VerticalOptions="Center"
+									  FontSize="15"
+									  Text="{x:Static app:AppResources.FamilyAccountNameLabel}"
+									  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									  CustomFont="{x:Static resources:FontResources.RegularFont}"/>
+
+									<!-- Name Value -->
+									<common:CustomLabel
+									  HorizontalOptions="Start"
+									  VerticalOptions="Center"
+									  FontSize="15"
+									  Text="{Binding Requester.Name}"
+									  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+								</StackLayout>
+
+								<!-- Card Number Label -->
+								<StackLayout Grid.Row="2" Grid.Column="1"
+								  Grid.ColumnSpan="3" Spacing="5"
+								  Orientation="Horizontal">
+
+									<!-- Card Number Label -->
+									<common:CustomLabel
+									  HorizontalOptions="Start"
+									  VerticalOptions="Center"
+									  FontSize="15"
+									  Text="{x:Static app:AppResources.FamilyAccountCardNumberLabel}"
+									  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									  CustomFont="{x:Static resources:FontResources.RegularFont}"/>
+
+									<!-- Card Number Value -->
+									<common:CustomLabel
+									  HorizontalOptions="Start"
+									  VerticalOptions="Center"
+									  FontSize="15"
+									  Text="{Binding Requester.Number}"
+									  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+								</StackLayout>
+
+								<!-- Cancel Button -->
+								<common:CustomButton Grid.Row="4" Grid.Column="1"
+								  HorizontalOptions="FillAndExpand"
+								  VerticalOptions="FillAndExpand"
+								  FontSize="16"
+								  BorderWidth="2"
+								  BorderRadius="0"
+								  Clicked="OnCancelAssociationRequest_Clicked"
+								  Text="{x:Static app:AppResources.FamilyAccountCancelButton}"
+								  BorderColor="{x:Static resources:ColorResources.ANFGreen}"
+								  TextColor="{x:Static resources:ColorResources.ANFGreen}"
+								  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+								  BackgroundColor="{x:Static resources:ColorResources.APPBackgroundLight}" />
+
+								<!-- Accept Button -->
+								<common:CustomButton Grid.Row="4" Grid.Column="3"
+								  HorizontalOptions="FillAndExpand"
+								  VerticalOptions="FillAndExpand"
+								  FontSize="16"
+								  BorderRadius="0"
+								  Clicked="OnAcceptAssociationRequest_Clicked"
+								  Text="{x:Static app:AppResources.FamilyAccountAcceptButton}"
+								  TextColor="{x:Static resources:ColorResources.TextColorLight}"
+								  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+								  BackgroundColor="{x:Static resources:ColorResources.ANFGreen}" />
+							</Grid>
+						</DataTemplate>
+					</common:ANFRepeaterView.ItemTemplate>
+				</common:ANFRepeaterView>
+
+				<!-- Separator -->
+				<BoxView Grid.Row="2"
+				  HorizontalOptions="FillAndExpand"
+				  HeightRequest="5"
+				  BackgroundColor="{x:Static resources:ColorResources.APPBackgroundDark}"
+				  IsVisible="{Binding AssociationRequests, Converter={x:Static converters:ConverterResources.NotNullable}" />
+
+				<!-- Table Header -->
+				<Grid Grid.Row="3" HeightRequest="54" Grid.ColumnSpacing="0"
+				  IsVisible="{Binding FamilyMembers, Converter={x:Static converters:ConverterResources.NotNullable}" >
+					<Grid.ColumnDefinitions>
+						<!-- Left Margin -->
+						<ColumnDefinition Width="15" />
+						<!-- Member Label -->
+						<ColumnDefinition Width="*" />
+						<!-- Center Margin -->
+						<ColumnDefinition Width="15" />
+						<!-- Card Number Label -->
+						<ColumnDefinition Width="*" />
+						<!-- Right Margin -->
+						<ColumnDefinition Width="15" />
+					</Grid.ColumnDefinitions>
+
+					<!-- Member Label -->
+					<common:CustomLabel Grid.Column="1"
+					  HorizontalOptions="Start"
+					  VerticalOptions="Center"
+					  FontSize="12"
+					  Text="{x:Static app:AppResources.FamilyAccountMasterMemberLabel}"
+					  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+
+					<!-- Card Number Label -->
+					<common:CustomLabel Grid.Column="3"
+					  HorizontalOptions="Start"
+					  VerticalOptions="Center"
+					  FontSize="12"
+					  Text="{x:Static app:AppResources.FamilyAccountMasterCardNumberLabel}"
+					  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+
+				</Grid>
+
+				<!-- Separator -->
+				<BoxView Grid.Row="4"
+				  BackgroundColor="{x:Static resources:ColorResources.APPBackgroundDark}"
+				  IsVisible="{Binding FamilyMembers, Converter={x:Static converters:ConverterResources.NotNullable}" />
+
+				<!-- Table -->
+				<common:ANFRepeaterView Grid.Row="5"
+				  ItemsSource="{Binding FamilyMembers}"
+				  IsVisible="{Binding FamilyMembers, Converter={x:Static converters:ConverterResources.NotNullable}">
+					<common:ANFRepeaterView.ItemTemplate>
+						<DataTemplate>
+							<Grid HeightRequest="48" Grid.RowSpacing="0" Grid.ColumnSpacing="0"
+							  BackgroundColor="{Binding Order, Converter={x:Static converters:ConverterResources.TableOrderBackground}}">
+								<Grid.ColumnDefinitions>
+									<!-- Left Margin -->
+									<ColumnDefinition Width="15" />
+									<!-- Member Label -->
+									<ColumnDefinition Width="*" />
+									<!-- Center Margin -->
+									<ColumnDefinition Width="15" />
+									<!-- Card Number Label -->
+									<ColumnDefinition Width="*" />
+									<!-- Right Margin -->
+									<ColumnDefinition Width="15" />
+								</Grid.ColumnDefinitions>
+
+								<!-- Member Label -->
+								<common:CustomLabel Grid.Column="1"
+								  HorizontalOptions="Start"
+								  VerticalOptions="Center"
+								  FontSize="15"
+								  Text="{Binding DisplayName}"
+								  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+								  CustomFont="{x:Static resources:FontResources.RegularFont}"/>
+
+								<!-- Card Number Label -->
+								<common:CustomLabel Grid.Column="3"
+								  HorizontalOptions="Start"
+								  VerticalOptions="Center"
+								  FontSize="15"
+								  Text="{Binding Number}"
+								  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+								  CustomFont="{x:Static resources:FontResources.RegularFont}"/>
+							</Grid>
+						</DataTemplate>
+					</common:ANFRepeaterView.ItemTemplate>
+				</common:ANFRepeaterView>
+
+				<!-- Add Cards to Family Button -->
+				<Grid Grid.Row="6"
+				  Grid.ColumnSpacing="0" Grid.RowSpacing="0"
+				  HorizontalOptions="FillAndExpand"
+				  VerticalOptions="FillAndExpand"
+				  IsVisible="{Binding IsFamilyHead}">
+					<Grid.ColumnDefinitions>
+						<!-- Left Margin -->
+						<ColumnDefinition Width="15" />
+						<!-- Content -->
+						<ColumnDefinition Width="*" />
+						<!-- Left Margin -->
+						<ColumnDefinition Width="15" />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<!-- Spacing -->
+						<RowDefinition Height="17" />
+						<!-- Button -->
+						<RowDefinition Height="40" />
+						<!-- Spacing -->
+						<RowDefinition Height="17" />
+					</Grid.RowDefinitions>
+
+					<!-- Button -->
+					<common:CustomButton Grid.ColumnSpan="3" Grid.Row="1"
+					  HorizontalOptions="FillAndExpand"
+					  VerticalOptions="FillAndExpand"
+					  BorderRadius="0"
+					  Clicked="AddCardToFamily_Clicked"
+					  BackgroundColor="{x:Static resources:ColorResources.ANFLightGreen}" />
+
+					<!-- Button Label -->
+					<common:CustomLabel Grid.Column="1" Grid.Row="1"
+					  FontSize="15"
+					  HorizontalOptions="Start"
+					  VerticalOptions="Center"
+					  TextColor="{x:Static resources:ColorResources.TextColorLight}"
+					  CustomFont="{x:Static resources:FontResources.RegularFont}"
+					  Text="{x:Static app:AppResources.FamilyAccountMasterAddCardButton}" />
+
+					<!-- Arrow -->
+					<common:CustomImage Grid.Column="1" Grid.Row="1"
+					  WidthRequest="22"
+					  HeightRequest="22"
+					  HorizontalOptions="End"
+					  VerticalOptions="Center"
+					  Source="ic_biometric_arrow.png" />
+				</Grid>
+
+			</Grid>
+
+		</ScrollView>
+
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+    <!--<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />-->
+    <views:ApplicationBarUserCard x:Name="ApplicationBar" Grid.ColumnSpan="2"> </views:ApplicationBarUserCard>
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>

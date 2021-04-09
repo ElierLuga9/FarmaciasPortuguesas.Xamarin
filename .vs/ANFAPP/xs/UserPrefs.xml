@@ -1,0 +1,48 @@
+﻿<Properties StartupConfiguration="{EF4C3387-C28C-43E4-94CC-85E42E23D942}|Default">
+  <MonoDevelop.Ide.ItemProperties.ANFAPP.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.3C164FD7-93DE-4748-84BF-DD7895B02924" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ANFAPP.Logic/ViewModels/ChangePasswordViewModel.cs">
+    <Files>
+      <File FileName="ANFAPP.Logic/ViewModels/ChangePasswordViewModel.cs" Line="116" Column="58" />
+      <File FileName="ANFAPP.Logic/ViewModels/QuickRegisterViewModel.cs" Line="136" Column="14" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ANFAPP" expanded="True">
+            <Node name="ANFAPP" expanded="True">
+              <Node name="Pages" expanded="True">
+                <Node name="Tutorial" expanded="True" />
+                <Node name="UserLogin" expanded="True">
+                  <Node name="QuickRegisterPage.xaml" expanded="True" />
+                  <Node name="RegisterPage.xaml" expanded="True" />
+                </Node>
+              </Node>
+              <Node name="Views" expanded="True">
+                <Node name="ApplicationBar.xaml" expanded="True" />
+                <Node name="HomeSaudaWidget.xaml" expanded="True" />
+                <Node name="MenuView.xaml" expanded="True" />
+              </Node>
+            </Node>
+            <Node name="ANFAPP.Droid" expanded="True" />
+            <Node name="ANFAPP.Logic" expanded="True">
+              <Node name="ViewModels" expanded="True">
+                <Node name="ChangePasswordViewModel.cs" selected="True" />
+              </Node>
+              <Node name="AppResources.resx" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.ANFAPP.Droid PreferredExecutionTarget="Android.my_device" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release_QA" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint enabled="false" file="/Users/jpduarte/Documents/FarmaciasPortuguesas.Xamarin/ANFAPP.Logic/ViewModels/LoginViewModel.cs" relfile="ANFAPP.Logic/ViewModels/LoginViewModel.cs" line="202" column="1" />
+      <Breakpoint file="/Users/jpduarte/Documents/FarmaciasPortuguesas.Xamarin/ANFAPP.Logic/ViewModels/RegisterViewModel.cs" relfile="ANFAPP.Logic/ViewModels/RegisterViewModel.cs" line="158" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

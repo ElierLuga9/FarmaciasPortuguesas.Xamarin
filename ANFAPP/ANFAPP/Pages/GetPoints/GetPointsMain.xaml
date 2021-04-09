@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.GetPoints.GetPointsMain">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Page -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<Grid Grid.Row="1" Grid.Column="1" 
+			RowSpacing="0" ColumnSpacing="0">
+			<Grid.RowDefinitions>
+				<!-- Banner-->
+				<RowDefinition Height="auto" x:Name="BannerRow"/>
+				<!-- Points Gauge Meter-->
+				<RowDefinition Height="auto" x:Name="GaugeMeterRow"/>
+				<!-- HealthKit/Google Fit -->
+				<RowDefinition Height="auto" />
+				<!-- Achievements -->
+				<RowDefinition Height="*" />
+				<!-- Frequently asked questions button-->
+				<RowDefinition Height="auto" x:Name="FAQButtonRow"/>
+			</Grid.RowDefinitions>
+
+			<!-- Banner-->
+			<common:CustomImage
+				x:Name="Banner"
+				HeightRequest="75"
+				Aspect="Fill"
+				Source="get_card_points_screen.png"
+				Grid.Row="0"
+				VerticalOptions="Start"
+				HorizontalOptions="StartAndExpand"
+				IsVisible="{Binding HasCard, Converter={x:Static converters:ConverterResources.InverseBool}}">
+
+				<common:CustomImage.GestureRecognizers>
+					<TapGestureRecognizer Tapped="OnJoinSaudaButtonClicked"/>
+				</common:CustomImage.GestureRecognizers>
+			</common:CustomImage>
+
+			<!-- Points Gauge Meter-->
+			<StackLayout Grid.Row="1" Orientation="Vertical" Padding="15,20,15,20" Spacing="10">
+				<!-- Points-->
+				<StackLayout Orientation="Horizontal" VerticalOptions="Center" Spacing="0">
+
+					<!-- Points Counter Counter-->
+					<common:CustomLabel x:Name="pointsLbl"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						Text="{Binding TotalDoneAchievements, StringFormat='{0}/'}"
+						FontSize="35"
+						CustomFont="{x:Static resources:FontResources.LightFont}"
+						VerticalOptions="End"/>
+
+					<!-- Points Counter Max-->
+					<common:CustomLabel x:Name="maxpointsLbl"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						Text="{Binding TotalAchievements}"
+						FontSize="35"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						HorizontalOptions="Start"
+						VerticalOptions="End"/>
+
+					<!-- Points Label-->
+					<common:CustomLabel TextColor="{x:Static resources:ColorResources.ANFDarkerPaleGrey}"
+						FontSize="35"
+						Text=" Pontos"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						HorizontalOptions="Start"
+						VerticalOptions="End"/>
+				</StackLayout>
+
+				<!-- Bars-->
+				<Grid RowSpacing="0" ColumnSpacing="3">
+					<Grid.RowDefinitions>
+						<!-- bar height definition-->
+						<RowDefinition Height="12"/>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<!-- Orange Bar-->
+						<ColumnDefinition Width="*"/>
+						<!-- Yellow Bar-->
+						<ColumnDefinition Width="*"/>
+						<!-- Green Bar -->
+						<ColumnDefinition Width="*"/>
+					</Grid.ColumnDefinitions>
+
+					<!-- Orange Bar-->
+					<BoxView x:Name="OrangeBar" Color="{Binding FirstBarColor}" Grid.Column="0" />
+					<!-- Yellow Bar-->
+					<BoxView x:Name="YellowBar" Color="{Binding SecondBarColor}" Grid.Column="1" />
+					<!-- Green Bar-->
+					<BoxView x:Name="GreenBar" Color="{Binding ThirdBarColor}" Grid.Column="2" />
+				</Grid>
+
+			</StackLayout>
+
+			<!-- HealthKit/Google Fit -->
+			<Grid Padding="15, 10" Grid.Row="2" IsVisible="{Binding CanEnableFitnessData}">
+				<common:CustomButton
+					HeightRequest="40"
+					HorizontalOptions="FillAndExpand"
+					FontSize="15"
+					BorderWidth="1"
+					BorderRadius="1"
+					Clicked="OnActivateFitnessDataClicked"
+					TextColor="{x:Static resources:ColorResources.ANFDarkerBlue}"
+					BorderColor="{x:Static resources:ColorResources.ANFDarkerBlue}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					BackgroundColor="White">
+
+					<common:CustomButton.Text>
+						<OnPlatform x:TypeArguments="x:String"
+							iOS="{x:Static app:AppResources.EnableHealthKit}"
+							Android="{x:Static app:AppResources.EnableGoogleFit}" />
+					</common:CustomButton.Text>
+				</common:CustomButton>
+			</Grid>
+
+			<!-- Achievements -->
+			<common:CustomListView x:Name="AchievementList"
+				Grid.Row="3"
+				HasUnevenRows="True"
+				IsGroupingEnabled="True"
+				ItemSelected="OnItemSelected"
+				VerticalOptions="FillAndExpand"
+				ItemsSource="{Binding Achievements}"
+				GroupDisplayBinding="{Binding Description}"
+				SeparatorColor="Transparent">
+
+				<!-- Header Template -->
+				<common:CustomListView.GroupHeaderTemplate>
+					<DataTemplate>
+						<ViewCell Height="40">
+							<!-- Header -->
+							<StackLayout Orientation="Horizontal"
+								HeightRequest="40"
+								Padding="15, 0"
+								Spacing="5"
+								BackgroundColor="{Binding BackgroundColor}">
+
+								<!-- Text -->
+								<common:CustomLabel
+									CustomFont="{x:Static resources:FontResources.RegularFont}"
+									FontSize="15"
+									VerticalOptions="Center"
+									HorizontalOptions="Start"
+									TextColor="{Binding TextColor}"
+									Text="{Binding Description}" />
+								<!-- Points -->
+								<common:CustomLabel
+									x:Name="AvailablePoints"
+									CustomFont="{x:Static resources:FontResources.BoldFont}"
+									FontSize="15"
+									VerticalOptions="Center"
+									HorizontalOptions="Start"
+									TextColor="{Binding TextColor}"
+									Text="{Binding Points, StringFormat='{0} Pontos!'}" />
+							</StackLayout>
+						</ViewCell>
+					</DataTemplate>
+				</common:CustomListView.GroupHeaderTemplate>
+
+				<!-- Item Template -->
+				<common:CustomListView.ItemTemplate>
+					<DataTemplate>
+						<common:CustomViewCell>
+							<Grid RowSpacing="0" ColumnSpacing="0" BackgroundColor="White">
+								<Grid.RowDefinitions>
+									<!-- Top Margin-->
+									<RowDefinition Height="12"/>
+									<!-- Content-->
+									<RowDefinition Height="*"/>
+
+									<!-- Bottom Margin-->
+									<RowDefinition Height="12"/>
+									<!-- Separator -->
+									<RowDefinition Height="auto"/>
+								</Grid.RowDefinitions>
+								<Grid.ColumnDefinitions>
+									<!--Left Margin-->
+									<ColumnDefinition Width="15"/>
+									<!--Star-->
+									<ColumnDefinition Width="48"/>
+									<!-- Margin-->
+									<ColumnDefinition Width="10"/>
+									<!-- Content-->
+									<ColumnDefinition Width="*"/>
+									<!-- Right Margin-->
+									<ColumnDefinition Width="15"/>
+								</Grid.ColumnDefinitions>
+
+								<!-- Star-->
+								<StackLayout Grid.Row="1" Grid.Column="1" Orientation="Vertical" Spacing="0" HorizontalOptions="Center" VerticalOptions="Center">
+
+									<common:CustomImage HeightRequest="22" WidthRequest="22" Source="{Binding AchievementBadge}" />
+									<common:CustomLabel
+										CustomFont="{x:Static resources:FontResources.RegularFont}"
+										FontSize="12"
+										VerticalOptions="Center"
+										HorizontalOptions="CenterAndExpand"
+										TextColor="{Binding PointsColor}"
+										Text="{Binding PointsDescription}" />
+								</StackLayout>
+
+								<!-- Achievement Text-->
+								<StackLayout Grid.Row="1" Grid.Column="3" Orientation="Vertical" Spacing="0" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
+									<!-- Achivement Title -->
+									<common:CustomLabel
+										CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+										FontSize="15"
+										VerticalOptions="Center"
+										HorizontalOptions="Start"
+										TextColor="{x:Static resources:ColorResources.TextColorDark}"
+										Text="{Binding Title}" />
+
+									<!-- Achivement Description -->
+									<common:CustomLabel
+										CustomFont="{x:Static resources:FontResources.RegularFont}"
+										FontSize="12"
+										VerticalOptions="Center"
+										HorizontalOptions="Start"
+										TextColor="{x:Static resources:ColorResources.TextColorDark}"
+										Text="{Binding Description}" />
+
+									<!-- Achievement Rules -->
+									<common:CustomLabel
+										CustomFont="{x:Static resources:FontResources.RegularFont}"
+										FontSize="12"
+										VerticalOptions="Center"
+										HorizontalOptions="Start"
+										TextColor="{x:Static resources:ColorResources.TextColorDark}"
+										Text="{Binding Rules}" />
+								</StackLayout>
+
+								<!-- Separator -->
+								<BoxView Grid.Row="3"
+									HorizontalOptions="FillAndExpand"
+									HeightRequest="1"
+									Color="{x:Static resources:ColorResources.ANFPaleGrey}"
+									Grid.ColumnSpan="5" />
+							</Grid>
+						</common:CustomViewCell>
+					</DataTemplate>
+				</common:CustomListView.ItemTemplate>
+
+				<!-- Remove trailing lines. -->
+				<common:CustomListView.Footer>
+					<ContentView HeightRequest="0" />
+				</common:CustomListView.Footer>
+			</common:CustomListView>
+
+			<!-- FAQ Button -->
+			<ContentView Grid.Row="4"
+				VerticalOptions="FillAndExpand"
+				HorizontalOptions="FillAndExpand"
+				Padding="15, 0">
+
+				<common:CustomButton x:Name="FAQButton" 
+					Clicked="OnFAQButtonClicked" 
+					HorizontalOptions="EndAndExpand" 
+					BackgroundColor="Transparent" 
+					BorderWidth="0" 
+					TextColor="{x:Static resources:ColorResources.ANFDarkBlue}" 
+					Text="PERGUNTAS FREQUENTES" 
+					FontSize="13" 
+					CustomFont="{x:Static resources:FontResources.RegularFont}" />
+			</ContentView>
+		</Grid>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>

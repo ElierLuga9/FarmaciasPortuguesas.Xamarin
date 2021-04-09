@@ -1,0 +1,439 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+  xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+  xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+  xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+  xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+  x:Class="ANFAPP.Pages.PharmacyLocator.KnowThisPharmacy">
+
+	<Grid RowSpacing="0" ColumnSpacing="0" x:Name="GridView"  
+		VerticalOptions="FillAndExpand"
+		HorizontalOptions="FillAndExpand">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="auto" />
+				<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Pharmacy Info-->
+		<ScrollView Grid.Row="1" Grid.Column="1"
+			Orientation="Vertical"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand">
+
+			<Grid x:Name="MainContent" IsVisible="False" 
+				RowSpacing="0" ColumnSpacing="0"  
+				VerticalOptions="Start"
+				HorizontalOptions="FillAndExpand">
+				<Grid.RowDefinitions>
+					<!-- Images-->
+					<RowDefinition x:Name="ImagesGalleryRow" Height="auto" />
+					<!-- Description -->
+					<RowDefinition Height="auto" />
+					<!-- Margin -->
+					<RowDefinition Height="20" />
+					<!-- Team -->
+					<RowDefinition Height="auto" />
+          <!-- Team -->
+          <RowDefinition Height="auto" />
+				</Grid.RowDefinitions>
+
+				<Grid.ColumnDefinitions>
+					<!-- Left Margin -->
+					<ColumnDefinition Width="15" />
+					<!-- Left Row -->
+					<ColumnDefinition Width="*" />
+					<!-- Spacing -->
+					<ColumnDefinition Width="15" />
+				</Grid.ColumnDefinitions>
+
+				<!-- Banners -->
+				<common:CustomWebView x:Name="ImagesGallery" Grid.ColumnSpan="3" Grid.Row="0"
+					HeightRequest="200" 
+					VerticalOptions="FillAndExpand" 
+					HorizontalOptions="FillAndExpand" 
+					ScrollEnabled="False" />
+
+				<common:CustomImage x:Name="PlaceholderImage" Grid.ColumnSpan="3" Grid.Row="0"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="Start"
+					IsVisible="False"
+					Source="bg_pharmacy_image_default1.png" />
+
+				<!-- Description -->
+				<Grid Grid.Row="1" Grid.Column="1" Padding="0, 20, 0, 0">
+					<common:CustomLabel
+         				VerticalOptions="Start"
+						LineBreakMode="WordWrap"
+						Text="{Binding ViewDescription}"
+						FontSize="20"
+						CustomFont="{x:Static resources:FontResources.LightFont}"
+						TextColor="{x:Static resources:ColorResources.ANFGreen}"/>
+				</Grid>
+
+        <!-- Scheduler-->
+        <Grid x:Name="Scheduler"
+					Grid.Row="3" 
+          RowSpacing="0"
+          Grid.Column="1"
+					ColumnSpacing="0"
+          Padding ="0,0,0,0"
+					HorizontalOptions="FillAndExpand">
+
+          <Grid ColumnSpacing="0"
+            BackgroundColor="{x:Static resources:ColorResources.ANFPaleGrey}"
+            Padding ="16,16,0,12"
+            HorizontalOptions="FillAndExpand">
+
+            <common:CustomLabel
+						HorizontalOptions="Start" Grid.Column = "0"
+						VerticalOptions="Start"
+						Text="HORÁRIO:"
+						FontSize="13"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.BoldFont}" />
+
+            <Grid
+					  RowSpacing="0"
+					  ColumnSpacing="0"
+					  Padding ="0,16,0,0">
+              <Grid.RowDefinitions>
+									<RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+              <!-- Repeater -->
+              <common:ANFRepeaterView
+					      x:Name="HourList"
+					      IsClippedToBounds="False"
+					      HorizontalOptions="FillAndExpand">
+                <common:ANFRepeaterView.ItemTemplate>
+                  <DataTemplate>
+                    <Grid Padding ="0" RowSpacing="0" ColumnSpacing="0">
+                      <Grid.RowDefinitions>
+                        <!-- Margin -->
+                        <RowDefinition Height="Auto" />
+                      </Grid.RowDefinitions>
+                      <Grid.ColumnDefinitions>
+                        <!-- Left Row -->
+                        <ColumnDefinition Width="100" />
+                        <!-- Spacing -->
+                        <ColumnDefinition Width="10" />
+                        <!-- Right Row -->
+                        <ColumnDefinition Width="Auto" />
+                      </Grid.ColumnDefinitions>
+
+                      <common:CustomLabel
+									      Text="{Binding DayOrDays, StringFormat='{0}:'}"
+									      Grid.Column = "0"
+									      HorizontalOptions="End"
+									      VerticalOptions="Center"
+									      FontSize="13"
+									      TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									      CustomFont="{x:Static resources:FontResources.BoldFont}" />
+                      <common:CustomLabel
+									      Grid.Column = "2"
+									      FontSize="13"
+									      HorizontalOptions="Start"
+									      VerticalOptions = "Center"
+									      TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									      CustomFont="{x:Static resources:FontResources.RegularFont}"
+									      Text="{Binding HourOrHours}" />
+                    </Grid>
+                  </DataTemplate>
+                </common:ANFRepeaterView.ItemTemplate>
+              </common:ANFRepeaterView>
+            
+                <BoxView Grid.Row="1" 
+					      HeightRequest = "20"
+                x:Name="NotAvailableSeparator"/>
+
+              <common:CustomLabel
+						    HorizontalOptions="Start" Grid.Column = "0"
+               				 Grid.Row="2"
+						    VerticalOptions="Start"
+                			x:Name="NotAvailableLabel"
+						    Text="INDISPONÍVEL:"
+						    FontSize="13"
+						    TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						    CustomFont="{x:Static resources:FontResources.BoldFont}" />
+              
+              <!-- Repeater -->
+				      <common:ANFRepeaterView
+					      IsClippedToBounds="False"
+               			  x:Name="NotAvailableList"
+                		  Grid.Row="3"
+					      HorizontalOptions="FillAndExpand">
+					      <common:ANFRepeaterView.ItemTemplate>
+						      <DataTemplate>
+							      <Grid Padding ="0" RowSpacing="0" ColumnSpacing="0">
+								      <Grid.RowDefinitions>
+									      <RowDefinition Height="Auto" />
+								      </Grid.RowDefinitions>
+								      <Grid.ColumnDefinitions>
+									      <ColumnDefinition Width="10" />
+									      <ColumnDefinition Width="Auto" />
+								      </Grid.ColumnDefinitions>
+                      
+                      <common:CustomLabel
+									      Text="{Binding DayOrDays}"
+									      Grid.Column = "1"
+									      HorizontalOptions="Start"
+									      VerticalOptions="Center"
+									      FontSize="13"
+									      TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									      CustomFont="{x:Static resources:FontResources.RegularFont}" />
+				              </Grid>
+						      </DataTemplate>
+					      </common:ANFRepeaterView.ItemTemplate>
+				      </common:ANFRepeaterView>
+            </Grid>
+          </Grid>
+
+
+        </Grid>
+				
+				<StackLayout Orientation="Vertical" Grid.Column="1" Grid.Row="4" 
+					VerticalOptions="Start"
+					HorizontalOptions="FillAndExpand"
+					Spacing="5">
+
+					<!-- Delivery Information -->
+					<common:CustomLabel
+				  		HorizontalOptions="Start"
+				  		VerticalOptions="Start"
+				  		Text="{x:Static app:AppResources.KnowThisPharmacyHomeDeliveryTitle}"
+				  		FontSize="15"
+				  		CustomFont="{x:Static resources:FontResources.BoldFont}"
+				  		TextColor="{x:Static resources:ColorResources.ANFGreen}"
+						IsVisible="{Binding HasDeliveryService}"/>
+
+					<StackLayout Orientation="Vertical" Spacing="0"
+						IsVisible="{Binding HasDeliveryService}">
+						
+						<common:CustomLabel
+							HorizontalOptions="Start"
+							VerticalOptions="Start"
+							Text="{Binding DeliveryFeeDescription}"
+							FontSize="13"
+							CustomFont="{x:Static resources:FontResources.RegularFont}"
+							TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+
+						<common:CustomLabel
+							HorizontalOptions="Start"
+							VerticalOptions="Start"
+							Text="{Binding MinValueForFreeDeliveryDescription}"
+							FontSize="13"
+							IsVisible="{Binding HasFreeDelivery}"
+							CustomFont="{x:Static resources:FontResources.RegularFont}"
+							TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+
+						<ContentView Padding="0, 3">
+							<common:CustomLabel
+								HorizontalOptions="Start"
+								VerticalOptions="Start"
+								Text="{Binding Observations}"
+								FontSize="13"
+								CustomFont="{x:Static resources:FontResources.RegularFont}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+						</ContentView>
+					</StackLayout>
+
+
+					<!--Separator-->
+					<ContentView Padding="0, 10" IsVisible="{Binding HasDeliveryService}">
+						<BoxView HorizontalOptions="FillAndExpand"
+							HeightRequest="1"
+							BackgroundColor="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+					</ContentView>
+
+					<!--Schedule -->
+					<common:CustomLabel
+				  		HorizontalOptions="Start"
+				  		VerticalOptions="Start"
+				  		Text="{x:Static app:AppResources.KnowFarmLiveScheduleLabel}"
+				  		FontSize="15"
+				  		CustomFont="{x:Static resources:FontResources.BoldFont}"
+				  		TextColor="{x:Static resources:ColorResources.ANFGreen}"
+              x:Name="contanctScheduleLabel" />
+					<common:CustomLabel
+				  		HorizontalOptions="Start"
+				  		VerticalOptions="Start"
+				  		Text="{Binding Contacts}"
+				  		FontSize="13"
+   						CustomFont="{x:Static resources:FontResources.RegularFont}"
+				  		TextColor="{x:Static resources:ColorResources.TextColorDark}"
+              x:Name="contanctScheduleValue" />
+
+					<!--Separator-->
+					<ContentView Padding="0, 10" IsVisible="{Binding IsContactsAvailable}">
+						<BoxView HorizontalOptions="FillAndExpand"
+							HeightRequest="1"
+							BackgroundColor="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+					</ContentView>
+					
+					<!--Team -->
+					<common:CustomLabel
+				  		HorizontalOptions="Start"
+				  		VerticalOptions="Start"
+				  		Text="{x:Static app:AppResources.KnowFarmTeamLabel}"
+				  		FontSize="15"
+				  		CustomFont="{x:Static resources:FontResources.BoldFont}"
+				  		TextColor="{x:Static resources:ColorResources.ANFGreen}" 
+						IsVisible="{Binding IsTeamAvailable}" />
+					<common:CustomLabel
+				  		HorizontalOptions="Start"
+				  		VerticalOptions="Start"
+				  		Text="{Binding Team}"
+				  		FontSize="13"
+   						CustomFont="{x:Static resources:FontResources.RegularFont}"
+				  		TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						IsVisible="{Binding IsTeamAvailable}" />
+
+					<!--Separator-->
+					<ContentView Padding="0, 10" IsVisible="{Binding IsTeamAvailable}">
+						<BoxView HorizontalOptions="FillAndExpand"
+							HeightRequest="1" 
+							BackgroundColor="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+					</ContentView>
+
+					<!-- Services-->
+					<StackLayout Orientation="Vertical" Padding="0, 0, 0, 10"
+						VerticalOptions="Start"
+					  	HorizontalOptions="FillAndExpand" 
+					  	IsVisible="{Binding IsServicesAvailable}">
+
+						<!-- Services Label-->
+						<common:CustomLabel
+							HeightRequest="20"
+							HorizontalOptions="StartAndExpand"
+							VerticalOptions="StartAndExpand"
+							FontSize="15"
+						  	Text="{x:Static app:AppResources.KnowFarmServicesLabel}"
+						  	CustomFont="{x:Static resources:FontResources.BoldFont}"
+						  	TextColor="{x:Static resources:ColorResources.ANFGreen}" />
+
+						<!-- Services Content Label-->
+						<common:ANFRepeaterView x:Name="ServicesArea"
+							IsClippedToBounds="False"
+							Spacing="3"
+						 	VerticalOptions="StartAndExpand"
+						 	HorizontalOptions="FillAndExpand"
+						 	ItemsSource="{Binding ServicesList}">
+
+							<common:ANFRepeaterView.ItemTemplate>
+								<DataTemplate>
+									<ViewCell>
+										<StackLayout Orientation="Horizontal">
+											<common:CustomImage HeightRequest="5" Source="ic_bulletpoint.png"/>
+											<common:CustomLabel
+											 	HorizontalOptions="StartAndExpand"
+											  	VerticalOptions="StartAndExpand"
+											  	FontSize="13"
+											  	Text="{Binding Description}"
+											  	CustomFont="{x:Static resources:FontResources.RegularFont}"
+											  	TextColor="{x:Static resources:ColorResources.TextColorDark}"/>
+											</StackLayout>
+									</ViewCell>
+								</DataTemplate>
+							</common:ANFRepeaterView.ItemTemplate>
+						</common:ANFRepeaterView>
+
+						<!-- Services Content--><!--
+						<common:CustomLabel x:Name="ServicesContent"
+							HorizontalOptions="StartAndExpand"
+							VerticalOptions="StartAndExpand"
+							FontSize="13"
+      						CustomFont="{x:Static resources:FontResources.RegularFont}"
+							TextColor="{x:Static resources:ColorResources.TextColorDark}" />-->
+
+						
+
+					</StackLayout>
+						<!-- Services-->
+					<StackLayout Orientation="Vertical" Padding="0, 0, 0, 10"
+						VerticalOptions="Start"
+					  	HorizontalOptions="FillAndExpand" >
+					  	<!--Separator-->
+						<ContentView Padding="0, 10" IsVisible="true">
+							<BoxView HorizontalOptions="FillAndExpand"
+								HeightRequest="1" 
+								BackgroundColor="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+						</ContentView>
+
+						<common:CustomLabel
+         					HorizontalOptions="FillAndExpand"
+         					FontSize="13"
+         					CustomFont="{x:Static resources:FontResources.RegularFont}"
+         					TextColor="{x:Static resources:ColorResources.TextColorDark}">
+          					<common:CustomLabel.FormattedText>
+            					<FormattedString>
+              						<Span Text="{x:Static app:AppResources.InfarmedDisclaimer}" />
+              						<Span Text="{x:Static app:AppResources.InfarmedDisclaimerSuffix}" ForegroundColor="{x:Static resources:ColorResources.ANFGreen}" />
+            					</FormattedString>
+          					</common:CustomLabel.FormattedText>
+
+          					<common:CustomLabel.GestureRecognizers>
+          						 <TapGestureRecognizer Tapped="GoToInfarmed" />
+          					</common:CustomLabel.GestureRecognizers>
+
+						</common:CustomLabel>
+					</StackLayout>
+					<Grid Padding="0, 15, 0, 25"
+						IsVisible="{Binding HasUrl}">
+
+						<!-- Webpage Button -->
+						<Grid HorizontalOptions="FillAndExpand" HeightRequest="40"
+							BackgroundColor="{x:Static resources:ColorResources.ANFDarkOrange}">
+							<Grid.GestureRecognizers>
+								<TapGestureRecognizer Tapped="WebPageButtonClicked" />
+							</Grid.GestureRecognizers>
+
+							<StackLayout Orientation="Horizontal" Spacing="15"
+								VerticalOptions="Center"
+								HorizontalOptions="Center">
+
+								<common:CustomLabel
+									VerticalOptions="Center"
+									Text="SABER MAIS"
+									FontSize="15"
+									CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+									TextColor="White" />
+
+								<common:CustomImage VerticalOptions="Center" Source="ic_link.png" />
+							</StackLayout>
+						</Grid>
+					</Grid>
+				</StackLayout>
+			</Grid>
+		</ScrollView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>

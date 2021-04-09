@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	x:Class="ANFAPP.Views.ContactsTabbedBar">
+
+	<ContentView.Content>
+		
+      	<StackLayout Orientation="Horizontal" 
+			Padding="0, 10, 20, 10" Spacing="5" VerticalOptions="Start">
+				
+      		<!-- Contacts Button -->
+			<common:CustomButton x:Name="ContactsButton"
+				HorizontalOptions="FillAndExpand"
+				HeightRequest="35"
+				BackgroundColor="Transparent"
+				Clicked="OnContactsButtonClicked"
+        		BorderRadius="0"
+        		Text="Contactos"  
+              	TextColor="{x:Static resources:ColorResources.ANFWhite}"
+              	CustomFont="{x:Static resources:FontResources.RegularFont}" 
+              	FontSize="11" />
+      
+      		<!-- General Conditions Button -->
+			<common:CustomButton x:Name="GeneralConditionsButton"
+				HorizontalOptions="FillAndExpand"
+				HeightRequest="35"
+				BackgroundColor="Transparent"
+				Clicked="OnGeneralConditionsButtonClicked" 
+        		Text="Condições Gerais"
+              	BorderRadius="0"
+               	TextColor="{x:Static resources:ColorResources.ANFWhite}"
+               	CustomFont="{x:Static resources:FontResources.RegularFont}" 
+              	FontSize="11" />
+
+			<!-- Privacy Policy Button -->
+			<common:CustomButton x:Name="PrivacyPolicyButton"
+				HorizontalOptions="FillAndExpand"
+				HeightRequest="35"
+				BackgroundColor="Transparent"
+				Clicked="OnPrivacyPolicyButtonClicked"
+        		Text="Politica de Privacidade"
+              	BorderRadius="0"
+               	TextColor="{x:Static resources:ColorResources.ANFWhite}"
+               	CustomFont="{x:Static resources:FontResources.RegularFont}" 
+              	FontSize="11" />
+      	</StackLayout>
+	</ContentView.Content>
+</ContentView>

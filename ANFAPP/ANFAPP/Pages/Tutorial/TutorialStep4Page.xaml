@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:TutorialBasePage xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:pages="clr-namespace:ANFAPP.Pages.Tutorial;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.Tutorial.TutorialStep4Page">
+	<Grid BackgroundColor="#f37d33">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="auto" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Tutorial 1 -->
+		<Grid x:Name="Tutorial1Container"
+			HorizontalOptions="FillAndExpand"
+			VerticalOptions="FillAndExpand"
+			RowSpacing="10"
+			Grid.ColumnSpan="2">
+			<Grid.Padding>
+				<OnIdiom x:TypeArguments="Thickness">
+					<OnIdiom.Phone>20, 20, 20, 0</OnIdiom.Phone>
+					<OnIdiom.Tablet>100, 260, 100, 120</OnIdiom.Tablet>
+				</OnIdiom>
+			</Grid.Padding>
+
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="auto" />
+			</Grid.RowDefinitions>
+
+			<!-- Ilustration -->
+			<common:CustomImage
+				Aspect="AspectFit"
+				VerticalOptions="End"
+				HorizontalOptions="FillAndExpand"
+				Source="bg_tutorial4_step1.png"/>
+
+			<!-- Text -->
+			<common:CustomImage Grid.Row="1"
+				Aspect="AspectFit"
+				VerticalOptions="End"
+				HorizontalOptions="FillAndExpand"
+				Source="txt_tutorial4_step1.png"/>
+		</Grid>
+
+		<!-- Tutorial 2 -->
+		<Grid x:Name="Tutorial2Container"
+			HorizontalOptions="FillAndExpand"
+			VerticalOptions="FillAndExpand"
+			Scale="0.95" Opacity="0"
+			RowSpacing="10"
+			Grid.ColumnSpan="2">
+			<Grid.Padding>
+				<OnIdiom x:TypeArguments="Thickness">
+					<OnIdiom.Phone>20, 20, 20, 0</OnIdiom.Phone>
+					<OnIdiom.Tablet>100, 260, 100, 120</OnIdiom.Tablet>
+				</OnIdiom>
+			</Grid.Padding>
+
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="auto" />
+			</Grid.RowDefinitions>
+
+			<!-- Ilustration -->
+			<common:CustomImage
+				Aspect="AspectFit"
+				VerticalOptions="End"
+				HorizontalOptions="FillAndExpand"
+				Source="bg_tutorial4_step2.png"/>
+
+			<!-- Text -->
+			<common:CustomImage Grid.Row="1"
+				Aspect="AspectFit"
+				VerticalOptions="End"
+				HorizontalOptions="FillAndExpand"
+				Source="txt_tutorial4_step2.png"/>
+		</Grid>
+		
+		<!-- Tutorial 3 -->
+		<Grid x:Name="Tutorial3Container"
+			HorizontalOptions="FillAndExpand"
+			VerticalOptions="FillAndExpand"
+			Scale="0.95" Opacity="0"
+			RowSpacing="10"
+			Grid.ColumnSpan="2">
+			<Grid.Padding>
+				<OnIdiom x:TypeArguments="Thickness">
+					<OnIdiom.Phone>20, 20, 20, 0</OnIdiom.Phone>
+					<OnIdiom.Tablet>100, 260, 100, 120</OnIdiom.Tablet>
+				</OnIdiom>
+			</Grid.Padding>
+
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="auto" />
+			</Grid.RowDefinitions>
+
+			<!-- Ilustration -->
+			<common:CustomImage
+				Aspect="AspectFit"
+				VerticalOptions="End"
+				HorizontalOptions="FillAndExpand"
+				Source="bg_tutorial4_step3.png"/>
+
+			<!-- Text -->
+			<common:CustomImage Grid.Row="1"
+				Aspect="AspectFit"
+				VerticalOptions="End"
+				HorizontalOptions="FillAndExpand"
+				Source="txt_tutorial4_step3.png"/>
+		</Grid>
+		
+		<!-- Tutorial 4 -->
+		<Grid x:Name="Tutorial4Container"
+			HorizontalOptions="FillAndExpand"
+			VerticalOptions="FillAndExpand"
+			Scale="0.95" Opacity="0"
+			RowSpacing="10"
+			Grid.ColumnSpan="2">
+			<Grid.Padding>
+				<OnIdiom x:TypeArguments="Thickness">
+					<OnIdiom.Phone>20, 20, 20, 0</OnIdiom.Phone>
+					<OnIdiom.Tablet>100, 260, 100, 120</OnIdiom.Tablet>
+				</OnIdiom>
+			</Grid.Padding>
+
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="auto" />
+			</Grid.RowDefinitions>
+
+			<!-- Ilustration -->
+			<common:CustomImage
+				Aspect="AspectFit"
+				VerticalOptions="End"
+				HorizontalOptions="FillAndExpand"
+				Source="bg_tutorial4_step4.png"/>
+
+			<!-- Text -->
+			<common:CustomImage Grid.Row="1"
+				Aspect="AspectFit"
+				VerticalOptions="End"
+				HorizontalOptions="FillAndExpand"
+				Source="txt_tutorial4_step4.png"/>
+		</Grid>
+		
+		<!-- Left Navigation -->
+		<common:CustomButton Grid.RowSpan="2"
+			BorderColor="Transparent" BorderWidth="0"
+			BackgroundColor="Transparent"
+			HorizontalOptions="FillAndExpand"
+			VerticalOptions="FillAndExpand"
+			Clicked="NavigateToPrevious" />
+
+		<!-- Right Navigation -->
+		<common:CustomButton Grid.Column="1" Grid.RowSpan="2"
+			BorderColor="Transparent" BorderWidth="0"
+			BackgroundColor="Transparent"
+			HorizontalOptions="FillAndExpand"
+			VerticalOptions="FillAndExpand"
+			Clicked="NavigateToNext" />
+
+		<!-- Dismiss Button -->
+		<Grid HeightRequest="60"
+			HorizontalOptions="End"
+			VerticalOptions="Start"
+			Padding="0, 0, 15, 0"
+			Grid.Column="1">
+
+			<common:CustomLabel x:Name="DismissButtonLabel"
+				FontSize="15"
+				HorizontalOptions="End"
+				VerticalOptions="Center"
+				TextColor="White"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				Text="{x:Static app:AppResources.TutorialDismissButton}" />
+		</Grid>
+
+		<common:CustomButton Grid.ColumnSpan="2"
+			HeightRequest="60" WidthRequest="120"
+			BorderColor="Transparent" BorderWidth="0"
+			BackgroundColor="Transparent"
+			HorizontalOptions="End"
+			VerticalOptions="Start"
+			Clicked="OnDismissTutorial" />
+
+		<!-- Navigation Widget -->
+		<views:TutorialNavigationWidget
+			Grid.Row="1" Grid.ColumnSpan="2"
+			VerticalOptions="End"
+			SelectedStep="4" />
+
+	</Grid>
+</pages:TutorialBasePage>

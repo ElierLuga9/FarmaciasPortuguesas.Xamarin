@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFStorePage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages.Store;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.Store.PromotionHighlightsPage">
+
+		<Grid RowSpacing="0" ColumnSpacing="0" >
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Vouchers List -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<StackLayout Orientation="Vertical" Spacing="0" Grid.Row="1" Grid.Column="1"  >
+
+      			<StackLayout Grid.ColumnSpan="2" 
+				Spacing="15"
+				Padding="15, 8"
+				HeightRequest="34"
+				Orientation="Horizontal"
+				HorizontalOptions="FillAndExpand"
+        		BackgroundColor="#eeeeee">
+
+        <common:CustomLabel
+          InputTransparent="True"
+          HorizontalOptions="StartAndExpand"
+          VerticalOptions="CenterAndExpand"
+      	  CustomFont="{x:Static resources:FontResources.RegularFont}"
+          FontSize="20"
+          TextColor="{x:Static resources:ColorResources.TextColorDark}"
+          Text="Promoções" />
+
+      	</StackLayout>
+     
+		
+		<common:CustomListView x:Name="ProductsList" Grid.Row="1" 
+    		HasUnevenRows="True"
+			ItemsSource="{Binding PromoList}"
+		    ItemSelected="OnArticleTapped2"
+		    HorizontalOptions="FillAndExpand" 
+		    VerticalOptions="FillAndExpand"
+		     >
+    			 <common:CustomListView.ItemTemplate>
+     				 <DataTemplate>
+       					 <ViewCell>
+
+       					
+       					 <Grid Padding="15, 10, 15, 0" Grid.RowSpacing="5" Grid.ColumnSpacing="10"
+			VerticalOptions="Start"
+			BackgroundColor="White">
+
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="85" />
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="auto" />
+			</Grid.ColumnDefinitions>
+			
+			<Grid.RowDefinitions>
+				<RowDefinition Height="auto" />
+				<RowDefinition Height="auto" />
+				<RowDefinition Height="10" />
+			</Grid.RowDefinitions>
+
+            
+
+		<!-- Product Image -->
+						
+			<common:CustomWebImage Grid.RowSpan="2" Grid.Row="0"
+				VerticalOptions="CenterAndExpand" 
+				HorizontalOptions="CenterAndExpand" 
+				WidthRequest="85"
+				HeightRequest="85"
+ 				IsVisible="{Binding MSRM, Converter={x:Static converters:ConverterResources.InverseBool}}"
+				ImageUrl="{Binding ImageURL}" 
+				DefaultImage="catalog_thumbnail.png" />
+			<common:CustomImage Grid.RowSpan="2" Grid.Row="0"
+				VerticalOptions="Center" 
+				HorizontalOptions="Center"
+				WidthRequest="85"
+				HeightRequest="85"
+				IsVisible="{Binding MSRM}"
+				Source="msrmplaceholder.png" />
+
+										<!-- Icons -->
+			<StackLayout Spacing="5" Orientation="Horizontal" Grid.RowSpan="2">
+
+				<common:CustomImage WidthRequest="22" HeightRequest="22"
+					VerticalOptions="Start"
+					HorizontalOptions="Start"
+					IsVisible="{Binding CatIcon, Converter={x:Static converters:ConverterResources.NotNullable}}"
+					Source="{Binding CatIcon}" />
+
+				<common:CustomImage WidthRequest="22" HeightRequest="22"
+					VerticalOptions="Start"
+					HorizontalOptions="Start"
+					IsVisible="{Binding MSRM}"
+					Source="ic_prescription_annotation.png" />
+
+				<common:CustomImage WidthRequest="22" HeightRequest="22"
+					VerticalOptions="Start"
+					HorizontalOptions="Start"
+					IsVisible="{Binding Generic}"
+					Source="ic_drug_annotation.png" />
+
+			</StackLayout>
+										<!-- Product Info -->
+			<StackLayout Spacing="1" Padding="0, 4" Orientation="Vertical" Grid.Column="1">
+
+				<!-- Name -->
+				<common:CustomLabel
+					FontSize="14"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					Text="{Binding Name}" />
+
+				<!-- Dosage -->
+				<common:CustomLabel
+					FontSize="10"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					Text="{Binding Presentation}" />
+
+       	 		
+			</StackLayout>
+							<!-- Ecommerce Actions -->
+			<StackLayout Spacing="5" Orientation="Vertical"
+				Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+
+				<!-- Buy Button -->
+				<StackLayout Orientation="Horizontal" x:Name="BuyButton"
+					
+					Padding="10, 0"
+					HeightRequest="25"
+					HorizontalOptions="FillAndExpand"
+					BackgroundColor="{Binding CatColor}">
+
+					<common:CustomLabel x:Name="PriceLabel"
+						HorizontalOptions="StartAndExpand"
+						VerticalOptions="CenterAndExpand"
+						FontSize="10"
+						TextColor="{x:Static resources:ColorResources.TextColorLight}"
+						CustomFont="{x:Static resources:FontResources.BoldFont}"
+						Text="{Binding PriceDescription}" />
+
+					<common:CustomImage WidthRequest="15" HeightRequest="15"
+							IsVisible="{Binding Source={x:Static app:SessionData.IsAuthenticatedWithPharmacy}}"
+							InputTransparent="True"
+							VerticalOptions="Center"
+							HorizontalOptions="EndAndExpand"
+							Source="ic_cart_button" />
+
+					
+					</StackLayout>
+				</StackLayout>
+			<!-- Separator -->
+			<Grid Padding="-15, 0" Grid.Row="2" Grid.ColumnSpan="3" 
+				HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand">
+				<BoxView HorizontalOptions="FillAndExpand" HeightRequest="1"
+					Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+			</Grid>
+
+			 </Grid>
+			
+		 	</ViewCell>
+      	  </DataTemplate>
+    	</common:CustomListView.ItemTemplate>
+     </common:CustomListView>
+	</StackLayout>
+                         
+	
+	
+
+	
+	<views:MenuView x:Name="MenuView" Grid.Row="1" />
+		<!-- Application Bar -->
+    <!--<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />-->
+   <views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	
+	</Grid>
+</pages:ANFStorePage>

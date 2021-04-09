@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.DosageScheduler.DosingSchedulePage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Tabbed Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Add Button -->
+			<RowDefinition Height="70" />
+			<!-- Dosing Schedules List -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Tabbed Bar -->
+		<views:DosageSchedulerTabbedBar x:Name="TabBar"
+			Grid.Row="1" Grid.Column="1" SelectedTab="DosingSchedule" />
+
+		<!-- Create Button When no Schedule is defined-->
+		<Grid Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" x:Name="BigAdd"
+			Padding="15"
+			IsVisible="{Binding DosingSchedules, Converter={x:Static converters:ConverterResources.Nullable}}">
+
+			<!-- Button -->
+			<common:CustomButton
+				BorderRadius="1"
+				VerticalOptions="FillAndExpand"
+				HorizontalOptions="FillAndExpand"
+				Clicked="OnAddDosingScheduleButtonClick"
+				BackgroundColor="{x:Static resources:ColorResources.ANFPaleGrey}"/>
+
+			<!-- Button Label -->
+			<StackLayout Orientation="Vertical" Spacing="35"
+				VerticalOptions="Center"
+				InputTransparent="True"
+				HorizontalOptions="Center">
+
+				<!-- Add Button -->
+				<common:CustomImage WidthRequest="103" HeightRequest="103"
+					HorizontalOptions="Center"
+					VerticalOptions="Center"
+					InputTransparent="True"
+					Source="ic_add_drug_large.png"/>
+
+				<!-- Label -->
+				<common:CustomLabel
+					FontSize="15"
+					XAlign="Center"
+					HorizontalOptions="Start"
+					VerticalOptions="Center"
+					InputTransparent="True"
+					TextColor="{x:Static resources:ColorResources.ANFDarkerBlue}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					Text="{x:Static app:AppResources.DosingScheduleEmptyListButton}" />
+			</StackLayout>
+		</Grid>
+
+		<!-- Add Button When is some schedule defined -->
+		<Grid Grid.Row="2" Grid.Column="1" Grid.RowSpacing="0" Grid.ColumnSpacing="0" x:Name="AddSection"
+			Padding="15"
+			IsVisible="{Binding DosingSchedules, Converter={x:Static converters:ConverterResources.HasElements}}">
+			<Grid.ColumnDefinitions>
+				<!-- Icon -->
+				<ColumnDefinition Width="45" />
+				<!-- Text -->
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+
+			<!-- Button -->
+			<common:CustomButton Grid.ColumnSpan="2"
+				BorderWidth="1"
+				BorderRadius="1"
+				Clicked="OnAddDosingScheduleButtonClick"
+				BackgroundColor="Transparent"
+			  	BorderColor="{x:Static resources:ColorResources.ANFDarkerBlue}" />
+
+			<!-- Icon -->
+			<common:CustomImage WidthRequest="14" HeightRequest="14"
+				InputTransparent="True"
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				Source="ic_plus_blue.png" />
+
+			<!-- Label -->
+			<common:CustomLabel Grid.Column="1"
+				FontSize="15"
+				HorizontalOptions="Start"
+				VerticalOptions="Center"
+				InputTransparent="True"
+				TextColor="{x:Static resources:ColorResources.ANFDarkerBlue}"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				Text="{x:Static app:AppResources.AddDosingScheduleButton}" />
+		</Grid>
+
+		<!-- Dosing Schedules List -->
+		<common:CustomListView x:Name="DosingScheduleList" Grid.Row="3" Grid.Column="1" RowHeight="78"
+			VerticalOptions="FillAndExpand"
+			ItemsSource="{Binding DosingSchedules}"
+			ItemSelected="OnListItemSelected"
+			SeparatorColor="Transparent"
+			IsVisible="{Binding DosingSchedules, Converter={x:Static converters:ConverterResources.NotNullable}}">
+			<common:CustomListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<views:DosingScheduleListItem />
+					</ViewCell>
+				</DataTemplate>
+			</common:CustomListView.ItemTemplate>
+
+			<!-- Remove trailing lines. -->
+			<common:CustomListView.Footer>
+				<ContentView HeightRequest="0" />
+			</common:CustomListView.Footer>
+		</common:CustomListView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" Grid.RowSpan="3" />
+		
+		<!-- Application Bar -->
+    	<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="4" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>

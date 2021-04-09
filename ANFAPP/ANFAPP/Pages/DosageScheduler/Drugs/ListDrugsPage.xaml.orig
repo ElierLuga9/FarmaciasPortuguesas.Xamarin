@@ -1,0 +1,500 @@
+<<<<<<< HEAD
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.DosageScheduler.Drugs.ListDrugsPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Tabbed Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Create Buttons -->
+			<RowDefinition Height="70" />
+			<!--- List -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Tabbed Bar -->
+		<views:DosageSchedulerTabbedBar Grid.Row="1" Grid.Column="1" x:Name="TabBar" />
+
+		<!-- Create Buttons -->
+		<Grid Grid.Row="2" ColumnSpacing="0" Grid.Column="1" RowSpacing="0" x:Name="AddSection"
+			IsVisible="{Binding Drugs, Converter={x:Static converters:ConverterResources.HasElements}}">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="15" />
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="8" />
+				<ColumnDefinition Width="40" />
+				<ColumnDefinition Width="15" />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="15" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="15" />
+			</Grid.RowDefinitions>
+
+			<Grid Grid.Row="1" Grid.Column="1" RowSpacing="0" ColumnSpacing="0">
+				<Grid.ColumnDefinitions>
+					<!-- Icon -->
+					<ColumnDefinition Width="45" />
+					<!-- Text -->
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+			
+				<!-- Button -->
+        		<common:CustomButton Grid.ColumnSpan="2"
+            		BorderWidth="1"
+            		BorderRadius="1"
+					VerticalOptions="FillAndExpand"
+					HorizontalOptions="FillAndExpand"
+					Clicked="AddDrugButtonClicked"
+					BackgroundColor="{x:Static resources:ColorResources.ANFWhite}" 
+          			BorderColor="{x:Static resources:ColorResources.ANFDarkerBlue}" />
+
+        		<!-- Icon -->
+				<common:CustomImage WidthRequest="14" HeightRequest="14"
+					InputTransparent="True"
+					HorizontalOptions="Center"
+					VerticalOptions="Center"
+					Source="ic_plus_blue.png" />
+			
+				<!-- Label -->
+				<common:CustomLabel Grid.Column="1"
+					FontSize="15"
+					HorizontalOptions="Start"
+					VerticalOptions="Center"
+					InputTransparent="True"
+					TextColor="{x:Static resources:ColorResources.ANFDarkerBlue}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					Text="{x:Static app:AppResources.AddMedicineButtonCaps}" />
+			</Grid>
+
+			<!-- Barcode Button -->
+			<common:CustomImage Grid.Row="1" Grid.Column="3"
+				VerticalOptions="Center"
+				HorizontalOptions="End"
+				Source="ic_barcode_scan_small.png">
+				<Grid.GestureRecognizers>
+					<TapGestureRecognizer Tapped="ReadBarcodeButtonClicked" />
+				</Grid.GestureRecognizers>
+			</common:CustomImage>
+		</Grid>
+
+		<common:CustomListView Grid.Row="3" Grid.Column="1" RowHeight="78"
+			VerticalOptions="FillAndExpand"
+			ItemsSource="{Binding Drugs}"
+			SeparatorColor="Transparent"
+			IsVisible="{Binding Drugs, Converter={x:Static converters:ConverterResources.HasElements}}"
+			ItemSelected="OnDrugSelected">
+			<common:CustomListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<views:MedicineListItem />
+					</ViewCell>
+				</DataTemplate>
+			</common:CustomListView.ItemTemplate>
+			<!-- Remove trailing lines. -->
+			<common:CustomListView.Footer>
+				<ContentView HeightRequest="0" />
+			</common:CustomListView.Footer>
+		</common:CustomListView>
+
+		<!-- Outer Grid 
+		IsVisible="{Binding Drugs, Converter={x:Static converters:ConverterResources.EmptyOrNull}}"
+		-->
+		<Grid Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" x:Name="BigAdd"
+			ColumnSpacing="0" 
+			RowSpacing="0"
+			IsVisible="{Binding Drugs, Converter={x:Static converters:ConverterResources.EmptyOrNull}}">
+			<Grid.ColumnDefinitions>
+				<!-- Left Outer Margin -->
+				<ColumnDefinition Width="15" />
+				<!-- Content -->
+				<ColumnDefinition Width="*" />
+				<!-- Right Outer Margin -->
+				<ColumnDefinition Width="15" />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<!-- Top Outer Margin -->
+				<RowDefinition Height="15" />
+				<!-- Content -->
+				<RowDefinition Height="*" />
+				<!-- Bottom Outer Margin -->
+				<RowDefinition Height="15" />
+			</Grid.RowDefinitions>
+
+			<!-- Inner Grid -->
+			<Grid Grid.Row="1" Grid.Column="1"
+				ColumnSpacing="0" 
+				RowSpacing="0"
+				BackgroundColor="{x:Static resources:ColorResources.SchedulerBackgroundLight}">
+				<Grid.ColumnDefinitions>
+					<!-- Left Inner Margin -->
+					<ColumnDefinition Width="15" />
+					<!-- Content -->
+					<ColumnDefinition Width="*" />
+					<!-- Left Inner Margin -->
+					<ColumnDefinition Width="15" />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<!-- Margin -->
+					<RowDefinition Height="10" />
+					<!-- Image and Text -->
+					<RowDefinition Height="*" />
+					<!-- Margin -->
+					<RowDefinition Height="10" />
+					<!--- Separator -->
+					<RowDefinition Height="1" />
+					<!-- Margin -->
+					<RowDefinition Height="10" />
+					<!-- Image and Text -->
+					<RowDefinition Height="*" />
+					<!-- Margin -->
+					<RowDefinition Height="10" />
+				</Grid.RowDefinitions>
+
+				<!--- We wrap the image and text to let us handle a single tap event. -->
+				<Grid Grid.Column="1" Grid.Row="1">
+					<Grid.RowDefinitions>
+						<!-- Image -->
+						<RowDefinition Height="*" />
+						<!-- Text -->
+						<RowDefinition Height="40" />
+					</Grid.RowDefinitions>
+
+					<common:CustomImage
+						HorizontalOptions="Center"
+						VerticalOptions="Center" 
+						Source="ic_add_drug_large.png" />
+					<common:CustomLabel Grid.Row="1"
+						FontSize="15"
+						HorizontalOptions="Center"
+						VerticalOptions="Start"
+						InputTransparent="True"
+						TextColor="{x:Static resources:ColorResources.ANFDarkerBlue}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						Text="{x:Static app:AppResources.MedicineEmptyListButton}" />
+					<Grid.GestureRecognizers>
+			        	<TapGestureRecognizer Tapped="AddDrugButtonClicked"/>
+			    	</Grid.GestureRecognizers>
+				</Grid>
+
+				<BoxView Grid.Column="1" Grid.Row="3" 
+					BackgroundColor="{x:Static resources:ColorResources.SchedulerSeparatorColor}" />
+
+				<Grid Grid.Column="1" Grid.Row="5">
+					<Grid.RowDefinitions>
+						<!-- Image -->
+						<RowDefinition Height="*" />
+						<!-- Text -->
+						<RowDefinition Height="40" />
+					</Grid.RowDefinitions>
+
+					<common:CustomImage
+						HorizontalOptions="Center"
+						VerticalOptions="Center" 
+						Source="ic_barcode_scan_large.png" />
+					<common:CustomLabel Grid.Row="1"
+						FontSize="15"
+						HorizontalOptions="Center"
+						VerticalOptions="Start"
+						InputTransparent="True"
+						TextColor="{x:Static resources:ColorResources.ANFDarkerBlue}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						Text="Ler código de barras do Medicamento" />
+
+					<Grid.GestureRecognizers>
+			        	<TapGestureRecognizer Tapped="ReadBarcodeButtonClicked"/>
+			    	</Grid.GestureRecognizers>
+				</Grid>
+
+			</Grid>
+		</Grid>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" Grid.RowSpan="3" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="4" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>
+=======
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.DosageScheduler.Drugs.ListDrugsPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Tabbed Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Create Buttons -->
+			<RowDefinition Height="70" />
+			<!--- List -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Tabbed Bar -->
+		<views:DosageSchedulerTabbedBar Grid.Row="1" Grid.Column="1" x:Name="TabBar" />
+
+		<!-- Create Buttons -->
+		<Grid Grid.Row="2" ColumnSpacing="0" Grid.Column="1" RowSpacing="0" x:Name="AddSection"
+			IsVisible="{Binding Drugs, Converter={x:Static converters:ConverterResources.HasElements}}">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="15" />
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="8" />
+				<ColumnDefinition Width="40" />
+				<ColumnDefinition Width="15" />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="15" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="15" />
+			</Grid.RowDefinitions>
+
+			<Grid Grid.Row="1" Grid.Column="1" RowSpacing="0" ColumnSpacing="0">
+				<Grid.ColumnDefinitions>
+					<!-- Icon -->
+					<ColumnDefinition Width="45" />
+					<!-- Text -->
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+			
+				<!-- Button -->
+        		<common:CustomButton Grid.ColumnSpan="2"
+            		BorderWidth="1"
+            		BorderRadius="1"
+					VerticalOptions="FillAndExpand"
+					HorizontalOptions="FillAndExpand"
+					Clicked="AddDrugButtonClicked"
+					BackgroundColor="{x:Static resources:ColorResources.ANFWhite}" 
+          			BorderColor="{x:Static resources:ColorResources.ANFDarkerBlue}" />
+
+        		<!-- Icon -->
+				<common:CustomImage WidthRequest="14" HeightRequest="14"
+					InputTransparent="True"
+					HorizontalOptions="Center"
+					VerticalOptions="Center"
+					Source="ic_plus_blue.png" />
+			
+				<!-- Label -->
+				<common:CustomLabel Grid.Column="1"
+					FontSize="15"
+					HorizontalOptions="Start"
+					VerticalOptions="Center"
+					InputTransparent="True"
+					TextColor="{x:Static resources:ColorResources.ANFDarkerBlue}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					Text="{x:Static app:AppResources.AddMedicineButtonCaps}" />
+			</Grid>
+
+			<!-- Barcode Button -->
+			<common:CustomImage Grid.Row="1" Grid.Column="3"
+				VerticalOptions="Center"
+				HorizontalOptions="End"
+				Source="ic_barcode_scan_small.png">
+				<Grid.GestureRecognizers>
+					<TapGestureRecognizer Tapped="ReadBarcodeButtonClicked" />
+				</Grid.GestureRecognizers>
+			</common:CustomImage>
+		</Grid>
+
+		<common:CustomListView Grid.Row="3" Grid.Column="1" RowHeight="78"
+			VerticalOptions="FillAndExpand"
+			ItemsSource="{Binding Drugs}"
+			SeparatorColor="Transparent"
+			IsVisible="{Binding Drugs, Converter={x:Static converters:ConverterResources.HasElements}}"
+			ItemSelected="OnDrugSelected">
+			<common:CustomListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<views:MedicineListItem />
+					</ViewCell>
+				</DataTemplate>
+			</common:CustomListView.ItemTemplate>
+			<!-- Remove trailing lines. -->
+			<common:CustomListView.Footer>
+				<ContentView HeightRequest="0" />
+			</common:CustomListView.Footer>
+		</common:CustomListView>
+
+		<!-- Outer Grid 
+		IsVisible="{Binding Drugs, Converter={x:Static converters:ConverterResources.EmptyOrNull}}"
+		-->
+		<Grid Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" x:Name="BigAdd"
+			ColumnSpacing="0" 
+			RowSpacing="0"
+			IsVisible="{Binding Drugs, Converter={x:Static converters:ConverterResources.EmptyOrNull}}">
+			<Grid.ColumnDefinitions>
+				<!-- Left Outer Margin -->
+				<ColumnDefinition Width="15" />
+				<!-- Content -->
+				<ColumnDefinition Width="*" />
+				<!-- Right Outer Margin -->
+				<ColumnDefinition Width="15" />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<!-- Top Outer Margin -->
+				<RowDefinition Height="15" />
+				<!-- Content -->
+				<RowDefinition Height="*" />
+				<!-- Bottom Outer Margin -->
+				<RowDefinition Height="15" />
+			</Grid.RowDefinitions>
+
+			<!-- Inner Grid -->
+			<Grid Grid.Row="1" Grid.Column="1"
+				ColumnSpacing="0" 
+				RowSpacing="0"
+				BackgroundColor="{x:Static resources:ColorResources.SchedulerBackgroundLight}">
+				<Grid.ColumnDefinitions>
+					<!-- Left Inner Margin -->
+					<ColumnDefinition Width="15" />
+					<!-- Content -->
+					<ColumnDefinition Width="*" />
+					<!-- Left Inner Margin -->
+					<ColumnDefinition Width="15" />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<!-- Margin -->
+					<RowDefinition Height="10" />
+					<!-- Image and Text -->
+					<RowDefinition Height="*" />
+					<!-- Margin -->
+					<RowDefinition Height="10" />
+					<!--- Separator -->
+					<RowDefinition Height="1" />
+					<!-- Margin -->
+					<RowDefinition Height="10" />
+					<!-- Image and Text -->
+					<RowDefinition Height="*" />
+					<!-- Margin -->
+					<RowDefinition Height="10" />
+				</Grid.RowDefinitions>
+
+				<!--- We wrap the image and text to let us handle a single tap event. -->
+				<Grid Grid.Column="1" Grid.Row="1">
+					<Grid.RowDefinitions>
+						<!-- Image -->
+						<RowDefinition Height="*" />
+						<!-- Text -->
+						<RowDefinition Height="40" />
+					</Grid.RowDefinitions>
+
+					<common:CustomImage
+						HorizontalOptions="Center"
+						VerticalOptions="Center" 
+						Source="ic_add_drug_large.png" />
+					<common:CustomLabel Grid.Row="1"
+						FontSize="15"
+						HorizontalOptions="Center"
+						VerticalOptions="Start"
+						InputTransparent="True"
+						TextColor="{x:Static resources:ColorResources.ANFDarkerBlue}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						Text="{x:Static app:AppResources.MedicineEmptyListButton}" />
+					<Grid.GestureRecognizers>
+			        	<TapGestureRecognizer Tapped="AddDrugButtonClicked"/>
+			    	</Grid.GestureRecognizers>
+				</Grid>
+
+				<BoxView Grid.Column="1" Grid.Row="3" 
+					BackgroundColor="{x:Static resources:ColorResources.SchedulerSeparatorColor}" />
+
+				<Grid Grid.Column="1" Grid.Row="5">
+					<Grid.RowDefinitions>
+						<!-- Image -->
+						<RowDefinition Height="*" />
+						<!-- Text -->
+						<RowDefinition Height="40" />
+					</Grid.RowDefinitions>
+
+					<common:CustomImage
+						HorizontalOptions="Center"
+						VerticalOptions="Center" 
+						Source="ic_barcode_scan_large.png" />
+					<common:CustomLabel Grid.Row="1"
+						FontSize="15"
+						HorizontalOptions="Center"
+						VerticalOptions="Start"
+						InputTransparent="True"
+						TextColor="{x:Static resources:ColorResources.ANFDarkerBlue}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						Text="Ler código de barras do Medicamento" />
+
+					<Grid.GestureRecognizers>
+			        	<TapGestureRecognizer Tapped="ReadBarcodeButtonClicked"/>
+			    	</Grid.GestureRecognizers>
+				</Grid>
+
+			</Grid>
+		</Grid>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" Grid.RowSpan="3" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="4" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</ANFPage>
+>>>>>>> maintenance_phase5_azure_notification

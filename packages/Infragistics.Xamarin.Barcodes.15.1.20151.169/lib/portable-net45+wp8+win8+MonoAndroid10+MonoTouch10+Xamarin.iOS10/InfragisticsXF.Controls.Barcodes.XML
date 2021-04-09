@@ -1,0 +1,798 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>InfragisticsXF.Controls.Barcodes</name>
+    </assembly>
+    <members>
+        <member name="T:Infragistics.XF.BarsFillMode">
+            <summary>
+            BarsFillMode specifies how the grid fills within the barcode control dimensions.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.BarsFillMode.FillSpace">
+            <summary>
+            FillSpace mode ensures that the barcode grid fills the control dimensions.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.BarsFillMode.EnsureEqualSize">
+            <summary>
+            EnsureEqualSize mode ensures that every grid column/row has the same pixels number width/height. The sum of all columns/rows pixels may be less than the width/height of the control.
+            </summary>
+        </member>
+        <member name="T:Infragistics.XF.EanUpcCodeType">
+            <summary>
+            EAN/UPC types of barcode
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.EanUpcCodeType.Ean13">
+            <summary>
+            A type of barcode EAN-13
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.EanUpcCodeType.Ean8">
+            <summary>
+            A type of barcode EAN-8
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.EanUpcCodeType.UpcA">
+            <summary>
+            A type of barcode UPC-A
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.EanUpcCodeType.UpcE">
+            <summary>
+            A type of barcode UPC-E
+            </summary>
+        </member>
+        <member name="T:Infragistics.XF.Code128CodeType">
+            <summary>
+            Code128 types of barcode
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.Code128CodeType.Standard">
+            <summary>
+            CODE128 standard encodation. No FNC1 in first or second symbol character position after Start character.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.Code128CodeType.Ucc">
+            <summary>
+            GS1-128 (also known as UCC/EAN-128) - encode full list of AI (Application Id). 
+            FNC1 in first symbol character position after Start character
+            </summary>
+        </member>
+        <member name="T:Infragistics.XF.GS1CodeType">
+            <summary>
+            GS1 Databar barcode types.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.GS1CodeType.Omnidirectional">
+            <summary>
+            GS1 DataBar Omnnidirectional code type - 
+            intended for retail Point-of-Sale scanning 
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.GS1CodeType.StackedOmnidirectional">
+            <summary>
+            GS1 DataBar Stacked Omnidirectional code type - 
+            intended for retail Point-of-Sale scanning 
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.GS1CodeType.Expanded">
+            <summary>
+            GS1 DataBar Expanded code type - 
+            intended for retail Point-of-Sale scanning 
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.GS1CodeType.Truncated">
+            <summary>
+            GS1 DataBar Truncated code type - 
+            not intended for retail Point-of-Sale scanning 
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.GS1CodeType.Stacked">
+            <summary>
+            GS1 DataBar Stacked code type - 
+            not intended for retail Point-of-Sale scanning 
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.GS1CodeType.Limited">
+            <summary>
+            GS1 DataBar Limited code type - 
+            not intended for retail Point-of-Sale scanning 
+            </summary>
+        </member>
+        <member name="T:Infragistics.XF.HeaderDisplayMode">
+            <summary>
+            Enumerated type that represents a header display mode.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.HeaderDisplayMode.Hide">
+            <summary>
+            Hide the header.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.HeaderDisplayMode.Show">
+            <summary>
+            Show the header.
+            </summary>
+        </member>
+        <member name="T:Infragistics.XF.MaxiCodeErrorCorrectionLevel">
+            <summary>
+            Error Correction Level for MaxiCode symbology
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.MaxiCodeErrorCorrectionLevel.Standard">
+            <summary>
+            Standard Error Correction Level for MaxiCode, encoding 144 codewords, 93 of them are for data 
+            encodation, 1 is used for specifying the mode, 50 codewords are used for error correction. 
+            22 erroneously decoded codewords can be corrected.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.MaxiCodeErrorCorrectionLevel.Enhanced">
+            <summary>
+            Enhanced Error Correction Level for MaxiCode, encoding 144 codewords, 77 of them are for data 
+            encodation, 1 is used for specifying the mode, 66 codewords are used for error correction. 
+            30 erroneously decoded codewords can be corrected.
+            </summary>
+        </member>
+        <member name="T:Infragistics.XF.ModeIndicator">
+            <summary>
+            The possible modes values for the MaxiCode control, which allow various structures of the symbol data and error correction.
+            The mode is encoded as part of the Primary Message.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.ModeIndicator.Mode2">
+            <summary>
+            Mode 2 is used in the transport industry for encoding numeric postal code.
+            The first 120 bits encode the Structured Carrier Message with Enhansed Error Correction.
+            The rest of the symbol is free for other uses and employs Standard Error Correction.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.ModeIndicator.Mode3">
+            <summary>
+            Mode 3 is designed to be used in the transport industry of an alphanumeric postal code.
+            The first 120 bits encode the Structured Carrier Message with Enhanced Error Correction.
+            The rest of the symbol is free for other uses and employs Standard Error Correction.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.ModeIndicator.Mode4">
+            <summary>
+            Mode 4 is for Standard symbol encoding. It indicates that the symbol employs EEC in the 
+            Primary Message and SEC for the Secondary Message. It provides 93 codewords for data encodation.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.ModeIndicator.Mode5">
+            <summary>
+            Mode 5 encode full message using ECC. It provides 77 codewords for data encodation.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.ModeIndicator.Mode6">
+            <summary>
+            Mode 6 is used for reader programming. The symbol encodes a msg used to program the reader system
+            and SEC is used for the Secondary Message. No data shall be transmitted. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.CodeSet.A">
+            <summary>
+            Code Set A is the default code set at the start of every MaxiCOde symbol. 
+            </summary>
+        </member>
+        <member name="T:Infragistics.XF.Pdf417ErrorCorrectionLevel">
+            <summary>
+            The possible values for the PDF417 Error Correction Level.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.Pdf417ErrorCorrectionLevel.Level0">
+            <summary>
+            Error Correction Level 0 has 2 codewords
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.Pdf417ErrorCorrectionLevel.Level1">
+            <summary>
+            Error Correction Level 1 has 4 codewords
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.Pdf417ErrorCorrectionLevel.Level2">
+            <summary>
+            Error Correction Level 2 has 8 codewords
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.Pdf417ErrorCorrectionLevel.Level3">
+            <summary>
+            Error Correction Level 3 has 16 codewords
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.Pdf417ErrorCorrectionLevel.Level4">
+            <summary>
+            Error Correction Level 4 has 32 codewords
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.Pdf417ErrorCorrectionLevel.Level5">
+            <summary>
+            Error Correction Level 5 has 64 codewords
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.Pdf417ErrorCorrectionLevel.Level6">
+            <summary>
+            Error Correction Level 6 has 128 codewords
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.Pdf417ErrorCorrectionLevel.Level7">
+            <summary>
+            Error Correction Level 7 has 256 codewords
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.Pdf417ErrorCorrectionLevel.Level8">
+            <summary>
+            Error Correction Level 8 has 512 codewords
+            </summary>
+        </member>
+        <member name="T:Infragistics.XF.CompactionMode">
+            <summary>
+            Specify the compaction algorithm in PDF417 which is used to map 8-bit data bytes efficiently to PDF417 codewords.     
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.CompactionMode.Unspecified">
+            <summary>
+            Choose internaly which of the three data compaction algorithm in PDF417 is the best compaction mode 
+            for the Data value and if necessary combines them.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.CompactionMode.Byte">
+            <summary>
+            Byte compaction algorithm permits all 256 possible 8-bit byte values to be encoded. This includes all ASCII 
+            characters value 0 to 127 inclusive and provides for international character set support. It has
+            compaction ratio of six bytes to five codewords and used as default graphical and control character interpretation.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.CompactionMode.Text">
+             <summary>
+            Text Compaction mode encodes all ASCII chars (32-126) and HT(tab: 9), LF (line feed: 10) and CR (carriage return: 13) symbols.
+            It compacts up to 2 chars per codeword.
+             </summary>
+        </member>
+        <member name="F:Infragistics.XF.CompactionMode.Numeric">
+             <summary>
+            Numeric Compaction mode permits efficient encoding of numeric data strings. It should be used to
+            encode long strings of consecutive numeric digits. It encodes up to 2,93 numeric digits per codeword.
+             </summary>
+        </member>
+        <member name="T:Infragistics.XF.TextSubmode">
+            <summary>
+            Text Compaction sub-modes: each contains 30 characters including the latch and shift characters.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.TextSubmode.Alpha">
+            <summary>
+            The default compaction mode - include uppercase alphabetic characters
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.TextSubmode.Lower">
+            <summary>
+            Lower submode - include lowercase alphabetic characters
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.TextSubmode.Mixed">
+            <summary>
+            Mixed - include numeric and some punctuations characters
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.TextSubmode.Punctuation">
+            <summary>
+            Punctuation - include punctuation characters
+            </summary>
+        </member>
+        <member name="T:Infragistics.XF.SizeVersion">
+            <summary>
+            Size of the symblol represented in terms of its position in the sequence of permissible sizes from 21x21 modules (Version 1) to 177x177 modules (Version 40) for the QR Code symbols.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Undefined">
+            <summary>
+            If set, the QR code barcode sets internally the smallest version that will accommodate the data.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version1">
+            <summary>
+            Version1 defines size of 21x21 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version2">
+            <summary>
+            Version2 defines size of 25x25 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version3">
+            <summary>
+            Version3 defines size of 29x29 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version4">
+            <summary>
+            Version4 defines size of 33x33 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version5">
+            <summary>
+            Version5 defines size of 37x37 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version6">
+            <summary>
+            Version6 defines size of 41x41 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version7">
+            <summary>
+            Version7 defines size of 45x45 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version8">
+            <summary>
+            Version8 defines size of 49x49 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version9">
+            <summary>
+            Version9 defines size of 53x53 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version10">
+            <summary>
+            Version10 defines size of 57x57 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version11">
+            <summary>
+            Version11 defines size of 61x61 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version12">
+            <summary>
+            Version12 defines size of 65x65 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version13">
+            <summary>
+            Version13 defines size of 69x69 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version14">
+            <summary>
+            Version14 defines size of 73x73 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version15">
+            <summary>
+            Version15 defines size of 77x77 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version16">
+            <summary>
+            Version16 defines size of 81x81 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version17">
+            <summary>
+            Version17 defines size of 85x85 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version18">
+            <summary>
+            Version18 defines size of 89x89 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version19">
+            <summary>
+            Version19 defines size of 93x93 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version20">
+            <summary>
+            Version20 defines size of 97x97 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version21">
+            <summary>
+            Version21 defines size of 101x101 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version22">
+            <summary>
+            Version22 defines size of 105x105 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version23">
+            <summary>
+            Version23 defines size of 109x109 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version24">
+            <summary>
+            Version24 defines size of 113x113 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version25">
+            <summary>
+            Version25 defines size of 117x117 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version26">
+            <summary>
+            Version26 defines size of 121x121 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version27">
+            <summary>
+            Version27 defines size of 125x125 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version28">
+            <summary>
+            Version28 defines size of 129x129 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version29">
+            <summary>
+            Version29 defines size of 133x133 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version30">
+            <summary>
+            Version30 defines size of 137x137 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version31">
+            <summary>
+            Version31 defines size of 141x141 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version32">
+            <summary>
+            Version32 defines size of 145x145 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version33">
+            <summary>
+            Version33 defines size of 149x149 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version34">
+            <summary>
+            Version34 defines size of 153x153 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version35">
+            <summary>
+            Version35 defines size of 157x157 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version36">
+            <summary>
+            Version36 defines size of 161x161 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version37">
+            <summary>
+            Version37 defines size of 165x165 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version38">
+            <summary>
+            Version38 defines size of 169x169 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version39">
+            <summary>
+            Version39 defines size of 173x173 modules for the symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.SizeVersion.Version40">
+            <summary>
+            Version40 defines size of 177x177 modules for the symbol.
+            </summary>
+        </member>
+        <member name="T:Infragistics.XF.QRCodeErrorCorrectionLevel">
+            <summary>
+            QRCodeErrorCorrectionLevel defines the four level of Reed-Solomon error correction for the QR Code symbol.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.QRCodeErrorCorrectionLevel.Low">
+            <summary>
+            Low error correction level allows recovery of 7% of the symbol codewords.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.QRCodeErrorCorrectionLevel.Medium">
+            <summary>
+            Medium error correction level allows recovery of 15% of the symbol codewords.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.QRCodeErrorCorrectionLevel.Quartil">
+            <summary>
+            Quartil error correction level allows recovery of 25% of the symbol codewords.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.QRCodeErrorCorrectionLevel.High">
+            <summary>
+            High error correction level allows recovery of 30% of the symbol codewords.
+            </summary>
+        </member>
+        <member name="T:Infragistics.XF.EncodingMode">
+            <summary>
+            Specifies the encoding mode for compacting the data for the QR Code symbol. The modes are based on the character values and assignments associated with the default ECI (ECI 000003 representing the ISO/IEC 8859-1 character set).
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.EncodingMode.Undefined">
+            <summary>
+            When Undefined encoding mode is set, the QR code barcode internally switches between modes as necessary in order to achieve the most efficient conversion of data into a binary string.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.EncodingMode.Numeric">
+            <summary>
+            Numeric mode encodes data from decimal digit set (0-9). Normally 3 data characters are represented by 10 bits.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.EncodingMode.Alphanumeric">
+            <summary>
+            Alphanumerc mode encodes data from a set of 45 characters (digits 0-9, upper case letters A-Z, nine other characters: space, $ % * + _ . / : ). Normally two input characters are represented by 11 bits.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.EncodingMode.Byte">
+            <summary>
+            In Byte mode the data is encoded at 8 bits per character. The character set of the Byte encoding mode is byte data (by default it is ISO/IEC 8859-1 character set). 
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.EncodingMode.Kanji">
+            <summary>
+            The Kanji mode efficiently encodes Kanji characters in accordance with the Shift JIS system based on JIS X 0208. Each two-byte character value is compactedd to a 13-bit binary codeword.
+            </summary>
+        </member>
+        <member name="T:Infragistics.XF.Fnc1Mode">
+            <summary>
+            Fnc1Mode indicator is used for messages containing specific data formats. Fnc1Mode applies to the entire symbol and is not affected by subsequent mode indicators.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.Fnc1Mode.None">
+            <summary>
+            Do not use any Fnc1 symbols, i.e. the data is not identified according to specific predefined industry or application specifications.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.Fnc1Mode.Gs1">
+            <summary>
+            Uses Fnc1 symbol in the first position of the character in Code 128 symbols and designates data formatted in accordance with the GS1 General Specification.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.Fnc1Mode.Industry">
+            <summary>
+            Uses Fnc1 symbol in the second position of the character in Code 128 symbols and designates data formatted in accordance with a specific indystry application previously agreed with AIM Inc.
+            </summary>
+        </member>
+        <member name="T:Infragistics.XF.Controls.XFBarcode128">
+            <summary>
+            Represents Infragistics Barcode128 control  
+            </summary>
+            <summary>
+            Represents Infragistics Barcode control with Code128 visuals
+            </summary> 
+        </member>
+        <member name="T:Infragistics.XF.Controls.GridBarcode">
+            <summary>
+            Represents Infragistics Barcode control with Grid visuals
+            </summary> 
+        </member>
+        <member name="T:Infragistics.XF.Controls.Barcode">
+            <summary>
+            Represents a base class for all Infragistics Barcode controls  
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.Controls.Barcode.BackingBrushProperty">
+            <summary>
+            Gets or sets the brush to use to fill the backing of the barcode.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.Controls.Barcode.BackingOutlineProperty">
+            <summary>
+            Gets or sets the brush to use for the outline of the backing.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.Controls.Barcode.BackingStrokeThicknessProperty">
+            <summary>
+            Gets or sets the stroke thickness of the backing outline.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.Controls.Barcode.BarBrushProperty">
+            <summary>
+            Gets or sets the brush to use to fill the background of the bars.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.Controls.Barcode.FontBrushProperty">
+            <summary>
+            Gets or sets the brush to use for the label font.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.Controls.Barcode.DataProperty">
+            <summary>
+            Gets or sets the data value.
+            </summary><value>The data value.</value>
+        </member>
+        <member name="F:Infragistics.XF.Controls.Barcode.ErrorMessageTextProperty">
+            <summary>
+            Gets or sets the message text displayed when some error occurs.
+            </summary><value>The error message text.</value>
+        </member>
+        <member name="F:Infragistics.XF.Controls.Barcode.StretchProperty">
+            <summary>
+            Gets or sets the stretch.
+            </summary><value>The stretch.</value>
+        </member>
+        <member name="P:Infragistics.XF.Controls.Barcode.BackingBrush">
+            <summary>
+            Gets or sets the brush to use to fill the backing of the barcode.
+            </summary>
+        </member>
+        <member name="P:Infragistics.XF.Controls.Barcode.BackingOutline">
+            <summary>
+            Gets or sets the brush to use for the outline of the backing.
+            </summary>
+        </member>
+        <member name="P:Infragistics.XF.Controls.Barcode.BackingStrokeThickness">
+            <summary>
+            Gets or sets the stroke thickness of the backing outline.
+            </summary>
+        </member>
+        <member name="P:Infragistics.XF.Controls.Barcode.BarBrush">
+            <summary>
+            Gets or sets the brush to use to fill the background of the bars.
+            </summary>
+        </member>
+        <member name="P:Infragistics.XF.Controls.Barcode.FontBrush">
+            <summary>
+            Gets or sets the brush to use for the label font.
+            </summary>
+        </member>
+        <member name="P:Infragistics.XF.Controls.Barcode.Data">
+            <summary>
+            Gets or sets the data value.
+            </summary><value>The data value.</value>
+        </member>
+        <member name="P:Infragistics.XF.Controls.Barcode.ErrorMessageText">
+            <summary>
+            Gets or sets the message text displayed when some error occurs.
+            </summary><value>The error message text.</value>
+        </member>
+        <member name="P:Infragistics.XF.Controls.Barcode.Stretch">
+            <summary>
+            Gets or sets the stretch.
+            </summary><value>The stretch.</value>
+        </member>
+        <member name="F:Infragistics.XF.Controls.GridBarcode.BarsFillModeProperty">
+            <summary>
+            Gets or sets a value which specifies how the grid fills within the barcode control dimensions.
+            </summary><value>The bars fill mode.</value>
+        </member>
+        <member name="F:Infragistics.XF.Controls.GridBarcode.WidthToHeightRatioProperty">
+            <summary>
+            Gets or sets the width (XDimension) to height (YDimension) ratio. It accepts only positive values. This property does not apply for the QR barcode.
+            </summary><value>The width to height ratio.</value>
+        </member>
+        <member name="F:Infragistics.XF.Controls.GridBarcode.XDimensionProperty">
+            <summary>
+            Gets or sets the X-dimension (narrow element width) for a symbol in mm. It accepts values from 0.01 to 100.
+            </summary><value>The X dimension.</value>
+        </member>
+        <member name="P:Infragistics.XF.Controls.GridBarcode.BarsFillMode">
+            <summary>
+            Gets or sets a value which specifies how the grid fills within the barcode control dimensions.
+            </summary><value>The bars fill mode.</value>
+        </member>
+        <member name="P:Infragistics.XF.Controls.GridBarcode.WidthToHeightRatio">
+            <summary>
+            Gets or sets the width (XDimension) to height (YDimension) ratio. It accepts only positive values. This property does not apply for the QR barcode.
+            </summary><value>The width to height ratio.</value>
+        </member>
+        <member name="P:Infragistics.XF.Controls.GridBarcode.XDimension">
+            <summary>
+            Gets or sets the X-dimension (narrow element width) for a symbol in mm. It accepts values from 0.01 to 100.
+            </summary><value>The X dimension.</value>
+        </member>
+        <member name="F:Infragistics.XF.Controls.XFBarcode128.ShowTextProperty">
+            <summary>
+            Gets or sets whether the barcode should have human readable text.
+            </summary><value>True if text is visible, otherwise false.</value>
+        </member>
+        <member name="F:Infragistics.XF.Controls.XFBarcode128.CodeTypeProperty">
+            <summary>
+            Gets or sets the type of the code.
+            </summary><value>The type of the code.</value>
+        </member>
+        <member name="P:Infragistics.XF.Controls.XFBarcode128.ShowText">
+            <summary>
+            Gets or sets whether the barcode should have human readable text.
+            </summary><value>True if text is visible, otherwise false.</value>
+        </member>
+        <member name="P:Infragistics.XF.Controls.XFBarcode128.CodeType">
+            <summary>
+            Gets or sets the type of the code.
+            </summary><value>The type of the code.</value>
+        </member>
+        <member name="T:Infragistics.XF.Controls.QRCodeBarcode">
+            <summary>
+            Represents Infragistics Barcode control with QRCode visuals
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.Controls.QRCodeBarcode.ErrorCorrectionLevelProperty">
+            <summary>
+            Gets or sets the error correction level of the QR Code symbol.
+            </summary><value>The error correction level.</value>
+        </member>
+        <member name="F:Infragistics.XF.Controls.QRCodeBarcode.SizeVersionProperty">
+            <summary>
+            Gets or sets the size version of the QR Code symbol.
+            </summary><value>The size version.</value>
+        </member>
+        <member name="F:Infragistics.XF.Controls.QRCodeBarcode.EncodingModeProperty">
+            <summary>
+            Gets or sets the encoding mode for compaction of the QR Code symbol data. The default value is undefined if the Shift_JIS encoding is loaded. Otherwise the default value is byte.
+            </summary><value>The encoding mode.</value>
+        </member>
+        <member name="F:Infragistics.XF.Controls.QRCodeBarcode.EciNumberProperty">
+            <summary>
+            Each Extended Channel Interpretation (ECI) is designated by a six-digit assignment number: 000000 - 999999.
+            The default is ECI 000003, representing the ISO/IEC 8859-1 character set.
+            </summary><value>The eci number.</value>
+        </member>
+        <member name="F:Infragistics.XF.Controls.QRCodeBarcode.EciHeaderDisplayModeProperty">
+            <summary>
+            Gets or sets a value indicating whether to show the ECI header.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.Controls.QRCodeBarcode.Fnc1ModeProperty">
+            <summary>
+            Gets or sets the FNC1 mode indicator which identifies symbols encoding messages formatted according to specific predefined industry or application specificatoins.
+            </summary><value>The FNC1 mode.</value>
+        </member>
+        <member name="F:Infragistics.XF.Controls.QRCodeBarcode.ApplicationIndicatorProperty">
+            <summary>
+            Gets or sets the Application Indicator assigned to identify the specification concerned by AIM International.
+            The value is respected only when the Fnc1Mode is set to Industry. Its value may take the form of any single Latin alphabetic character from the set {a - z, A - Z} or a two-digit number.
+            </summary><value>The application indicator.</value>
+        </member>
+        <member name="P:Infragistics.XF.Controls.QRCodeBarcode.ErrorCorrectionLevel">
+            <summary>
+            Gets or sets the error correction level of the QR Code symbol.
+            </summary><value>The error correction level.</value>
+        </member>
+        <member name="P:Infragistics.XF.Controls.QRCodeBarcode.SizeVersion">
+            <summary>
+            Gets or sets the size version of the QR Code symbol.
+            </summary><value>The size version.</value>
+        </member>
+        <member name="P:Infragistics.XF.Controls.QRCodeBarcode.EncodingMode">
+            <summary>
+            Gets or sets the encoding mode for compaction of the QR Code symbol data. The default value is undefined if the Shift_JIS encoding is loaded. Otherwise the default value is byte.
+            </summary><value>The encoding mode.</value>
+        </member>
+        <member name="P:Infragistics.XF.Controls.QRCodeBarcode.EciNumber">
+            <summary>
+            Each Extended Channel Interpretation (ECI) is designated by a six-digit assignment number: 000000 - 999999.
+            The default is ECI 000003, representing the ISO/IEC 8859-1 character set.
+            </summary><value>The eci number.</value>
+        </member>
+        <member name="P:Infragistics.XF.Controls.QRCodeBarcode.EciHeaderDisplayMode">
+            <summary>
+            Gets or sets a value indicating whether to show the ECI header.
+            </summary>
+        </member>
+        <member name="P:Infragistics.XF.Controls.QRCodeBarcode.Fnc1Mode">
+            <summary>
+            Gets or sets the FNC1 mode indicator which identifies symbols encoding messages formatted according to specific predefined industry or application specificatoins.
+            </summary><value>The FNC1 mode.</value>
+        </member>
+        <member name="P:Infragistics.XF.Controls.QRCodeBarcode.ApplicationIndicator">
+            <summary>
+            Gets or sets the Application Indicator assigned to identify the specification concerned by AIM International.
+            The value is respected only when the Fnc1Mode is set to Industry. Its value may take the form of any single Latin alphabetic character from the set {a - z, A - Z} or a two-digit number.
+            </summary><value>The application indicator.</value>
+        </member>
+    </members>
+</doc>

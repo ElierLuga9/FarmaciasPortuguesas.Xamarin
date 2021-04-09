@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<pages:ANFPage
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.DosageScheduler.Drugs.DrugDetailPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Form -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<ScrollView Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+			<StackLayout Orientation="Vertical">
+
+				<StackLayout Orientation="Vertical" Spacing="12" Padding="15" IsClippedToBounds="False">
+
+					<!-- Edit Button -->
+					<Grid Padding="0, -10, 0, -5">
+						<!--<common:CustomButton
+							FontSize="14"
+							BackgroundColor="White"
+							HorizontalOptions="Start"
+							AccessoryImage="ic_edit_button.png"
+							Clicked="OnEditMedicineButtonClicked"
+							Text="{x:Static app:AppResources.DosingScheduleDetailEditButton}"
+							TextColor="{x:Static resources:ColorResources.ANFDarkerBlue}"
+							CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />-->
+
+						<!-- Edit Button -->
+						<StackLayout Orientation="Horizontal"
+							HorizontalOptions="Start"
+							Padding="0, 0, 20, 0"
+							HeightRequest="50">
+							<StackLayout.GestureRecognizers>
+								<TapGestureRecognizer Tapped="OnEditMedicineButtonClicked" />
+							</StackLayout.GestureRecognizers>
+
+							<common:CustomImage
+								Source="ic_edit_button.png"
+								VerticalOptions="Center"
+								InputTransparent="True" />
+
+							<common:CustomLabel
+								FontSize="14"
+								InputTransparent="True"
+								VerticalOptions="Center"
+								TextColor="{x:Static resources:ColorResources.ANFDarkerBlue}"
+								CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+								Text="{x:Static app:AppResources.DosingScheduleDetailEditButton}" />
+						</StackLayout>
+					</Grid>
+
+					<!-- Name -->
+					<Grid ColumnSpacing="0" RowSpacing="0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="auto" />
+							<RowDefinition Height="auto" />
+							<!-- Bottom Margin -->
+							<RowDefinition Height="13"/>
+							<!-- Separator -->
+							<RowDefinition Height="1"/>
+						</Grid.RowDefinitions>
+
+						<!-- Name Label -->
+						<common:CustomLabel Grid.Row="0"
+							FontSize="14"
+							TextColor="{x:Static resources:ColorResources.TextColorDark}"
+							CustomFont="{x:Static resources:FontResources.RegularFont}"
+							Text="{x:Static app:AppResources.DosingScheduleDetailMedicineLabel}" />
+						<!-- Name Value-->
+						<common:CustomLabel Grid.Row="1"
+							FontSize="20"
+							TextColor="{x:Static resources:ColorResources.TextColorDark}"
+							CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+							Text="{Binding Drug.Name}" />
+						<!-- Separator -->
+						<BoxView Grid.Row="3"
+							HorizontalOptions="FillAndExpand"
+							HeightRequest="1"
+							Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+					</Grid>
+
+					<!-- Dosage -->
+					<Grid ColumnSpacing="0" RowSpacing="0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="auto" />
+							<RowDefinition Height="auto" />
+							<!-- Bottom Margin -->
+							<RowDefinition Height="12"/>
+							<!-- Separator -->
+							<RowDefinition Height="1"/>
+						</Grid.RowDefinitions>
+
+						<!-- Dosage Label -->
+						<common:CustomLabel Grid.Row="0"
+							FontSize="14"
+							TextColor="{x:Static resources:ColorResources.TextColorDark}"
+							CustomFont="{x:Static resources:FontResources.RegularFont}"
+							Text="{x:Static app:AppResources.AddDosingScheduleDosageLabel}" />
+						<!-- Dosage Value-->
+						<common:CustomLabel Grid.Row="1"
+							FontSize="15"
+							TextColor="{x:Static resources:ColorResources.TextColorDark}"
+							CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+							Text="{Binding Drug.DosageDescription}" />
+						<!-- Separator -->
+						<BoxView Grid.Row="3"
+							HorizontalOptions="FillAndExpand"
+							HeightRequest="1"
+							Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+					</Grid>
+
+
+					<!-- Quantity -->
+					<Grid ColumnSpacing="0" RowSpacing="0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="auto" />
+							<RowDefinition Height="auto" />
+							<!-- Bottom Margin -->
+							<RowDefinition Height="12"/>
+							<!-- Separator -->
+							<RowDefinition Height="1"/>
+						</Grid.RowDefinitions>
+
+						<!-- Quantity Label -->
+						<common:CustomLabel Grid.Row="0"
+							FontSize="14"
+							TextColor="{x:Static resources:ColorResources.TextColorDark}"
+							CustomFont="{x:Static resources:FontResources.RegularFont}"
+							Text="{x:Static app:AppResources.AddDosingScheduleQuantityLabel}" />
+						<!-- Quantity Value-->
+						<common:CustomLabel Grid.Row="1"
+							FontSize="15"
+							TextColor="{x:Static resources:ColorResources.TextColorDark}"
+							CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+							Text="{Binding Drug.Qty, StringFormat='{0}'}" />
+						<!-- Separator -->
+						<BoxView Grid.Row="3"
+							HorizontalOptions="FillAndExpand"
+							HeightRequest="1"
+							Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+					</Grid>
+
+					<!-- Notes -->
+					<Grid ColumnSpacing="0" RowSpacing="0"
+						IsVisible="{Binding Drug.Notes, Converter={x:Static converters:ConverterResources.HasElements}}">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="auto" />
+							<RowDefinition Height="auto" />
+							<!-- Bottom Margin -->
+							<RowDefinition Height="12"/>
+							<!-- Separator -->
+							<RowDefinition Height="1"/>
+						</Grid.RowDefinitions>
+
+						<!-- Notes Label -->
+						<common:CustomLabel Grid.Row="0"
+							FontSize="14"
+							TextColor="{x:Static resources:ColorResources.TextColorDark}"
+							CustomFont="{x:Static resources:FontResources.RegularFont}"
+							Text="{x:Static app:AppResources.DosingScheduleDetailNotesLabel}" />
+						<!-- Notes Value-->
+						<common:CustomLabel Grid.Row="1"
+							FontSize="15"
+							TextColor="{x:Static resources:ColorResources.TextColorDark}"
+							CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+							Text="{Binding Drug.Notes}" />
+						<!-- Separator -->
+						<BoxView Grid.Row="3"
+							HorizontalOptions="FillAndExpand"
+							HeightRequest="1"
+							Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+					</Grid>
+
+					<!-- Warning Checkbox-->
+					<Grid ColumnSpacing="0" RowSpacing="0">
+						<Grid.ColumnDefinitions>
+							<!-- Checkbox -->
+							<ColumnDefinition Width="20" />
+							<!-- Spacing -->
+							<ColumnDefinition Width="10" />
+							<!-- Text and Button -->
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="12" />
+							<RowDefinition Height="auto" />
+							<!-- Bottom Margin -->
+							<RowDefinition Height="8"/>
+						</Grid.RowDefinitions>
+
+						<!-- CheckBox Image -->
+						<common:CustomImage Grid.Row="1"
+							HorizontalOptions="Start"
+							VerticalOptions="Start"
+							Source="{Binding Drug.WarningFlag, Converter={x:Static converters:ConverterResources.CheckboxImage}" />
+
+						<!-- CheckBox Button (Disabled) -->
+						<!--
+      				<common:CustomButton Grid.ColumnSpan="2" Grid.Row="0"
+        				HorizontalOptions="FillAndExpand"
+        				VerticalOptions="FillAndExpand"
+        				BackgroundColor="Transparent" />
+        			-->
+						<!-- Warning Text -->
+						<common:CustomLabel Grid.Column="2" Grid.Row="1"
+							FontSize="15"
+							Text="{x:Static app:AppResources.AddMedicineWarnLabel}"
+							TextColor="{x:Static resources:ColorResources.TextColorDark}"
+							CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+					</Grid>
+
+				</StackLayout>
+				<StackLayout Orientation="Vertical">
+					<!-- Separator -->
+					<BoxView
+					  HorizontalOptions="FillAndExpand"
+					  HeightRequest="1"
+					  Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+
+					<!-- Repeater -->
+					<common:ANFRepeaterView
+						Padding="0 , 0, 0, 5"
+						IsClippedToBounds="False"
+						HorizontalOptions="FillAndExpand"
+						ItemsSource="{Binding Schedules}">
+						<common:ANFRepeaterView.ItemTemplate>
+							<DataTemplate>
+								<ViewCell>
+									<views:DosingScheduleListItem />
+								</ViewCell>
+							</DataTemplate>
+						</common:ANFRepeaterView.ItemTemplate>
+					</common:ANFRepeaterView>
+
+					<!-- Add Button -->
+					<Grid Grid.RowSpacing="0" Grid.ColumnSpacing="0"
+						Padding="15, 20, 15, 20"
+						HeightRequest="40">
+
+						<Grid.ColumnDefinitions>
+							<!-- Icon -->
+							<ColumnDefinition Width="45" />
+							<!-- Text -->
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+
+						<!-- Button -->
+						<common:CustomButton
+							BackgroundColor="White"
+							Grid.ColumnSpan="2"
+							BorderWidth="1"
+							BorderRadius="1"
+							VerticalOptions="FillAndExpand"
+							HorizontalOptions="FillAndExpand"
+							Clicked="OnAddScheduleButtonClicked"
+							BorderColor="{x:Static resources:ColorResources.ANFDarkerBlue}" />
+						<!-- Icon -->
+						<common:CustomImage
+							WidthRequest="14"
+							HeightRequest="14"
+							InputTransparent="True"
+							HorizontalOptions="Center"
+							VerticalOptions="Center"
+							Source="ic_plus_blue.png" />
+
+						<!-- Label -->
+						<common:CustomLabel
+							Grid.Column="1"
+							FontSize="15"
+							HorizontalOptions="Start"
+							VerticalOptions="Center"
+							InputTransparent="True"
+							TextColor="{x:Static resources:ColorResources.ANFDarkerBlue}"
+							CustomFont="{x:Static resources:FontResources.RegularFont}"
+							Text="{x:Static app:AppResources.AddDosingScheduleButton}" />
+					</Grid>
+				</StackLayout>
+			</StackLayout>
+		</ScrollView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>

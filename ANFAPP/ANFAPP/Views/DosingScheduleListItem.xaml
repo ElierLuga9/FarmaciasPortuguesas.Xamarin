@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+  xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+  xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+  xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+  x:Class="ANFAPP.Views.DosingScheduleListItem">
+
+	<ContentView.Content>
+
+		<Grid HeightRequest="78"
+			Grid.RowSpacing="0" Grid.ColumnSpacing="15"
+			HorizontalOptions="FillAndExpand"
+			VerticalOptions="FillAndExpand"
+			BackgroundColor="White">
+
+			<Grid.RowDefinitions>
+				<!-- Top Margin -->
+				<RowDefinition Height="12" />
+				<!-- Description Row -->
+				<RowDefinition Height="*" />
+				<!-- Medicine Row -->
+				<RowDefinition Height="*" />
+				<!-- Next Dosage Row -->
+				<RowDefinition Height="*" />
+				<!-- Bottom Margin -->
+				<RowDefinition Height="12" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<!-- Left Margin -->
+				<ColumnDefinition Width="0" />
+				<!-- Icon -->
+				<ColumnDefinition Width="auto" />
+				<!-- Labels -->
+				<ColumnDefinition Width="*" />
+				<!-- Delete Button -->
+				<ColumnDefinition Width="35" />
+				<!-- Right Margin -->
+				<ColumnDefinition Width="0" />
+			</Grid.ColumnDefinitions>
+
+			<!-- Icon -->
+			<common:CustomImage WidthRequest="22" HeightRequest="22"
+				Grid.Row="1" Grid.RowSpan="2" Grid.Column="1"
+				VerticalOptions="Start"
+				HorizontalOptions="Start"
+				Source="ic_dosing_schedule_list" />
+
+			<!-- ANF Logo -->
+			<common:CustomImage WidthRequest="16" HeightRequest="16"
+				Grid.Row="2" Grid.RowSpan="2" Grid.Column="1"
+				HorizontalOptions="Start"
+				VerticalOptions="End"
+				Source="ic_dosing_schedule_anf_item"
+				IsVisible="{Binding SentByPharmacy}" />
+
+			<!-- Description -->
+			<common:CustomLabel Grid.Row="1" Grid.Column="2"
+				FontSize="15"
+				HorizontalOptions="Start"
+				VerticalOptions="Center"
+				InputTransparent="True"
+				CustomMargin="0, -5, 0, 0"
+				LineBreakMode="TailTruncation"
+				TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				Text="{Binding Description}" />
+
+			<!-- Medicine Label -->
+			<common:CustomLabel Grid.Row="2" Grid.Column="2"
+				FontSize="12"
+				HorizontalOptions="Start"
+				VerticalOptions="Center"
+				InputTransparent="True"
+				TextColor="{x:Static resources:ColorResources.TextColorGrey}"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				Text="{Binding MedicineName}" />
+
+			<!-- Next Dosage -->
+			<StackLayout Grid.Row="3" Grid.Column="2"
+				Spacing="3" Orientation="Horizontal"
+				Padding="0, 0, 0, -5"
+				HorizontalOptions="Start"
+				VerticalOptions="Center"
+				InputTransparent="True"
+				IsVisible="{Binding NextDose, Converter={x:Static converters:ConverterResources.NotNullable}">
+
+				<!-- Icon -->
+				<common:CustomImage WidthRequest="11" HeightRequest="11"
+					VerticalOptions="Center"
+					InputTransparent="True"
+					Source="ic_alert_small" />
+
+				<!-- Next Dosage Label -->
+				<common:CustomLabel
+					FontSize="11"
+					VerticalOptions="Center"
+					InputTransparent="True"
+					TextColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					Text="{Binding NextDose, StringFormat='Próxima Toma: {0:dd/MM/yyyy à\\s HH:mm}'}" />
+
+			</StackLayout>
+
+			<!-- No Next Dosage -->
+			<StackLayout Grid.Row="3" Grid.Column="2"
+				Spacing="4" Orientation="Horizontal"
+				Padding="0, 0, 0, -5"
+				HorizontalOptions="Start"
+				VerticalOptions="Center"
+				InputTransparent="True"
+				IsVisible="{Binding NextDose, Converter={x:Static converters:ConverterResources.Nullable}">
+
+				<!-- Icon -->
+				<common:CustomImage WidthRequest="11" HeightRequest="11"
+					VerticalOptions="Center"
+					InputTransparent="True"
+					Source="ic_check_small" />
+
+				<!-- Next Dosage Label -->
+				<common:CustomLabel
+					FontSize="12"
+					VerticalOptions="Center"
+					InputTransparent="True"
+					TextColor="{x:Static resources:ColorResources.ANFGreen}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					Text="{x:Static app:AppResources.NoNextDosage}" />
+
+			</StackLayout>
+
+			<!-- Delete Icon -->
+			<common:CustomImage WidthRequest="19" HeightRequest="23"
+				Grid.Row="1" Grid.RowSpan="3" Grid.Column="3"
+				HorizontalOptions="End"
+				VerticalOptions="End"
+				Source="bt_trashbin2.png" />
+			
+			<!-- Delete Button -->
+			<common:CustomButton Grid.RowSpan="5" Grid.Column="3" Grid.ColumnSpan="2"
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="FillAndExpand"
+				Clicked="OnDeleteDosingScheduleButtonClicked"
+				BackgroundColor="Transparent" />
+
+
+			<!-- Separator -->
+			<Grid Grid.Row="4" Grid.ColumnSpan="5"
+				HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand">
+				<BoxView HorizontalOptions="FillAndExpand" HeightRequest="1"
+					Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+			</Grid>
+		</Grid>
+	</ContentView.Content>
+</ContentView>

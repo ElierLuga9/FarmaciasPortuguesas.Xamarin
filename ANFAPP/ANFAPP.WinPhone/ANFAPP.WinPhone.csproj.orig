@@ -1,0 +1,1448 @@
+<<<<<<< HEAD
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\sqlite-net-wp8.3.8.5\build\windowsphone8\sqlite-net-wp8.props" Condition="Exists('..\..\packages\sqlite-net-wp8.3.8.5\build\windowsphone8\sqlite-net-wp8.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{97172675-990C-4ADD-ABC4-2B395D5A20CA}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ANFAPP.WinPhone</RootNamespace>
+    <AssemblyName>ANFAPP.WinPhone</AssemblyName>
+    <TargetFrameworkIdentifier>WindowsPhone</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>true</SilverlightApplication>
+    <SupportedCultures>pt-PT</SupportedCultures>
+    <XapOutputs>true</XapOutputs>
+    <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
+    <XapFilename>PhoneApp1_$(Configuration)_$(Platform).xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <SilverlightAppEntry>ANFAPP.WinPhone.App</SilverlightAppEntry>
+    <ValidateXaml>true</ValidateXaml>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <ReleaseVersion>2.0</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\x86\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\x86\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|ARM' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\ARM\Debug</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SILVERLIGHT;WINDOWS_PHONE;USE_WP8_NATIVE_SQLITE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|ARM' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\ARM\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SizeableWebView.xaml.cs">
+      <DependentUpon>SizeableWebView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LocalizedStrings.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PlatformSpecific\FacebookSDK_WP.cs" />
+    <Compile Include="PlatformSpecific\FitnessServices_WP.cs" />
+    <Compile Include="PlatformSpecific\LocationServices_WP.cs" />
+    <Compile Include="PlatformSpecific\MediaWriter_WP.cs" />
+    <Compile Include="PlatformSpecific\MixPanel_WP.cs" />
+    <Compile Include="PlatformSpecific\RaygunHelper.cs" />
+    <Compile Include="PlatformSpecific\SQLLite_WP.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Renderer\BarcodeViewRenderer.cs" />
+    <Compile Include="Renderer\BindablePickerRenderer.cs" />
+    <Compile Include="Renderer\CustomButtonRenderer.cs" />
+    <Compile Include="Renderer\CustomEditorRenderer.cs" />
+    <Compile Include="Renderer\CustomListViewRenderer.cs" />
+    <Compile Include="Renderer\CustomTimePickerRenderer.cs" />
+    <Compile Include="Renderer\CustomDatePickerRenderer.cs" />
+    <Compile Include="Renderer\CustomEntryRenderer.cs" />
+    <Compile Include="Renderer\CustomImageRenderer.cs" />
+    <Compile Include="Renderer\CustomWebImageRenderer.cs" />
+    <Compile Include="Renderer\CustomWebViewRenderer.cs" />
+    <Compile Include="Renderer\MapRenderer_WinPhone.cs" />
+    <Compile Include="Resources\AppResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\BitmapUtils.cs" />
+    <Compile Include="Utils\LayoutUtils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Page Include="Controls\SizeableWebView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Fonts\Cabin-Bold.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Fonts\Cabin-Medium.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Fonts\Cabin-Regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Fonts\Cabin-SemiBold.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Fonts\Roboto-Bold.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Fonts\Roboto-Light.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Fonts\Roboto-Medium.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Fonts\Roboto-Regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Fonts\Roboto-Italic.ttf" />
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\AppManifest.xml" />
+    <None Include="Properties\WMAppManifest.xml">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FacebookConfig.xml" />
+    <Content Include="PluginsHelp\ConnectivityReadme.txt" />
+    <Content Include="PluginsHelp\SettingsReadme.txt" />
+    <Content Include="Resources\acessory.png" />
+    <Content Include="Resources\adddrugbarcodelarge.png" />
+    <Content Include="Resources\annotation_card.png" />
+    <Content Include="Resources\annotation_list.png" />
+    <Content Include="Resources\annotation_no_card.png" />
+    <Content Include="Resources\appicon_list.png" />
+    <Content Include="Resources\appicon_medium.png" />
+    <Content Include="Resources\appicon_small.png" />
+    <Content Include="Resources\appicon_wide.png" />
+    <Content Include="Resources\arrow_black_down.png" />
+    <Content Include="Resources\arrow_black_up.png" />
+    <Content Include="Resources\arrow_green_right.png" />
+    <Content Include="Resources\arrow_green_up.png" />
+    <Content Include="Resources\bg_appbar_points.png" />
+    <Content Include="Resources\bg_app_intro.png" />
+    <Content Include="Resources\bg_banner_join.png" />
+    <Content Include="Resources\bg_biometric_gauge_darkyellow.png" />
+    <Content Include="Resources\bg_biometric_gauge_green.png" />
+    <Content Include="Resources\bg_biometric_gauge_grey.png" />
+    <Content Include="Resources\bg_biometric_gauge_orange.png" />
+    <Content Include="Resources\bg_biometric_gauge_red.png" />
+    <Content Include="Resources\bg_biometric_gauge_yellow.png" />
+    <Content Include="Resources\bg_card.png" />
+    <Content Include="Resources\bg_card_benefits.png" />
+    <Content Include="Resources\bg_checkbox.png" />
+    <Content Include="Resources\bg_checkbox_selected.png" />
+    <Content Include="Resources\bg_checkbox_selected_blue.png" />
+    <Content Include="Resources\bg_input.png" />
+    <Content Include="Resources\bg_or_circle.png" />
+    <Content Include="Resources\bg_pharmacy_image_default1.png" />
+    <Content Include="Resources\bg_pharmacy_image_default2.png" />
+    <Content Include="Resources\bg_splashscreen.png" />
+    <Content Include="Resources\bg_tutorial1_step1.png" />
+    <Content Include="Resources\bg_tutorial1_step2.png" />
+    <Content Include="Resources\bg_tutorial1_step3.png" />
+    <Content Include="Resources\bg_tutorial2_step1.png" />
+    <Content Include="Resources\bg_tutorial2_step2.png" />
+    <Content Include="Resources\bg_tutorial2_step3.png" />
+    <Content Include="Resources\bg_tutorial3_step1.png" />
+    <Content Include="Resources\bg_tutorial3_step2.png" />
+    <Content Include="Resources\bg_tutorial3_step3.png" />
+    <Content Include="Resources\bg_tutorial4_step1.png" />
+    <Content Include="Resources\bg_tutorial4_step2.png" />
+    <Content Include="Resources\bg_tutorial4_step3.png" />
+    <Content Include="Resources\bg_tutorial4_step4.png" />
+    <Content Include="Resources\bg_tutorial5_step1.png" />
+    <Content Include="Resources\bg_tutorial5_step2.png" />
+    <Content Include="Resources\bg_tutorial5_step3.png" />
+    <Content Include="Resources\bg_voucher.png" />
+    <Content Include="Resources\blank_image.png" />
+    <Content Include="Resources\bt_biometric_imc_height.png" />
+    <Content Include="Resources\bt_biometric_imc_weight.png" />
+    <Content Include="Resources\bt_sections.png" />
+    <Content Include="Resources\bt_trashbin.png" />
+    <Content Include="Resources\bt_trashbin2.png" />
+    <Content Include="Resources\bt_trashbin_orange.png" />
+    <Content Include="Resources\byPlace.png" />
+    <Content Include="Resources\catalog_detail.png" />
+    <Content Include="Resources\catalog_thumbnail.png" />
+    <Content Include="Resources\clock.png" />
+    <Content Include="Resources\cursor.png" />
+    <Content Include="Resources\Default.png" />
+    <Content Include="Resources\envelope.png" />
+    <Content Include="Resources\f.png" />
+    <Content Include="Resources\familia_bemestar.png" />
+    <Content Include="Resources\familia_saude.png" />
+    <Content Include="Resources\familia_veterinaria.png" />
+    <Content Include="Resources\favorits.png" />
+    <Content Include="Resources\g.png" />
+    <Content Include="Resources\get_card_points_screen.png" />
+    <Content Include="Resources\icon.png" />
+    <Content Include="Resources\Icon60.png" />
+    <Content Include="Resources\Icon76.png" />
+    <Content Include="Resources\icon_expand.png" />
+    <Content Include="Resources\icon_galeria.png" />
+    <Content Include="Resources\icon_gallery.png" />
+    <Content Include="Resources\icon_zoom.png" />
+    <Content Include="Resources\ic_4icons_branco.png" />
+    <Content Include="Resources\ic_4icons_verde.png" />
+    <Content Include="Resources\ic_add_drug_large.png" />
+    <Content Include="Resources\ic_alert_small.png" />
+    <Content Include="Resources\ic_anf_logo.png" />
+    <Content Include="Resources\ic_anf_logo_large.png" />
+    <Content Include="Resources\ic_appbar_back.png" />
+    <Content Include="Resources\ic_appbar_logged.png" />
+    <Content Include="Resources\ic_appbar_menu.png" />
+    <Content Include="Resources\ic_appbar_menu2.png" />
+    <Content Include="Resources\ic_appbar_not_logged.png" />
+    <Content Include="Resources\ic_atm_logo.png" />
+    <Content Include="Resources\ic_back_arrow_green.png" />
+    <Content Include="Resources\ic_barcode_scan_large.png" />
+    <Content Include="Resources\ic_barcode_scan_small.png" />
+    <Content Include="Resources\ic_biometric_abdominal_perimeter.png" />
+    <Content Include="Resources\ic_biometric_arrow.png" />
+    <Content Include="Resources\ic_biometric_arrow_green.png" />
+    <Content Include="Resources\ic_biometric_arterial_pressure.png" />
+    <Content Include="Resources\ic_biometric_cholesterol.png" />
+    <Content Include="Resources\ic_biometric_glicemia.png" />
+    <Content Include="Resources\ic_biometric_triglycerides.png" />
+    <Content Include="Resources\ic_bulletpoint.png" />
+    <Content Include="Resources\ic_button_arrow.png" />
+    <Content Include="Resources\ic_button_arrow_black.png" />
+    <Content Include="Resources\ic_button_link.png" />
+    <Content Include="Resources\ic_button_link_blue.png" />
+    <Content Include="Resources\ic_button_pcall.png" />
+    <Content Include="Resources\ic_button_pgoto.png" />
+    <Content Include="Resources\ic_cart.png" />
+    <Content Include="Resources\ic_cartao_pontos.png" />
+    <Content Include="Resources\ic_cartao_pontos_branco.png" />
+    <Content Include="Resources\ic_cart_button.png" />
+    <Content Include="Resources\ic_cat_1.png" />
+    <Content Include="Resources\ic_cat_2.png" />
+    <Content Include="Resources\ic_cat_3.png" />
+    <Content Include="Resources\ic_cat_4.png" />
+    <Content Include="Resources\ic_cat_5.png" />
+    <Content Include="Resources\ic_cat_6.png" />
+    <Content Include="Resources\ic_cat_7.png" />
+    <Content Include="Resources\ic_cat_8.png" />
+    <Content Include="Resources\ic_cat_9.png" />
+    <Content Include="Resources\ic_cat_annotation1.png" />
+    <Content Include="Resources\ic_cat_annotation2.png" />
+    <Content Include="Resources\ic_cat_annotation3.png" />
+    <Content Include="Resources\ic_change_pass.png" />
+    <Content Include="Resources\ic_change_pharm.png" />
+    <Content Include="Resources\ic_check_small.png" />
+    <Content Include="Resources\ic_clone_button.png" />
+    <Content Include="Resources\ic_delete.png" />
+    <Content Include="Resources\ic_done_black_24dp.png" />
+    <Content Include="Resources\ic_dosing_schedule_anf_item.png" />
+    <Content Include="Resources\ic_dosing_schedule_list.png" />
+    <Content Include="Resources\ic_dosing_schedule_tab_selected.png" />
+    <Content Include="Resources\ic_dosing_schedule_tab_unselected.png" />
+    <Content Include="Resources\ic_drug_annotation.png" />
+    <Content Include="Resources\ic_drug_warning.png" />
+    <Content Include="Resources\ic_edit_button.png" />
+    <Content Include="Resources\ic_family_logo.png" />
+    <Content Include="Resources\ic_female.png" />
+    <Content Include="Resources\ic_female_selected.png" />
+    <Content Include="Resources\ic_filter.png" />
+    <Content Include="Resources\ic_link.png" />
+    <Content Include="Resources\ic_locate_services.png" />
+    <Content Include="Resources\ic_logout.png" />
+    <Content Include="Resources\ic_male.png" />
+    <Content Include="Resources\ic_male_selected.png" />
+    <Content Include="Resources\ic_medicine_list.png" />
+    <Content Include="Resources\ic_medicine_tab_selected.png" />
+    <Content Include="Resources\ic_medicine_tab_unselected.png" />
+    <Content Include="Resources\ic_menu_alerta.png" />
+    <Content Include="Resources\ic_menu_biometric_data.png" />
+    <Content Include="Resources\ic_menu_card.png" />
+    <Content Include="Resources\ic_menu_card_sauda.png" />
+    <Content Include="Resources\ic_menu_cart.png" />
+    <Content Include="Resources\ic_menu_cartao.png" />
+    <Content Include="Resources\ic_menu_catalog.png" />
+    <Content Include="Resources\ic_menu_contacts.png" />
+    <Content Include="Resources\ic_menu_dados_saude.png" />
+    <Content Include="Resources\ic_menu_entrada.png" />
+    <Content Include="Resources\ic_menu_health.png" />
+    <Content Include="Resources\ic_menu_health2.png" />
+    <Content Include="Resources\ic_menu_home.png" />
+    <Content Include="Resources\ic_menu_home2.png" />
+    <Content Include="Resources\ic_menu_localizar.png" />
+    <Content Include="Resources\ic_menu_locator.png" />
+    <Content Include="Resources\ic_menu_loja.png" />
+    <Content Include="Resources\ic_menu_params.png" />
+    <Content Include="Resources\ic_menu_pharmacies.png" />
+    <Content Include="Resources\ic_menu_points.png" />
+    <Content Include="Resources\ic_menu_promo1.png" />
+    <Content Include="Resources\ic_menu_promo2.png" />
+    <Content Include="Resources\ic_menu_promocoes.png" />
+    <Content Include="Resources\ic_menu_promocoes3.png" />
+    <Content Include="Resources\ic_menu_promocoes4.png" />
+    <Content Include="Resources\ic_menu_saude_a_z.png" />
+    <Content Include="Resources\ic_menu_tomas.png" />
+    <Content Include="Resources\ic_menu_tomas2.png" />
+    <Content Include="Resources\ic_menu_utilizador.png" />
+    <Content Include="Resources\ic_msrm_alert.png" />
+    <Content Include="Resources\ic_navbar_cart.png" />
+    <Content Include="Resources\ic_navbar_cart_green.png" />
+    <Content Include="Resources\ic_navbar_star_green.png" />
+    <Content Include="Resources\ic_navbar_star_white.png" />
+    <Content Include="Resources\ic_options_tab_selected.png" />
+    <Content Include="Resources\ic_options_tab_unselected.png" />
+    <Content Include="Resources\ic_orange_circle.png" />
+    <Content Include="Resources\ic_order.png" />
+    <Content Include="Resources\ic_photo.png" />
+    <Content Include="Resources\ic_plus.png" />
+    <Content Include="Resources\ic_plus_blue.png" />
+    <Content Include="Resources\ic_plus_orange.png" />
+    <Content Include="Resources\ic_prescription.png" />
+    <Content Include="Resources\ic_prescription_annotation.png" />
+    <Content Include="Resources\ic_prescription_selected.png" />
+    <Content Include="Resources\ic_product_availability.png" />
+    <Content Include="Resources\ic_product_mag_img.png" />
+    <Content Include="Resources\ic_product_mag_search.png" />
+    <Content Include="Resources\ic_product_mnsrm_warning.png" />
+    <Content Include="Resources\ic_product_notrecomended.png" />
+    <Content Include="Resources\ic_product_warning.png" />
+    <Content Include="Resources\ic_remove_cross.png" />
+    <Content Include="Resources\ic_sauda_logo.png" />
+    <Content Include="Resources\ic_sauda_logos.png" />
+    <Content Include="Resources\ic_sauda_logo_large.png" />
+    <Content Include="Resources\ic_sauda_logo_w.png" />
+    <Content Include="Resources\ic_smile_56x56_branco.png" />
+    <Content Include="Resources\ic_smile_56x56_verde.png" />
+    <Content Include="Resources\ic_smile_64x64.png" />
+    <Content Include="Resources\ic_star_orange.png" />
+    <Content Include="Resources\ic_star_orange_filled.png" />
+    <Content Include="Resources\ic_switch_drug.png" />
+    <Content Include="Resources\ic_trash_blue.png" />
+    <Content Include="Resources\ic_tutorial2.png" />
+    <Content Include="Resources\ic_tutorial_indicator.png" />
+    <Content Include="Resources\ic_tutorial_nav_left.png" />
+    <Content Include="Resources\ic_tutorial_nav_right.png" />
+    <Content Include="Resources\ic_usercard_img1.png" />
+    <Content Include="Resources\ic_usercard_img2.png" />
+    <Content Include="Resources\ic_usercard_img3.png" />
+    <Content Include="Resources\ic_user_appbar.png" />
+    <Content Include="Resources\ic_visa_logo.png" />
+    <Content Include="Resources\ic_vouchers_arrow.png" />
+    <Content Include="Resources\ic_warning.png" />
+    <Content Include="Resources\img_user.png" />
+    <Content Include="Resources\img_use_mask.png" />
+    <Content Include="Resources\img_use_mask_green.png" />
+    <Content Include="Resources\magnifier.png" />
+    <Content Include="Resources\magnifier_blue.png" />
+    <Content Include="Resources\magnifier_gray.png" />
+    <Content Include="Resources\msrmplaceholder.png" />
+    <Content Include="Resources\nearMe.png" />
+    <Content Include="Resources\nextArrow.png" />
+    <Content Include="Resources\next_arrow.png" />
+    <Content Include="Resources\pharmacy_annotation_1.png" />
+    <Content Include="Resources\pharmacy_annotation_2.png" />
+    <Content Include="Resources\pharmacy_annotation_3.png" />
+    <Content Include="Resources\pharmacy_annotation_4.png" />
+    <Content Include="Resources\phone.png" />
+    <Content Include="Resources\pointer_gray.png" />
+    <Content Include="Resources\points_bg2.png" />
+    <Content Include="Resources\points_bg3.png" />
+    <Content Include="Resources\points_bg4.png" />
+    <Content Include="Resources\points_bg5.png" />
+    <Content Include="Resources\points_bg6.png" />
+    <Content Include="Resources\prescriptionplaceholder.png" />
+    <Content Include="Resources\promo1.png" />
+    <Content Include="Resources\promo2.png" />
+    <Content Include="Resources\recent.png" />
+    <Content Include="Resources\slider_left.png" />
+    <Content Include="Resources\slider_right.png" />
+    <Content Include="Resources\star.png" />
+    <Content Include="Resources\star_favourite.png" />
+    <Content Include="Resources\star_point_achieved.png" />
+    <Content Include="Resources\star_point_unachieved.png" />
+    <Content Include="Resources\star_selected.png" />
+    <Content Include="Resources\star_unfavourite.png" />
+    <Content Include="Resources\switch_left.png" />
+    <Content Include="Resources\switch_midle.png" />
+    <Content Include="Resources\switch_right.png" />
+    <Content Include="Resources\t.png" />
+    <Content Include="Assets\AlignmentGrid.png" />
+    <Content Include="Assets\ApplicationIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Tiles\FlipCycleTileMedium.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Tiles\FlipCycleTileSmall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Tiles\IconicTileMediumLarge.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Tiles\IconicTileSmall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\txt_tutorial1_step1.png" />
+    <Content Include="Resources\txt_tutorial1_step2.png" />
+    <Content Include="Resources\txt_tutorial1_step3.png" />
+    <Content Include="Resources\txt_tutorial2_step1.png" />
+    <Content Include="Resources\txt_tutorial2_step2.png" />
+    <Content Include="Resources\txt_tutorial2_step3.png" />
+    <Content Include="Resources\txt_tutorial3_step1.png" />
+    <Content Include="Resources\txt_tutorial3_step2.png" />
+    <Content Include="Resources\txt_tutorial3_step3.png" />
+    <Content Include="Resources\txt_tutorial4_step1.png" />
+    <Content Include="Resources\txt_tutorial4_step2.png" />
+    <Content Include="Resources\txt_tutorial4_step3.png" />
+    <Content Include="Resources\txt_tutorial4_step4.png" />
+    <Content Include="Resources\txt_tutorial5_step1.png" />
+    <Content Include="Resources\txt_tutorial5_step2.png" />
+    <Content Include="Resources\txt_tutorial5_step3.png" />
+    <Content Include="Resources\vcardb.png" />
+    <Content Include="Resources\vouchercard.png" />
+    <Content Include="SplashScreenImage.screen-720p.jpg" />
+    <Content Include="SplashScreenImage.screen-WVGA.jpg" />
+    <Content Include="SplashScreenImage.screen-WXGA.jpg" />
+    <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\AppResources.pt-PT.resx" />
+    <EmbeddedResource Include="Resources\AppResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ANFAPP.Logic\ANFAPP.Logic.csproj">
+      <Project>{67f9d3a8-f71e-4428-913f-c37ae82cdb24}</Project>
+      <Name>ANFAPP.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ANFAPP\ANFAPP.csproj">
+      <Name>ANFAPP</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Acr.BarCodes">
+      <HintPath>..\..\packages\Acr.BarCodes.3.1.0\lib\wp8\Acr.BarCodes.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Acr.BarCodes.Interface">
+      <HintPath>..\..\packages\Acr.BarCodes.3.1.0\lib\wp8\Acr.BarCodes.Interface.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Connectivity.Plugin, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.Connectivity.1.0.2\lib\wp8\Connectivity.Plugin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Connectivity.Plugin.Abstractions, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.Connectivity.1.0.2\lib\wp8\Connectivity.Plugin.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ExifLib, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ExifLib.PCL.1.0.1\lib\portable-net45+sl50+win+WindowsPhoneApp81+wp80+Xamarin.iOS10+MonoAndroid10+MonoTouch10\ExifLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Facebook, Version=6.0.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Facebook.7.0.6\lib\wp8\Facebook.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Facebook.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Facebook.Client.1.0.4\lib\wp8\Facebook.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfragisticsWP8.Controls.Charts.XamDataChart.v15.1, Version=15.1.20151.169, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Infragistics.Xamarin.Charts.15.1.20151.169\lib\wp8\InfragisticsWP8.Controls.Charts.XamDataChart.v15.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfragisticsWP8.Controls.Interactions.XamInfoBox.v15.1, Version=15.1.20151.169, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Infragistics.Xamarin.Charts.15.1.20151.169\lib\wp8\InfragisticsWP8.Controls.Interactions.XamInfoBox.v15.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfragisticsWP8.Controls.Interactions.XamWindow.v15.1, Version=15.1.20151.169, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Infragistics.Xamarin.Charts.15.1.20151.169\lib\wp8\InfragisticsWP8.Controls.Interactions.XamWindow.v15.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfragisticsWP8.DataVisualization.v15.1, Version=15.1.20151.169, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Infragistics.Xamarin.Core.15.1.20151.169\lib\wp8\InfragisticsWP8.DataVisualization.v15.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfragisticsWP8.v15.1, Version=15.1.20151.169, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Infragistics.Xamarin.Core.15.1.20151.169\lib\wp8\InfragisticsWP8.v15.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfragisticsXF, Version=15.1.20151.169, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Infragistics.Xamarin.Core.15.1.20151.169\lib\wp8\InfragisticsXF.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfragisticsXF.Controls.Charts, Version=15.1.20151.169, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Infragistics.Xamarin.Charts.15.1.20151.169\lib\wp8\InfragisticsXF.Controls.Charts.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfragisticsXF.Controls.Charts.WP, Version=15.1.20151.169, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Infragistics.Xamarin.Charts.15.1.20151.169\lib\wp8\InfragisticsXF.Controls.Charts.WP.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfragisticsXF.WP, Version=15.1.20151.169, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Infragistics.Xamarin.Core.15.1.20151.169\lib\wp8\InfragisticsXF.WP.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=8.0.1.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WPtoolkit.4.2013.08.16\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ModernHttpClient, Version=2.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\modernhttpclient.2.4.2\lib\Portable-Net45+WinRT45+WP8+WPA81\ModernHttpClient.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Parse, Version=1.6.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\parse.1.6.1\lib\wp8\Parse.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Parse.Phone, Version=1.6.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\parse.1.6.1\lib\wp8\Parse.Phone.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Refractored.Xam.Settings, Version=1.5.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugins.Settings.1.5.2\lib\wp8\Refractored.Xam.Settings.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Refractored.Xam.Settings.Abstractions, Version=1.5.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugins.Settings.1.5.2\lib\wp8\Refractored.Xam.Settings.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Sqlite, Version=255.255.255.255, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\sqlite-net-wp8.3.8.5\lib\windowsphone8\Sqlite.winmd</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLite.Net, Version=3.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SQLite.Net-PCL.3.0.5\lib\windowsphone8\x86\SQLite.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLite.Net.Platform.WindowsPhone8, Version=3.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SQLite.Net-PCL.3.0.5\lib\windowsphone8\x86\SQLite.Net.Platform.WindowsPhone8.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WPControls, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WPControls.1.5.2\lib\wp8\WPControls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WriteableBitmapExWinPhone, Version=0.9.8.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ZXing.Net.Mobile.1.4.7.1\lib\wp8\WriteableBitmapExWinPhone.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Core">
+      <HintPath>..\..\packages\Xamarin.Forms.2.3.1.114\lib\WP80\Xamarin.Forms.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Maps">
+      <HintPath>..\..\packages\Xamarin.Forms.Maps.2.0.1.6505\lib\WP80\Xamarin.Forms.Maps.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Maps.WP8">
+      <HintPath>..\..\packages\Xamarin.Forms.Maps.2.0.1.6505\lib\WP80\Xamarin.Forms.Maps.WP8.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform">
+      <HintPath>..\..\packages\Xamarin.Forms.2.3.1.114\lib\WP80\Xamarin.Forms.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform.WP8">
+      <HintPath>..\..\packages\Xamarin.Forms.2.3.1.114\lib\WP80\Xamarin.Forms.Platform.WP8.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml">
+      <HintPath>..\..\packages\Xamarin.Forms.2.3.1.114\lib\WP80\Xamarin.Forms.Xaml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="XLabs.Core">
+      <HintPath>..\..\packages\XLabs.Core.2.0.5781\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="XLabs.Forms">
+      <HintPath>..\..\packages\XLabs.Forms.2.0.5781\lib\wp8\XLabs.Forms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="XLabs.Forms.WP8">
+      <HintPath>..\..\packages\XLabs.Forms.2.0.5781\lib\wp8\XLabs.Forms.WP8.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="XLabs.Ioc">
+      <HintPath>..\..\packages\XLabs.IoC.2.0.5781\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Ioc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="XLabs.Platform">
+      <HintPath>..\..\packages\XLabs.Platform.2.0.5781\lib\wp8\XLabs.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="XLabs.Platform.WinRT">
+      <HintPath>..\..\packages\XLabs.Platform.2.0.5781\lib\wp8\XLabs.Platform.WinRT.winmd</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="XLabs.Platform.WP8">
+      <HintPath>..\..\packages\XLabs.Platform.2.0.5781\lib\wp8\XLabs.Platform.WP8.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="XLabs.Serialization">
+      <HintPath>..\..\packages\XLabs.Serialization.2.0.5781\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Serialization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="zxing.wp8.0, Version=0.14.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ZXing.Net.Mobile.1.4.7.1\lib\wp8\zxing.wp8.0.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ZXingNetMobile, Version=1.4.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ZXing.Net.Mobile.1.4.7.1\lib\wp8\ZXingNetMobile.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="SQLite.WP80, Version=3.8.11.1">
+      <Name>SQLite for Windows Phone</Name>
+    </SDKReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+    <Error Condition="!Exists('..\..\packages\sqlite-net-wp8.3.8.5\build\windowsphone8\sqlite-net-wp8.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\sqlite-net-wp8.3.8.5\build\windowsphone8\sqlite-net-wp8.props'))" />
+    <Error Condition="!Exists('..\..\packages\sqlite-net-wp8.3.8.5\build\windowsphone8\sqlite-net-wp8.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\sqlite-net-wp8.3.8.5\build\windowsphone8\sqlite-net-wp8.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets'))" />
+  </Target>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Import Project="..\..\packages\sqlite-net-wp8.3.8.5\build\windowsphone8\sqlite-net-wp8.targets" Condition="Exists('..\..\packages\sqlite-net-wp8.3.8.5\build\windowsphone8\sqlite-net-wp8.targets')" />
+  <Import Project="..\..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
+=======
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\sqlite-net-wp8.3.8.5\build\windowsphone8\sqlite-net-wp8.props" Condition="Exists('..\..\packages\sqlite-net-wp8.3.8.5\build\windowsphone8\sqlite-net-wp8.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{97172675-990C-4ADD-ABC4-2B395D5A20CA}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ANFAPP.WinPhone</RootNamespace>
+    <AssemblyName>ANFAPP.WinPhone</AssemblyName>
+    <TargetFrameworkIdentifier>WindowsPhone</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>true</SilverlightApplication>
+    <SupportedCultures>pt-PT</SupportedCultures>
+    <XapOutputs>true</XapOutputs>
+    <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
+    <XapFilename>PhoneApp1_$(Configuration)_$(Platform).xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <SilverlightAppEntry>ANFAPP.WinPhone.App</SilverlightAppEntry>
+    <ValidateXaml>true</ValidateXaml>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <NuGetPackageImportStamp>41a61f78</NuGetPackageImportStamp>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <ReleaseVersion>2.0</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\x86\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\x86\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|ARM' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\ARM\Debug</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SILVERLIGHT;WINDOWS_PHONE;USE_WP8_NATIVE_SQLITE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|ARM' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\ARM\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SizeableWebView.xaml.cs">
+      <DependentUpon>SizeableWebView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LocalizedStrings.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PlatformSpecific\FacebookSDK_WP.cs" />
+    <Compile Include="PlatformSpecific\FitnessServices_WP.cs" />
+    <Compile Include="PlatformSpecific\LocationServices_WP.cs" />
+    <Compile Include="PlatformSpecific\MediaWriter_WP.cs" />
+    <Compile Include="PlatformSpecific\MixPanel_WP.cs" />
+    <Compile Include="PlatformSpecific\RaygunHelper.cs" />
+    <Compile Include="PlatformSpecific\SQLLite_WP.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Renderer\BarcodeViewRenderer.cs" />
+    <Compile Include="Renderer\BindablePickerRenderer.cs" />
+    <Compile Include="Renderer\CustomButtonRenderer.cs" />
+    <Compile Include="Renderer\CustomEditorRenderer.cs" />
+    <Compile Include="Renderer\CustomListViewRenderer.cs" />
+    <Compile Include="Renderer\CustomTimePickerRenderer.cs" />
+    <Compile Include="Renderer\CustomDatePickerRenderer.cs" />
+    <Compile Include="Renderer\CustomEntryRenderer.cs" />
+    <Compile Include="Renderer\CustomImageRenderer.cs" />
+    <Compile Include="Renderer\CustomWebImageRenderer.cs" />
+    <Compile Include="Renderer\CustomWebViewRenderer.cs" />
+    <Compile Include="Renderer\MapRenderer_WinPhone.cs" />
+    <Compile Include="Resources\AppResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\BitmapUtils.cs" />
+    <Compile Include="Utils\LayoutUtils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Page Include="Controls\SizeableWebView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Fonts\Cabin-Bold.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Fonts\Cabin-Medium.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Fonts\Cabin-Regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Fonts\Cabin-SemiBold.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Fonts\Roboto-Bold.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Fonts\Roboto-Light.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Fonts\Roboto-Medium.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Fonts\Roboto-Regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Fonts\Roboto-Italic.ttf" />
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\AppManifest.xml" />
+    <None Include="Properties\WMAppManifest.xml">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Resources\cardpromotionalbanner.png" />
+    <Content Include="Resources\double_arrow.png" />
+    <Content Include="Resources\initialpagebackgroundimage.png" />
+    <Content Include="Resources\vcardb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FacebookConfig.xml" />
+    <Content Include="PluginsHelp\ConnectivityReadme.txt" />
+    <Content Include="PluginsHelp\SettingsReadme.txt" />
+    <Content Include="Resources\acessory.png" />
+    <Content Include="Resources\adddrugbarcodelarge.png" />
+    <Content Include="Resources\annotation_card.png" />
+    <Content Include="Resources\annotation_list.png" />
+    <Content Include="Resources\annotation_no_card.png" />
+    <Content Include="Resources\appicon_list.png" />
+    <Content Include="Resources\appicon_medium.png" />
+    <Content Include="Resources\appicon_small.png" />
+    <Content Include="Resources\appicon_wide.png" />
+    <Content Include="Resources\arrow_black_down.png" />
+    <Content Include="Resources\arrow_black_up.png" />
+    <Content Include="Resources\arrow_green_right.png" />
+    <Content Include="Resources\arrow_green_up.png" />
+    <Content Include="Resources\bg_appbar_points.png" />
+    <Content Include="Resources\bg_app_intro.png" />
+    <Content Include="Resources\bg_banner_join.png" />
+    <Content Include="Resources\bg_biometric_gauge_darkyellow.png" />
+    <Content Include="Resources\bg_biometric_gauge_green.png" />
+    <Content Include="Resources\bg_biometric_gauge_grey.png" />
+    <Content Include="Resources\bg_biometric_gauge_orange.png" />
+    <Content Include="Resources\bg_biometric_gauge_red.png" />
+    <Content Include="Resources\bg_biometric_gauge_yellow.png" />
+    <Content Include="Resources\bg_card.png" />
+    <Content Include="Resources\bg_card_benefits.png" />
+    <Content Include="Resources\bg_checkbox.png" />
+    <Content Include="Resources\bg_checkbox_selected.png" />
+    <Content Include="Resources\bg_checkbox_selected_blue.png" />
+    <Content Include="Resources\bg_input.png" />
+    <Content Include="Resources\bg_or_circle.png" />
+    <Content Include="Resources\bg_pharmacy_image_default1.png" />
+    <Content Include="Resources\bg_pharmacy_image_default2.png" />
+    <Content Include="Resources\bg_splashscreen.png" />
+    <Content Include="Resources\bg_tutorial1_step1.png" />
+    <Content Include="Resources\bg_tutorial1_step2.png" />
+    <Content Include="Resources\bg_tutorial1_step3.png" />
+    <Content Include="Resources\bg_tutorial2_step1.png" />
+    <Content Include="Resources\bg_tutorial2_step2.png" />
+    <Content Include="Resources\bg_tutorial2_step3.png" />
+    <Content Include="Resources\bg_tutorial3_step1.png" />
+    <Content Include="Resources\bg_tutorial3_step2.png" />
+    <Content Include="Resources\bg_tutorial3_step3.png" />
+    <Content Include="Resources\bg_tutorial4_step1.png" />
+    <Content Include="Resources\bg_tutorial4_step2.png" />
+    <Content Include="Resources\bg_tutorial4_step3.png" />
+    <Content Include="Resources\bg_tutorial4_step4.png" />
+    <Content Include="Resources\bg_tutorial5_step1.png" />
+    <Content Include="Resources\bg_tutorial5_step2.png" />
+    <Content Include="Resources\bg_tutorial5_step3.png" />
+    <Content Include="Resources\bg_voucher.png" />
+    <Content Include="Resources\blank_image.png" />
+    <Content Include="Resources\bt_biometric_imc_height.png" />
+    <Content Include="Resources\bt_biometric_imc_weight.png" />
+    <Content Include="Resources\bt_sections.png" />
+    <Content Include="Resources\bt_trashbin.png" />
+    <Content Include="Resources\bt_trashbin2.png" />
+    <Content Include="Resources\bt_trashbin_orange.png" />
+    <Content Include="Resources\byPlace.png" />
+    <Content Include="Resources\cartao_vale_sauda_10.png" />
+    <Content Include="Resources\cartao_vale_sauda_10_disabled.png" />
+    <Content Include="Resources\cartao_vale_sauda_2.png" />
+    <Content Include="Resources\cartao_vale_sauda_20.png" />
+    <Content Include="Resources\cartao_vale_sauda_20_disabled.png" />
+    <Content Include="Resources\cartao_vale_sauda_2_disabled.png" />
+    <Content Include="Resources\cartao_vale_sauda_5.png" />
+    <Content Include="Resources\cartao_vale_sauda_5_disabled.png" />
+    <Content Include="Resources\catalog_detail.png" />
+    <Content Include="Resources\catalog_thumbnail.png" />
+    <Content Include="Resources\clock.png" />
+    <Content Include="Resources\cursor.png" />
+    <Content Include="Resources\Default.png" />
+    <Content Include="Resources\envelope.png" />
+    <Content Include="Resources\f.png" />
+    <Content Include="Resources\familia_bemestar.png" />
+    <Content Include="Resources\familia_saude.png" />
+    <Content Include="Resources\familia_veterinaria.png" />
+    <Content Include="Resources\favorits.png" />
+    <Content Include="Resources\g.png" />
+    <Content Include="Resources\get_card_points_screen.png" />
+    <Content Include="Resources\icon.png" />
+    <Content Include="Resources\Icon60.png" />
+    <Content Include="Resources\Icon76.png" />
+    <Content Include="Resources\icon_expand.png" />
+    <Content Include="Resources\icon_galeria.png" />
+    <Content Include="Resources\icon_gallery.png" />
+    <Content Include="Resources\icon_zoom.png" />
+    <Content Include="Resources\ic_4icons_branco.png" />
+    <Content Include="Resources\ic_4icons_verde.png" />
+    <Content Include="Resources\ic_add_drug_large.png" />
+    <Content Include="Resources\ic_alert_small.png" />
+    <Content Include="Resources\ic_anf_logo.png" />
+    <Content Include="Resources\ic_anf_logo_large.png" />
+    <Content Include="Resources\ic_appbar_back.png" />
+    <Content Include="Resources\ic_appbar_logged.png" />
+    <Content Include="Resources\ic_appbar_menu.png" />
+    <Content Include="Resources\ic_appbar_menu2.png" />
+    <Content Include="Resources\ic_appbar_not_logged.png" />
+    <Content Include="Resources\ic_atm_logo.png" />
+    <Content Include="Resources\ic_back_arrow_green.png" />
+    <Content Include="Resources\ic_barcode_scan_large.png" />
+    <Content Include="Resources\ic_barcode_scan_small.png" />
+    <Content Include="Resources\ic_biometric_abdominal_perimeter.png" />
+    <Content Include="Resources\ic_biometric_arrow.png" />
+    <Content Include="Resources\ic_biometric_arrow_green.png" />
+    <Content Include="Resources\ic_biometric_arterial_pressure.png" />
+    <Content Include="Resources\ic_biometric_cholesterol.png" />
+    <Content Include="Resources\ic_biometric_glicemia.png" />
+    <Content Include="Resources\ic_biometric_triglycerides.png" />
+    <Content Include="Resources\ic_bulletpoint.png" />
+    <Content Include="Resources\ic_button_arrow.png" />
+    <Content Include="Resources\ic_button_arrow_black.png" />
+    <Content Include="Resources\ic_button_link.png" />
+    <Content Include="Resources\ic_button_link_blue.png" />
+    <Content Include="Resources\ic_button_pcall.png" />
+    <Content Include="Resources\ic_button_pgoto.png" />
+    <Content Include="Resources\ic_cart.png" />
+    <Content Include="Resources\ic_cartao_pontos.png" />
+    <Content Include="Resources\ic_cartao_pontos_branco.png" />
+    <Content Include="Resources\ic_cart_button.png" />
+    <Content Include="Resources\ic_cat_1.png" />
+    <Content Include="Resources\ic_cat_2.png" />
+    <Content Include="Resources\ic_cat_3.png" />
+    <Content Include="Resources\ic_cat_4.png" />
+    <Content Include="Resources\ic_cat_5.png" />
+    <Content Include="Resources\ic_cat_6.png" />
+    <Content Include="Resources\ic_cat_7.png" />
+    <Content Include="Resources\ic_cat_8.png" />
+    <Content Include="Resources\ic_cat_9.png" />
+    <Content Include="Resources\ic_cat_annotation1.png" />
+    <Content Include="Resources\ic_cat_annotation2.png" />
+    <Content Include="Resources\ic_cat_annotation3.png" />
+    <Content Include="Resources\ic_change_pass.png" />
+    <Content Include="Resources\ic_change_pharm.png" />
+    <Content Include="Resources\ic_check_small.png" />
+    <Content Include="Resources\ic_clone_button.png" />
+    <Content Include="Resources\ic_delete.png" />
+    <Content Include="Resources\ic_done_black_24dp.png" />
+    <Content Include="Resources\ic_dosing_schedule_anf_item.png" />
+    <Content Include="Resources\ic_dosing_schedule_list.png" />
+    <Content Include="Resources\ic_dosing_schedule_tab_selected.png" />
+    <Content Include="Resources\ic_dosing_schedule_tab_unselected.png" />
+    <Content Include="Resources\ic_drug_annotation.png" />
+    <Content Include="Resources\ic_drug_warning.png" />
+    <Content Include="Resources\ic_edit_button.png" />
+    <Content Include="Resources\ic_family_logo.png" />
+    <Content Include="Resources\ic_female.png" />
+    <Content Include="Resources\ic_female_selected.png" />
+    <Content Include="Resources\ic_filter.png" />
+    <Content Include="Resources\ic_link.png" />
+    <Content Include="Resources\ic_locate_services.png" />
+    <Content Include="Resources\ic_logout.png" />
+    <Content Include="Resources\ic_male.png" />
+    <Content Include="Resources\ic_male_selected.png" />
+    <Content Include="Resources\ic_medicine_list.png" />
+    <Content Include="Resources\ic_medicine_tab_selected.png" />
+    <Content Include="Resources\ic_medicine_tab_unselected.png" />
+    <Content Include="Resources\ic_menu_alerta.png" />
+    <Content Include="Resources\ic_menu_biometric_data.png" />
+    <Content Include="Resources\ic_menu_card.png" />
+    <Content Include="Resources\ic_menu_card_sauda.png" />
+    <Content Include="Resources\ic_menu_cart.png" />
+    <Content Include="Resources\ic_menu_cartao.png" />
+    <Content Include="Resources\ic_menu_catalog.png" />
+    <Content Include="Resources\ic_menu_contacts.png" />
+    <Content Include="Resources\ic_menu_dados_saude.png" />
+    <Content Include="Resources\ic_menu_entrada.png" />
+    <Content Include="Resources\ic_menu_health.png" />
+    <Content Include="Resources\ic_menu_health2.png" />
+    <Content Include="Resources\ic_menu_home.png" />
+    <Content Include="Resources\ic_menu_home2.png" />
+    <Content Include="Resources\ic_menu_localizar.png" />
+    <Content Include="Resources\ic_menu_locator.png" />
+    <Content Include="Resources\ic_menu_loja.png" />
+    <Content Include="Resources\ic_menu_params.png" />
+    <Content Include="Resources\ic_menu_pharmacies.png" />
+    <Content Include="Resources\ic_menu_points.png" />
+    <Content Include="Resources\ic_menu_promo1.png" />
+    <Content Include="Resources\ic_menu_promo2.png" />
+    <Content Include="Resources\ic_menu_promocoes.png" />
+    <Content Include="Resources\ic_menu_promocoes3.png" />
+    <Content Include="Resources\ic_menu_promocoes4.png" />
+    <Content Include="Resources\ic_menu_saude_a_z.png" />
+    <Content Include="Resources\ic_menu_tomas.png" />
+    <Content Include="Resources\ic_menu_tomas2.png" />
+    <Content Include="Resources\ic_menu_utilizador.png" />
+    <Content Include="Resources\ic_msrm_alert.png" />
+    <Content Include="Resources\ic_navbar_cart.png" />
+    <Content Include="Resources\ic_navbar_cart_green.png" />
+    <Content Include="Resources\ic_navbar_star_green.png" />
+    <Content Include="Resources\ic_navbar_star_white.png" />
+    <Content Include="Resources\ic_options_tab_selected.png" />
+    <Content Include="Resources\ic_options_tab_unselected.png" />
+    <Content Include="Resources\ic_orange_circle.png" />
+    <Content Include="Resources\ic_order.png" />
+    <Content Include="Resources\ic_photo.png" />
+    <Content Include="Resources\ic_plus.png" />
+    <Content Include="Resources\ic_plus_blue.png" />
+    <Content Include="Resources\ic_plus_orange.png" />
+    <Content Include="Resources\ic_prescription.png" />
+    <Content Include="Resources\ic_prescription_annotation.png" />
+    <Content Include="Resources\ic_prescription_selected.png" />
+    <Content Include="Resources\ic_product_availability.png" />
+    <Content Include="Resources\ic_product_mag_img.png" />
+    <Content Include="Resources\ic_product_mag_search.png" />
+    <Content Include="Resources\ic_product_mnsrm_warning.png" />
+    <Content Include="Resources\ic_product_notrecomended.png" />
+    <Content Include="Resources\ic_product_warning.png" />
+    <Content Include="Resources\ic_remove_cross.png" />
+    <Content Include="Resources\ic_sauda_logo.png" />
+    <Content Include="Resources\ic_sauda_logos.png" />
+    <Content Include="Resources\ic_sauda_logo_large.png" />
+    <Content Include="Resources\ic_sauda_logo_w.png" />
+    <Content Include="Resources\ic_smile_56x56_branco.png" />
+    <Content Include="Resources\ic_smile_56x56_verde.png" />
+    <Content Include="Resources\ic_smile_64x64.png" />
+    <Content Include="Resources\ic_star_orange.png" />
+    <Content Include="Resources\ic_star_orange_filled.png" />
+    <Content Include="Resources\ic_switch_drug.png" />
+    <Content Include="Resources\ic_trash_blue.png" />
+    <Content Include="Resources\ic_tutorial2.png" />
+    <Content Include="Resources\ic_tutorial_indicator.png" />
+    <Content Include="Resources\ic_tutorial_nav_left.png" />
+    <Content Include="Resources\ic_tutorial_nav_right.png" />
+    <Content Include="Resources\ic_usercard_img1.png" />
+    <Content Include="Resources\ic_usercard_img2.png" />
+    <Content Include="Resources\ic_usercard_img3.png" />
+    <Content Include="Resources\ic_user_appbar.png" />
+    <Content Include="Resources\ic_visa_logo.png" />
+    <Content Include="Resources\ic_vouchers_arrow.png" />
+    <Content Include="Resources\ic_warning.png" />
+    <Content Include="Resources\img_user.png" />
+    <Content Include="Resources\img_use_mask.png" />
+    <Content Include="Resources\img_use_mask_green.png" />
+    <Content Include="Resources\magnifier.png" />
+    <Content Include="Resources\magnifier_blue.png" />
+    <Content Include="Resources\magnifier_gray.png" />
+    <Content Include="Resources\msrmplaceholder.png" />
+    <Content Include="Resources\nearMe.png" />
+    <Content Include="Resources\nextArrow.png" />
+    <Content Include="Resources\next_arrow.png" />
+    <Content Include="Resources\pharmacy_annotation_1.png" />
+    <Content Include="Resources\pharmacy_annotation_2.png" />
+    <Content Include="Resources\pharmacy_annotation_3.png" />
+    <Content Include="Resources\pharmacy_annotation_4.png" />
+    <Content Include="Resources\pharmacy_annotation_5.png" />
+    <Content Include="Resources\pharmacy_annotation_6.png" />
+    <Content Include="Resources\phone.png" />
+    <Content Include="Resources\pointer_gray.png" />
+    <Content Include="Resources\points_bg2.png" />
+    <Content Include="Resources\points_bg3.png" />
+    <Content Include="Resources\points_bg4.png" />
+    <Content Include="Resources\points_bg5.png" />
+    <Content Include="Resources\points_bg6.png" />
+    <Content Include="Resources\prescriptionplaceholder.png" />
+    <Content Include="Resources\promo1.png" />
+    <Content Include="Resources\promo2.png" />
+    <Content Include="Resources\recent.png" />
+    <Content Include="Resources\slider_left.png" />
+    <Content Include="Resources\slider_right.png" />
+    <Content Include="Resources\star.png" />
+    <Content Include="Resources\star_favourite.png" />
+    <Content Include="Resources\star_point_achieved.png" />
+    <Content Include="Resources\star_point_unachieved.png" />
+    <Content Include="Resources\star_selected.png" />
+    <Content Include="Resources\star_unfavourite.png" />
+    <Content Include="Resources\switch_left.png" />
+    <Content Include="Resources\switch_midle.png" />
+    <Content Include="Resources\switch_right.png" />
+    <Content Include="Resources\t.png" />
+    <Content Include="Assets\AlignmentGrid.png" />
+    <Content Include="Assets\ApplicationIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Tiles\FlipCycleTileMedium.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Tiles\FlipCycleTileSmall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Tiles\IconicTileMediumLarge.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Tiles\IconicTileSmall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\txt_tutorial1_step1.png" />
+    <Content Include="Resources\txt_tutorial1_step2.png" />
+    <Content Include="Resources\txt_tutorial1_step3.png" />
+    <Content Include="Resources\txt_tutorial2_step1.png" />
+    <Content Include="Resources\txt_tutorial2_step2.png" />
+    <Content Include="Resources\txt_tutorial2_step3.png" />
+    <Content Include="Resources\txt_tutorial3_step1.png" />
+    <Content Include="Resources\txt_tutorial3_step2.png" />
+    <Content Include="Resources\txt_tutorial3_step3.png" />
+    <Content Include="Resources\txt_tutorial4_step1.png" />
+    <Content Include="Resources\txt_tutorial4_step2.png" />
+    <Content Include="Resources\txt_tutorial4_step3.png" />
+    <Content Include="Resources\txt_tutorial4_step4.png" />
+    <Content Include="Resources\txt_tutorial5_step1.png" />
+    <Content Include="Resources\txt_tutorial5_step2.png" />
+    <Content Include="Resources\txt_tutorial5_step3.png" />
+    <Content Include="SplashScreenImage.screen-720p.jpg" />
+    <Content Include="SplashScreenImage.screen-WVGA.jpg" />
+    <Content Include="SplashScreenImage.screen-WXGA.jpg" />
+    <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\AppResources.pt-PT.resx" />
+    <EmbeddedResource Include="Resources\AppResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ANFAPP.Logic\ANFAPP.Logic.csproj">
+      <Project>{67f9d3a8-f71e-4428-913f-c37ae82cdb24}</Project>
+      <Name>ANFAPP.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ANFAPP\ANFAPP.csproj">
+      <Name>ANFAPP</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Acr.BarCodes">
+      <HintPath>..\..\packages\Acr.BarCodes.3.1.0\lib\wp8\Acr.BarCodes.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Acr.BarCodes.Interface">
+      <HintPath>..\..\packages\Acr.BarCodes.3.1.0\lib\wp8\Acr.BarCodes.Interface.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AzureNotificationHub">
+      <HintPath>..\..\packages\Azure-NotificationHub.1.0.3\lib\AzureNotificationHub.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Connectivity.Plugin, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.Connectivity.1.0.2\lib\wp8\Connectivity.Plugin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Connectivity.Plugin.Abstractions, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.Connectivity.1.0.2\lib\wp8\Connectivity.Plugin.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ExifLib, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ExifLib.PCL.1.0.1\lib\portable-net45+sl50+win+WindowsPhoneApp81+wp80+Xamarin.iOS10+MonoAndroid10+MonoTouch10\ExifLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Facebook, Version=6.0.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Facebook.7.0.6\lib\wp8\Facebook.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Facebook.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Facebook.Client.1.0.4\lib\wp8\Facebook.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfragisticsWP8.Controls.Charts.XamDataChart.v15.1, Version=15.1.20151.169, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Infragistics.Xamarin.Charts.15.1.20151.169\lib\wp8\InfragisticsWP8.Controls.Charts.XamDataChart.v15.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfragisticsWP8.Controls.Interactions.XamInfoBox.v15.1, Version=15.1.20151.169, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Infragistics.Xamarin.Charts.15.1.20151.169\lib\wp8\InfragisticsWP8.Controls.Interactions.XamInfoBox.v15.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfragisticsWP8.Controls.Interactions.XamWindow.v15.1, Version=15.1.20151.169, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Infragistics.Xamarin.Charts.15.1.20151.169\lib\wp8\InfragisticsWP8.Controls.Interactions.XamWindow.v15.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfragisticsWP8.DataVisualization.v15.1, Version=15.1.20151.169, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Infragistics.Xamarin.Core.15.1.20151.169\lib\wp8\InfragisticsWP8.DataVisualization.v15.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfragisticsWP8.v15.1, Version=15.1.20151.169, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Infragistics.Xamarin.Core.15.1.20151.169\lib\wp8\InfragisticsWP8.v15.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfragisticsXF, Version=15.1.20151.169, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Infragistics.Xamarin.Core.15.1.20151.169\lib\wp8\InfragisticsXF.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfragisticsXF.Controls.Charts, Version=15.1.20151.169, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Infragistics.Xamarin.Charts.15.1.20151.169\lib\wp8\InfragisticsXF.Controls.Charts.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfragisticsXF.Controls.Charts.WP, Version=15.1.20151.169, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Infragistics.Xamarin.Charts.15.1.20151.169\lib\wp8\InfragisticsXF.Controls.Charts.WP.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfragisticsXF.WP, Version=15.1.20151.169, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Infragistics.Xamarin.Core.15.1.20151.169\lib\wp8\InfragisticsXF.WP.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=8.0.1.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WPtoolkit.4.2013.08.16\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ModernHttpClient, Version=2.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\modernhttpclient.2.4.2\lib\Portable-Net45+WinRT45+WP8+WPA81\ModernHttpClient.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Parse, Version=1.6.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\parse.1.6.1\lib\wp8\Parse.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Parse.Phone, Version=1.6.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\parse.1.6.1\lib\wp8\Parse.Phone.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Refractored.Xam.Settings, Version=1.5.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugins.Settings.1.5.2\lib\wp8\Refractored.Xam.Settings.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Refractored.Xam.Settings.Abstractions, Version=1.5.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugins.Settings.1.5.2\lib\wp8\Refractored.Xam.Settings.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Sqlite, Version=255.255.255.255, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\sqlite-net-wp8.3.8.5\lib\windowsphone8\Sqlite.winmd</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLite.Net, Version=3.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SQLite.Net-PCL.3.0.5\lib\windowsphone8\x86\SQLite.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLite.Net.Platform.WindowsPhone8, Version=3.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SQLite.Net-PCL.3.0.5\lib\windowsphone8\x86\SQLite.Net.Platform.WindowsPhone8.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\sl4-windowsphone71\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\sl4-windowsphone71\System.Net.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\sl4-windowsphone71\System.Net.Http.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WPControls, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WPControls.1.5.2\lib\wp8\WPControls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WriteableBitmapExWinPhone, Version=0.9.8.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ZXing.Net.Mobile.1.4.7.1\lib\wp8\WriteableBitmapExWinPhone.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Core, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.1.4.4.6392\lib\WP80\Xamarin.Forms.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Maps, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.Maps.1.4.4.6392\lib\WP80\Xamarin.Forms.Maps.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Maps.WP8, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.Maps.1.4.4.6392\lib\WP80\Xamarin.Forms.Maps.WP8.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.1.4.4.6392\lib\WP80\Xamarin.Forms.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform.WP8, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.1.4.4.6392\lib\WP80\Xamarin.Forms.Platform.WP8.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.1.4.4.6392\lib\WP80\Xamarin.Forms.Xaml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="XLabs.Core, Version=2.0.5610.35386, Culture=neutral, PublicKeyToken=d65109b36e5040e4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\XLabs.Core.2.0.5610.2\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="XLabs.Forms, Version=2.0.5610.35388, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\XLabs.Forms.2.0.5610.2\lib\wp8\XLabs.Forms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="XLabs.Forms.WP8, Version=2.0.5610.35391, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\XLabs.Forms.2.0.5610.2\lib\wp8\XLabs.Forms.WP8.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="XLabs.Ioc, Version=2.0.5610.35386, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\XLabs.IoC.2.0.5610.2\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Ioc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="XLabs.Platform, Version=2.0.5610.35386, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\XLabs.Platform.2.0.5610.2\lib\wp8\XLabs.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="XLabs.Platform.WP8, Version=2.0.5610.35388, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\XLabs.Platform.2.0.5610.2\lib\wp8\XLabs.Platform.WP8.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="XLabs.Serialization, Version=2.0.5610.35386, Culture=neutral, PublicKeyToken=d65109b36e5040e4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\XLabs.Serialization.2.0.5610.2\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Serialization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="zxing.wp8.0, Version=0.14.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ZXing.Net.Mobile.1.4.7.1\lib\wp8\zxing.wp8.0.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ZXingNetMobile, Version=1.4.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ZXing.Net.Mobile.1.4.7.1\lib\wp8\ZXingNetMobile.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="SQLite.WP80, Version=3.16.2">
+      <Name>SQLite for Windows Phone</Name>
+    </SDKReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Xamarin.Forms.1.4.4.6392\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.1.4.4.6392\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets'))" />
+    <Error Condition="!Exists('..\..\packages\sqlite-net-wp8.3.8.5\build\windowsphone8\sqlite-net-wp8.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\sqlite-net-wp8.3.8.5\build\windowsphone8\sqlite-net-wp8.props'))" />
+    <Error Condition="!Exists('..\..\packages\sqlite-net-wp8.3.8.5\build\windowsphone8\sqlite-net-wp8.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\sqlite-net-wp8.3.8.5\build\windowsphone8\sqlite-net-wp8.targets'))" />
+  </Target>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Import Project="..\..\packages\Xamarin.Forms.1.4.4.6392\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.1.4.4.6392\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
+  <Import Project="..\..\packages\sqlite-net-wp8.3.8.5\build\windowsphone8\sqlite-net-wp8.targets" Condition="Exists('..\..\packages\sqlite-net-wp8.3.8.5\build\windowsphone8\sqlite-net-wp8.targets')" />
+  <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+>>>>>>> maintenance_phase5_azure_notification
+</Project>

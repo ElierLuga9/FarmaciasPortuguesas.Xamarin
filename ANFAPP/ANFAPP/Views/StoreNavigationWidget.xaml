@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	x:Class="ANFAPP.Views.StoreNavigationWidget">
+	
+	<ContentView.Content>
+		<Grid Grid.ColumnSpacing="5">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="auto" />
+			</Grid.ColumnDefinitions>
+
+			<!-- Landing Page Button -->
+			<common:CustomButton x:Name="LandingPageButton" HeightRequest="31"
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="Start"
+				FontSize="13"
+				BorderRadius="0"
+				TextAlignment="Center"
+				Clicked="LandingPageButtonClicked"
+				Text="{x:Static app:AppResources.StoreNavigationWidgetLandingPageButton}"
+				TextColor="{x:Static resources:ColorResources.ANFDarkGrey}"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				BackgroundColor="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+
+			<!-- Categories Button -->
+			<common:CustomButton x:Name="CategoriesButton" 
+				Grid.Column="1" HeightRequest="31"
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="Start"
+				FontSize="13"
+				BorderRadius="0"
+				TextAlignment="Center"
+				Clicked="CategoriesButtonClicked"
+				Text="{x:Static app:AppResources.StoreNavigationWidgetCategoriesButton}"
+				TextColor="{x:Static resources:ColorResources.ANFDarkGrey}"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				BackgroundColor="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+
+			<!-- Catalog Button -->
+			<common:CustomButton x:Name="CatalogButton"
+				Grid.Column="2" HeightRequest="31"
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="Start"
+				FontSize="13"
+				BorderRadius="0"
+				TextAlignment="Center"
+				Clicked="CatalogButtonClicked"
+				Text="{x:Static app:AppResources.StoreNavigationWidgetCatalogButton}"
+				TextColor="{x:Static resources:ColorResources.ANFDarkGrey}"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				BackgroundColor="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+
+			<!-- Prescription Button -->
+			<!--<common:CustomButton x:Name="PrescriptionButton"
+				Grid.Column="3" HeightRequest="31"
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="Start"
+				FontSize="10"
+				BorderRadius="1"
+				BorderWidth="1"
+				Clicked="PrescriptionButtonClicked"
+				Text="{x:Static app:AppResources.StoreNavigationWidgetPrescriptionsButton}"
+				AccessoryImage="ic_prescription.png"
+				TextColor="{x:Static resources:ColorResources.ANFGreen}"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				BorderColor="{x:Static resources:ColorResources.ANFGreen}"
+				BackgroundColor="White" />-->
+
+			<!-- Background Button -->
+			<common:CustomButton x:Name="PrescriptionButton"
+				Grid.Column="3" HeightRequest="31"
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="Start"
+				BorderRadius="1"
+				BorderWidth="1"
+				BackgroundColor="White"
+				Clicked="PrescriptionButtonClicked"
+				BorderColor="{x:Static resources:ColorResources.ANFGreen}" />
+
+			<StackLayout Orientation="Horizontal" Spacing="10" Padding="10, 0"
+				Grid.Column="3" HeightRequest="31"
+				HorizontalOptions="End"
+				InputTransparent="True"
+				VerticalOptions="Start">
+
+				<common:CustomImage x:Name="PrescriptionButtonImage"
+					Source="ic_prescription.png" 
+					VerticalOptions="Center"
+					InputTransparent="True" />
+				
+				<common:CustomLabel x:Name="PrescriptionButtonLabel"
+					FontSize="10"
+					InputTransparent="True"
+					VerticalOptions="Center"
+					TextColor="{x:Static resources:ColorResources.ANFGreen}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					Text="{x:Static app:AppResources.StoreNavigationWidgetPrescriptionsButton}" />
+
+			</StackLayout>
+		</Grid>
+	</ContentView.Content>
+</ContentView>

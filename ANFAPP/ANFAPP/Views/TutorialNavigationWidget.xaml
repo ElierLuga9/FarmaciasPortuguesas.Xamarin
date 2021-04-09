@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	x:Class="ANFAPP.Views.TutorialNavigationWidget">
+	
+	<ContentView.Content>
+		<Grid HeightRequest="50">
+			<StackLayout Spacing="7"
+				Orientation="Horizontal"
+				HorizontalOptions="Center"
+				VerticalOptions="Center">
+
+				<!-- Left Arrow -->
+				<common:CustomImage x:Name="LeftArrow"
+					Source="ic_tutorial_nav_left.png"
+					VerticalOptions="Center" />
+
+				<!-- Step 1 -->
+				<common:CustomImage x:Name="Step1Image"
+					Source="ic_tutorial_indicator.png"
+					VerticalOptions="Center" 
+					Opacity="0.5" />
+
+				<!-- Step 2 -->
+				<common:CustomImage x:Name="Step2Image"
+					Source="ic_tutorial_indicator.png"
+					VerticalOptions="Center"
+					Opacity="0.5" />
+
+				<!-- Step 3 -->
+				<common:CustomImage x:Name="Step3Image"
+					Source="ic_tutorial_indicator.png"
+					VerticalOptions="Center"
+					Opacity="0.5" />
+
+				<!-- Step 4 -->
+				<common:CustomImage x:Name="Step4Image"
+					Source="ic_tutorial_indicator.png"
+					VerticalOptions="Center"
+					Opacity="0.5" />
+				
+				<!-- Step 5 -->
+				<common:CustomImage x:Name="Step5Image"
+					Source="ic_tutorial_indicator.png"
+					VerticalOptions="Center"
+					Opacity="0.5" />
+
+				<!-- Right Arrow -->
+				<common:CustomImage x:Name="RightArrow"
+					Source="ic_tutorial_nav_right.png"
+					VerticalOptions="Center" />
+			</StackLayout>
+		</Grid>
+	</ContentView.Content>
+</ContentView>

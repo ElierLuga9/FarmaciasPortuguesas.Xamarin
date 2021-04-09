@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Views.ECProductVoucher">
+	<ContentView.Content>
+ 		<StackLayout Orientation="Vertical" 
+			Spacing="15" Padding="0, 20">
+
+ 			<!--- Wrapper to handle a product tap -->
+ 			<StackLayout Orientation="Vertical" Spacing="0" Padding="7, 0">
+
+				<Grid Padding="0, 0, 0, 15"
+					HorizontalOptions="Center"
+					HeightRequest="85">
+
+ 					<common:CustomWebImage VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" 
+ 						IsVisible="{Binding MSRM, Converter={x:Static converters:ConverterResources.InverseBool}}"
+						ImageUrl="{Binding ImageURL}" 
+						DefaultImage="catalog_thumbnail.png" />
+					<common:CustomImage VerticalOptions="Center" HorizontalOptions="Center"
+						IsVisible="{Binding MSRM}"
+						Source="msrmplaceholder.png" />
+
+					<common:CustomImage WidthRequest="22" HeightRequest="22"
+						VerticalOptions="Start"
+						HorizontalOptions="Start"
+						IsVisible="{Binding MSRM}"
+						Source="ic_prescription_annotation.png" />
+				</Grid>
+
+				<!-- The fixed height requests are needed to keep the cells aligned (side by side). -->
+ 				<common:CustomLabel
+ 					VerticalOptions="StartAndExpand"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"                          
+        			FontSize="12"
+					HeightRequest="16"
+					LineBreakMode="TailTruncation"
+        			TextColor="{x:Static resources:ColorResources.TextColorDark}"
+        			Text="{Binding Name}" />
+
+		        <common:CustomLabel
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+          			FontSize="10"
+          			HeightRequest="24"
+          			TextColor="{x:Static resources:ColorResources.TextColorDark}"
+          			Text="{Binding Presentation}" />
+
+				<common:CustomLabel
+					CustomFont="{x:Static resources:FontResources.RegularFont}"                          
+        			FontSize="10"
+        			HeightRequest="13"
+        			LineBreakMode="TailTruncation"
+        			TextColor="{x:Static resources:ColorResources.TextColorDark}"
+        			Text="{Binding Brand}" />
+
+        		<StackLayout.GestureRecognizers>
+        			<TapGestureRecognizer Tapped="OnProductClicked" />
+        		</StackLayout.GestureRecognizers>
+
+ 			</StackLayout>
+ 	
+			<!-- Add Basket Button -->
+        	<StackLayout Orientation="Horizontal" x:Name="BuyButton"
+        		Spacing="15"
+        		Padding="8, 0"
+				HeightRequest="23"
+        		HorizontalOptions="FillAndExpand"
+        		BackgroundColor="{Binding CatColor}">
+				
+        		<common:CustomLabel
+        			IsVisible="{Binding FromCatalog, Converter={x:Static converters:ConverterResources.InverseBool}}"
+        			InputTransparent="True"
+        			HorizontalOptions="StartAndExpand"
+        			VerticalOptions="CenterAndExpand"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"                          
+        			FontSize="10"
+        			TextColor="White"
+        			Text="{Binding PriceDescription}" />
+
+        		<common:CustomLabel
+        			IsVisible="{Binding FromCatalog}"
+        			InputTransparent="True"
+        			HorizontalOptions="StartAndExpand"
+        			VerticalOptions="CenterAndExpand"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"                          
+        			FontSize="10"
+        			TextColor="White"
+        			Text="{Binding Points, StringFormat='{0} PTS'}" />
+
+        		<common:CustomImage Source="ic_cart"
+        			IsVisible="{Binding Source={x:Static app:SessionData.IsAuthenticatedWithPharmacy}}" 
+        			VerticalOptions="Center" 
+        			HorizontalOptions="End" 
+        			HeightRequest="17" 
+        			WidthRequest="16" />
+
+        		<StackLayout.GestureRecognizers>
+        			<TapGestureRecognizer Tapped="OnAddToCartButtonClicked" />
+        		</StackLayout.GestureRecognizers>
+
+        	</StackLayout>
+ 		</StackLayout>
+	</ContentView.Content>
+</ContentView>

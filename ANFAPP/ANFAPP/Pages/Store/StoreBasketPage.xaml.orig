@@ -1,0 +1,550 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFStorePage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages.Store;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.Store.StoreBasketPage">
+
+  <Grid RowSpacing="0" ColumnSpacing="0">
+    <Grid.RowDefinitions>
+      <!-- Application Bar -->
+      <RowDefinition Height="auto" />
+      <!-- Store Navigation Widget -->
+      <RowDefinition Height="auto" />
+      <!-- Store Filter Widget -->
+      <RowDefinition Height="auto" />
+      <!-- Page -->
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="auto" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+
+    <!-- Basket Items -->
+    <ScrollView Grid.Row="3" Grid.Column="1" Orientation="Vertical"
+			BindingContext="{Binding Basket}"
+			>
+
+      <StackLayout Orientation="Vertical"
+				Spacing="15" Padding="15, 0, 15, 15"
+				IsVisible="{Binding Products, Converter={x:Static converters:ConverterResources.NotNullable}">
+
+        <!-- Separator -->
+        <Frame HasShadow="False" Padding="-15, 0">
+          <BoxView HeightRequest="1" HorizontalOptions="Fill"
+						Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+        </Frame>
+
+        <!-- Items -->
+        <common:ANFRepeaterView x:Name="ProductsList"
+					ItemsSource="{Binding Products}" Padding="-15, -15, -15, 0">
+
+          <!-- Product Template -->
+          <common:ANFRepeaterView.ItemTemplate>
+            <DataTemplate>
+              <ViewCell>
+                <Grid Padding="15, 12, 15, 0" VerticalOptions="Start" BackgroundColor="White"
+									Grid.RowSpacing="2" Grid.ColumnSpacing="5">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="75" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                  </Grid.ColumnDefinitions>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="10" />
+                  </Grid.RowDefinitions>
+
+                  <!-- Product Image -->
+                  <common:CustomWebImage
+										VerticalOptions="StartAndExpand"
+										HorizontalOptions="StartAndExpand"
+										IsVisible="{Binding IsMSRM, Converter={x:Static converters:ConverterResources.InverseBool}}"
+										WidthRequest="75"
+										HeightRequest="75"
+										ImageUrl="{Binding ImageURL}"
+										DefaultImage="catalog_thumbnail.png" />
+
+                  <common:CustomImage VerticalOptions="Start"
+										IsVisible="{Binding IsMSRM}"
+										Source="msrmplaceholder.png"
+										WidthRequest="75"
+										HeightRequest="75" />
+
+                  <!-- Product Info -->
+                  <StackLayout Spacing="0" Orientation="Vertical"
+										VerticalOptions="Start"
+										Grid.Column="1">
+
+                    <!-- CNPEM -->
+                    <common:CustomLabel
+											FontSize="14"
+											IsVisible="{Binding ShowCNPEM}"
+											TextColor="{x:Static resources:ColorResources.TextColorDark}"
+											CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+											Text="{Binding CNPEM, StringFormat='CNPEM: {0}'}"
+											InputTransparent="True" />
+
+                    <!-- Name -->
+                    <common:CustomLabel
+											FontSize="14"
+											TextColor="{x:Static resources:ColorResources.TextColorDark}"
+											CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+											Text="{Binding Name}"
+											IsVisible="{Binding ShowCNPEM, Converter={x:Static converters:ConverterResources.InverseBool}}"
+											InputTransparent="True" />
+
+                    <!-- PA -->
+                    <common:CustomLabel
+											FontSize="10"
+											IsVisible="{Binding ShowCNPEM}"
+											TextColor="{x:Static resources:ColorResources.TextColorDark}"
+											CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+											Text="{Binding Subsativas}"
+											InputTransparent="True" />
+
+                    <!-- Dosage -->
+                    <common:CustomLabel
+											FontSize="10"
+											TextColor="{x:Static resources:ColorResources.TextColorDark}"
+											CustomFont="{x:Static resources:FontResources.RegularFont}"
+											Text="{Binding Presentation}"
+											IsVisible="{Binding ShowCNPEM, Converter={x:Static converters:ConverterResources.InverseBool}}"
+											InputTransparent="True" />
+
+                    <!-- Brand -->
+                    <common:CustomLabel
+											FontSize="10"
+											TextColor="{x:Static resources:ColorResources.TextColorDark}"
+											CustomFont="{x:Static resources:FontResources.RegularFont}"
+											Text="{Binding Brand}"
+											IsVisible="{Binding ShowCNPEM, Converter={x:Static converters:ConverterResources.InverseBool}}"
+											InputTransparent="True" />
+
+                    <!-- Price per Unit -->
+                    <common:CustomLabel
+											FontSize="10"
+											TextColor="{x:Static resources:ColorResources.TextColorDark}"
+											CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+											IsVisible="{Binding ShowValues}"
+											Text="{Binding PriceDescription}"
+											InputTransparent="True" />
+
+                    <!-- CNP -->
+                    <common:CustomLabel
+											FontSize="10"
+											IsVisible="{Binding HasCNP}"
+											TextColor="{x:Static resources:ColorResources.TextColorDark}"
+											CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+											Text="{Binding CNP, StringFormat='CNP: {0}'}"
+											InputTransparent="True" />
+                    <!--IsVisible="{Binding HasCNP, Converter={x:Static converters:ConverterResources.NotNullable}"-->
+
+                    <StackLayout.GestureRecognizers>
+                      <TapGestureRecognizer Tapped="OnItemClicked" />
+                    </StackLayout.GestureRecognizers>
+
+                  </StackLayout>
+
+                  <!-- Quantity Input -->
+                  <common:CustomEntry HeightRequest="30" WidthRequest="36" Grid.Column="2"
+										HorizontalOptions="End" VerticalOptions="End"
+										CenterText="true"
+										FontSize="15"
+										Keyboard="Numeric"
+										CustomPadding="0, 0"
+										BackgroundResource="bg_input.png"
+										Text="{Binding Quantity, Mode=OneWay}"
+										Completed="OnQuantityEditComplete"
+										TextChanged="OnTextChanged"
+										TextColor="{x:Static resources:ColorResources.TextColorDark}"
+										CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+                  <!-- Pricing Info -->
+                  <StackLayout Spacing="0"
+										IsVisible="{Binding ShowValues}"
+										Orientation="Vertical" HorizontalOptions="End"
+										Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+
+                    <!-- Price -->
+                    <common:CustomLabel
+											FontSize="16"
+											HorizontalOptions="End"
+											TextColor="{x:Static resources:ColorResources.TextColorDark}"
+											CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+											Text="{Binding ValueDescription}" />
+                  </StackLayout>
+
+                  <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+										IsVisible="{Binding ShowValues, Converter={x:Static converters:ConverterResources.InverseBool}}"
+										VerticalOptions="Start"
+										HorizontalOptions="End"
+										Padding="0,8,5,0">
+
+                    <common:CustomImage WidthRequest="25" HeightRequest="25"
+											VerticalOptions="Start"
+											HorizontalOptions="End"
+											Source="ic_msrm_alert.png" />
+                  </Grid>
+
+
+                  <!-- Delete Button -->
+                  <!--<common:CustomButton x:Name="DeleteButton"
+										Grid.Column="2"
+										HeightRequest="25"
+										WidthRequest="25"
+										VerticalOptions="Start"
+										Image="bt_trashbin_orange"
+										Clicked="OnDeleteButtonClicked"
+										BackgroundColor="Transparent" />-->
+
+                  <common:CustomImage x:Name="DeleteButton"
+										Grid.Column="2"
+										HeightRequest="25"
+										WidthRequest="25"
+										VerticalOptions="Start"
+										Source="bt_trashbin_orange.png"
+										BackgroundColor="Transparent" >
+                    <common:CustomImage.GestureRecognizers>
+                      <TapGestureRecognizer Tapped="OnDeleteButtonClicked" />
+                    </common:CustomImage.GestureRecognizers>
+                  </common:CustomImage>
+
+                  <!-- Separator -->
+                  <Frame HasShadow="False" Padding="-15, 0" Grid.Row="2" VerticalOptions="End" Grid.ColumnSpan="3">
+                    <BoxView HeightRequest="1" HorizontalOptions="Fill"
+											Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+                  </Frame>
+                </Grid>
+              </ViewCell>
+            </DataTemplate>
+          </common:ANFRepeaterView.ItemTemplate>
+        </common:ANFRepeaterView>
+
+        <!-- Totals -->
+        <Grid RowSpacing="0" ColumnSpacing="20" HorizontalOptions="FillAndExpand">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+          </Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+            <!-- Points -->
+            <RowDefinition Height="auto" />
+            <!-- Product Totals -->
+            <RowDefinition Height="auto" />
+            <!-- Vouchers -->
+            <RowDefinition Height="auto" />
+            <!-- Postage -->
+            <RowDefinition Height="auto" />
+            <!-- Reservation Tax -->
+            <RowDefinition Height="auto" />
+            <!-- Margin -->
+            <RowDefinition Height="auto" />
+            <!-- Total -->
+            <RowDefinition Height="auto" />
+          </Grid.RowDefinitions>
+
+          <!-- Points -->
+          <common:CustomLabel Grid.Row="0" Grid.Column="1"
+						IsVisible="{Binding HasUsedPoints}"
+						FontSize="14"
+						HorizontalOptions="End"
+						VerticalOptions="Center"
+						Text="Pontos utilizados:"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+          <common:CustomLabel Grid.Row="0" Grid.Column="2"
+						IsVisible="{Binding HasUsedPoints}"
+						FontSize="14"
+						HorizontalOptions="End"
+						VerticalOptions="Center"
+						Text="{Binding TotalUsedPoints}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+
+          <!-- Subtotal -->
+          <common:CustomLabel Grid.Row="1" Grid.Column="1"
+						IsVisible="{Binding HasSurcharges}"
+						FontSize="14"
+						HorizontalOptions="End"
+						VerticalOptions="Center"
+						Text="Total produtos:"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+          <common:CustomLabel Grid.Row="1" Grid.Column="2"
+						IsVisible="{Binding HasSurcharges}"
+						FontSize="14"
+						HorizontalOptions="End"
+						VerticalOptions="Center"
+						Text="{Binding TotalProductValueDescription}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+
+          <!-- Vouchers -->
+          <common:CustomLabel Grid.Row="2" Grid.Column="1"
+						IsVisible="{Binding HasVouchersValue}"
+						FontSize="14"
+						HorizontalOptions="End"
+						VerticalOptions="Center"
+						Text="Vales e Promoções:"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+          <common:CustomLabel Grid.Row="2" Grid.Column="2"
+						IsVisible="{Binding HasVouchersValue}"
+						FontSize="14"
+						HorizontalOptions="End"
+						VerticalOptions="Center"
+						Text="{Binding VouchersValueDescription}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+
+          <!-- Postage -->
+          <common:CustomLabel Grid.Row="3" Grid.Column="1"
+						IsVisible="{Binding HasPostageValue}"
+						FontSize="14"
+						HorizontalOptions="End"
+						VerticalOptions="Center"
+						Text="Valor de portes:"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+          <common:CustomLabel Grid.Row="3" Grid.Column="2"
+						IsVisible="{Binding HasPostageValue}"
+						FontSize="14"
+						HorizontalOptions="End"
+						VerticalOptions="Center"
+						Text="{Binding PostageValueDescription}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+
+          <!-- Reservation Tax -->
+          <!--<common:CustomLabel Grid.Row="4" Grid.Column="1"
+						IsVisible="{Binding HasReservationTaxValue}"
+						FontSize="14"
+						HorizontalOptions="End"
+						VerticalOptions="Center"
+						Text="Taxa de reserva:"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+					<common:CustomLabel Grid.Row="4" Grid.Column="2"
+						IsVisible="{Binding HasReservationTaxValue}"
+						FontSize="14"
+						HorizontalOptions="End"
+						VerticalOptions="Center"
+						Text="{Binding ReservationTaxDescription}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />-->
+
+          <!-- Margin -->
+          <ContentView Grid.Row="5" Grid.ColumnSpan="3" HeightRequest="10" BackgroundColor="Transparent" IsVisible="{Binding HasSubtotals}" />
+
+          <!-- Total Amount -->
+          <common:CustomLabel Grid.Row="6" Grid.Column="1"
+						IsVisible="{Binding TotalInvoiceHasValue}"
+						FontSize="20"
+						HorizontalOptions="End"
+						VerticalOptions="Center"
+						Text="Total:"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+          <common:CustomLabel Grid.Row="6" Grid.Column="2"
+						IsVisible="{Binding TotalInvoiceHasValue}"
+						FontSize="18"
+						HorizontalOptions="End"
+						VerticalOptions="Center"
+						Text="{Binding TotalValueDescription}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+        </Grid>
+
+        <StackLayout Spacing="10" Orientation="Horizontal"
+					VerticalOptions="Start"
+					HorizontalOptions="End"
+					Padding="0, 8, 5, 0"
+					IsVisible="{Binding HasMSRM}">
+
+          <common:CustomLabel
+						FontSize="10"
+						VerticalOptions="Center"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						Text="{x:Static app:AppResources.StoreBasketMSRMDisclaimer}" />
+
+          <common:CustomImage WidthRequest="25" HeightRequest="25"
+						VerticalOptions="Center"
+						Source="ic_msrm_alert.png" />
+        </StackLayout>
+         
+        <!-- Checkout Button -->
+        <common:CustomButton HeightRequest="40"
+					HorizontalOptions="FillAndExpand"
+					FontSize="15"
+					BorderRadius="2"
+					Clicked="OnCheckoutClicked"
+					Text="{x:Static app:AppResources.StoreBasketCheckoutButton}"
+					TextColor="{x:Static resources:ColorResources.TextColorLight}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					BackgroundColor="{x:Static resources:ColorResources.ANFDarkOrange}" />
+		
+        <!-- Continue Shopping Button -->
+        <common:CustomButton HeightRequest="40"
+					HorizontalOptions="FillAndExpand"
+					FontSize="15"
+					BorderRadius="2"
+					BorderWidth="1"
+					Clicked="OnContinueShoppingClicked"
+					Text="{x:Static app:AppResources.StoreBasketContinueShoppingButton}"
+					TextColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					BorderColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+					BackgroundColor="{x:Static resources:ColorResources.APPBackgroundLight}" />
+
+        <!-- Clear Cart Button -->
+        <common:CustomButton HeightRequest="40"
+					HorizontalOptions="FillAndExpand"
+					FontSize="15"
+					BorderRadius="2"
+					BorderWidth="1"
+					Clicked="OnClearCartClicked"
+					Text="LIMPAR CARRINHO"
+					TextColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					BorderColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+					BackgroundColor="{x:Static resources:ColorResources.APPBackgroundLight}" />
+
+      </StackLayout>
+
+    </ScrollView>
+    <ScrollView IsVisible="{Binding hasProducts}" Grid.Row="3" Grid.Column="1" Orientation="Vertical">
+		<StackLayout Padding="15,0,15,0" IsVisible = "true" >
+				<!-- Empty Basket Label -->
+	   	 <common:CustomLabel Grid.Row="3" Grid.Column="1"
+				FontSize="16"
+				HorizontalOptions="Center"
+				VerticalOptions="Start"
+				InputTransparent="True"
+				IsVisible="true"
+				Text="{x:Static app:AppResources.StoreBasketEmptyLabel}"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+		<!-- Vouchers -->
+			<Grid Padding="0,20,0,0" IsVisible="{Binding hasVouchers}">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="0" />
+		            <ColumnDefinition Width="*" />
+		            <ColumnDefinition Width="auto" />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+	            <!-- Points -->
+	            <RowDefinition Height="auto" />
+	            <!-- Product Totals -->
+	            <RowDefinition Height="auto" />
+	            <!-- Vouchers -->
+	            <RowDefinition Height="auto" />
+	            <!-- Postage -->
+	            <RowDefinition Height="auto" />
+	          </Grid.RowDefinitions>
+
+				<common:CustomLabel Grid.Row="0" Grid.Column="1"
+						IsVisible="true"
+						FontSize="14"
+						HorizontalOptions="End"
+						VerticalOptions="Center"
+						Text="Vales e Promoções:"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+		  		<common:CustomLabel  Grid.Row="0" Grid.Column="2"
+						IsVisible="true"
+						FontSize="14"
+						HorizontalOptions="Start"
+						VerticalOptions="End"
+						x:Name="xVales"
+						Text="{Binding VouchersValueDescription}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+			</Grid>
+				<!-- Continue Shopping Button -->
+	        <common:CustomButton HeightRequest="40" 
+						IsVisible="{Binding hasVouchers}"
+						HorizontalOptions="FillAndExpand"
+						FontSize="15"
+						BorderRadius="2"
+						BorderWidth="1"
+						Clicked="OnContinueShoppingClicked"
+						Text="{x:Static app:AppResources.StoreBasketContinueShoppingButton}"
+						TextColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						BorderColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+						BackgroundColor="{x:Static resources:ColorResources.APPBackgroundLight}" />
+
+	        <!-- Clear Cart Button -->
+	        <common:CustomButton HeightRequest="40"
+						HorizontalOptions="FillAndExpand"
+						FontSize="15"
+						BorderRadius="2"
+						BorderWidth="1"
+						IsVisible="{Binding hasVouchers}"
+						Clicked="OnClearCartClicked"
+						Text="LIMPAR CARRINHO"
+						TextColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						BorderColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+						BackgroundColor="{x:Static resources:ColorResources.APPBackgroundLight}" />
+		 </StackLayout> 
+	</ScrollView>
+
+    <!-- Store Search Widget -->
+    <views:StoreSearchWidget Grid.Row="1" Grid.Column="1"
+			SearchParamsRefreshed="OnSearch"
+			FiltersEnabled="False"
+			Padding="0, 15" />
+
+    <!-- Store Navigation Widget -->
+    <views:StoreNavigationWidget Grid.Row="2" Grid.Column="1"
+      Padding="0,0,0, 15"
+      SelectedTab="LandingPage" />
+
+    <!-- MenuItem -->
+    <views:MenuView x:Name="MenuView" Grid.Row="1" Grid.RowSpan="3" />
+
+    <!-- Application Bar -->
+    <views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+    <!-- Loading Container -->
+    <Grid x:Name="LoadingView" Grid.RowSpan="4" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+      <!-- Loading Indicator -->
+      <common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+    </Grid>
+
+    <common:CustomButton x:Name="TapHandler" Grid.RowSpan="4" Grid.ColumnSpan="2"
+			IsVisible="false"
+			BackgroundColor="Transparent"
+			Clicked="DismissKeyboardProxy"
+			>
+      <!--
+			<ContentView.GestureRecognizers>
+				<TapGestureRecognizer Tapped="DismissKeyboardProxy" />
+			</ContentView.GestureRecognizers>
+			-->
+    </common:CustomButton>
+
+  </Grid>
+</pages:ANFStorePage>

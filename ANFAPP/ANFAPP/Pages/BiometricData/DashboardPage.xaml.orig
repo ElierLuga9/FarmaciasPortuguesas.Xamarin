@@ -1,0 +1,242 @@
+<<<<<<< HEAD
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+  xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+  xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+  xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+  x:Class="ANFAPP.Pages.BiometricData.DashboardPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Page -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<ScrollView Grid.Row="1" Grid.Column="1"
+		  VerticalOptions="FillAndExpand"
+		  HorizontalOptions="FillAndExpand"
+		  IsClippedToBounds="False">
+
+			<StackLayout
+			  Orientation="Vertical"
+			  Spacing="1">
+
+				<!-- IMC Dashboard Widget -->
+				<views:IMCDashboardWidget x:Name="IMCWidget"
+				  HasLink="True"
+				  RoundingFlag="true" />
+
+				<!-- Spacing -->
+				<Grid HeightRequest="10" />
+
+				<!-- Arterial Pressure -->
+				<views:BiometricDashboardButton x:Name="ArterialPressureButton"
+				  BiometricUnit="{x:Static app:AppResources.ArterialPressureUnit}"
+				  Title="{x:Static app:AppResources.ArterialPressureTitle}"
+				  BindingContext="{Binding ArterialPressureVM}"
+				  BiometricValue="{Binding LastEntryValue}"
+				  Icon="ic_biometric_arterial_pressure.png"
+				  ButtonColor="{Binding EntryEvaluator.EvaluationColor}" />
+
+				<!-- Cholesterol -->
+				<views:BiometricDashboardButton x:Name="CholesterolButton"
+				  Title="{x:Static app:AppResources.CholesterolTitle}"
+				  BiometricUnit="{x:Static app:AppResources.CholesterolUnit}"
+				  BindingContext="{Binding CholesterolVM}"
+				  BiometricValue="{Binding LastEntryValue}"
+				  Icon="ic_biometric_cholesterol.png"
+				  ButtonColor="{Binding EntryEvaluator.EvaluationColor}" />
+
+				<!-- Glicemia -->
+				<views:BiometricDashboardButton x:Name="GlicemiaButton"
+				  Title="{x:Static app:AppResources.GlicemiaTitle}"
+				  BiometricUnit="{x:Static app:AppResources.GlicemiaUnit}"
+				  BindingContext="{Binding GlicemiaVM}"
+				  BiometricValue="{Binding LastEntryValue}"
+				  Icon="ic_biometric_glicemia.png"
+				  ButtonColor="{Binding EntryEvaluator.EvaluationColor}" />
+
+				<!-- Abdominal Perimeter -->
+				<views:BiometricDashboardButton x:Name="AbdominalPerimeterButton"
+				  Title="{x:Static app:AppResources.AbdominalPerimeterTitle}"
+				  BiometricUnit="{x:Static app:AppResources.AbdominalPerimeterUnit}"
+				  BindingContext="{Binding AbdominalPerimeterVM}"
+				  BiometricValue="{Binding LastEntryValue}"
+				  Icon="ic_biometric_abdominal_perimeter.png"
+				  ButtonColor="{Binding EntryEvaluator.EvaluationColor}" />
+
+				<!-- Triglycerides -->
+				<views:BiometricDashboardButton x:Name="TriglyceridesButton"
+				  Title="{x:Static app:AppResources.TriglyceridesTitle}"
+				  BiometricUnit="{x:Static app:AppResources.TriglyceridesUnit}"
+				  BindingContext="{Binding TriglyceridesVM}"
+				  BiometricValue="{Binding LastEntryValue}"
+				  Icon="ic_biometric_triglycerides.png"
+				  ButtonColor="{Binding EntryEvaluator.EvaluationColor}" />
+
+				<!-- Footer Message -->
+				<Frame Padding="15, 20"
+				  HasShadow="False"
+				  HorizontalOptions="FillAndExpand">
+
+					<common:CustomLabel
+					  FontSize="11"
+					  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					  Text="{x:Static app:AppResources.BiometricDashboardFooterMessage}" />
+				</Frame>
+			</StackLayout>
+		</ScrollView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>
+=======
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+  xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+  xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+  xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+  x:Class="ANFAPP.Pages.BiometricData.DashboardPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Page -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<ScrollView Grid.Row="1" Grid.Column="1"
+		  VerticalOptions="FillAndExpand"
+		  HorizontalOptions="FillAndExpand"
+		  IsClippedToBounds="False">
+
+			<StackLayout
+			  Orientation="Vertical"
+			  Spacing="1">
+
+				<!-- IMC Dashboard Widget -->
+				<views:IMCDashboardWidget x:Name="IMCWidget"
+				  HasLink="True"
+				  RoundingFlag="true" />
+
+				<!-- Spacing -->
+				<Grid HeightRequest="10" />
+
+				<!-- Arterial Pressure -->
+				<views:BiometricDashboardButton x:Name="ArterialPressureButton"
+				  BiometricUnit="{x:Static app:AppResources.ArterialPressureUnit}"
+				  Title="{x:Static app:AppResources.ArterialPressureTitle}"
+				  BindingContext="{Binding ArterialPressureVM}"
+				  BiometricValue="{Binding LastEntryValue}"
+				  Icon="ic_biometric_arterial_pressure.png"
+				  ButtonColor="{Binding EntryEvaluator.EvaluationColor}" />
+
+				<!-- Cholesterol -->
+				<views:BiometricDashboardButton x:Name="CholesterolButton"
+				  Title="{x:Static app:AppResources.CholesterolTitle}"
+				  BiometricUnit="{x:Static app:AppResources.CholesterolUnit}"
+				  BindingContext="{Binding CholesterolVM}"
+				  BiometricValue="{Binding LastEntryValue}"
+				  Icon="ic_biometric_cholesterol.png"
+				  ButtonColor="{Binding EntryEvaluator.EvaluationColor}" />
+
+				<!-- Glicemia -->
+				<views:BiometricDashboardButton x:Name="GlicemiaButton"
+				  Title="{x:Static app:AppResources.GlicemiaTitle}"
+				  BiometricUnit="{x:Static app:AppResources.GlicemiaUnit}"
+				  BindingContext="{Binding GlicemiaVM}"
+				  BiometricValue="{Binding LastEntryValue}"
+				  Icon="ic_biometric_glicemia.png"
+				  ButtonColor="{Binding EntryEvaluator.EvaluationColor}" />
+
+				<!-- Abdominal Perimeter -->
+				<views:BiometricDashboardButton x:Name="AbdominalPerimeterButton"
+				  Title="{x:Static app:AppResources.AbdominalPerimeterTitle}"
+				  BiometricUnit="{x:Static app:AppResources.AbdominalPerimeterUnit}"
+				  BindingContext="{Binding AbdominalPerimeterVM}"
+				  BiometricValue="{Binding LastEntryValue}"
+				  Icon="ic_biometric_abdominal_perimeter.png"
+				  ButtonColor="{Binding EntryEvaluator.EvaluationColor}" />
+
+				<!-- Triglycerides -->
+				<views:BiometricDashboardButton x:Name="TriglyceridesButton"
+				  Title="{x:Static app:AppResources.TriglyceridesTitle}"
+				  BiometricUnit="{x:Static app:AppResources.TriglyceridesUnit}"
+				  BindingContext="{Binding TriglyceridesVM}"
+				  BiometricValue="{Binding LastEntryValue}"
+				  Icon="ic_biometric_triglycerides.png"
+				  ButtonColor="{Binding EntryEvaluator.EvaluationColor}" />
+
+				<!-- Footer Message -->
+				<Frame Padding="15, 20"
+				  HasShadow="False"
+				  HorizontalOptions="FillAndExpand">
+
+					<common:CustomLabel
+					  FontSize="11"
+					  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					  Text="{x:Static app:AppResources.BiometricDashboardFooterMessage}" />
+				</Frame>
+			</StackLayout>
+		</ScrollView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</ANFPage>
+>>>>>>> maintenance_phase5_azure_notification

@@ -1,0 +1,210 @@
+<<<<<<< HEAD
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.Store.StorePrescriptionPAListPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Header/Query String -->
+			<RowDefinition Height="44" />
+			<!-- Scrollable Content -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<StackLayout Grid.Row="1" Grid.Column="1"
+			Padding="15"
+			Spacing="15"
+			Orientation="Vertical"
+			BackgroundColor="{x:Static resources:ColorResources.SchedulerPPGreyN3}">
+
+			<StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+				<common:CustomLabel
+					FontSize="14"
+					VerticalOptions="Center"
+					TextColor="{x:Static resources:ColorResources.SchedulerTitleTextColor}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					Text="RESULTADO PARA: " />
+				<common:CustomLabel x:Name="QueryString"
+					FontSize="14"
+					VerticalOptions="Center"
+					TextColor="{x:Static resources:ColorResources.SchedulerTitleTextColor}"
+					CustomFont="{x:Static resources:FontResources.BoldFont}" 
+					Text="{Binding PAQuery}" />
+			</StackLayout>
+			
+		</StackLayout>
+
+		<common:CustomListView Grid.Row="2" Grid.Column="1"
+			x:Name="PAList"
+			HasUnevenRows="True"
+			VerticalOptions="FillAndExpand"
+			ItemsSource="{Binding PAQueryItems}"
+			SeparatorColor="{x:Static resources:ColorResources.LocatorSeparatorColorLight}"
+			ItemSelected="OnItemSelected">
+			<common:CustomListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<StackLayout Orientation="Horizontal" Padding="15, 10" Spacing="15" MinimumHeightRequest="44">
+							<common:CustomLabel
+								FontSize="15"
+								HorizontalOptions="StartAndExpand"
+								VerticalOptions="CenterAndExpand"
+								InputTransparent="True"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}"
+								CustomFont="{x:Static resources:FontResources.RegularFont}"
+								Text="{Binding Name}" />
+
+							<common:CustomImage
+								WidthRequest="6" HeightRequest="10"
+								VerticalOptions="Center"
+								HorizontalOptions="End"
+								Source="ic_button_arrow_black" />
+ 						</StackLayout>
+					</ViewCell>
+				</DataTemplate>
+			</common:CustomListView.ItemTemplate>
+		</common:CustomListView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" Grid.RowSpan="2" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="3" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>
+=======
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.Store.StorePrescriptionPAListPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Header/Query String -->
+			<RowDefinition Height="44" />
+			<!-- Scrollable Content -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<StackLayout Grid.Row="1" Grid.Column="1"
+			Padding="15"
+			Spacing="15"
+			Orientation="Vertical"
+			BackgroundColor="{x:Static resources:ColorResources.SchedulerPPGreyN3}">
+
+			<StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+				<common:CustomLabel
+					FontSize="14"
+					VerticalOptions="Center"
+					TextColor="{x:Static resources:ColorResources.SchedulerTitleTextColor}"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					Text="RESULTADO PARA: " />
+				<common:CustomLabel x:Name="QueryString"
+					FontSize="14"
+					VerticalOptions="Center"
+					TextColor="{x:Static resources:ColorResources.SchedulerTitleTextColor}"
+					CustomFont="{x:Static resources:FontResources.BoldFont}" 
+					Text="{Binding PAQuery}" />
+			</StackLayout>
+			
+		</StackLayout>
+
+		<common:CustomListView Grid.Row="2" Grid.Column="1"
+			x:Name="PAList"
+			HasUnevenRows="True"
+			VerticalOptions="FillAndExpand"
+			ItemsSource="{Binding PAQueryItems}"
+			SeparatorColor="{x:Static resources:ColorResources.LocatorSeparatorColorLight}"
+			ItemSelected="OnItemSelected">
+			<common:CustomListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<StackLayout Orientation="Horizontal" Padding="15, 10" Spacing="15" MinimumHeightRequest="44">
+							<common:CustomLabel
+								FontSize="15"
+								HorizontalOptions="StartAndExpand"
+								VerticalOptions="CenterAndExpand"
+								InputTransparent="True"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}"
+								CustomFont="{x:Static resources:FontResources.RegularFont}"
+								Text="{Binding Name}" />
+
+							<common:CustomImage
+								WidthRequest="6" HeightRequest="10"
+								VerticalOptions="Center"
+								HorizontalOptions="End"
+								Source="ic_button_arrow_black" />
+ 						</StackLayout>
+					</ViewCell>
+				</DataTemplate>
+			</common:CustomListView.ItemTemplate>
+		</common:CustomListView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" Grid.RowSpan="2" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="3" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</ANFPage>
+>>>>>>> maintenance_phase5_azure_notification

@@ -1,0 +1,552 @@
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug_QA</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{67F9D3A8-F71E-4428-913F-C37AE82CDB24}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ANFAPP.Logic</RootNamespace>
+    <AssemblyName>ANFAPP.Logic</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile49</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <ReleaseVersion>2.0</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_QA|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug_QA</OutputPath>
+    <DefineConstants>DEBUG;TRACE;QA</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_Prod|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug_Prod</OutputPath>
+    <DefineConstants>DEBUG;TRACE;PROD</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release_Prod|AnyCPU' ">
+    <DebugType></DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release_Prod</OutputPath>
+    <DefineConstants>TRACE;PROD</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release_QA|AnyCPU' ">
+    <DebugType></DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release_QA</OutputPath>
+    <DefineConstants>TRACE;QA</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="BusinessLogic\BiometricData\BiometricEvaluator.cs" />
+    <Compile Include="BusinessLogic\BiometricData\WeightEvaluator.cs" />
+    <Compile Include="BusinessLogic\BiometricData\HeightEvaluator.cs" />
+    <Compile Include="Database\DAOs\BiometricData\BiometricDataDAO.cs" />
+    <Compile Include="BusinessLogic\BiometricData\IBiometricEvaluator.cs" />
+    <Compile Include="AppResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="BusinessLogic\BiometricData\AbdominalPerimeterEvaluator.cs" />
+    <Compile Include="BusinessLogic\BiometricData\ArterialPressureEvaluator.cs" />
+    <Compile Include="BusinessLogic\BiometricData\CholesterolEvaluator.cs" />
+    <Compile Include="BusinessLogic\BiometricData\GlicemiaEvaluator.cs" />
+    <Compile Include="BusinessLogic\BiometricData\IMCEvaluator.cs" />
+    <Compile Include="BusinessLogic\BiometricData\TriglyceridesEvaluator.cs" />
+    <Compile Include="Database\DAO.cs" />
+    <Compile Include="Database\DAOs\BiometricData\AbdominalPerimeterDAO.cs" />
+    <Compile Include="Database\DAOs\BiometricData\ArterialPressureDAO.cs" />
+    <Compile Include="Database\DAOs\BiometricData\CholesterolDAO.cs" />
+    <Compile Include="Database\DAOs\BiometricData\GlicemiaDAO.cs" />
+    <Compile Include="Database\DAOs\BiometricData\HeightDAO.cs" />
+    <Compile Include="Database\DAOs\BiometricData\IMCDAO.cs" />
+    <Compile Include="Database\DAOs\BiometricData\TriglyceridesDAO.cs" />
+    <Compile Include="Database\DAOs\DosageScheduler\DosageDAO.cs" />
+    <Compile Include="Database\DAOs\DosageScheduler\DosageDataDAO.cs" />
+    <Compile Include="Database\DAOs\DosageScheduler\MedicineDAO.cs" />
+    <Compile Include="Database\DAOs\DosageScheduler\DosingScheduleDAO.cs" />
+    <Compile Include="Database\DAOs\User\UserDAO.cs" />
+    <Compile Include="Database\DAOs\User\VouchersDAO.cs" />
+    <Compile Include="Database\DAOs\BiometricData\WeightDAO.cs" />
+    <Compile Include="Database\DatabaseHelper.cs" />
+    <Compile Include="Database\Models\BiometricData\AbdominalPerimeter.cs" />
+    <Compile Include="Database\Models\BiometricData\ArterialPressure.cs" />
+    <Compile Include="Database\Models\BiometricData\BiometricBase.cs" />
+    <Compile Include="Database\Models\BiometricData\Cholesterol.cs" />
+    <Compile Include="Database\Models\DosageScheduler\DosageBase.cs" />
+    <Compile Include="Database\Models\BiometricData\Glicemia.cs" />
+    <Compile Include="Database\Models\BiometricData\Height.cs" />
+    <Compile Include="Database\Models\BiometricData\IMC.cs" />
+    <Compile Include="Database\Models\BiometricData\Triglycerides.cs" />
+    <Compile Include="Database\Models\DosageScheduler\Dosage.cs" />
+    <Compile Include="Database\Models\DosageScheduler\DosingSchedule.cs" />
+    <Compile Include="Database\Models\DosageScheduler\Medicine.cs" />
+    <Compile Include="Database\Models\User\User.cs" />
+    <Compile Include="Database\Models\User\Voucher.cs" />
+    <Compile Include="Database\Models\BiometricData\Weight.cs" />
+    <Compile Include="EventHandlers\OnErrorEventHandler.cs" />
+    <Compile Include="EventHandlers\OnLoadStartEventHandler.cs" />
+    <Compile Include="EventHandlers\OnSuccessEventHandler.cs" />
+    <Compile Include="EventHandlers\AsyncValidationEvent.cs" />
+    <Compile Include="Exceptions\ExpiredTokenException.cs" />
+    <Compile Include="Exceptions\InvalidRequestException.cs" />
+    <Compile Include="Exceptions\NetworkingException.cs" />
+    <Compile Include="Exceptions\PharmacyChangedException.cs" />
+    <Compile Include="Exceptions\RaygunException.cs" />
+    <Compile Include="Exceptions\ServiceErrorException.cs" />
+    <Compile Include="Exceptions\UnauthorizedException.cs" />
+    <Compile Include="Models\Authorization\IAuthorizationBundle.cs" />
+    <Compile Include="Models\Errors\I9ServiceError.cs" />
+    <Compile Include="Models\FacebookObject.cs" />
+    <Compile Include="Models\In\Articles\ArticleIn.cs" />
+    <Compile Include="Models\In\Articles\ArticlesHighlightIn.cs" />
+    <Compile Include="Models\In\Articles\CategoriesIn.cs" />
+    <Compile Include="Models\In\Articles\CategoryArticlesIn.cs" />
+    <Compile Include="Models\In\Articles\SearchArticlesIn.cs" />
+    <Compile Include="Models\In\Articles\SearchCategoriesIn.cs" />
+    <Compile Include="Models\In\AssociationRequestResponseIn.cs" />
+    <Compile Include="Models\In\CardAssociationIn.cs" />
+    <Compile Include="Models\In\CardRegistrationIn.cs" />
+    <Compile Include="Models\In\ChangePasswordIn.cs" />
+    <Compile Include="Models\In\DelTokenIn.cs" />
+    <Compile Include="Models\In\Ecommerce\AddBasketProductsIn.cs" />
+    <Compile Include="Models\In\Ecommerce\AddVoucherToCheckoutIn.cs" />
+    <Compile Include="Models\In\Ecommerce\BasketProductIn.cs" />
+    <Compile Include="Models\In\Ecommerce\CheckoutAddressIn.cs" />
+    <Compile Include="Models\In\Ecommerce\CheckoutConfIn.cs" />
+    <Compile Include="Models\In\Ecommerce\CheckoutDeliveryMethodIn.cs" />
+    <Compile Include="Models\In\Ecommerce\CheckoutPaymentMethodIn.cs" />
+    <Compile Include="Models\In\Ecommerce\CheckoutStartIn.cs" />
+    <Compile Include="Models\In\Ecommerce\DeleteBasketProductIn.cs" />
+    <Compile Include="Models\In\Ecommerce\EditBasketProductIn.cs" />
+    <Compile Include="Models\In\Ecommerce\BasketIn.cs" />
+    <Compile Include="Models\In\Ecommerce\GetOrderDetailIn.cs" />
+    <Compile Include="Models\In\Ecommerce\GetOrdersIn.cs" />
+    <Compile Include="Models\In\Ecommerce\PromotionsIn.cs" />
+    <Compile Include="Models\In\FacebookAuthorizationIn.cs" />
+    <Compile Include="Models\In\FamilyCardAssociationRequestIn.cs" />
+    <Compile Include="Models\In\GameCenterIn.cs" />
+    <Compile Include="Models\In\GetTokenIn.cs" />
+    <Compile Include="Models\In\GetUpdatedMedicineIn.cs" />
+    <Compile Include="Models\In\GetUpdatedSchedulesIn.cs" />
+    <Compile Include="Models\In\NewTomaToPlanIn.cs" />
+    <Compile Include="Models\In\UpdateDosageIn.cs" />
+    <Compile Include="Models\In\UpdateDosingSchedulesIn.cs" />
+    <Compile Include="Models\In\UpdateMedsIn.cs" />
+    <Compile Include="Models\In\UserRegistrationIn.cs" />
+    <Compile Include="Models\In\VoucherAquisitionIn.cs" />
+    <Compile Include="Models\Objects\I9BaseResponse.cs" />
+    <Compile Include="Models\Out\Articles\ArticleOut.cs" />
+    <Compile Include="Models\Out\Articles\ArticleProductOut.cs" />
+    <Compile Include="Models\Out\Articles\CatOut.cs" />
+    <Compile Include="Models\Out\Articles\SearchArticlesOut.cs" />
+    <Compile Include="Models\Out\Articles\GetSectionsOut.cs" />
+    <Compile Include="Models\Out\Articles\HighlightOut.cs" />
+    <Compile Include="Models\Out\Articles\SectionsOut.cs" />
+    <Compile Include="Models\Out\AssociationRequestsOut.cs" />
+    <Compile Include="Models\Out\AssociationRequestOut.cs" />
+    <Compile Include="Models\Out\CardOut.cs" />
+    <Compile Include="Models\Out\CardRegistrationOut.cs" />
+    <Compile Include="Models\Out\Ecommerce\AddressOut.cs" />
+    <Compile Include="Models\Out\Articles\ArticlesHighlightOut.cs" />
+    <Compile Include="Models\Out\Ecommerce\BasketOut.cs" />
+    <Compile Include="Models\Out\Ecommerce\BasketProductOut.cs" />
+    <Compile Include="Models\Out\Ecommerce\CheckoutConfOut.cs" />
+    <Compile Include="Models\Out\Ecommerce\CheckoutStartOut.cs" />
+    <Compile Include="Models\Out\Ecommerce\DeliveryOut.cs" />
+    <Compile Include="Models\Out\Ecommerce\DosageFilterOut.cs" />
+    <Compile Include="Models\Out\Ecommerce\GetMyFarmDetailOut.cs" />
+    <Compile Include="Models\Out\Ecommerce\FFFilterOut.cs" />
+    <Compile Include="Models\Out\Ecommerce\ProductOut.cs" />
+    <Compile Include="Models\Out\Ecommerce\SearchOut.cs" />
+    <Compile Include="Models\Out\Ecommerce\UserOrderOut.cs" />
+    <Compile Include="Models\Out\FamilyMembersOut.cs" />
+    <Compile Include="Models\Out\FamilyMemberOut.cs" />
+    <Compile Include="Models\Out\Ecommerce\IVAOut.cs" />
+    <Compile Include="Models\Out\AchievementCenterOut.cs" />
+    <Compile Include="Models\Out\GetTokenOUt.cs" />
+    <Compile Include="Models\Out\MedicineOut.cs" />
+    <Compile Include="Models\Out\NewTomaToPlanOut.cs" />
+    <Compile Include="Models\Out\PointsMovementOut.cs" />
+    <Compile Include="Models\Out\Ecommerce\PromotionsOut.cs" />
+    <Compile Include="Models\Out\SuggestedPharmOut.cs" />
+    <Compile Include="Models\Out\UpdatedDosagesOut.cs" />
+    <Compile Include="Models\Out\UpdatedDosingSchedulesOut.cs" />
+    <Compile Include="Models\Out\UpdatedMedicineOut.cs" />
+    <Compile Include="Models\Out\UserProfileOut.cs" />
+    <Compile Include="Models\Out\VoucherOut.cs" />
+    <Compile Include="Models\Out\VoucherPointsMatrixOut.cs" />
+    <Compile Include="Models\Out\VoucherPurchaseOut.cs" />
+    <Compile Include="Models\Out\WalletOut.cs" />
+    <Compile Include="Models\ParseNotification.cs" />
+    <Compile Include="Models\PharmacyUser.cs" />
+    <Compile Include="Models\Wrappers\PhotoFile.cs" />
+    <Compile Include="Network\Invokers\AnfRestClient.cs" />
+    <Compile Include="Network\Invokers\I9RestClient.cs" />
+    <Compile Include="Network\Services\Abstract\AnfWS.cs" />
+    <Compile Include="Network\Services\Abstract\I9WS.cs" />
+    <Compile Include="Network\Services\Abstract\WordpressWS.cs" />
+    <Compile Include="Network\Services\ArticlesWS.cs" />
+    <Compile Include="Network\Services\FamilyAccountWS.cs" />
+    <Compile Include="Network\Services\GameCenterWS.cs" />
+    <Compile Include="Network\Services\LoginWS.cs" />
+    <Compile Include="Network\Services\UserCardWS.cs" />
+    <Compile Include="Network\Services\VouchersWS.cs" />
+    <Compile Include="SessionData.cs" />
+    <Compile Include="Utils\IBitmapUtils.cs" />
+    <Compile Include="Utils\IFacebookSDK.cs" />
+    <Compile Include="Utils\IntegerUtils.cs" />
+    <Compile Include="Utils\IRaygunHelper.cs" />
+    <Compile Include="Utils\OnLogoutEventArgs.cs" />
+    <Compile Include="Utils\StringUtils.cs" />
+    <Compile Include="ViewModels\AddToFamilyAccountViewModel.cs" />
+    <Compile Include="ViewModels\CheckoutPhoneConfirmationViewModel.cs" />
+    <Compile Include="ViewModels\AquireVoucherListViewModel.cs" />
+    <Compile Include="ViewModels\ArticleDetailViewModel.cs" />
+    <Compile Include="ViewModels\ArticlesCategoryViewModel.cs" />
+    <Compile Include="ViewModels\ArticlesHighlightViewModel.cs" />
+    <Compile Include="ViewModels\ArticlesSearchViewModel.cs" />
+    <Compile Include="ViewModels\AssociateCardViewModel.cs" />
+    <Compile Include="ViewModels\BarcodeViewModel.cs" />
+    <Compile Include="ViewModels\BaseCheckoutViewModel.cs" />
+    <Compile Include="ViewModels\CheckoutBillingInfoViewModel.cs" />
+    <Compile Include="ViewModels\CheckoutDeliveryMethodViewModel.cs" />
+    <Compile Include="ViewModels\CheckoutFinalStepViewModel.cs" />
+    <Compile Include="ViewModels\CheckoutPaymentViewModel.cs" />
+    <Compile Include="ViewModels\CheckoutReservationViewModel.cs" />
+    <Compile Include="ViewModels\CheckoutVouchersViewModel.cs" />
+    <Compile Include="ViewModels\DosageViewModel.cs" />
+    <Compile Include="ViewModels\DosingScheduleDetailViewModel.cs" />
+    <Compile Include="ViewModels\DosingScheduleListViewModel.cs" />
+    <Compile Include="ViewModels\BiometricIMCViewModel.cs" />
+    <Compile Include="ViewModels\BiometricGlicemiaViewModel.cs" />
+    <Compile Include="ViewModels\BiometricWeightViewModel.cs" />
+    <Compile Include="ViewModels\BiometricHeightViewModel.cs" />
+    <Compile Include="ViewModels\BiometricTriglyceridesViewModel.cs" />
+    <Compile Include="ViewModels\BiometricCholesterolViewModel.cs" />
+    <Compile Include="ViewModels\BiometricAbdominalPerimeterViewModel.cs" />
+    <Compile Include="ViewModels\AddCardsToFamilyAccountViewModel.cs" />
+    <Compile Include="ViewModels\CreateFamilyAccountViewModel.cs" />
+    <Compile Include="ViewModels\EditUserDataViewModel.cs" />
+    <Compile Include="ViewModels\FamilyAccountMasterViewModel.cs" />
+    <Compile Include="ViewModels\FamilyCardAssociationBaseViewModel.cs" />
+    <Compile Include="ViewModels\GetPointsViewModel.cs" />
+    <Compile Include="ViewModels\HighlightsViewModel.cs" />
+    <Compile Include="ViewModels\IViewModel.cs" />
+    <Compile Include="Models\Authorization\AnfAuthorizationBundle.cs" />
+    <Compile Include="Models\In\AuthorizationIn.cs" />
+    <Compile Include="Models\In\RefreshIn.cs" />
+    <Compile Include="Models\Out\AuthorizationOut.cs" />
+    <Compile Include="Models\ServiceError.cs" />
+    <Compile Include="Network\Invokers\RestInvoker.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\ColorResources.cs" />
+    <Compile Include="Resources\DimenResources.cs" />
+    <Compile Include="Resources\FontResources.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="Utils\ISQLite.cs" />
+    <Compile Include="ViewModels\BiometricDataViewModel.cs" />
+    <Compile Include="ViewModels\BiometricArterialPressureViewModel.cs" />
+    <Compile Include="ViewModels\BiometricDashboardViewModel.cs" />
+    <Compile Include="Database\Models\Pharmacies\Pharmacy.cs" />
+    <Compile Include="Database\DAOs\Pharmacies\PharmacyDAO.cs" />
+    <Compile Include="Network\Services\PharmacyWS.cs" />
+    <Compile Include="Exceptions\NotFoundException.cs" />
+    <Compile Include="Models\Out\PharmaciesOut.cs" />
+    <Compile Include="Database\Models\Pharmacies\Localization.cs" />
+    <Compile Include="Database\Models\Pharmacies\ScheduleType.cs" />
+    <Compile Include="Database\Models\Pharmacies\ShiftType.cs" />
+    <Compile Include="Database\DAOs\Pharmacies\ShiftTypeDAO.cs" />
+    <Compile Include="Database\DAOs\Pharmacies\ScheduleTypeDAO.cs" />
+    <Compile Include="Database\DAOs\Pharmacies\LocalizationDAO.cs" />
+    <Compile Include="Helper\PharmacyHelper.cs" />
+    <Compile Include="Database\Models\Pharmacies\ShiftPharmacy.cs" />
+    <Compile Include="Database\DAOs\Pharmacies\ShiftPharmacyDAO.cs" />
+    <Compile Include="ViewModels\KnowThisFarmViewModel.cs" />
+    <Compile Include="ViewModels\LocatorPharmacyDetailsViewModel.cs" />
+    <Compile Include="ViewModels\MyPharmacyWidgetViewModel.cs" />
+    <Compile Include="ViewModels\PromotionsViewModel.cs" />
+    <Compile Include="ViewModels\PromotionsTypeListItemViewModel.cs" />
+    <Compile Include="ViewModels\QuickRegisterViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\PointsHistoryViewModel.cs" />
+    <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
+    <Compile Include="ViewModels\RecoverPasswordViewModel.cs" />
+    <Compile Include="ViewModels\RegisterCardViewModel.cs" />
+    <Compile Include="ViewModels\SaudaWidgetViewModel.cs" />
+    <Compile Include="ViewModels\CheckoutConfirmationViewModel.cs" />
+    <Compile Include="ViewModels\StoreBasketViewModel.cs" />
+    <Compile Include="ViewModels\StoreLandingViewModel.cs" />
+    <Compile Include="ViewModels\StoreSearchableViewModel.cs" />
+    <Compile Include="ViewModels\StoreSearchViewModel.cs" />
+    <Compile Include="ViewModels\UserAreaViewModel.cs" />
+    <Compile Include="ViewModels\UserCardViewModel.cs" />
+    <Compile Include="ViewModels\UserOrderDetailsViewModel.cs" />
+    <Compile Include="ViewModels\UserOrdersViewModel.cs" />
+    <Compile Include="ViewModels\UsersViewModel.cs" />
+    <Compile Include="ViewModels\LocalizationViewModel.cs" />
+    <Compile Include="Helper\Grouping.cs" />
+    <Compile Include="Models\Objects\LocalizationShort.cs" />
+    <Compile Include="ViewModels\PharmacyViewModel.cs" />
+    <Compile Include="Resources\EnumResources.cs" />
+    <Compile Include="Utils\PharmacyUtils.cs" />
+    <Compile Include="Models\Objects\MenuText.cs" />
+    <Compile Include="ViewModels\MenuTextViewModel.cs" />
+    <Compile Include="Models\Objects\Location.cs" />
+    <Compile Include="Network\Services\GeoCoderWS.cs" />
+    <Compile Include="Models\Objects\GoogleGeocode.cs" />
+    <Compile Include="ViewModels\CategoryListViewModel.cs" />
+    <Compile Include="StaticData\Models\CatalogProduct.cs" />
+    <Compile Include="StaticData\Models\CatalogCategory.cs" />
+    <Compile Include="StaticData\Models\CatalogFamily.cs" />
+    <Compile Include="StaticData\Models\Catalog.cs" />
+    <Compile Include="ViewModels\VoucherAquisitionViewModel.cs" />
+    <Compile Include="ViewModels\VoucherDetailViewModel.cs" />
+    <Compile Include="ViewModels\VouchersHistoryViewModel.cs" />
+    <Compile Include="ViewModels\VouchersViewModel.cs" />
+    <Compile Include="StaticData\Models\CatalogProductPair.cs" />
+    <Compile Include="Network\Parse\ParseRestClient.cs" />
+    <Compile Include="Utils\GeoUtils.cs" />
+    <Compile Include="Utils\IMixPanel.cs" />
+    <Compile Include="ViewModels\AddDosingScheduleViewModel.cs" />
+    <Compile Include="Helpers\BindablePickerItem.cs" />
+    <Compile Include="Models\Out\MedicineSearchOut.cs" />
+    <Compile Include="Network\Services\ProductSearchWS.cs" />
+    <Compile Include="Network\Services\SchedulerWS.cs" />
+    <Compile Include="Models\In\NewMedToUserIn.cs" />
+    <Compile Include="ViewModels\ListDrugsViewModel.cs" />
+    <Compile Include="ViewModels\DrugDetailViewModel.cs" />
+    <Compile Include="Models\Out\NewMedToUserOut.cs" />
+    <Compile Include="Models\In\NewPlanToMedIn.cs" />
+    <Compile Include="Models\Out\NewPlanToMedOut.cs" />
+    <Compile Include="Models\In\DelTomaIn.cs" />
+    <Compile Include="Models\Out\WSTomasOut.cs" />
+    <Compile Include="Models\In\DelPlanoTomasIn.cs" />
+    <Compile Include="Models\In\DelMedIn.cs" />
+    <Compile Include="ViewModels\AddDrugViewModel.cs" />
+    <Compile Include="EventHandlers\OnAddDrugSuccessEventHandler.cs" />
+    <Compile Include="Models\In\PNConfigIn.cs" />
+    <Compile Include="ViewModels\PharmacySelectionViewModel.cs" />
+    <Compile Include="ViewModels\BannerViewModel.cs" />
+    <Compile Include="ViewModels\StoreProductDetailViewModel.cs" />
+    <Compile Include="Models\Out\Ecommerce\ProductDetailOut.cs" />
+    <Compile Include="ViewModels\StoreImageDetailViewModel.cs" />
+    <Compile Include="Network\Invokers\MagentoRestClient.cs" />
+    <Compile Include="Network\Services\Abstract\MagentoWS.cs" />
+    <Compile Include="Network\Services\ECommerceWS.cs" />
+    <Compile Include="Models\In\Ecommerce\LoginIn.cs" />
+    <Compile Include="Models\Out\Ecommerce\LoginOut.cs" />
+    <Compile Include="Models\Out\Ecommerce\MagentoOut.cs" />
+    <Compile Include="Models\In\Ecommerce\GetMyFarmDetailIn.cs" />
+    <Compile Include="Models\In\Ecommerce\SetMyFarmIn.cs" />
+    <Compile Include="Models\Out\Ecommerce\SetMyFarmOut.cs" />
+    <Compile Include="Models\In\Ecommerce\SearchIn.cs" />
+    <Compile Include="Models\In\Ecommerce\ProductDetailIn.cs" />
+    <Compile Include="Models\In\Ecommerce\CategoriesIn.cs" />
+    <Compile Include="Models\Out\Ecommerce\CategoriesOut.cs" />
+    <Compile Include="ViewModels\StoreCategoriesViewModel.cs" />
+    <Compile Include="ViewModels\CategoryStoreSearchViewModel.cs" />
+    <Compile Include="Models\In\SendReportIn.cs" />
+    <Compile Include="Models\In\Ecommerce\SearchPAIn.cs" />
+    <Compile Include="Models\In\Ecommerce\SearchCNPEMIn.cs" />
+    <Compile Include="Models\Out\Ecommerce\SearchCNPEMOut.cs" />
+    <Compile Include="Models\Out\Ecommerce\SearchPAOut.cs" />
+    <Compile Include="ViewModels\StorePrescriptionViewModel.cs" />
+    <Compile Include="Models\Wrappers\PrescriptionItem.cs" />
+    <Compile Include="Models\In\Ecommerce\GetPAIn.cs" />
+    <Compile Include="Models\Out\Ecommerce\GetPAOut.cs" />
+    <Compile Include="ViewModels\StoreSelectPAViewModel.cs" />
+    <Compile Include="Network\Services\BioWS.cs" />
+    <Compile Include="Models\In\GetBioIn.cs" />
+    <Compile Include="Models\Out\GetBioOut.cs" />
+    <Compile Include="Models\In\Ecommerce\FeaturedProdIn.cs" />
+    <Compile Include="Models\Out\Ecommerce\FeaturedProdOut.cs" />
+    <Compile Include="Models\Out\Ecommerce\GetWishlistOut.cs" />
+    <Compile Include="Models\Out\Ecommerce\WishlistProductOut.cs" />
+    <Compile Include="Models\In\Ecommerce\AddWishlistProdIn.cs" />
+    <Compile Include="Models\In\Ecommerce\ItemWishlistDeleteIn.cs" />
+    <Compile Include="Models\Out\Ecommerce\PointsCatalogProdsOut.cs" />
+    <Compile Include="ViewModels\StorePointsCatalogViewModel.cs" />
+    <Compile Include="ViewModels\StorePointsCatalogProductViewModel.cs" />
+    <Compile Include="ViewModels\FavoritesViewModel.cs" />
+    <Compile Include="ViewModels\StoreGenericSearchViewModel.cs" />
+    <Compile Include="ViewModels\StoreBrandSearchViewModel.cs" />
+    <Compile Include="Utils\IMediaWriter.cs" />
+    <Compile Include="Models\Out\Ecommerce\BrandFilterOut.cs" />
+    <Compile Include="Utils\IHealthDataProvider.cs" />
+    <Compile Include="Utils\HealthDataEventArgs.cs" />
+    <Compile Include="Utils\HealthDataSample.cs" />
+    <Compile Include="Models\In\Ecommerce\GetBannersIn.cs" />
+    <Compile Include="Models\Out\Ecommerce\GetBannersOut.cs" />
+    <Compile Include="Models\Out\Ecommerce\ProductBase.cs" />
+    <Compile Include="Models\Out\Ecommerce\NullToTypeConverter.cs" />
+    <Compile Include="Models\Out\Ecommerce\GetListVouchersOut.cs" />
+    <Compile Include="Models\Out\ClientOut.cs" />
+    <Compile Include="Models\Out\Ecommerce\PharmacyServicesOut.cs" />
+    <Compile Include="ViewModels\PharmacyServicesViewModel.cs" />
+    <Compile Include="Models\In\Ecommerce\PutImageInCartIn.cs" />
+    <Compile Include="Models\In\Ecommerce\DelImageInCartIn.cs" />
+    <Compile Include="Models\Out\Ecommerce\BasketOutBase.cs" />
+    <Compile Include="Utils\PharmacyChangedEventArgs.cs" />
+    <Compile Include="Models\Out\Ecommerce\BasketAddDelOut.cs" />
+    <Compile Include="ViewModels\StoreSearchCatalogViewModel.cs" />
+    <Compile Include="Utils\DateUtils.cs" />
+    <Compile Include="Models\In\Ecommerce\PostOrderIn.cs" />
+    <Compile Include="Models\Out\Ecommerce\ReorderOut.cs" />
+    <Compile Include="ViewModels\PromotionHighlightsViewModel.cs" />
+    <Compile Include="ViewModels\PromotionsListViewModel.cs" />
+    <Compile Include="Database\Models\User\Promotion.cs" />
+    <Compile Include="Database\DAOs\User\PromotionsDAO.cs" />
+    <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Models\Out\Ecommerce\ClientePromoCrmOut.cs" />
+    <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="Models\Out\CardPromoOut.cs" />
+    <Compile Include="ViewModels\UserNotLoggedViewModel.cs" />
+    <Compile Include="Models\In\Ecommerce\ProductVoucherIn.cs" />
+    <Compile Include="Models\Out\Ecommerce\ProductVoucherOut.cs" />
+    <Compile Include="Models\In\Ecommerce\AddProdVoucherIn.cs" />
+    <Compile Include="Models\Out\Ecommerce\AddProductVoucherOut.cs" />
+    <Compile Include="Network\Azure\AzureClient.cs" />
+    <Compile Include="Models\In\UpdateNotificationTokenIn.cs" />
+    <Compile Include="Models\Out\UpdateNotificationTokenOut.cs" />
+    <Compile Include="Models\Out\VouchersDetailsOut.cs" />
+    <Compile Include="Models\In\GetFavPharmIn.cs" />
+    <Compile Include="Models\Out\GetFavPharmOut.cs" />
+    <Compile Include="Models\In\SetMyFavFarmIn.cs" />
+    <Compile Include="Models\In\Ecommerce\GetSAFEBannersIn.cs" />
+    <Compile Include="Models\Out\Ecommerce\SAFEDistrictOut.cs" />
+    <Compile Include="Models\Out\PharmacyScheduleFor24h.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="StaticData\catalog.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Xamarin.Forms.Labs.Cryptography, Version=1.2.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Xamarin.Forms.Labs.Cryptography.1.2.0\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\Xamarin.Forms.Labs.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Settings.Abstractions">
+      <HintPath>..\packages\Xam.Plugins.Settings.2.5.1.0\lib\portable-net45+wp80+win8+wpa81\Plugin.Settings.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Settings">
+      <HintPath>..\packages\Xam.Plugins.Settings.2.5.1.0\lib\portable-net45+wp80+win8+wpa81\Plugin.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Core">
+      <HintPath>..\packages\Xamarin.Forms.2.3.2.127\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform">
+      <HintPath>..\packages\Xamarin.Forms.2.3.2.127\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml">
+      <HintPath>..\packages\Xamarin.Forms.2.3.2.127\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="ModernHttpClient">
+      <HintPath>..\packages\modernhttpclient.2.4.2\lib\Portable-Net45+WinRT45+WP8+WPA81\ModernHttpClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Core">
+      <HintPath>..\packages\XLabs.Core.2.0.5782\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Ioc">
+      <HintPath>..\packages\XLabs.IoC.2.0.5782\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Ioc.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Platform">
+      <HintPath>..\packages\XLabs.Platform.2.0.5782\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Serialization">
+      <HintPath>..\packages\XLabs.Serialization.2.0.5782\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Forms">
+      <HintPath>..\packages\XLabs.Forms.2.0.5782\lib\portable-net45+netcore45+wpa81+wp8\XLabs.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Forms.Charting">
+      <HintPath>..\packages\XLabs.Forms.Charting.2.0.5782\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Forms.Charting.dll</HintPath>
+    </Reference>
+    <Reference Include="ExifLib">
+      <HintPath>..\packages\ExifLib.PCL.1.0.1\lib\portable-net45+sl50+win+WindowsPhoneApp81+wp80+Xamarin.iOS10+MonoAndroid10+MonoTouch10\ExifLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Connectivity.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.Connectivity.2.3.0\lib\portable-net45+wp80+win8+wpa81\Plugin.Connectivity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Connectivity">
+      <HintPath>..\packages\Xam.Plugin.Connectivity.2.3.0\lib\portable-net45+wp80+win8+wpa81\Plugin.Connectivity.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.core">
+      <HintPath>..\packages\SQLitePCLRaw.core.1.1.11\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLitePCLRaw.core.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_green">
+      <HintPath>..\packages\SQLitePCLRaw.bundle_green.1.1.11\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLitePCLRaw.batteries_green.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_v2">
+      <HintPath>..\packages\SQLitePCLRaw.bundle_green.1.1.11\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLitePCLRaw.batteries_v2.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite-net">
+      <HintPath>..\packages\sqlite-net-pcl.1.5.231\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLite-net.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AppResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Import Project="..\packages\Xamarin.Forms.1.4.2.6359\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.4.2.6359\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup />
+  <ItemGroup />
+  <ItemGroup />
+  <ItemGroup />
+  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Network\Azure\" />
+  </ItemGroup>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Import Project="..\packages\Xamarin.Forms.2.3.2.127\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.2.127\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
+</Project>

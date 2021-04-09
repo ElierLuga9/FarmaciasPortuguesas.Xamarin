@@ -1,0 +1,266 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>InfragisticsWP8.Controls.Interactions.XamWindow.v15.1</name>
+    </assembly>
+    <members>
+        <member name="T:Infragistics.Controls.Interactions.DefaultXamWindowStorage">
+            <summary>
+            Default storage for IXamWindowStorage.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Interactions.IXamWindowStorage">
+            <summary>
+            Defines the interface for a storage.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Interactions.IXamWindowStorage.TryGetValue(System.String,System.Boolean@)">
+            <summary>
+            Tries to get the stored value.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="value">The value.</param>
+            <returns>True if the key exists, otherwise False.</returns>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.IXamWindowStorage.Item(System.String)">
+            <summary>
+            Gets or sets the with the specified key.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Interactions.DefaultXamWindowStorage.TryGetValue(System.String,System.Boolean@)">
+            <summary>
+            Tries to get the stored value.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="value">The value.</param>
+            <returns>True if the key exists, otherwise False.</returns>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.DefaultXamWindowStorage.Item(System.String)">
+            <summary>
+            Gets or sets the with the specified key.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Controls.Interactions.XamWindow">
+            <summary>
+            Represents a control that can be used to show a floating window.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Controls.Interactions.XamWindow.#ctor">
+            <summary>
+            Initializes a default, empty XamWindow object.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamWindow.ContentProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamWindow.Content"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamWindow.ContentTemplateProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamWindow.ContentTemplate"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamWindow.IsOpenProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamWindow.IsOpen"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamWindow.IsFullScreenProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamWindow.IsFullScreen"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamWindow.IsModalProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamWindow.IsModal"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamWindow.ModalBrushProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamWindow.ModalBrush"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamWindow.ModalBrushOpacityProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamWindow.ModalBrushOpacity"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamWindow.HorizontalPositionProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamWindow.HorizontalPosition"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamWindow.VerticalPositionProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamWindow.VerticalPosition"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamWindow.HorizontalOffsetProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamWindow.HorizontalOffset"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamWindow.VerticalOffsetProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamWindow.VerticalOffset"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamWindow.IsClosedOnBackButtonProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamWindow.IsClosedOnBackButton"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamWindow.IsAppBarHiddenProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamWindow.IsAppBarHidden"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamWindow.IsClosedOnOutsideTapProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamWindow.IsClosedOnOutsideTap"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamWindow.UseOpenAnimationProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamWindow.UseOpenAnimation"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamWindow.UseCloseAnimationProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamWindow.UseCloseAnimation"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamWindow.ShowAgainProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamWindow.ShowAgain"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamWindow.ForceShowAgainProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamWindow.ForceShowAgain"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Controls.Interactions.XamWindow.UniqueKeyProperty">
+            <summary>
+             Identifies the <see cref="P:Infragistics.Controls.Interactions.XamWindow.UniqueKey"/> dependency property.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamWindow.Content">
+            <summary>
+            Gets or sets the content of the Window.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamWindow.ContentTemplate">
+            <summary>
+            Gets or sets the data template that is used to display the content of the Window.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamWindow.IsOpen">
+            <summary>
+            Gets or sets a value indicating whether the Window is open or not.
+            </summary>
+            <value><c>true</c> if the Window is open; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamWindow.IsFullScreen">
+            <summary>
+            Gets or sets a value indicating whether the Window is shown in full screen or not.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamWindow.IsModal">
+            <summary>
+            Gets or sets a value indicating whether the Window is shown modal or not.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamWindow.ModalBrush">
+            <summary>
+            Gets or sets the modal brush.
+            </summary>
+            <value>The modal brush.</value>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamWindow.ModalBrushOpacity">
+            <summary>
+            Gets or sets the modal brush opacity.
+            </summary>
+            <value>The modal brush opacity.</value>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamWindow.HorizontalPosition">
+            <summary>
+            Gets or sets the horizontal position.
+            </summary>
+            <value>The horizontal position.</value>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamWindow.VerticalPosition">
+            <summary>
+            Gets or sets the vertical position.
+            </summary>
+            <value>The vertical position.</value>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamWindow.HorizontalOffset">
+            <summary>
+            Gets or sets the horizontal offset.
+            </summary>
+            <value>The horizontal offset.</value>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamWindow.VerticalOffset">
+            <summary>
+            Gets or sets the vertical offset.
+            </summary>
+            <value>The vertical offset.</value>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamWindow.IsClosedOnBackButton">
+            <summary>
+            Gets or sets a value indicating whether the Window will be closed or not, when the back button is pressed.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamWindow.IsAppBarHidden">
+            <summary>
+            Gets or sets a value indicating whether the app bar will be hidden or not, when the Window is open.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamWindow.IsClosedOnOutsideTap">
+            <summary>
+            Gets or sets a value indicating whether the Window will be closed or not, when the user taps outside of it.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamWindow.UseOpenAnimation">
+            <summary>
+            Gets or sets a value indicating whether the animation will be shown or not, when the Window is open.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamWindow.UseCloseAnimation">
+            <summary>
+            Gets or sets a value indicating whether the animation will be shown or not, when the Window is closed.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamWindow.ShowAgain">
+            <summary>
+            Gets or sets the ShowAgain property value. When true, the window will be displayed the next time it is requested.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamWindow.ForceShowAgain">
+            <summary>
+            Gets or set the ForceShowAgain property value. When true, the window will be displayed the next time it is requested regardless the ShowAgain property value.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamWindow.UniqueKey">
+            <summary>
+            Gets or sets the UniqueKey property value, used to identify a specific ShowAgain user response.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Controls.Interactions.XamWindow.Storage">
+            <summary>
+            Gets or sets a class implementing the IXamWindowStorage interface. DefaultXamWindowStorage class is set by default.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Interactions.XamWindow.CloseOnBackButton">
+            <summary>
+            Occurs when the back button is pressed and the Window is closed.
+            </summary>
+        </member>
+        <member name="E:Infragistics.Controls.Interactions.XamWindow.Closed">
+            <summary>
+            Occurs when the Window is closed.
+            </summary>
+        </member>
+    </members>
+</doc>

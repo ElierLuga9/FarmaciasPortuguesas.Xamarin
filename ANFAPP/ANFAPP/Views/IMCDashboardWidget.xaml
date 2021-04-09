@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+  xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+  xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+  xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+  xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+  x:Class="ANFAPP.Views.IMCDashboardWidget">
+
+	<ContentView.Content>
+		<Grid ColumnSpacing="0" RowSpacing="0">
+
+			<Grid.RowDefinitions>
+				<!-- Top Margin -->
+				<RowDefinition Height="17" />
+				<!-- Last Updated Label -->
+				<RowDefinition Height="auto" />
+				<!-- Last Updated Value -->
+				<RowDefinition Height="auto" />
+				<!-- Height Weight Buttons -->
+				<RowDefinition Height="auto" />
+				<!-- IMC Gaunge -->
+				<RowDefinition Height="auto" />
+			</Grid.RowDefinitions>
+
+			<!-- Last Updated Label -->
+			<common:CustomLabel Grid.Row="1"
+			  FontSize="15"
+			  HorizontalOptions="Center"
+			  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+			  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+			  Text="{x:Static app:AppResources.BiometricLastUpdated}"
+			  IsVisible="{Binding LastEntry, Converter={x:Static converters:ConverterResources.NotNullable}}" />
+
+			<!-- Last Updated Value -->
+			<common:CustomLabel Grid.Row="2"
+			  FontSize="15"
+			  HorizontalOptions="Center"
+			  CustomMargin="0, 0, 0, 17"
+			  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+			  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+			  Text="{Binding LastEntry.CreationDate, Converter={x:Static converters:ConverterResources.StringToShortDate}}"
+			  IsVisible="{Binding LastEntry, Converter={x:Static converters:ConverterResources.NotNullable}}" />
+
+			<!-- Height Weight Buttons -->
+			<Grid Grid.Row="3"
+			  ColumnSpacing="1"
+			  HeightRequest="77"
+			  HorizontalOptions="FillAndExpand">
+
+				<Grid.ColumnDefinitions>
+					<!-- Left Margin -->
+					<ColumnDefinition Width="15" />
+					<!-- Weight Button -->
+					<ColumnDefinition Width="*" />
+					<!-- Height Button -->
+					<ColumnDefinition Width="*" />
+					<!-- Right Margin -->
+					<ColumnDefinition Width="15" />
+				</Grid.ColumnDefinitions>
+
+				<!-- Weight Button -->
+				<common:CustomButton Grid.Column="1"
+					InputTransparent="True"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					BorderRadius="0"
+					BackgroundColor="{x:Static resources:ColorResources.APPBackgroundGrey}" />
+
+				<!-- Weight Labels -->
+				<StackLayout Grid.Column="1"
+				  InputTransparent="True"
+				  Spacing="-5"
+				  Orientation="Vertical"
+				  VerticalOptions="Center"
+				  HorizontalOptions="Center">
+
+					<!-- Weight Value -->
+					<StackLayout HorizontalOptions="Center"
+					  InputTransparent="True"
+					  BindingContext="{Binding WeightVM}"
+					  Orientation="Horizontal"
+					  Spacing="5">
+
+						<!-- Value -->
+						<common:CustomLabel
+						  InputTransparent="True"
+						  FontSize="34"
+						  HorizontalOptions="Center"
+						  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						  CustomFont="{x:Static resources:FontResources.BoldFont}"
+						  Text="{Binding LastEntryValue}" />
+
+						<!-- Unit -->
+						<common:CustomLabel
+						  InputTransparent="True"
+						  FontSize="34"
+						  HorizontalOptions="Center"
+						  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						  CustomFont="{x:Static resources:FontResources.BoldFont}"
+						  Text="{x:Static app:AppResources.WeightUnit}" />
+
+					</StackLayout>
+
+					<!-- Weight Label -->
+					<common:CustomLabel
+					  InputTransparent="True"
+					  FontSize="15"
+					  HorizontalOptions="Center"
+					  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					  Text="{x:Static app:AppResources.WeightPageTitle}" />
+
+				</StackLayout>
+
+				<!-- Weight Actual Button (Because InputTransparent works cross-platform... NOT!) -->
+				<common:CustomButton Grid.Column="1"
+				  HorizontalOptions="FillAndExpand"
+				  VerticalOptions="FillAndExpand"
+				  BorderRadius="0"
+				  BackgroundColor="Transparent"
+				  Clicked="WeightButton_Clicked" />
+
+				<!-- Height Button -->
+				<common:CustomButton Grid.Column="2"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"	
+					InputTransparent="True"
+					BorderRadius="0"
+					BackgroundColor="{x:Static resources:ColorResources.APPBackgroundGrey}" />
+
+				<!-- Height Labels -->
+				<StackLayout Grid.Column="2"
+				  InputTransparent="True"
+				  Spacing="-5"
+				  Orientation="Vertical"
+				  VerticalOptions="Center"
+				  HorizontalOptions="Center">
+
+					<!-- Height Value -->
+					<StackLayout HorizontalOptions="Center"
+					  InputTransparent="True"
+					  BindingContext="{Binding HeightVM}"
+					  Orientation="Horizontal"
+					  Spacing="5">
+
+						<!-- Value -->
+						<common:CustomLabel
+						  InputTransparent="True"
+						  FontSize="34"
+						  HorizontalOptions="Center"
+						  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						  CustomFont="{x:Static resources:FontResources.BoldFont}"
+						  Text="{Binding LastEntryValue}" />
+
+						<!-- Unit -->
+						<common:CustomLabel
+						  InputTransparent="True"
+						  FontSize="34"
+						  HorizontalOptions="Center"
+						  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						  CustomFont="{x:Static resources:FontResources.BoldFont}"
+						  Text="{x:Static app:AppResources.HeightUnit}" />
+
+					</StackLayout>
+
+					<!-- Height Label -->
+					<common:CustomLabel
+					  InputTransparent="True"
+					  FontSize="15"
+					  HorizontalOptions="Center"
+					  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					  CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+					  Text="{x:Static app:AppResources.HeightPageTitle}" />
+
+				</StackLayout>
+
+				<!-- Height Actual Button (Because InputTransparent works cross-platform... NOT!) -->
+				<common:CustomButton Grid.Column="2"
+				  HorizontalOptions="FillAndExpand"
+				  VerticalOptions="FillAndExpand"
+				  BorderRadius="0"
+				  BackgroundColor="Transparent"
+				  Clicked="HeightButton_Clicked" />
+			</Grid>
+
+			<!-- IMC Gaunge -->
+			<views:BiometricGauge x:Name="BiometricGauge"
+			  Grid.Row="4"
+			  RoundingFlag="True"
+			  BiometricUnit="{x:Static app:AppResources.IMCUnit}"
+			  BiometricEvaluator="{Binding EntryEvaluator}"
+			  BiometricValue="{Binding LastEntryValue}" />
+
+			<!-- IMC Page Button -->
+			<common:CustomButton x:Name="IMCPageButton"
+			  Grid.Row="4"
+			  HorizontalOptions="FillAndExpand"
+			  VerticalOptions="FillAndExpand"
+			  BackgroundColor="Transparent" />
+
+		</Grid>
+	</ContentView.Content>
+</ContentView>

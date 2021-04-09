@@ -1,0 +1,504 @@
+<<<<<<< HEAD
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.UserArea.Vouchers.VouchersDetailPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>	
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Page -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<Grid Grid.Row="1" Grid.Column="1"
+			RowSpacing="0" ColumnSpacing="0"
+			IsClippedToBounds="False"
+			BindingContext="{Binding Voucher}">
+			<Grid.RowDefinitions>
+				<!--0 Application Bar -->
+				<RowDefinition Height="auto" />
+				<!--1 Spacing -->
+				<RowDefinition Height="24" />
+				<!--2 Card -->
+				<RowDefinition Height="150" />
+				<!--3 Spacing -->
+				<RowDefinition Height="40" />
+				<!--4 Bar Code -->
+				<RowDefinition Height="auto" />
+        <!--5 Voucher Number -->
+        <RowDefinition Height="auto" />
+        <!--6 Expire Date -->
+        <RowDefinition Height="auto" />
+        <!--7 Message Title-->
+        <RowDefinition Height="auto" />
+				<!--8 Description Message -->
+				<RowDefinition Height="auto" />
+				<!--9 Spacing -->
+      <RowDefinition Height="15" />
+			</Grid.RowDefinitions>
+      
+			<Grid.ColumnDefinitions>
+				<!-- Left Margin -->
+				<ColumnDefinition Width="15" />
+				<!-- Content -->
+				<ColumnDefinition Width="*" />
+				<!-- Right Margin -->
+				<ColumnDefinition Width="15" />
+			</Grid.ColumnDefinitions>
+
+			<!-- Card -->
+			<Grid Grid.Row="2" Grid.Column="1"
+				Grid.ColumnSpacing="0" Grid.RowSpacing="0"
+				IsClippedToBounds="False"
+				HorizontalOptions="Center"
+				WidthRequest="300">
+
+				<Grid.GestureRecognizers>
+					<TapGestureRecognizer Tapped="VoucherTap"/>
+				</Grid.GestureRecognizers>
+
+				<Grid.RowDefinitions>
+                  <!-- Spacing -->
+                  <RowDefinition Height="25" />
+                  <!-- Title -->
+                  <RowDefinition Height="50" />
+                  <!-- Spacing -->
+                  <RowDefinition Height="5" />
+                  <!-- Value Title -->
+                  <RowDefinition Height="55" />
+                  <!-- Spacing -->
+                  <RowDefinition Height="65" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                  <!-- Left Margin -->
+                  <ColumnDefinition Width="40" />
+                  <!-- Center Column-->
+                  <ColumnDefinition Width="*" />
+                  <!-- Right Margin -->
+                  <ColumnDefinition Width="40" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Card Background -->
+                <common:CustomImage Grid.Row="0" Grid.Column="0" Grid.RowSpan="5" Grid.ColumnSpan="3"
+                  HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand"
+                  Source="vcardb.png" />
+
+                <!-- Description -->
+                <common:CustomLabel Grid.Row="1" Grid.Column="1" 
+									FontSize="15"
+									VerticalOptions="Start"
+									HorizontalOptions="Start"
+									InputTransparent="True"
+									TextColor="{x:Static resources:ColorResources.ANFWhite}"
+									CustomFont="{x:Static resources:FontResources.RegularFont}"
+									Text="{Binding DescriptionTitle}" />
+
+                <!-- Value -->
+                <common:CustomLabel Grid.Row="3" Grid.Column="1"                                   
+									FontSize="40"
+									VerticalOptions="Start"
+									HorizontalOptions="End"
+									InputTransparent="True"
+									TextColor="{x:Static resources:ColorResources.ANFWhite}"
+									CustomFont="{x:Static resources:FontResources.BoldFont}"
+									Text="{Binding FormatedValue}" />
+			</Grid>
+
+      <!-- Bar Code -->
+      <common:BarcodeView Grid.Row="4" Grid.Column="1"
+                          HeightRequest="40"
+                          WidthRequest="250"
+					HorizontalOptions="CenterAndExpand"
+					VerticalOptions="FillAndExpand"
+					BackgroundColor="Transparent"
+					Code="{Binding Code}"/>
+			<common:CustomButton
+					Clicked="VoucherTap"
+					Grid.Row="4" Grid.Column="1"
+                    HeightRequest="40"
+                    WidthRequest="250"
+					HorizontalOptions="CenterAndExpand"
+					VerticalOptions="FillAndExpand"
+					BackgroundColor="Transparent"/>
+      
+      <!-- Voucher Number -->
+      <common:CustomLabel Grid.Row="5" Grid.Column="1" 
+					FontSize="15"
+					HorizontalOptions="CenterAndExpand"
+					VerticalOptions="CenterAndExpand"
+					Text="{Binding Code, StringFormat='Nº {0}'}"
+					CustomMargin="0, -2, 0, 0"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					TextColor="{x:Static resources:ColorResources.ANFDarkerPaleGrey}" />
+      
+      <!-- Expire Date -->
+      <StackLayout Grid.Row="6" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="Center">
+      <common:CustomLabel 
+					HorizontalOptions="Center"
+					FontSize="12"
+					Text="{x:Static app:AppResources.VoucherDetailExpirationLabel}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					TextColor="{x:Static resources:ColorResources.ANFDarkerPaleGrey}"
+					IsVisible="{Binding IsActive}" />
+      <common:CustomLabel 
+					HorizontalOptions="Center"
+					FontSize="12"
+					Text="{Binding EndDate, Converter={x:Static converters:ConverterResources.StringToShortDate}}"
+					CustomFont="{x:Static resources:FontResources.BoldFont}"
+					TextColor="{x:Static resources:ColorResources.ANFDarkerPaleGrey}"
+					IsVisible="{Binding IsActive}" />
+      </StackLayout>
+      
+			<!-- Description Title -->
+			<common:CustomLabel Grid.Row="7" Grid.Column="1"
+				FontSize="15"
+				TextColor="{x:Static resources:ColorResources.ANFGreen}"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				Text="{x:Static app:AppResources.VouchersDetailDescriptionLabel}" />
+
+			<!-- Description Message -->
+			<common:CustomLabel Grid.Row="8" Grid.Column="1"
+				FontSize="15"
+				TextColor="{x:Static resources:ColorResources.ANFDarkerPaleGrey}"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				Text="{Binding DescriptionDetail}" />
+
+		</Grid>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+    <!--<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />-->
+    <views:ApplicationBarUserCard x:Name="ApplicationBar" Grid.ColumnSpan="2"> </views:ApplicationBarUserCard>
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>
+=======
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.UserArea.Vouchers.VouchersDetailPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+
+		<Grid.RowDefinitions>	
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Page -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		
+	<ScrollView Grid.Row="1" Grid.Column="1">
+		<Grid Grid.Row="1" Grid.Column="1"
+			RowSpacing="0" ColumnSpacing="0"
+			IsClippedToBounds="False"
+			BindingContext="{Binding Voucher}">
+
+			<Grid.RowDefinitions>
+				<!--0 Application Bar -->
+				<RowDefinition Height="auto" />
+				<!--1 Spacing -->
+				<RowDefinition Height="24" />
+				<!--2 Card -->
+				<RowDefinition Height="150" />
+				<!--3 Spacing -->
+				<RowDefinition Height="40" />
+				<!--4 Bar Code -->
+				<RowDefinition Height="auto" />
+		        <!--5 Voucher Number -->
+		        <RowDefinition Height="auto" />
+		        <!--6 Expire Date -->
+		        <RowDefinition Height="auto" />
+		        <!--7 Message Title-->
+		      		  <RowDefinition Height="auto" />
+						<!--8 Description Message -->
+						<RowDefinition Height="auto" />
+						<!--9 Spacing -->
+		     		 	<RowDefinition Height="40" />
+						<RowDefinition Height="33" />
+					</Grid.RowDefinitions>
+      
+			<Grid.ColumnDefinitions>
+				<!-- Left Margin -->
+				<ColumnDefinition Width="15" />
+				<!-- Content -->
+				<ColumnDefinition Width="*" />
+				<!-- Right Margin -->
+				<ColumnDefinition Width="15" />
+			</Grid.ColumnDefinitions>
+
+				
+				<!-- Card -->
+				<Grid Grid.Row="2" Grid.Column="1"
+					Grid.ColumnSpacing="0" Grid.RowSpacing="0"
+					IsClippedToBounds="False"
+					HorizontalOptions="Center"
+					WidthRequest="300">
+
+					<Grid.GestureRecognizers>
+						<TapGestureRecognizer Tapped="VoucherTap"/>
+					</Grid.GestureRecognizers>
+
+					
+					<Grid.RowDefinitions>
+	                  <!-- Spacing -->
+	                  <RowDefinition Height="25" />
+	                  <!-- Title -->
+	                  <RowDefinition Height="50" />
+	                  <!-- Spacing -->
+	                  <RowDefinition Height="5" />
+	                  <!-- Value Title -->
+	                  <RowDefinition Height="55" />
+	                  <!-- Spacing -->
+	                  <RowDefinition Height="65" />
+	                </Grid.RowDefinitions>
+	                <Grid.ColumnDefinitions>
+	                  <!-- Left Margin -->
+	                  <ColumnDefinition Width="40" />
+	                  <!-- Center Column-->
+	                  <ColumnDefinition Width="*" />
+	                  <!-- Right Margin -->
+	                  <ColumnDefinition Width="40" />
+	                </Grid.ColumnDefinitions>
+
+	                <!-- Card Background -->
+	                <common:CustomImage Grid.Row="0" Grid.Column="0" Grid.RowSpan="5" Grid.ColumnSpan="3"
+	                  HorizontalOptions="FillAndExpand"
+	                  VerticalOptions="FillAndExpand"
+	                  Source="vcardb.png" />
+
+	                <!-- Description -->
+	                <common:CustomLabel Grid.Row="1" Grid.Column="1" 
+										FontSize="15"
+										VerticalOptions="Start"
+										HorizontalOptions="Start"
+										InputTransparent="True"
+										TextColor="{x:Static resources:ColorResources.ANFWhite}"
+										CustomFont="{x:Static resources:FontResources.RegularFont}"
+										Text="{Binding DescriptionTitle}" />
+
+	                <!-- Value -->
+	                <common:CustomLabel Grid.Row="3" Grid.Column="1"                                   
+										FontSize="40"
+										VerticalOptions="Start"
+										HorizontalOptions="End"
+										InputTransparent="True"
+										TextColor="{x:Static resources:ColorResources.ANFWhite}"
+										CustomFont="{x:Static resources:FontResources.BoldFont}"
+										Text="{Binding FormatedValue}" />
+				</Grid>
+
+  	    <!-- Bar Code -->
+  		   <StackLayout Grid.Row="4" Grid.Column="1" HorizontalOptions="CenterAndExpand"
+					VerticalOptions="FillAndExpand" Padding="0,15,0,0">
+      			<common:BarcodeView 
+                          HeightRequest="40"
+                          WidthRequest="250"
+					HorizontalOptions="CenterAndExpand"
+					VerticalOptions="FillAndExpand"
+					BackgroundColor="Transparent"
+					Code="{Binding Code}"/>
+				</StackLayout>
+			<common:CustomButton
+					Clicked="VoucherTap"
+					Grid.Row="4" Grid.Column="1"
+                    HeightRequest="40"
+                    WidthRequest="250"
+					HorizontalOptions="CenterAndExpand"
+					VerticalOptions="FillAndExpand"
+					BackgroundColor="Transparent"/>
+      
+      <!-- Voucher Number -->
+      <common:CustomLabel Grid.Row="5" Grid.Column="1" 
+					FontSize="15"
+					HorizontalOptions="CenterAndExpand"
+					VerticalOptions="CenterAndExpand"
+					Text="{Binding Code, StringFormat='Nº {0}'}"
+					CustomMargin="0, -2, 0, 0"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+      
+      <!-- Expire Date -->
+      <StackLayout Grid.Row="6" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="Center">
+      <common:CustomLabel 
+					HorizontalOptions="Center"
+					FontSize="12"
+					Text="{x:Static app:AppResources.VoucherDetailExpirationLabel}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					IsVisible="{Binding IsActive}" />
+      <common:CustomLabel 
+					HorizontalOptions="Center"
+					FontSize="12"
+					Text="{Binding EndDate, Converter={x:Static converters:ConverterResources.StringToShortDate}}"
+					CustomFont="{x:Static resources:FontResources.BoldFont}"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					IsVisible="{Binding IsActive}" />
+      </StackLayout>
+      
+			<!-- Description Title -->
+			<common:CustomLabel Grid.Row="7" Grid.Column="1"
+				FontSize="15"
+				TextColor="{x:Static resources:ColorResources.ANFGreen}"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				Text="{x:Static app:AppResources.VouchersDetailDescriptionLabel}" />
+
+			<!-- Description Message -->
+			<StackLayout Grid.Row="8" Grid.Column="1" Padding="0,0,0,20">
+				<common:CustomLabel 
+				FontSize="15"
+				TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				CustomFont="{x:Static resources:FontResources.RegularFont}"
+				Text="{Binding DescriptionDetail}" />
+			</StackLayout>
+				
+				<!-- Description Message
+				<StackLayout Orientation="Horizontal"  Grid.Row="10" Grid.Column="1"
+		          Spacing="0"
+				  x:Name = "VoucherProducts"
+				  IsVisible = "false"
+				  BackgroundColor="{x:Static resources:ColorResources.ANFDarkOrange}">
+
+		          <common:CustomLabel 
+		            InputTransparent="True"
+					CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+		            FontSize="10"
+		            TextColor="White"
+					HorizontalOptions="Center"
+					VerticalOptions="Center"
+		            Text="{x:Static app:AppResources.VouchersButtonAllProdutos}" />
+		          
+		            <StackLayout.GestureRecognizers>
+		        			<TapGestureRecognizer Tapped="OnSeeAllClicked" />
+		        	</StackLayout.GestureRecognizers>
+
+		        </StackLayout>
+				<StackLayout Orientation="Horizontal" 
+		          Spacing="0"
+				  IsVisible = "false"
+				  x:Name = "VoucherAddToCard"
+				  BackgroundColor="{x:Static resources:ColorResources.ANFDarkOrange}">
+
+		          <common:CustomLabel
+		            InputTransparent="True"
+		            CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+		            FontSize="10"
+		            TextColor="White"
+					HorizontalOptions="Center"
+					VerticalOptions="Center"
+		            Text="{x:Static app:AppResources.VoucherButtonAddToCard}" />
+		          
+		            <StackLayout.GestureRecognizers>
+		        			<TapGestureRecognizer Tapped="OnAddVoucherToCardClicked" />
+		        	</StackLayout.GestureRecognizers>
+
+		        </StackLayout> -->
+
+			
+		        <common:CustomButton Grid.Row="9" Grid.Column="1" Grid.RowSpan="1"
+				CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+				FontSize="15"
+				TextColor="White"
+				Text="{x:Static app:AppResources.VoucherButtonAddToCard}"
+				HorizontalOptions="CenterAndExpand"
+				HeightRequest="40"
+				BorderRadius="0"
+				WidthRequest="450"
+				IsVisible = "false"
+			    x:Name = "VoucherProducts"
+				BackgroundColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+				Clicked="OnSeeAllClicked">
+
+				</common:CustomButton>
+			
+				<common:CustomButton Grid.Row="9" Grid.Column="1" Grid.RowSpan="1"
+				CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+				FontSize="15"
+				TextColor="White"
+				BorderRadius="0"
+
+				Text="{x:Static app:AppResources.VoucherButtonAddToCard}"
+				HorizontalOptions="CenterAndExpand"
+				HeightRequest="40"
+				WidthRequest="450"
+				IsVisible = "false"
+			    x:Name = "VoucherAddToCard"
+				BackgroundColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+				Clicked="OnAddVoucherToCardClicked">
+
+				</common:CustomButton>
+	     		
+			
+			
+				
+
+		</Grid>
+
+	</ScrollView>
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+    <!--<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />-->
+    <views:ApplicationBarUserCard x:Name="ApplicationBar" Grid.ColumnSpan="2"> </views:ApplicationBarUserCard>
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+
+	</Grid>
+</ANFPage>
+>>>>>>> maintenance_phase5_azure_notification

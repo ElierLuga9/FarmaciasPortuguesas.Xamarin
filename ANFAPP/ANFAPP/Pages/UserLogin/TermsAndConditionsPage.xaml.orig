@@ -1,0 +1,258 @@
+<<<<<<< HEAD
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+  xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+  xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+  xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+  xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+  xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+  x:Class="ANFAPP.Pages.UserLogin.TermsAndConditionsPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Content -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" />
+
+		<!-- Content -->
+		<ScrollView HorizontalOptions="FillAndExpand"
+			Orientation="Vertical" Grid.Row="1" 
+			IsClippedToBounds="False">
+			
+			<Grid Grid.RowSpacing="0" Grid.ColumnSpacing="0" IsClippedToBounds="False">
+
+				<!-- Idiom Specific Params -->
+				<Grid.HorizontalOptions>
+					<OnIdiom x:TypeArguments="LayoutOptions">
+						<OnIdiom.Phone>FillAndExpand</OnIdiom.Phone>
+						<OnIdiom.Tablet>Center</OnIdiom.Tablet>
+					</OnIdiom>
+				</Grid.HorizontalOptions>
+				<Grid.WidthRequest>
+					<OnIdiom x:TypeArguments="x:Double">
+						<OnIdiom.Phone>-1</OnIdiom.Phone>
+						<OnIdiom.Tablet>480</OnIdiom.Tablet>
+					</OnIdiom>
+				</Grid.WidthRequest>
+
+				<Grid.ColumnDefinitions>
+					<!-- Left Margin -->
+					<ColumnDefinition Width="15" />
+					<!-- Content -->
+					<ColumnDefinition Width="*" />
+					<!-- Right Margin -->
+					<ColumnDefinition Width="15" />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<!-- Top Margin -->
+					<RowDefinition Height="22" />
+					<!-- Title -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="30" />
+					<!-- Chapter 1 -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="30" />
+					<!-- Chapter 2 -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="30" />
+					<!-- Chapter 3 -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="30" />
+					<!-- Chapter 4 -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="30" />
+					<!-- Chapter 5 -->
+					<RowDefinition Height="auto" />
+					<!-- Bottom Margin -->
+					<RowDefinition Height="22" />
+				</Grid.RowDefinitions>
+
+				<!-- Title -->
+				<common:CustomLabel Grid.Row="1" Grid.Column="1"
+				  FontSize="17"
+				  VerticalOptions="End"
+				  Text="{x:Static app:AppResources.TermsAndConditionsTitleLabel}"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Chapter 1 -->
+				<common:CustomLabel Grid.Row="3" Grid.Column="1"
+				  FontSize="15"
+				  Text="{x:Static app:AppResources.TermsAndConditionsChapter1Text}"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Chapter 2 -->
+				<common:CustomLabel Grid.Row="5" Grid.Column="1"
+				  FontSize="15"
+				  Text="{x:Static app:AppResources.TermsAndConditionsChapter2Text}"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Chapter 3 -->
+				<common:CustomLabel Grid.Row="7" Grid.Column="1"
+				  FontSize="15"
+				  Text="{x:Static app:AppResources.TermsAndConditionsChapter3Text}"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Chapter 4 -->
+				<common:CustomLabel Grid.Row="9" Grid.Column="1"
+				  FontSize="15"
+				  Text="{x:Static app:AppResources.TermsAndConditionsChapter4Text}"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Chapter 5 -->
+				<common:CustomLabel Grid.Row="11" Grid.Column="1"
+				  FontSize="15"
+				  Text="{x:Static app:AppResources.TermsAndConditionsChapter5Text}"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+			</Grid>
+		</ScrollView>
+	</Grid>
+</pages:ANFPage>
+=======
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+  xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+  xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+  xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+  xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+  xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+  x:Class="ANFAPP.Pages.UserLogin.TermsAndConditionsPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Content -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" />
+
+		<!-- Content -->
+		<ScrollView HorizontalOptions="FillAndExpand"
+			Orientation="Vertical" Grid.Row="1" 
+			IsClippedToBounds="False">
+			
+			<Grid Grid.RowSpacing="0" Grid.ColumnSpacing="0" IsClippedToBounds="False">
+
+				<!-- Idiom Specific Params -->
+				<Grid.HorizontalOptions>
+					<OnIdiom x:TypeArguments="LayoutOptions">
+						<OnIdiom.Phone>FillAndExpand</OnIdiom.Phone>
+						<OnIdiom.Tablet>Center</OnIdiom.Tablet>
+					</OnIdiom>
+				</Grid.HorizontalOptions>
+				<Grid.WidthRequest>
+					<OnIdiom x:TypeArguments="x:Double">
+						<OnIdiom.Phone>-1</OnIdiom.Phone>
+						<OnIdiom.Tablet>480</OnIdiom.Tablet>
+					</OnIdiom>
+				</Grid.WidthRequest>
+
+				<Grid.ColumnDefinitions>
+					<!-- Left Margin -->
+					<ColumnDefinition Width="15" />
+					<!-- Content -->
+					<ColumnDefinition Width="*" />
+					<!-- Right Margin -->
+					<ColumnDefinition Width="15" />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<!-- Top Margin -->
+					<RowDefinition Height="22" />
+					<!-- Title -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="30" />
+					<!-- Chapter 1 -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="30" />
+					<!-- Chapter 2 -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="30" />
+					<!-- Chapter 3 -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="30" />
+					<!-- Chapter 4 -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="30" />
+					<!-- Chapter 5 -->
+					<RowDefinition Height="auto" />
+					<!-- Bottom Margin -->
+					<RowDefinition Height="22" />
+				</Grid.RowDefinitions>
+
+				<!-- Title -->
+				<common:CustomLabel Grid.Row="1" Grid.Column="1"
+				  FontSize="17"
+				  VerticalOptions="End"
+				  Text="{x:Static app:AppResources.TermsAndConditionsTitleLabel}"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+
+				<!-- Chapter 1 -->
+				<common:CustomLabel Grid.Row="3" Grid.Column="1"
+				  FontSize="15"
+				  Text="{x:Static app:AppResources.TermsAndConditionsChapter1Text}"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Chapter 2 -->
+				<common:CustomLabel Grid.Row="5" Grid.Column="1"
+				  FontSize="15"
+				  Text="{x:Static app:AppResources.TermsAndConditionsChapter2Text}"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Chapter 3 -->
+				<common:CustomLabel Grid.Row="7" Grid.Column="1"
+				  FontSize="15"
+				  Text="{x:Static app:AppResources.TermsAndConditionsChapter3Text}"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Chapter 4 -->
+				<common:CustomLabel Grid.Row="9" Grid.Column="1"
+				  FontSize="15"
+				  Text="{x:Static app:AppResources.TermsAndConditionsChapter4Text}"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+				<!-- Chapter 5 -->
+				<common:CustomLabel Grid.Row="11" Grid.Column="1"
+				  FontSize="15"
+				  Text="{x:Static app:AppResources.TermsAndConditionsChapter5Text}"
+				  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+				  CustomFont="{x:Static resources:FontResources.RegularFont}" />
+
+			</Grid>
+		</ScrollView>
+	</Grid>
+</ANFPage>
+>>>>>>> maintenance_phase5_azure_notification

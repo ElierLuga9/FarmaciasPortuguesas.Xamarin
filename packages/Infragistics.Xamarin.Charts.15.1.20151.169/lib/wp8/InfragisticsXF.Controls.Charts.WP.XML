@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>InfragisticsXF.Controls.Charts.WP</name>
+    </assembly>
+    <members>
+        <member name="F:Infragistics.XF.Controls.WP.SeriesMediator.TemplatedTooltipAdapter.DataContextBridgeProperty">
+            <summary>
+            Identifies the DataContextBridge dependency property.
+            </summary>
+        </member>
+    </members>
+</doc>

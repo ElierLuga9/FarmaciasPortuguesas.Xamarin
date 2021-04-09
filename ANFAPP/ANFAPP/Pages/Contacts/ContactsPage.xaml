@@ -1,0 +1,209 @@
+﻿<pages:ANFPage
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.Contacts.ContactsPage">
+	
+	<Grid RowSpacing="0" ColumnSpacing="0"
+		VerticalOptions="FillAndExpand"
+		HorizontalOptions="FillAndExpand">
+
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Navigation Header -->
+			<RowDefinition Height="auto" />
+			<!-- Page -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Tabbed Bar -->
+		<!--<views:ContactsTabbedBar x:Name="TabBar" Grid.Row="1" Grid.Column="1" 
+			SelectedTab="Contacts" />-->
+
+		<StackLayout Grid.Row="2" Grid.Column="1"
+			Orientation="Vertical"
+			Padding="0, 20"
+			Spacing="10">
+
+			<Grid Padding="20, 0">
+				<common:CustomLabel
+					FontSize="20"
+					HorizontalOptions="Start"
+					Text="{x:Static app:AppResources.ContactsTitleLabel}"
+					TextColor="{x:Static resources:ColorResources.ANFGreen}"
+					CustomFont="{x:Static resources:FontResources.BoldFont}" />
+			</Grid>
+
+			<StackLayout Padding="15, 10, 15, 5" Spacing="2" HorizontalOptions="Start" Orientation="Vertical">
+				<StackLayout.GestureRecognizers>
+					<TapGestureRecognizer Tapped="ContactCenterTap"/>
+				</StackLayout.GestureRecognizers>
+				
+				<common:CustomLabel
+					FontSize="15"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.BoldFont}"
+					Text="{x:Static app:AppResources.ContactsPhoneLabel}" />
+
+				<common:CustomLabel
+					FontSize="15"
+					TextColor="{x:Static resources:ColorResources.ANFGreen}"
+					CustomFont="{x:Static resources:FontResources.BoldFont}"
+					Text="{x:Static app:AppResources.ContactSupportPhone}" />
+			</StackLayout>
+			
+			<BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor = "{x:Static resources:ColorResources.LocatorSeparatorColorLight}"/>
+
+			<StackLayout Padding="15, 0, 15, 5" Spacing="2" HorizontalOptions="Start" Orientation="Vertical">
+				<StackLayout.GestureRecognizers>
+					<TapGestureRecognizer Tapped="ContactCenterTap"/>
+				</StackLayout.GestureRecognizers>
+
+				<common:CustomLabel
+					FontSize="15"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.BoldFont}"
+					Text="{x:Static app:AppResources.ContactsScheduleLabel}" />
+
+				<common:CustomLabel
+					FontSize="15"
+					HorizontalOptions="Start"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					Text="{x:Static app:AppResources.ContactsAvailabilityLabel}" />
+			</StackLayout>
+
+			<BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor = "{x:Static resources:ColorResources.LocatorSeparatorColorLight}"/>
+
+			<StackLayout Padding="15, 0, 15, 5" Spacing="2" Orientation="Vertical" HorizontalOptions="Start">
+				<StackLayout.GestureRecognizers>
+					<TapGestureRecognizer Tapped="ContactEmailTap"/>
+				</StackLayout.GestureRecognizers>
+				<common:CustomLabel
+					FontSize="15"
+					HorizontalOptions="Start"
+					TextColor="{x:Static resources:ColorResources.TextColorDark}"
+					CustomFont="{x:Static resources:FontResources.BoldFont}"
+					Text="{x:Static app:AppResources.ContactsEmailLabel}" />
+				<common:CustomLabel
+					FontSize="15"
+					HorizontalOptions="Start"
+					TextColor="{x:Static resources:ColorResources.ANFGreen}"
+					CustomFont="{x:Static resources:FontResources.BoldFont}"
+					Text="{x:Static app:AppResources.ContactSupportEmail}" />
+			</StackLayout>
+
+			<Grid Padding="15, 10, 15, 0">
+				<common:CustomButton
+					HorizontalOptions="FillAndExpand"
+					FontSize="15"
+					BorderWidth="1"
+					BorderRadius="1"
+					HeightRequest="40"
+					Clicked="OpenTutorialButtonClick"
+					Text="VER TUTORIAL"
+					BorderColor="{x:Static resources:ColorResources.ANFDarkBlue}"
+					TextColor="{x:Static resources:ColorResources.ANFDarkBlue}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					BackgroundColor="White" />
+			</Grid>
+
+			<Grid Grid.RowSpacing="0" Grid.ColumnSpacing="0" HeightRequest="40" Padding="15, 0">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="45" />
+				</Grid.ColumnDefinitions>
+				
+				<!-- Icon -->
+				<common:CustomImage Grid.Column="1"
+					InputTransparent="True"
+					HorizontalOptions="Center"
+					VerticalOptions="Center"
+					Source="ic_button_link_blue.png" />
+
+				<!-- Label -->
+				<common:CustomLabel Grid.ColumnSpan="2"
+					FontSize="15"
+					HorizontalOptions="Center"
+					VerticalOptions="Center"
+					InputTransparent="True"
+					TextColor="{x:Static resources:ColorResources.ANFDarkBlue}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					Text="CONDIÇÕES GERAIS" />
+
+				<!-- Button -->
+				<common:CustomButton Grid.ColumnSpan="2"
+					BorderWidth="1"
+					BorderRadius="1"
+					Clicked="OnGeralConditionsButtonClick"
+					BackgroundColor="Transparent"
+					BorderColor="{x:Static resources:ColorResources.ANFDarkBlue}" />
+			</Grid>
+
+			<Grid Grid.RowSpacing="0" Grid.ColumnSpacing="0" HeightRequest="40" Padding="15, 0">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="45" />
+				</Grid.ColumnDefinitions>
+				
+				<!-- Icon -->
+				<common:CustomImage Grid.Column="1"
+					InputTransparent="True"
+					HorizontalOptions="Center"
+					VerticalOptions="Center"
+					Source="ic_button_link_blue.png" />
+
+				<!-- Label -->
+				<common:CustomLabel Grid.ColumnSpan="2"
+					FontSize="15"
+					HorizontalOptions="Center"
+					VerticalOptions="Center"
+					InputTransparent="True"
+					TextColor="{x:Static resources:ColorResources.ANFDarkBlue}"
+					CustomFont="{x:Static resources:FontResources.RegularFont}"
+					Text="POLÍTICA DE PRIVACIDADE" />
+
+				<!-- Button -->
+				<common:CustomButton Grid.ColumnSpan="2"
+					BorderWidth="1"
+					BorderRadius="1"
+					Clicked="OnPrivacyPolicyButtonClick"
+					BackgroundColor="Transparent"
+					BorderColor="{x:Static resources:ColorResources.ANFDarkBlue}" />
+			</Grid>
+
+		</StackLayout>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" Grid.RowSpan="2" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="3" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>

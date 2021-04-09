@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.Articles.ArticlesCategoryPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Margin -->
+			<RowDefinition Height="10" />
+			<!-- Category Button -->
+			<RowDefinition Height="auto" />
+			<!-- Margin -->
+			<RowDefinition Height="10" />
+			<!-- CategoryList -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		
+		<!-- Category Button -->
+		<Grid Grid.Row="2" Grid.Column="1" Padding="15, 0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="25"/>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="25"/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="auto"/>
+				<RowDefinition Height="1"/>
+			</Grid.RowDefinitions>
+
+			<common:CustomButton BackgroundColor="Transparent"
+				BorderColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+				AccessoryImage="bt_sections.png"
+				TextColor="{x:Static resources:ColorResources.ANFDarkOrange}"
+				FontSize="15"
+				BorderWidth="1"
+				BorderRadius="1"
+				Text="Temas"
+				TextAlignment="Left"
+				Grid.ColumnSpan="3" Grid.RowSpan="2"
+				HeightRequest="40"/>
+		</Grid>
+		
+		<ScrollView Orientation="Vertical" Grid.Column="1" Grid.Row="4">
+			<StackLayout Orientation="Vertical" Spacing="0">
+
+				<!-- Category Header -->
+				<StackLayout Padding="15, 8"
+					HeightRequest="34"
+					Orientation="Horizontal"
+					HorizontalOptions="FillAndExpand"
+					BackgroundColor="#eeeeee">
+
+					<common:CustomLabel
+						HorizontalOptions="StartAndExpand"
+						VerticalOptions="CenterAndExpand"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						FontSize="15"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						Text="{Binding SelectedCategoryName}" />
+				</StackLayout>
+
+				<!-- Articles List -->
+				<common:ANFRepeaterView
+					VerticalOptions="Start"
+					ItemsSource="{Binding Current.ArticleHighlights}"
+					IsVisible="{Binding Current.HasArticles}">
+					<!-- Article Template -->
+					<common:ANFRepeaterView.ItemTemplate>
+						<DataTemplate>
+							<Grid>
+
+								<views:ArticlesListItemView />
+
+								<common:CustomButton
+									BackgroundColor="Transparent"
+									HorizontalOptions="FillAndExpand"
+									VerticalOptions="FillAndExpand"
+													
+												
+									Clicked="OnArticleTapped"/>
+								<BoxView
+									HeightRequest="1"
+									VerticalOptions="End"
+									HorizontalOptions="FillAndExpand"
+									Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+							</Grid>
+						</DataTemplate>
+					</common:ANFRepeaterView.ItemTemplate>
+				</common:ANFRepeaterView>
+				
+				<!-- See All Button -->
+				<Grid Padding="15, 0"
+					HeightRequest="40"
+					HorizontalOptions="FillAndExpand"
+					IsVisible="{Binding HasHighlightsOverflow}">
+					<Grid.GestureRecognizers>
+						<TapGestureRecognizer Tapped="OnSeeAllButtonClicked" />
+					</Grid.GestureRecognizers>
+
+					<common:CustomLabel
+						HorizontalOptions="End"
+						VerticalOptions="CenterAndExpand"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						FontSize="13"
+						TextColor="{x:Static resources:ColorResources.ANFGreen}"
+						Text="{x:Static app:AppResources.ArticlesSeeAllButton}" />
+				</Grid>
+				
+				<!-- Category Header -->
+				<StackLayout Padding="15, 8"
+					HeightRequest="34"
+					Orientation="Horizontal"
+					HorizontalOptions="FillAndExpand"
+					BackgroundColor="#eeeeee"
+					IsVisible="{Binding Current, Converter={x:Static converters:ConverterResources.NotNullable}}">
+
+					<common:CustomLabel
+						HorizontalOptions="StartAndExpand"
+						VerticalOptions="CenterAndExpand"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						FontSize="15"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						Text="{x:Static app:AppResources.ArticlesOtherCategories}" />
+				</StackLayout>
+
+				<!-- Sub-Categories List -->
+				<common:ANFRepeaterView x:Name="CategoryList"
+					VerticalOptions="Start"
+					ItemsSource="{Binding Categories}">
+					<!-- Article Template -->
+					<common:ANFRepeaterView.ItemTemplate>
+						<DataTemplate>
+							<!-- category -->
+							<Grid>
+								<Grid Padding="15, 15" Grid.ColumnSpacing="10">
+									<common:CustomLabel Grid.Column="0"
+										InputTransparent="True"
+										FontSize="14"
+										VerticalOptions="Center"
+										HorizontalOptions="Start"
+										TextColor="{x:Static resources:ColorResources.TextColorDark}"
+										CustomFont="{x:Static resources:FontResources.RegularFont}"
+										BackgroundColor="Transparent"
+										Text="{Binding Name}" />
+
+									<common:CustomImage Grid.Column="1"
+										InputTransparent="True"
+										HorizontalOptions="End"
+										VerticalOptions="Center"
+										Source="ic_button_arrow_black.png" />
+
+									<Grid.GestureRecognizers>
+										<TapGestureRecognizer Tapped="OnListItemTapped" />
+									</Grid.GestureRecognizers>
+								</Grid>
+								
+								<BoxView
+									HeightRequest="1"
+									VerticalOptions="End"
+									HorizontalOptions="FillAndExpand"
+									Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+							</Grid>
+						</DataTemplate>
+					</common:ANFRepeaterView.ItemTemplate>
+				</common:ANFRepeaterView>
+			</StackLayout>
+		</ScrollView>
+	
+		
+		<!-- Categories -->
+		<!--<common:InfiniteListView x:Name="CategoryList" Grid.Column="1" Grid.Row="4"
+			VerticalOptions="FillAndExpand"
+			SeparatorColor="{x:Static resources:ColorResources.LocatorSeparatorColorLight}"
+			ItemsSource="{Binding Categories}"
+			ItemTapped="OnListItemTapped">
+			--><!-- Article Template --><!--
+			<common:CustomListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						--><!-- category --><!--
+						<Grid Padding="15,0" HeightRequest="40">
+							<common:CustomLabel
+								FontSize="14"
+								VerticalOptions="Center"
+								HorizontalOptions="Start"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}"
+								CustomFont="{x:Static resources:FontResources.RegularFont}"
+								BackgroundColor="Transparent"
+								Text="{Binding Name}" />
+						</Grid>
+					</ViewCell>
+				</DataTemplate>
+			</common:CustomListView.ItemTemplate>
+		</common:InfiniteListView>-->
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" Grid.RowSpan="4" />
+
+		<!-- Application Bar -->
+		<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="5" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>

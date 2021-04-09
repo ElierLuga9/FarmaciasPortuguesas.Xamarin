@@ -1,0 +1,1352 @@
+<<<<<<< HEAD
+﻿<?xml version="1.0" encoding="utf-8"?>
+<pages:ANFPage
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.UserArea.UserCardPage">
+	
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Content -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		
+		<!-- Content -->
+		<ScrollView Grid.Row="1" Grid.Column="1"
+			Orientation="Vertical">
+			<Grid Grid.RowSpacing="1"
+				Grid.ColumnSpacing="0">
+				<Grid.ColumnDefinitions>
+					<!-- Left Margin -->
+					<ColumnDefinition Width="*" />
+					<!-- Card Column -->
+					<ColumnDefinition Width="241" />
+					<!-- Right Margin -->
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<!-- Top Margin -->
+					<RowDefinition Height="10" />
+					<!-- Last Updated Label -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="6" />
+					<!-- Card -->
+					<RowDefinition Height="169" />
+					<!-- Amount Saved -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="10" />
+					<!-- Points -->
+					<RowDefinition Height="auto" />
+					<!-- Separator -->
+					<RowDefinition Height="1" />
+					<!-- Spacing -->
+					<RowDefinition Height="5" />
+					<!-- Vouchers -->
+					<RowDefinition Height="auto" />
+					<!-- Separator -->
+					<RowDefinition Height="1" />
+					<!-- Spacing -->
+					<RowDefinition Height="5" />
+					<!-- Offers -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="5" />
+					<!-- Points History Button -->
+					<RowDefinition Height="40" />
+					<!-- Vouchers Button -->
+					<RowDefinition Height="40" />
+					<!-- Family Account Button -->
+					<RowDefinition Height="40" />
+					<!-- Partners Button -->
+					<RowDefinition Height="40" />
+					<!-- Bottom Margin -->
+					<RowDefinition Height="30" />
+				</Grid.RowDefinitions>
+				<!-- Last Updated -->
+				<StackLayout Grid.Row="1" Grid.Column="1"
+					HorizontalOptions="Center"
+					Orientation="Horizontal">
+					<!-- Last Updated Label -->
+					<common:CustomLabel
+						FontSize="12"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						Text="{x:Static app:AppResources.UserPageLastUpdatedLabel}" />
+					<!-- Last Updated Value -->
+					<common:CustomLabel
+						FontSize="12"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						Text="{Binding LastUpdated, StringFormat='{0:dd/MM/yyyy à\\s HH:mm}'}" />
+				</StackLayout>
+
+				<!-- Card Container -->
+				<Grid Grid.Row="3" Grid.Column="1" Grid.RowSpacing="0" Grid.ColumnSpacing="0"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand">
+					<Grid.GestureRecognizers>
+						<TapGestureRecognizer Tapped="CardTap" />
+					</Grid.GestureRecognizers>
+					<Grid.RowDefinitions>
+						<!-- Top Margin -->
+						<RowDefinition Height="20" />
+						<!-- Family Row -->
+						<RowDefinition Height="*" />
+						<!-- Client Name -->
+						<RowDefinition Height="26" />
+						<!-- Barcode -->
+						<RowDefinition Height="50" />
+						<!-- Bottom Row -->
+						<RowDefinition Height="28" />
+						<!-- Bottom Margin -->
+						<RowDefinition Height="18" />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<!-- Left Margin -->
+						<ColumnDefinition Width="28" />
+						<!-- Barcode? -->
+						<ColumnDefinition Width="*" />
+						<!-- Spacing? -->
+						<ColumnDefinition Width="20" />
+						<!-- Content? -->
+						<ColumnDefinition Width="auto" />
+						<!-- Right Margin -->
+						<ColumnDefinition Width="28" />
+					</Grid.ColumnDefinitions>
+					
+					<!-- Card Background -->
+					<common:CustomImage
+						Grid.RowSpan="6"
+						Grid.ColumnSpan="5"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						Source="bg_card.png" />
+					<!-- Card Holder Name -->
+					<common:CustomLabel
+						Grid.Row="2"
+						Grid.Column="1"
+						Grid.ColumnSpan="3"
+						FontSize="9"
+						VerticalOptions="Center"
+						HorizontalOptions="Center"
+						Text="{Binding Name}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+					<!-- Bar Code -->
+					<common:BarcodeView
+						Grid.Row="3"
+						Grid.Column="1"
+						Grid.ColumnSpan="3"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						Code="{Binding CardNumber}"
+						BackgroundColor="Transparent" />
+					<!-- Sauda Logos -->
+					<common:CustomImage
+						Grid.Row="1"
+						Grid.Column="3"
+						VerticalOptions="Center"
+						HorizontalOptions="End"
+						Source="ic_sauda_logos.png"
+						IsVisible="{Binding IsFamilyCard, Converter={x:Static converters:ConverterResources.InverseBool}}" />
+					<StackLayout
+						Grid.Row="1"
+						Grid.Column="3"
+						Spacing="5"
+						HorizontalOptions="End"
+						VerticalOptions="End"
+						Orientation="Horizontal"
+						IsVisible="{Binding IsFamilyCard}">
+						<!-- Family Image -->
+						<common:CustomImage
+							VerticalOptions="Center"
+							Source="ic_family_logo.png" />
+						<!-- Family Number -->
+						<common:CustomLabel
+							FontSize="14"
+							TextColor="#003262"
+							VerticalOptions="End"
+							Text="{Binding FamilySize}"
+							CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+					</StackLayout>
+					
+					<!-- Card Number -->
+					<common:CustomLabel
+						Grid.Row="4"
+						Grid.Column="3"
+						FontSize="14"
+						HorizontalOptions="End"
+						VerticalOptions="End"
+						Text="{Binding CardNumber}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+				</Grid>
+
+				<!-- Amount Saved -->
+				<StackLayout
+					Grid.Row="4"
+					Grid.Column="1"
+					HorizontalOptions="Start"
+					Orientation="Horizontal">
+					<!-- Amount Saved Label -->
+					<common:CustomLabel
+						FontSize="15"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.LightFont}"
+						Text="{x:Static app:AppResources.UserPageSavedAmountLabel}" />
+					<!-- Amount Saved Value -->
+					<common:CustomLabel
+						FontSize="15"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.BoldFont}"
+						Text="{Binding SavedAmount, StringFormat='{0}€'}" />
+				</StackLayout>
+
+				<!-- Points -->
+				<Grid
+					Grid.Row="6"
+					Grid.Column="1"
+					Grid.ColumnSpacing="0"
+					Grid.RowSpacing="0"
+					HorizontalOptions="FillAndExpand">
+					<Grid.GestureRecognizers>
+						<TapGestureRecognizer Tapped="OnPointsHistoryButton_Clicked" />
+					</Grid.GestureRecognizers>
+					<Grid.ColumnDefinitions>
+						<!-- Points Column -->
+						<ColumnDefinition Width="*" />
+						<!-- Expiring Column -->
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<!-- Title Row -->
+						<RowDefinition Height="auto" />
+						<!-- Values Row -->
+						<RowDefinition Height="auto" />
+					</Grid.RowDefinitions>
+					<!-- Points Label -->
+					<common:CustomLabel
+						FontSize="12"
+						Text="{x:Static app:AppResources.UserPagePointsLabel}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						TextColor="{x:Static resources:ColorResources.PharmacyCardPoints}" />
+					<!-- Points Value -->
+					<common:CustomLabel
+						Grid.Row="1"
+						FontSize="30"
+						VerticalOptions="Start"
+						Text="{Binding Points}"
+						CustomMargin="0, -6, 0, 0"
+						CustomFont="{x:Static resources:FontResources.BoldFont}"
+						TextColor="{x:Static resources:ColorResources.PharmacyCardPoints}" />
+					<!-- Expiring Label -->
+					<common:CustomLabel
+						Grid.Column="1"
+						FontSize="12"
+						Text="{x:Static app:AppResources.UserPageExpiringLabel}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						TextColor="{x:Static resources:ColorResources.PharmacyCardExpiringPoints}" />
+					<!-- Expiring Value -->
+					<StackLayout
+						Orientation="Horizontal"
+						VerticalOptions="Start"
+						Spacing="5"
+						Grid.Row="1"
+						Grid.Column="1">
+						
+						<!-- Value -->
+						<common:CustomLabel
+							FontSize="12"
+							VerticalOptions="Start"
+							Text="{Binding ExpiringPoints}"
+							CustomFont="{x:Static resources:FontResources.BoldFont}"
+							TextColor="{x:Static resources:ColorResources.PharmacyCardExpiringPoints}" />
+						<!-- Label -->
+						<common:CustomLabel
+										FontSize="12"
+										VerticalOptions="Start"
+										Text="{x:Static app:AppResources.UserPagePointsSuffix}"
+										CustomFont="{x:Static resources:FontResources.BoldFont}"
+										TextColor="{x:Static resources:ColorResources.PharmacyCardExpiringPoints}" />
+					</StackLayout>
+				</Grid>
+				<!-- Separator -->
+				<BoxView
+					Grid.Row="7"
+					Grid.ColumnSpan="3"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					Color="{x:Static resources:ColorResources.APPBackgroundGrey}" />
+				<!-- Vouchers -->
+				<Grid
+					Grid.Row="12"
+					Grid.Column="1"
+					Grid.ColumnSpacing="0"
+					Grid.RowSpacing="0"
+					HorizontalOptions="FillAndExpand" 
+					Padding="0, 0, 0, 5">
+					<Grid.GestureRecognizers>
+						<TapGestureRecognizer Tapped="OnVoucherButton_Clicked" />
+					</Grid.GestureRecognizers>
+					<Grid.ColumnDefinitions>
+						<!-- Points Column -->
+						<ColumnDefinition Width="*" />
+						<!-- Expiring Column -->
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<!-- Title Row -->
+						<RowDefinition Height="auto" />
+						<!-- Values Row -->
+						<RowDefinition Height="auto" />
+					</Grid.RowDefinitions>
+					<!-- Vouchers Label -->
+					<common:CustomLabel
+						FontSize="12"
+						Text="{x:Static app:AppResources.UserPageVouchersLabel}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						TextColor="{x:Static resources:ColorResources.PharmacyCardVoucher}" />
+					<!-- Vouchers Value -->
+					<StackLayout
+						Grid.Row="1"
+						HeightRequest="30"
+						Orientation="Horizontal">
+						<!-- Vouchers Number -->
+						<common:CustomLabel
+							FontSize="30"
+							Text="{Binding Vouchers}"
+							VerticalOptions="Start"
+							CustomMargin="0, -6, 0, 0"
+							CustomFont="{x:Static resources:FontResources.BoldFont}"
+							TextColor="{x:Static resources:ColorResources.PharmacyCardVoucher}" />
+						<!-- Vouchers Value -->
+						<common:CustomLabel
+							FontSize="15"
+							Text="{Binding VouchersAmount, StringFormat='({0}€)'}"
+							VerticalOptions="End"
+							IsVisible="{Binding HasVouchersAmount}"
+							CustomFont="{x:Static resources:FontResources.BoldFont}"
+							TextColor="{x:Static resources:ColorResources.PharmacyCardVoucher}" />
+					</StackLayout>
+					<!-- Expiring Label -->
+					<common:CustomLabel
+						Grid.Column="1"
+						FontSize="12"
+						Text="{x:Static app:AppResources.UserPageExpiringLabel}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						TextColor="{x:Static resources:ColorResources.PharmacyCardExpiringVoucher}" />
+					<!-- Expiring Value -->
+					<StackLayout
+						Orientation="Horizontal"
+						Spacing="5"
+						Grid.Row="1"
+						Grid.Column="1">
+						<!-- Value -->
+						<common:CustomLabel
+							FontSize="12"
+							VerticalOptions="Start"
+							Text="{Binding ExpiringVouchers}"
+							CustomFont="{x:Static resources:FontResources.BoldFont}"
+							TextColor="{x:Static resources:ColorResources.PharmacyCardExpiringVoucher}" />
+						<!-- Label -->
+						<common:CustomLabel
+							FontSize="12"
+							VerticalOptions="Start"
+							Text="{x:Static app:AppResources.UserPageVouchersSuffix}"
+							CustomFont="{x:Static resources:FontResources.BoldFont}"
+							TextColor="{x:Static resources:ColorResources.PharmacyCardExpiringVoucher}" />
+					</StackLayout>
+				</Grid>
+
+				<!-- Separator -->
+				<BoxView
+					Grid.Row="10"
+					Grid.ColumnSpan="3"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					Color="{x:Static resources:ColorResources.APPBackgroundGrey}" />
+				
+				<!-- Gifts -->
+				<Grid
+					Grid.Row="9"
+					Grid.Column="1"
+					Grid.ColumnSpacing="0"
+					Grid.RowSpacing="0"
+					HorizontalOptions="FillAndExpand">
+					<Grid.GestureRecognizers>
+						<TapGestureRecognizer Tapped="OnVoucherButton_Clicked" />
+					</Grid.GestureRecognizers>
+					<Grid.ColumnDefinitions>
+						<!-- Points Column -->
+						<ColumnDefinition Width="*" />
+						<!-- Expiring Column -->
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<!-- Title Row -->
+						<RowDefinition Height="auto" />
+						<!-- Values Row -->
+						<RowDefinition Height="auto" />
+					</Grid.RowDefinitions>
+					
+					<!-- Gifts Label -->
+					<common:CustomLabel
+						FontSize="12"
+						Text="{x:Static app:AppResources.UserPageOffersLabel}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						TextColor="{x:Static resources:ColorResources.ANFPink}" />
+					
+					<!-- Gifts Value -->
+					<StackLayout
+						Grid.Row="1"
+						HeightRequest="30"
+						Orientation="Horizontal">
+						
+						<!-- Gifts Number -->
+						<common:CustomLabel
+							FontSize="30"
+							Text="{Binding Gifts}"
+							VerticalOptions="Start"
+							CustomMargin="0, -6, 0, 0"
+							CustomFont="{x:Static resources:FontResources.BoldFont}"
+							TextColor="{x:Static resources:ColorResources.ANFPink}" />
+						
+						<!-- Gifts Value -->
+						<common:CustomLabel
+							FontSize="15"
+							Text="{Binding GiftsAmount, StringFormat='({0}€)'}"
+							VerticalOptions="End"
+							IsVisible="{Binding HasGiftsAmount}"
+							CustomFont="{x:Static resources:FontResources.BoldFont}"
+							TextColor="{x:Static resources:ColorResources.ANFPink}" />
+					</StackLayout>
+					
+					<!-- Expiring Label -->
+					<common:CustomLabel
+						Grid.Column="1"
+						FontSize="12"
+						Text="{x:Static app:AppResources.UserPageExpiringLabel}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						TextColor="{x:Static resources:ColorResources.ANFPalePink}" />
+					
+					<!-- Expiring Value -->
+					<StackLayout
+						Orientation="Horizontal"
+						Spacing="5"
+						Grid.Row="1"
+						Grid.Column="1">
+						
+						<!-- Value -->
+						<common:CustomLabel
+							FontSize="12"
+							VerticalOptions="Start"
+							Text="{Binding ExpiringGifts}"
+							CustomFont="{x:Static resources:FontResources.BoldFont}"
+							TextColor="{x:Static resources:ColorResources.ANFPalePink}" />
+						<!-- Label -->
+						<common:CustomLabel
+							FontSize="12"
+							VerticalOptions="Start"
+							Text="{x:Static app:AppResources.UserPageOffersSuffix}"
+							CustomFont="{x:Static resources:FontResources.BoldFont}"
+							TextColor="{x:Static resources:ColorResources.ANFPalePink}" />
+					</StackLayout>
+				</Grid>
+				
+				<!-- Points History Button -->
+				<Grid
+					Grid.Row="14"
+					Grid.ColumnSpan="3"
+					Grid.ColumnSpacing="0"
+					Grid.RowSpacing="0"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand">
+					<Grid.ColumnDefinitions>
+						<!-- Left Margin -->
+						<ColumnDefinition Width="15" />
+						<!-- Content -->
+						<ColumnDefinition Width="*" />
+						<!-- Left Margin -->
+						<ColumnDefinition Width="15" />
+					</Grid.ColumnDefinitions>
+					<!-- Button -->
+					<common:CustomButton
+						Grid.ColumnSpan="3"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						BorderRadius="0"
+						Clicked="OnPointsHistoryButton_Clicked"
+						BackgroundColor="{x:Static resources:ColorResources.ANFLightGreen}" />
+					<!-- Button Label -->
+					<common:CustomLabel
+						Grid.Column="1"
+						FontSize="15"
+						HorizontalOptions="Start"
+						VerticalOptions="Center"
+						InputTransparent="True"
+						TextColor="{x:Static resources:ColorResources.TextColorLight}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						Text="{x:Static app:AppResources.UserPagePointsHistoryButton}" />
+					<!-- Arrow -->
+					<common:CustomImage
+						Grid.Column="1"
+						HorizontalOptions="End"
+						VerticalOptions="Center"
+						InputTransparent="True"
+						Source="ic_button_arrow.png" />
+				</Grid>
+				<!-- Vouchers Button -->
+				<Grid
+					Grid.Row="15"
+					Grid.ColumnSpan="3"
+					Grid.ColumnSpacing="0"
+					Grid.RowSpacing="0"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand">
+					<Grid.ColumnDefinitions>
+						<!-- Left Margin -->
+						<ColumnDefinition Width="15" />
+						<!-- Content -->
+						<ColumnDefinition Width="*" />
+						<!-- Left Margin -->
+						<ColumnDefinition Width="15" />
+					</Grid.ColumnDefinitions>
+					<!-- Button -->
+					<common:CustomButton
+						Grid.ColumnSpan="3"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						BorderRadius="0"
+						Clicked="OnVoucherButton_Clicked"
+						BackgroundColor="{x:Static resources:ColorResources.ANFLightGreen}" />
+					<!-- Button Label -->
+					<common:CustomLabel
+						Grid.Column="1"
+						FontSize="15"
+						HorizontalOptions="Start"
+						VerticalOptions="Center"
+						InputTransparent="True"
+						TextColor="{x:Static resources:ColorResources.TextColorLight}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						Text="{x:Static app:AppResources.UserPageVouchersButton}" />
+					<!-- Arrow -->
+					<common:CustomImage
+						Grid.Column="1"
+						HorizontalOptions="End"
+						VerticalOptions="Center"
+						InputTransparent="True"
+						Source="ic_button_arrow.png" />
+				</Grid>
+				
+				<!-- Family Account Button -->
+				<Grid
+					Grid.Row="16"
+					Grid.ColumnSpan="3"
+					Grid.ColumnSpacing="0"
+					Grid.RowSpacing="0"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand">
+					<Grid.ColumnDefinitions>
+						<!-- Left Margin -->
+						<ColumnDefinition Width="15" />
+						<!-- Content -->
+						<ColumnDefinition Width="*" />
+						<!-- Warnin Icon -->
+						<ColumnDefinition Width="auto" />
+						<!-- Spacing -->
+						<ColumnDefinition Width="15" />
+						<!-- Arrow -->
+						<ColumnDefinition Width="auto" />
+						<!-- Left Margin -->
+						<ColumnDefinition Width="15" />
+					</Grid.ColumnDefinitions>
+					<!-- Button -->
+					<common:CustomButton
+						Grid.ColumnSpan="6"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						BorderRadius="0"
+						Clicked="OnFamilyAccountButton_Clicked"
+						BackgroundColor="{x:Static resources:ColorResources.ANFLightGreen}" />
+					<!-- Button Label -->
+					<common:CustomLabel
+						Grid.Column="1"
+						FontSize="15"
+						HorizontalOptions="Start"
+						VerticalOptions="Center"
+						InputTransparent="True"
+						TextColor="{x:Static resources:ColorResources.TextColorLight}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						Text="{x:Static app:AppResources.UserPageFamilyAccountButton}" />
+					<!-- Warning Icon -->
+					<common:CustomImage
+						Grid.Column="2"
+						VerticalOptions="Center"
+						InputTransparent="True"
+						Source="ic_warning.png"
+						IsVisible="{Binding HasFamilyWarning}" />
+					<!-- Arrow -->
+					<common:CustomImage
+						Grid.Column="4"
+						VerticalOptions="Center"
+						InputTransparent="True"
+						Source="ic_button_arrow.png" />
+				</Grid>
+
+				<!-- Partnerships Button -->
+				<Grid Grid.Row="17" Grid.ColumnSpan="3"
+					Grid.ColumnSpacing="0" Grid.RowSpacing="0"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand">
+					<Grid.ColumnDefinitions>
+						<!-- Left Margin -->
+						<ColumnDefinition Width="15" />
+						<!-- Content -->
+						<ColumnDefinition Width="*" />
+						<!-- Left Margin -->
+						<ColumnDefinition Width="15" />
+					</Grid.ColumnDefinitions>
+
+					<!-- Button -->
+					<common:CustomButton Grid.ColumnSpan="3"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						BorderRadius="0"
+						Clicked="OnPartnershipButton_Clicked"
+						BackgroundColor="{x:Static resources:ColorResources.ANFLightGreen}" />
+
+					<!-- Button Label -->
+					<common:CustomLabel Grid.Column="1"
+						FontSize="15"
+						HorizontalOptions="Start"
+						VerticalOptions="Center"
+						InputTransparent="True"
+						TextColor="{x:Static resources:ColorResources.TextColorLight}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						Text="{x:Static app:AppResources.UserPagePartnershipsButton}" />
+
+					<!-- Arrow -->
+					<common:CustomImage
+						Grid.Column="1"
+						HorizontalOptions="End"
+						VerticalOptions="Center"
+						InputTransparent="True"
+						Source="ic_button_arrow.png" />
+				</Grid>
+			</Grid>
+		</ScrollView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+		<!--<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />-->
+    <views:ApplicationBarUserCard x:Name="ApplicationBar" Grid.ColumnSpan="2"> </views:ApplicationBarUserCard>
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>
+=======
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ANFPage
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.UserArea.UserCardPage">
+	
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Content -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		
+		<!-- Content -->
+		<ScrollView Grid.Row="1" Grid.Column="1"
+			Orientation="Vertical">
+			<Grid Grid.RowSpacing="1"
+				Grid.ColumnSpacing="0">
+				<Grid.ColumnDefinitions>
+					<!-- Left Margin -->
+					<ColumnDefinition Width="*" />
+					<!-- Card Column -->
+					<ColumnDefinition Width="241" />
+					<!-- Right Margin -->
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<!-- Top Margin -->
+					<RowDefinition Height="10" />
+					<!-- Last Updated Label -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="6" />
+					<!-- Card -->
+					<RowDefinition Height="169" />
+					<!-- Amount Saved -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="10" />
+					<!-- Points -->
+					<RowDefinition Height="auto" />
+					<!-- Separator -->
+					<RowDefinition Height="1" />
+					<!-- Spacing -->
+					<RowDefinition Height="5" />
+					<!-- Vouchers -->
+					<RowDefinition Height="auto" />
+					<!-- Separator -->
+					<RowDefinition Height="1" />
+					<!-- Spacing -->
+					<RowDefinition Height="5" />
+					<!-- Offers -->
+					<RowDefinition Height="auto" />
+					<!-- Spacing -->
+					<RowDefinition Height="5" />
+					<!-- Points History Button -->
+					<RowDefinition Height="40" />
+					<!-- Vouchers Button -->
+					<RowDefinition Height="40" />
+					<!-- Family Account Button -->
+					<RowDefinition Height="40" />
+					<!-- Partners Button -->
+					<RowDefinition Height="40" />
+					<!-- Bottom Margin -->
+					<RowDefinition Height="30" />
+				</Grid.RowDefinitions>
+				<!-- Last Updated -->
+				<StackLayout Grid.Row="1" Grid.Column="1"
+					HorizontalOptions="Center"
+					Orientation="Horizontal">
+					<!-- Last Updated Label -->
+					<common:CustomLabel
+						FontSize="12"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						Text="{x:Static app:AppResources.UserPageLastUpdatedLabel}" />
+					<!-- Last Updated Value -->
+					<common:CustomLabel
+						FontSize="12"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						Text="{Binding LastUpdated, StringFormat='{0:dd/MM/yyyy à\\s HH:mm}'}" />
+				</StackLayout>
+
+				<!-- Card Container -->
+				<Grid Grid.Row="3" Grid.Column="1" Grid.RowSpacing="0" Grid.ColumnSpacing="0"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand">
+					<Grid.GestureRecognizers>
+						<TapGestureRecognizer Tapped="CardTap" />
+					</Grid.GestureRecognizers>
+					<Grid.RowDefinitions>
+						<!-- Top Margin -->
+						<RowDefinition Height="20" />
+						<!-- Family Row -->
+						<RowDefinition Height="*" />
+						<!-- Client Name -->
+						<RowDefinition Height="26" />
+						<!-- Barcode -->
+						<RowDefinition Height="50" />
+						<!-- Bottom Row -->
+						<RowDefinition Height="28" />
+						<!-- Bottom Margin -->
+						<RowDefinition Height="18" />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<!-- Left Margin -->
+						<ColumnDefinition Width="28" />
+						<!-- Barcode? -->
+						<ColumnDefinition Width="*" />
+						<!-- Spacing? -->
+						<ColumnDefinition Width="20" />
+						<!-- Content? -->
+						<ColumnDefinition Width="auto" />
+						<!-- Right Margin -->
+						<ColumnDefinition Width="28" />
+					</Grid.ColumnDefinitions>
+					
+					<!-- Card Background -->
+					<common:CustomImage
+						Grid.RowSpan="6"
+						Grid.ColumnSpan="5"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						Source="bg_card.png" />
+					<!-- Card Holder Name -->
+					<common:CustomLabel
+						Grid.Row="2"
+						Grid.Column="1"
+						Grid.ColumnSpan="3"
+						FontSize="9"
+						VerticalOptions="Center"
+						HorizontalOptions="Center"
+						Text="{Binding Name}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+					<!-- Bar Code -->
+					<common:BarcodeView
+						Grid.Row="3"
+						Grid.Column="1"
+						Grid.ColumnSpan="3"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						Code="{Binding CardNumber}"
+						BackgroundColor="Transparent" />
+					<!-- Sauda Logos -->
+					<common:CustomImage
+						Grid.Row="1"
+						Grid.Column="3"
+						VerticalOptions="Center"
+						HorizontalOptions="End"
+						Source="ic_sauda_logos.png"
+						IsVisible="{Binding IsFamilyCard, Converter={x:Static converters:ConverterResources.InverseBool}}" />
+					<StackLayout
+						Grid.Row="1"
+						Grid.Column="3"
+						Spacing="5"
+						HorizontalOptions="End"
+						VerticalOptions="End"
+						Orientation="Horizontal"
+						IsVisible="{Binding IsFamilyCard}">
+						<!-- Family Image -->
+						<common:CustomImage
+							VerticalOptions="Center"
+							Source="ic_family_logo.png" />
+						<!-- Family Number -->
+						<common:CustomLabel
+							FontSize="14"
+							TextColor="#003262"
+							VerticalOptions="End"
+							Text="{Binding FamilySize}"
+							CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+					</StackLayout>
+					
+					<!-- Card Number -->
+					<common:CustomLabel
+						Grid.Row="4"
+						Grid.Column="3"
+						FontSize="14"
+						HorizontalOptions="End"
+						VerticalOptions="End"
+						Text="{Binding CardNumber}"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}" />
+				</Grid>
+
+				<!-- Amount Saved -->
+				<StackLayout
+					Grid.Row="4"
+					Grid.Column="1"
+					HorizontalOptions="Start"
+					Orientation="Horizontal">
+					<!-- Amount Saved Label -->
+					<common:CustomLabel
+						FontSize="15"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.LightFont}"
+						Text="{x:Static app:AppResources.UserPageSavedAmountLabel}" />
+					<!-- Amount Saved Value -->
+					<common:CustomLabel
+						FontSize="15"
+						TextColor="{x:Static resources:ColorResources.TextColorDark}"
+						CustomFont="{x:Static resources:FontResources.BoldFont}"
+						Text="{Binding SavedAmount, StringFormat='{0}€'}" />
+				</StackLayout>
+
+				<!-- Points -->
+				<Grid
+					Grid.Row="6"
+					Grid.Column="1"
+					Grid.ColumnSpacing="0"
+					Grid.RowSpacing="0"
+					HorizontalOptions="FillAndExpand">
+					<Grid.GestureRecognizers>
+						<TapGestureRecognizer Tapped="OnPointsHistoryButton_Clicked" />
+					</Grid.GestureRecognizers>
+					<Grid.ColumnDefinitions>
+						<!-- Points Column -->
+						<ColumnDefinition Width="*" />
+						<!-- Expiring Column -->
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<!-- Title Row -->
+						<RowDefinition Height="auto" />
+						<!-- Values Row -->
+						<RowDefinition Height="auto" />
+					</Grid.RowDefinitions>
+					<!-- Points Label -->
+					<common:CustomLabel
+						FontSize="12"
+						Text="{x:Static app:AppResources.UserPagePointsLabel}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						TextColor="{x:Static resources:ColorResources.PharmacyCardPoints}" />
+					<!-- Points Value -->
+					<common:CustomLabel
+						Grid.Row="1"
+						FontSize="30"
+						VerticalOptions="Start"
+						Text="{Binding Points}"
+						CustomMargin="0, -6, 0, 0"
+						CustomFont="{x:Static resources:FontResources.BoldFont}"
+						TextColor="{x:Static resources:ColorResources.PharmacyCardPoints}" />
+					<!-- Expiring Label -->
+					<common:CustomLabel
+						Grid.Column="1"
+						FontSize="12"
+						Text="{x:Static app:AppResources.UserPageExpiringLabel}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						TextColor="{x:Static resources:ColorResources.PharmacyCardExpiringPoints}" />
+					<!-- Expiring Value -->
+					<StackLayout
+						Orientation="Horizontal"
+						VerticalOptions="Start"
+						Spacing="5"
+						Grid.Row="1"
+						Grid.Column="1">
+						
+						<!-- Value -->
+						<common:CustomLabel
+							FontSize="12"
+							VerticalOptions="Start"
+							Text="{Binding ExpiringPoints}"
+							CustomFont="{x:Static resources:FontResources.BoldFont}"
+							TextColor="{x:Static resources:ColorResources.PharmacyCardExpiringPoints}" />
+						<!-- Label -->
+						<common:CustomLabel
+										FontSize="12"
+										VerticalOptions="Start"
+										Text="{x:Static app:AppResources.UserPagePointsSuffix}"
+										CustomFont="{x:Static resources:FontResources.BoldFont}"
+										TextColor="{x:Static resources:ColorResources.PharmacyCardExpiringPoints}" />
+					</StackLayout>
+				</Grid>
+				<!-- Separator -->
+				<BoxView
+					Grid.Row="7"
+					Grid.ColumnSpan="3"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					Color="{x:Static resources:ColorResources.APPBackgroundGrey}" />
+				<!-- Vouchers -->
+				<Grid
+					Grid.Row="12"
+					Grid.Column="1"
+					Grid.ColumnSpacing="0"
+					Grid.RowSpacing="0"
+					HorizontalOptions="FillAndExpand" 
+					Padding="0, 0, 0, 5">
+					<Grid.GestureRecognizers>
+						<TapGestureRecognizer Tapped="OnVoucherButton_Clicked" />
+					</Grid.GestureRecognizers>
+					<Grid.ColumnDefinitions>
+						<!-- Points Column -->
+						<ColumnDefinition Width="*" />
+						<!-- Expiring Column -->
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<!-- Title Row -->
+						<RowDefinition Height="auto" />
+						<!-- Values Row -->
+						<RowDefinition Height="auto" />
+					</Grid.RowDefinitions>
+					<!-- Vouchers Label -->
+					<common:CustomLabel
+						FontSize="12"
+						Text="{x:Static app:AppResources.UserPageVouchersLabel}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						TextColor="{x:Static resources:ColorResources.PharmacyCardVoucher}" />
+					<!-- Vouchers Value -->
+					<StackLayout
+						Grid.Row="1"
+						HeightRequest="30"
+						Orientation="Horizontal">
+						<!-- Vouchers Number -->
+						<common:CustomLabel
+							FontSize="30"
+							Text="{Binding Vouchers}"
+							VerticalOptions="Start"
+							CustomMargin="0, -6, 0, 0"
+							CustomFont="{x:Static resources:FontResources.BoldFont}"
+							TextColor="{x:Static resources:ColorResources.PharmacyCardVoucher}" />
+						<!-- Vouchers Value -->
+						<common:CustomLabel
+							FontSize="15"
+							Text="{Binding VouchersAmount, StringFormat='({0}€)'}"
+							VerticalOptions="End"
+							IsVisible="{Binding HasVouchersAmount}"
+							CustomFont="{x:Static resources:FontResources.BoldFont}"
+							TextColor="{x:Static resources:ColorResources.PharmacyCardVoucher}" />
+					</StackLayout>
+					<!-- Expiring Label -->
+					<common:CustomLabel
+						Grid.Column="1"
+						FontSize="12"
+						Text="{x:Static app:AppResources.UserPageExpiringLabel}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						TextColor="{x:Static resources:ColorResources.PharmacyCardExpiringVoucher}" />
+					<!-- Expiring Value -->
+					<StackLayout
+						Orientation="Horizontal"
+						Spacing="5"
+						Grid.Row="1"
+						Grid.Column="1">
+						<!-- Value -->
+						<common:CustomLabel
+							FontSize="12"
+							VerticalOptions="Start"
+							Text="{Binding ExpiringVouchers}"
+							CustomFont="{x:Static resources:FontResources.BoldFont}"
+							TextColor="{x:Static resources:ColorResources.PharmacyCardExpiringVoucher}" />
+						<!-- Label -->
+						<common:CustomLabel
+							FontSize="12"
+							VerticalOptions="Start"
+							Text="{x:Static app:AppResources.UserPageVouchersSuffix}"
+							CustomFont="{x:Static resources:FontResources.BoldFont}"
+							TextColor="{x:Static resources:ColorResources.PharmacyCardExpiringVoucher}" />
+					</StackLayout>
+				</Grid>
+
+				<!-- Separator -->
+				<BoxView
+					Grid.Row="10"
+					Grid.ColumnSpan="3"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					Color="{x:Static resources:ColorResources.APPBackgroundGrey}" />
+				
+				<!-- Gifts -->
+				<Grid
+					Grid.Row="9"
+					Grid.Column="1"
+					Grid.ColumnSpacing="0"
+					Grid.RowSpacing="0"
+					HorizontalOptions="FillAndExpand">
+					<Grid.GestureRecognizers>
+						<TapGestureRecognizer Tapped="OnVoucherButton_Clicked" />
+					</Grid.GestureRecognizers>
+					<Grid.ColumnDefinitions>
+						<!-- Points Column -->
+						<ColumnDefinition Width="*" />
+						<!-- Expiring Column -->
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<!-- Title Row -->
+						<RowDefinition Height="auto" />
+						<!-- Values Row -->
+						<RowDefinition Height="auto" />
+					</Grid.RowDefinitions>
+					
+					<!-- Gifts Label -->
+					<common:CustomLabel
+						FontSize="12"
+						Text="{x:Static app:AppResources.UserPageOffersLabel}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						TextColor="{x:Static resources:ColorResources.ANFPink}" />
+					
+					<!-- Gifts Value -->
+					<StackLayout
+						Grid.Row="1"
+						HeightRequest="30"
+						Orientation="Horizontal">
+						
+						<!-- Gifts Number -->
+						<common:CustomLabel
+							FontSize="30"
+							Text="{Binding Gifts}"
+							VerticalOptions="Start"
+							CustomMargin="0, -6, 0, 0"
+							CustomFont="{x:Static resources:FontResources.BoldFont}"
+							TextColor="{x:Static resources:ColorResources.ANFPink}" />
+						
+						<!-- Gifts Value -->
+						<common:CustomLabel
+							FontSize="15"
+							Text="{Binding GiftsAmount, StringFormat='({0}€)'}"
+							VerticalOptions="End"
+							IsVisible="{Binding HasGiftsAmount}"
+							CustomFont="{x:Static resources:FontResources.BoldFont}"
+							TextColor="{x:Static resources:ColorResources.ANFPink}" />
+					</StackLayout>
+					
+					<!-- Expiring Label -->
+					<common:CustomLabel
+						Grid.Column="1"
+						FontSize="12"
+						Text="{x:Static app:AppResources.UserPageExpiringLabel}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						TextColor="{x:Static resources:ColorResources.ANFPalePink}" />
+					
+					<!-- Expiring Value -->
+					<StackLayout
+						Orientation="Horizontal"
+						Spacing="5"
+						Grid.Row="1"
+						Grid.Column="1">
+						
+						<!-- Value -->
+						<common:CustomLabel
+							FontSize="12"
+							VerticalOptions="Start"
+							Text="{Binding ExpiringGifts}"
+							CustomFont="{x:Static resources:FontResources.BoldFont}"
+							TextColor="{x:Static resources:ColorResources.ANFPalePink}" />
+						<!-- Label -->
+						<common:CustomLabel
+							FontSize="12"
+							VerticalOptions="Start"
+							Text="{x:Static app:AppResources.UserPageOffersSuffix}"
+							CustomFont="{x:Static resources:FontResources.BoldFont}"
+							TextColor="{x:Static resources:ColorResources.ANFPalePink}" />
+					</StackLayout>
+				</Grid>
+				
+				<!-- Points History Button -->
+				<Grid
+					Grid.Row="14"
+					Grid.ColumnSpan="3"
+					Grid.ColumnSpacing="0"
+					Grid.RowSpacing="0"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand">
+					<Grid.ColumnDefinitions>
+						<!-- Left Margin -->
+						<ColumnDefinition Width="15" />
+						<!-- Content -->
+						<ColumnDefinition Width="*" />
+						<!-- Left Margin -->
+						<ColumnDefinition Width="15" />
+					</Grid.ColumnDefinitions>
+					<!-- Button -->
+					<common:CustomButton
+						Grid.ColumnSpan="3"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						BorderRadius="0"
+						Clicked="OnAquireVoucherButton_Clicked"
+						BackgroundColor="{x:Static resources:ColorResources.ANFLightGreen}" />
+					<!-- Button Label -->
+					<common:CustomLabel
+						Grid.Column="1"
+						FontSize="15"
+						HorizontalOptions="Start"
+						VerticalOptions="Center"
+						InputTransparent="True"
+						TextColor="{x:Static resources:ColorResources.TextColorLight}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						Text="{x:Static app:AppResources.UserPageAquireVouchersButton}" />
+					<!-- Arrow -->
+					<common:CustomImage
+						Grid.Column="1"
+						HorizontalOptions="End"
+						VerticalOptions="Center"
+						InputTransparent="True"
+						Source="ic_button_arrow.png" />
+				</Grid>
+				<!-- Vouchers Button -->
+				<Grid
+					Grid.Row="15"
+					Grid.ColumnSpan="3"
+					Grid.ColumnSpacing="0"
+					Grid.RowSpacing="0"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand">
+					<Grid.ColumnDefinitions>
+						<!-- Left Margin -->
+						<ColumnDefinition Width="15" />
+						<!-- Content -->
+						<ColumnDefinition Width="*" />
+						<!-- Left Margin -->
+						<ColumnDefinition Width="15" />
+					</Grid.ColumnDefinitions>
+					<!-- Button -->
+					<common:CustomButton
+						Grid.ColumnSpan="3"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						BorderRadius="0"
+						Clicked="OnVoucherButton_Clicked"
+						BackgroundColor="{x:Static resources:ColorResources.ANFLightGreen}" />
+					<!-- Button Label -->
+					<common:CustomLabel
+						Grid.Column="1"
+						FontSize="15"
+						HorizontalOptions="Start"
+						VerticalOptions="Center"
+						InputTransparent="True"
+						TextColor="{x:Static resources:ColorResources.TextColorLight}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						Text="{x:Static app:AppResources.UserPageVouchersButton}" />
+					<!-- Arrow -->
+					<common:CustomImage
+						Grid.Column="1"
+						HorizontalOptions="End"
+						VerticalOptions="Center"
+						InputTransparent="True"
+						Source="ic_button_arrow.png" />
+				</Grid>
+				
+				<!-- Family Account Button -->
+				<Grid
+					Grid.Row="16"
+					Grid.ColumnSpan="3"
+					Grid.ColumnSpacing="0"
+					Grid.RowSpacing="0"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand">
+					<Grid.ColumnDefinitions>
+						<!-- Left Margin -->
+						<ColumnDefinition Width="15" />
+						<!-- Content -->
+						<ColumnDefinition Width="*" />
+						<!-- Warnin Icon -->
+						<ColumnDefinition Width="auto" />
+						<!-- Spacing -->
+						<ColumnDefinition Width="15" />
+						<!-- Arrow -->
+						<ColumnDefinition Width="auto" />
+						<!-- Left Margin -->
+						<ColumnDefinition Width="15" />
+					</Grid.ColumnDefinitions>
+					<!-- Button -->
+					<common:CustomButton
+						Grid.ColumnSpan="6"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						BorderRadius="0"
+						Clicked="OnFamilyAccountButton_Clicked"
+						BackgroundColor="{x:Static resources:ColorResources.ANFLightGreen}" />
+					<!-- Button Label -->
+					<common:CustomLabel
+						Grid.Column="1"
+						FontSize="15"
+						HorizontalOptions="Start"
+						VerticalOptions="Center"
+						InputTransparent="True"
+						TextColor="{x:Static resources:ColorResources.TextColorLight}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						Text="{x:Static app:AppResources.UserPageFamilyAccountButton}" />
+					<!-- Warning Icon -->
+					<common:CustomImage
+						Grid.Column="2"
+						VerticalOptions="Center"
+						InputTransparent="True"
+						Source="ic_warning.png"
+						IsVisible="{Binding HasFamilyWarning}" />
+					<!-- Arrow -->
+					<common:CustomImage
+						Grid.Column="4"
+						VerticalOptions="Center"
+						InputTransparent="True"
+						Source="ic_button_arrow.png" />
+				</Grid>
+
+				<!-- Partnerships Button -->
+				<Grid Grid.Row="17" Grid.ColumnSpan="3"
+					Grid.ColumnSpacing="0" Grid.RowSpacing="0"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand">
+					<Grid.ColumnDefinitions>
+						<!-- Left Margin -->
+						<ColumnDefinition Width="15" />
+						<!-- Content -->
+						<ColumnDefinition Width="*" />
+						<!-- Left Margin -->
+						<ColumnDefinition Width="15" />
+					</Grid.ColumnDefinitions>
+
+					<!-- Button -->
+					<common:CustomButton Grid.ColumnSpan="3"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						BorderRadius="0"
+						Clicked="OnPartnershipButton_Clicked"
+						BackgroundColor="{x:Static resources:ColorResources.ANFLightGreen}" />
+
+					<!-- Button Label -->
+					<common:CustomLabel Grid.Column="1"
+						FontSize="15"
+						HorizontalOptions="Start"
+						VerticalOptions="Center"
+						InputTransparent="True"
+						TextColor="{x:Static resources:ColorResources.TextColorLight}"
+						CustomFont="{x:Static resources:FontResources.RegularFont}"
+						Text="{x:Static app:AppResources.UserPagePartnershipsButton}" />
+
+					<!-- Arrow -->
+					<common:CustomImage
+						Grid.Column="1"
+						HorizontalOptions="End"
+						VerticalOptions="Center"
+						InputTransparent="True"
+						Source="ic_button_arrow.png" />
+				</Grid>
+			</Grid>
+		</ScrollView>
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" />
+
+		<!-- Application Bar -->
+		<!--<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />-->
+    <views:ApplicationBarUserCard x:Name="ApplicationBar" Grid.ColumnSpan="2"> </views:ApplicationBarUserCard>
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</ANFPage>
+>>>>>>> maintenance_phase5_azure_notification

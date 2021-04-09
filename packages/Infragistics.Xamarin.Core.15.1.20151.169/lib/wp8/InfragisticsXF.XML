@@ -1,0 +1,663 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>InfragisticsXF</name>
+    </assembly>
+    <members>
+        <member name="T:Infragistics.XF.TrendLineType">
+            <summary>
+            Describes available types of trend lines supported by series.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.TrendLineType.None">
+            <summary>
+            No trend line will be displayed.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.TrendLineType.LinearFit">
+            <summary>
+            Linear fit.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.TrendLineType.QuadraticFit">
+            <summary>
+            Quadratic polynomial fit.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.TrendLineType.CubicFit">
+            <summary>
+            Cubic polynomial fit.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.TrendLineType.QuarticFit">
+            <summary>
+            Quartic polynomial fit.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.TrendLineType.QuinticFit">
+            <summary>
+            Quintic polynomial fit.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.TrendLineType.LogarithmicFit">
+            <summary>
+            Logarithmic fit.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.TrendLineType.ExponentialFit">
+            <summary>
+            Exponential fit.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.TrendLineType.PowerLawFit">
+            <summary>
+            Powerlaw fit.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.TrendLineType.SimpleAverage">
+            <summary>
+            Simple moving average.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.TrendLineType.ExponentialAverage">
+            <summary>
+            Exponential moving average.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.TrendLineType.ModifiedAverage">
+            <summary>
+            Modified moving average.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.TrendLineType.CumulativeAverage">
+            <summary>
+            Cumulative moving average.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.TrendLineType.WeightedAverage">
+            <summary>
+            Weighted moving average.
+            </summary>
+        </member>
+        <member name="T:Infragistics.XF.UnknownValuePlotting">
+            <summary>
+            Describes available methods of plotting data with unknown values in a series.  
+            <para>Double.NaN and null are examples of unknown values.</para>
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.UnknownValuePlotting.LinearInterpolate">
+            <summary>
+            Plot the unknown value as the midpoint between surrounding known values using linear interpolation.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.UnknownValuePlotting.DontPlot">
+            <summary>
+            Do not plot the unknown value on the chart.
+            </summary>
+        </member>
+        <member name="T:Infragistics.XF.LineCap">
+            <summary>
+            Describes available ends for drawing connection lines.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.LineCap.None">
+            <summary>
+            None
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.LineCap.Ellipse">
+            <summary>
+            Ellipse
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.LineCap.Arrow">
+            <summary>
+            Arrow
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.LineCap.SolidArrow">
+            <summary>
+            Solid Arrow
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.LineCap.Diamond">
+            <summary>
+            Diamond
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.LineCap.Tee">
+            <summary>
+            Tee
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.LineCap.Square">
+            <summary>
+            Square
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.LineCap.Cross">
+            <summary>
+            Cross
+            </summary>
+        </member>
+        <member name="T:Infragistics.XF.FastReflectionHelper">
+            <summary>
+            A reflection strategy that uses either traditional reflection or compiled lambda expressions
+            to get property values from an object.
+            </summary>
+        </member>
+        <member name="M:Infragistics.XF.FastReflectionHelper.#ctor">
+            <summary>
+            Constructs the fast reflection helper.
+            </summary>
+        </member>
+        <member name="M:Infragistics.XF.FastReflectionHelper.#ctor(System.Boolean,System.String)">
+            <summary>
+            Constructs the fast reflection helper.
+            </summary>
+            <param name="useTraditionalReflection">Should the helper use traditional (slower) reflection.</param>
+            <param name="propertyName">The propertyname this will be reflecting on.</param>
+        </member>
+        <member name="M:Infragistics.XF.FastReflectionHelper.GetPropertyValue(System.Object)">
+            <summary>
+            Gets the property value from the specified item.
+            </summary>
+            <param name="item"></param>
+            <returns>Property value or null if the property value cannot be determined.</returns>
+        </member>
+        <member name="M:Infragistics.XF.FastReflectionHelper.GetPropertyValue(System.Type,System.Object)">
+            <summary>
+            Gets the property value for the specified item.
+            </summary>
+            <param name="itemType">The item type.</param>
+            <param name="item">The item containing the property.</param>
+            <returns>Property value or null if the property value cannot be determined.</returns>
+        </member>
+        <member name="P:Infragistics.XF.FastReflectionHelper.PropertyName">
+            <summary>
+            Gets or sets the property name of the current FastReflectionHelper object.
+            </summary>
+        </member>
+        <member name="P:Infragistics.XF.FastReflectionHelper.UseTraditionalReflection">
+            <summary>
+            Indicates that current FastReflectionHelper object is not using compiled expressions.
+            </summary>
+        </member>
+        <member name="P:Infragistics.XF.FastReflectionHelper.Invalid">
+            <summary>
+            Returns true if the fast reflection helper is invalid, probably due to a lack of a property name.
+            </summary>
+        </member>
+        <member name="T:Infragistics.XF.InteractionState">
+            <summary>
+            Describes available interaction states of the chart or geographic map control.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.InteractionState.None">
+            <summary>
+            User gesture will not change the state of the chart.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.InteractionState.DragZoom">
+            <summary>
+            User gesture will start a drag rectangle to zoom the chart.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.InteractionState.DragPan">
+            <summary>
+            User gesture will start a pan action to move the chart's window.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.InteractionState.Auto">
+            <summary>
+            User gesture will start a pan action in a touch environment and a drag rectangle in a mouse environment.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.WidgetAttribute">
+            <summary>
+            Attribute used for cross-platform translation.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.WidgetAttribute.#ctor">
+            <summary>
+            WidgetAttribute constructor.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.WidgetAttribute.#ctor(System.String)">
+            <summary>
+            WidgetAttribute constructor.
+            </summary>
+            <param name="name">The widget name.</param>
+        </member>
+        <member name="P:System.Runtime.CompilerServices.WidgetAttribute.Name">
+            <summary>
+            The widget name.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.MainWidgetAttribute">
+            <summary>
+            Attribute used for cross-platform translation.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.MainWidgetAttribute.#ctor">
+            <summary>
+            MainWidgetAttribute constructor.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.MainWidgetAttribute.#ctor(System.String)">
+            <summary>
+            MainWidgetAttribute constructor.
+            </summary>
+            <param name="name">The main widget name.</param>
+        </member>
+        <member name="P:System.Runtime.CompilerServices.MainWidgetAttribute.Name">
+            <summary>
+            The main widget name.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.SuppressWidgetMemberAttribute">
+            <summary>
+            Attribute used for cross-platform translation.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.SuppressWidgetMemberAttribute.#ctor">
+            <summary>
+            SuppressWidgetMemberAttribute constructor.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.WFSuppressWidgetMemberAttribute">
+            <summary>
+            Attribute used for cross-platform translation.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.WFSuppressWidgetMemberAttribute.#ctor">
+            <summary>
+            SuppressWidgetMemberAttribute constructor.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.JAVASuppressWidgetMemberAttribute">
+            <summary>
+            Attribute used for cross-platform translation.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.JAVASuppressWidgetMemberAttribute.#ctor">
+            <summary>
+            SuppressWidgetMemberAttribute constructor.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.XamSuppressWidgetMemberAttribute">
+            <summary>
+            Attribute used for cross-platform translation.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.XamSuppressWidgetMemberAttribute.#ctor">
+            <summary>
+            SuppressWidgetMemberAttribute constructor.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.XamiOSSuppressWidgetMemberAttribute">
+            <summary>
+            Attribute used for cross-platform translation.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.XamiOSSuppressWidgetMemberAttribute.#ctor">
+            <summary>
+            SuppressWidgetMemberAttribute constructor.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.XamAndroidSuppressWidgetMemberAttribute">
+            <summary>
+            Attribute used for cross-platform translation.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.XamAndroidSuppressWidgetMemberAttribute.#ctor">
+            <summary>
+            SuppressWidgetMemberAttribute constructor.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.XamWPSuppressWidgetMemberAttribute">
+            <summary>
+            Attribute used for cross-platform translation.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.XamWPSuppressWidgetMemberAttribute.#ctor">
+            <summary>
+            SuppressWidgetMemberAttribute constructor.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.XamWrapperSuppressWidgetMemberAttribute">
+            <summary>
+            Attribute used for cross-platform translation.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.XamWrapperSuppressWidgetMemberAttribute.#ctor">
+            <summary>
+            SuppressWidgetMemberAttribute constructor.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.XamiOSTreatAsDoubleAttribute">
+            <summary>
+            Attribute used for cross-platform translation.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.XamiOSTreatAsDoubleAttribute.#ctor">
+            <summary>
+            SuppressWidgetMemberAttribute constructor.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.XamiOSTreatAsFloatAttribute">
+            <summary>
+            Attribute used for cross-platform translation.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.XamiOSTreatAsFloatAttribute.#ctor">
+            <summary>
+            SuppressWidgetMemberAttribute constructor.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.XamiOSEnumNameAttribute">
+            <summary>
+            Attribute used for cross-platform translation.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.XamiOSEnumNameAttribute.#ctor(System.String)">
+            <summary>
+            WidgetDefaultStringAttribute constructor.
+            </summary>
+            <param name="value">The widget default.</param>
+        </member>
+        <member name="P:System.Runtime.CompilerServices.XamiOSEnumNameAttribute.Value">
+            <summary>
+            The widget default.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.WidgetDefaultStringAttribute">
+            <summary>
+            Attribute used for cross-platform translation.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.WidgetDefaultStringAttribute.#ctor(System.String)">
+            <summary>
+            WidgetDefaultStringAttribute constructor.
+            </summary>
+            <param name="value">The widget default.</param>
+        </member>
+        <member name="P:System.Runtime.CompilerServices.WidgetDefaultStringAttribute.Value">
+            <summary>
+            The widget default.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.WidgetDefaultNumberAttribute">
+            <summary>
+            Attribute used for cross-platform translation.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.WidgetDefaultNumberAttribute.#ctor(System.Double)">
+            <summary>
+            WidgetDefaultNumberAttribute constructor.
+            </summary>
+            <param name="value">The widget default.</param>
+        </member>
+        <member name="P:System.Runtime.CompilerServices.WidgetDefaultNumberAttribute.Value">
+            <summary>
+            The widget default.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.WidgetDefaultBooleanAttribute">
+            <summary>
+            Attribute used for cross-platform translation.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.WidgetDefaultBooleanAttribute.#ctor(System.Boolean)">
+            <summary>
+            WidgetDefaultBooleanAttribute constructor.
+            </summary>
+            <param name="value">The widget default.</param>
+        </member>
+        <member name="P:System.Runtime.CompilerServices.WidgetDefaultBooleanAttribute.Value">
+            <summary>
+            The widget default.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.SuppressWidgetMemberCopyAttribute">
+            <summary>
+            Attribute used for cross-platform translation.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.SuppressWidgetMemberCopyAttribute.#ctor">
+            <summary>
+            SuppressWidgetMemberCopyAttribute constructor.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.WFSuppressWidgetMemberCopyAttribute">
+            <summary>
+            Attribute used for cross-platform translation.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.WFSuppressWidgetMemberCopyAttribute.#ctor">
+            <summary>
+            SuppressWidgetMemberCopyAttribute constructor.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.JAVASuppressWidgetMemberCopyAttribute">
+            <summary>
+            Attribute used for cross-platform translation.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.JAVASuppressWidgetMemberCopyAttribute.#ctor">
+            <summary>
+            SuppressWidgetMemberCopyAttribute constructor.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.WidgetModuleAttribute">
+            <summary>
+            Attribute used for cross-platform translation.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.WidgetModuleAttribute.#ctor(System.String)">
+            <summary>
+            WidgetModuleAttribute constructor.
+            </summary>
+            <param name="name">The widget module name.</param>
+        </member>
+        <member name="P:System.Runtime.CompilerServices.WidgetModuleAttribute.Name">
+            <summary>
+            The widget module name.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.WidgetModuleParentAttribute">
+            <summary>
+            Attribute used for cross-platform translation.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.WidgetModuleParentAttribute.#ctor(System.String)">
+            <summary>
+            WidgetModuleParentAttribute constructor.
+            </summary>
+            <param name="name">The name of the widget parent module.</param>
+        </member>
+        <member name="P:System.Runtime.CompilerServices.WidgetModuleParentAttribute.Name">
+            <summary>
+            The name of the widget parent module.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.WidgetModuleExclusionParentAttribute">
+            <summary>
+            Attribute used for cross-platform translation.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.WidgetModuleExclusionParentAttribute.#ctor(System.String)">
+            <summary>
+            WidgetModuleParentAttribute constructor.
+            </summary>
+            <param name="name">The name of the widget parent module.</param>
+        </member>
+        <member name="P:System.Runtime.CompilerServices.WidgetModuleExclusionParentAttribute.Name">
+            <summary>
+            The name of the widget parent module.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.WidgetIgnoreDependsAttribute">
+            <summary>
+            Attribute used for cross-platform translation.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.WidgetIgnoreDependsAttribute.#ctor(System.String)">
+            <summary>
+            WidgetIgnoreDependsAttribute constructor.
+            </summary>
+            <param name="name">The name of the dependency to ignore.</param>
+        </member>
+        <member name="P:System.Runtime.CompilerServices.WidgetIgnoreDependsAttribute.Name">
+            <summary>
+            The name of the dependency to ignore.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.WidgetIncludeDependsAttribute">
+            <summary>
+            Attribute used for cross-platform translation.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.WidgetIncludeDependsAttribute.#ctor(System.String)">
+            <summary>
+            WidgetIgnoreDependsAttribute constructor.
+            </summary>
+            <param name="name">The name of the dependency to ignore.</param>
+        </member>
+        <member name="P:System.Runtime.CompilerServices.WidgetIncludeDependsAttribute.Name">
+            <summary>
+            The name of the dependency to ignore.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.DontObfuscateAttribute">
+            <summary>
+            Attribute used for cross-platform translation.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.DontObfuscateAttribute.#ctor">
+            <summary>
+            DontObfuscateAttribute constructor.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.WeakAttribute">
+            <summary>
+            Attribute used for cross-platform translation.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.WeakAttribute.#ctor">
+            <summary>
+            WeakAttribute constructor.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.ClientNameAttribute">
+            <summary>
+            Attribute used for type renaming in generated code.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.MvcEnumSetStringEnumAttribute">
+            <summary>
+            Attribute used for Mvc wrapper generation.
+            </summary>
+        </member>
+        <member name="T:Infragistics.XF.BindableBase">
+            <summary>
+            Represents the base class from which all bindable types are derived.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.Controls.ImageCheckButton.IsCheckedProperty">
+            <summary>
+            Gets or sets whether the ImageCheckButton is checked.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.Controls.ImageCheckButton.IsUncheckAllowedProperty">
+            <summary>
+            Gets or sets whether the ImageCheckButton can uncheck by pressing.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.Controls.ImageCheckButton.CheckedColorProperty">
+            <summary>
+            Gets or sets whether the ImageCheckButton can uncheck by pressing.
+            </summary>
+        </member>
+        <member name="P:Infragistics.XF.Controls.ImageCheckButton.IsChecked">
+            <summary>
+            Gets or sets whether the ImageCheckButton is checked.
+            </summary>
+        </member>
+        <member name="P:Infragistics.XF.Controls.ImageCheckButton.IsUncheckAllowed">
+            <summary>
+            Gets or sets whether the ImageCheckButton can uncheck by pressing.
+            </summary>
+        </member>
+        <member name="P:Infragistics.XF.Controls.ImageCheckButton.CheckedColor">
+            <summary>
+            Gets or sets whether the ImageCheckButton can uncheck by pressing.
+            </summary>
+        </member>
+        <member name="T:Infragistics.XF.SweepDirection">
+            <summary>
+            Specifies the sweep direction of an element.
+            </summary>
+        </member>
+        <member name="T:Infragistics.XF.Visibility">
+            <summary>
+            Specifies the display state of an element.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.Visibility.Visible">
+            <summary>
+            Display the element.
+            </summary>
+        </member>
+        <member name="F:Infragistics.XF.Visibility.Collapsed">
+            <summary>
+            Do not display the element.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:Infragistics.XF.HorizontalAlignment" -->
+        <!-- Badly formed XML comment ignored for member "T:Infragistics.XF.VerticalAlignment" -->
+        <!-- Badly formed XML comment ignored for member "T:Infragistics.XF.ModifierKeys" -->
+        <!-- Badly formed XML comment ignored for member "T:Infragistics.XF.PenLineCap" -->
+        <!-- Badly formed XML comment ignored for member "T:Infragistics.XF.Stretch" -->
+        <member name="T:Infragistics.XF.Brush">
+            <summary>
+            Represents a base class for brush types 
+            </summary>
+        </member>
+        <member name="T:Infragistics.XF.SolidColorBrush">
+            <summary>
+            Represents a soild brush
+            </summary>
+        </member>
+        <member name="T:Infragistics.XF.LinearGradientBrush">
+            <summary>
+            Represents a linear gradient brush
+            </summary>
+        </member>
+        <member name="T:Infragistics.XF.GradientStopCollection">
+            <summary>
+            Represents a collecton of GradientStop types
+            </summary>
+        </member>
+        <member name="T:Infragistics.XF.GradientStop">
+            <summary>
+            Represents a gradient stop for gradient brush
+            </summary>
+        </member>
+        <member name="T:Infragistics.XF.BrushTypeConverter">
+            <summary>
+            Represents type converter for converting Brush type from string
+            </summary>
+        </member>
+        <member name="T:Infragistics.XF.BrushCollection">
+            <summary>
+            Represents a collecton of Brush types
+            </summary>
+        </member>
+        <member name="T:Infragistics.XF.Controls.ViewBase">
+            <summary>
+            Represents the base class from which all Infragistics View types are derived.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Views.MenuView">
+
+	<ContentView.Content>
+		<Grid Grid.RowSpacing="0"
+		  VerticalOptions="FillAndExpand"
+		  HorizontalOptions="FillAndExpand">
+
+			<Grid.RowDefinitions>
+				<!-- Menu Bar -->
+				<RowDefinition Height="auto" />
+				<!-- Page -->
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+
+			<!-- Menu Bar -->
+			<Grid x:Name="MenuBar" Grid.ColumnSpacing="0"
+				Padding="{x:Static resources:DimenResources.MenuBarPadding}"
+				HeightRequest="{x:Static resources:DimenResources.MenuBarHeightByDevice}"
+				BackgroundColor="White">
+
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="0" />
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="0" />
+				</Grid.ColumnDefinitions>
+				
+				<common:CustomImage Grid.Column="2" Source="ic_anf_logo_large.png"
+					VerticalOptions="Center"
+					HorizontalOptions="Center" />
+
+				<common:CustomButton Grid.Column="1" Grid.ColumnSpan="2"
+					HeightRequest="50"
+					WidthRequest="90"
+					VerticalOptions="Center"
+					HorizontalOptions="Start"
+					BackgroundColor="Transparent"
+					Clicked="OnDismissClicked">
+					<common:CustomButton.IsVisible>
+						<OnIdiom x:TypeArguments="x:Boolean">
+							<OnIdiom.Phone>True</OnIdiom.Phone>
+							<OnIdiom.Tablet>False</OnIdiom.Tablet>
+						</OnIdiom>
+					</common:CustomButton.IsVisible>
+				</common:CustomButton>
+
+				<common:CustomImage Grid.Column="1"
+					Source="ic_back_arrow_green.png"
+					InputTransparent="True"
+					VerticalOptions="Center"
+					HorizontalOptions="Start">
+					<common:CustomImage.IsVisible>
+						<OnIdiom x:TypeArguments="x:Boolean">
+							<OnIdiom.Phone>True</OnIdiom.Phone>
+							<OnIdiom.Tablet>False</OnIdiom.Tablet>
+						</OnIdiom>
+					</common:CustomImage.IsVisible>
+				</common:CustomImage>
+				
+			</Grid>
+
+			<!-- Page -->
+			<common:CustomListView Grid.Row="1" x:Name="Menu"
+				RowHeight="60"
+				BackgroundColor="{x:Static resources:ColorResources.ANFGreen}"
+				SeparatorVisibility="None"
+				SeparatorColor="Transparent"
+				ItemsSource="{Binding MenuItems}"
+				ItemSelected="MenuItemSelected">
+				<common:CustomListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<views:MenuListItem />
+						</ViewCell>
+					</DataTemplate>
+				</common:CustomListView.ItemTemplate>
+
+				<!-- Remove trailing lines. -->
+				<common:CustomListView.Footer>
+					<ContentView HeightRequest="0" />
+				</common:CustomListView.Footer>
+			</common:CustomListView>
+
+			<!-- Tablet Separator -->
+			<BoxView WidthRequest="1" Grid.RowSpan="2"
+				VerticalOptions="FillAndExpand"
+				HorizontalOptions="End"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}">
+				<BoxView.IsVisible>
+					<OnIdiom x:TypeArguments="x:Boolean">
+						<OnIdiom.Phone>False</OnIdiom.Phone>
+						<OnIdiom.Tablet>True</OnIdiom.Tablet>
+					</OnIdiom>
+				</BoxView.IsVisible>
+			</BoxView>
+			
+		</Grid>
+	</ContentView.Content>
+</ContentView>

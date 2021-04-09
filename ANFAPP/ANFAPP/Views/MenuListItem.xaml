@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+  xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+  xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+  xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+  x:Class="ANFAPP.Views.MenuListItem">
+
+	<ContentView.Content>
+		<Grid HorizontalOptions="FillAndExpand"
+			HeightRequest="60"
+			Padding="15, 0"
+			BackgroundColor="{x:Static resources:ColorResources.ANFGreen}">
+			<StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+				<Grid Grid.RowSpacing="0" Grid.ColumnSpacing="0"
+					VerticalOptions="Center">
+					<Grid.ColumnDefinitions>
+						<!-- Points Label (offset) -->
+						<ColumnDefinition Width="8" />
+						<!-- Points Label (overlaps) -->
+						<ColumnDefinition Width="30" />
+						<!-- Image (overlaps) -->
+						<ColumnDefinition Width="16" />
+					</Grid.ColumnDefinitions>
+
+					<Grid.RowDefinitions>
+						<!-- User Points (offset) -->
+						<RowDefinition Height="4" />
+						<!-- User Points (overlaps) -->
+						<RowDefinition Height="10" />
+						<!-- Content -->
+						<RowDefinition Height="24" />
+					</Grid.RowDefinitions>
+
+					<StackLayout x:Name="Icon2" Grid.ColumnSpan="2" Grid.RowSpan="3" Grid.Row="0" Grid.Column="1" >
+					  <StackLayout.Padding>
+						<OnPlatform x:TypeArguments="Thickness"> 
+     					  <OnPlatform.iOS>
+        					0, 2, 0, 0
+      					  </OnPlatform.iOS>
+								<OnPlatform.Android>
+      							  0, 7, 0, 0
+      							</OnPlatform.Android>
+      							<OnPlatform.WinPhone>
+      							  0, 4, 0, 0
+      							</OnPlatform.WinPhone>
+      				  </OnPlatform>
+					</StackLayout.Padding>
+						<common:CustomImage 
+						HeightRequest="35"
+						WidthRequest="37"
+						HorizontalOptions="CenterAndExpand"
+						VerticalOptions="CenterAndExpand" 
+						Source="{Binding CardIcon}" />
+					    
+						</StackLayout>
+
+	<common:CustomImage x:Name="Icon" Grid.ColumnSpan="2" Grid.RowSpan="3" Grid.Row="0" Grid.Column="1"
+	  HorizontalOptions="CenterAndExpand"
+      VerticalOptions="CenterAndExpand" 
+      Source="{Binding IconName}" />
+
+
+					<!-- Smile Grid -->
+			<Grid x:Name="a" Grid.RowSpan="3" Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="1" Padding="0,7,0,0"
+      			HorizontalOptions="Center"
+      			VerticalOptions="Center"
+      			HeightRequest="35"
+				WidthRequest="35"
+				InputTransparent="True">
+
+            <!-- Button Image -->
+            <common:CustomImage x:Name="ButtonImage2" Grid.Row="0"
+ 	         		HeightRequest="30"
+    	      		WidthRequest="30"
+        	  		HorizontalOptions="Center"
+          			Aspect="AspectFill"
+      				InputTransparent="True"
+			    	VerticalOptions="Center"
+          			Source= "{Binding IconSmile}" />
+
+            <!-- Button Mask-->
+            <common:CustomImage x:Name="ButtonMask2" Grid.Row="0"
+    				HeightRequest="35"
+					WidthRequest="35"
+					HorizontalOptions="Center"
+					IsVisible="False"
+					InputTransparent="True"
+					Source="img_use_mask_green.png"
+					VerticalOptions="Center" />
+          </Grid>
+			
+          <Grid x:Name="Image" Grid.RowSpan="3" Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="1" 
+      			HorizontalOptions="Center"
+      			VerticalOptions="Center"
+      			HeightRequest="35"
+				WidthRequest="35"
+				InputTransparent="True">
+
+            <!-- Button Image -->
+            <common:CustomImage x:Name="ButtonImage" Grid.Row="0" 
+ 	         		HeightRequest="30"
+    	      		WidthRequest="30"
+        	  		HorizontalOptions="Center"
+          			Aspect="AspectFill"
+      				InputTransparent="True"
+			    	VerticalOptions="Center"
+          			Source= "{Binding UserIcon}" />
+
+            <!-- Button Mask-->
+            <common:CustomImage x:Name="ButtonMask" Grid.Row="0"
+    				HeightRequest="35"
+					WidthRequest="35"
+					HorizontalOptions="Center"
+					IsVisible="False"
+					InputTransparent="True"
+					Source="img_use_mask_green.png"
+					VerticalOptions="Center" />
+          </Grid>
+          
+
+					<!-- Notification -->
+					<!--<common:CustomEntry x:Name="UserPoints" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2"
+						HeightRequest="16"
+						HorizontalOptions="Center"
+						VerticalOptions="Start"
+						TextColor="White"
+						FontSize="10"
+						Text="{Binding Count}"
+						IsVisible="{Binding Count}"
+						IsEnabled="False"
+						CustomPadding="6, 0"
+						InputTransparent="True"
+						BackgroundResource="points_bg6.png"
+						CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />-->
+
+
+
+          <!-- Notification -->
+          <common:CustomImage x:Name="UserPointsBGImage" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2"
+            InputTransparent="True"
+						Source="points_bg6.png"
+            IsVisible="{Binding Count}"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"/>
+
+          <StackLayout Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2"
+            Padding="5, 0, 5, 0"
+					Spacing="0"
+					Orientation="Horizontal"
+					HorizontalOptions="Center"
+					VerticalOptions="Start">
+          
+            <common:CustomLabel x:Name="UserPoints" 
+              TextColor="White"
+              FontSize="10"
+              InputTransparent="True"
+              Text="{Binding Count}"
+              IsVisible="{Binding Count}"
+              VerticalOptions="Center"
+              CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+
+            <common:CustomLabel 
+              TextColor="White"
+              FontSize="7"
+              InputTransparent="True"
+              Text="PTS"
+              VerticalOptions="End"
+              IsVisible="{Binding Count}"
+              CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />
+        </StackLayout>
+          
+          
+          <!--testes-->
+          <common:CustomImage x:Name="PromoCountImage" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2"
+            InputTransparent="True"
+						Source="points_bg3.png"
+            IsVisible="{Binding Promo}"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"/>
+          
+          <StackLayout Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2"
+            Padding="5, 0, 5, 0"
+					Spacing="0"
+					Orientation="Horizontal"
+					HorizontalOptions="Center"
+					VerticalOptions="Start">
+
+            <common:CustomLabel x:Name="PromoCount"
+              TextColor="White"
+              FontSize="10"
+              InputTransparent="True"
+              Text="{Binding Promo}"
+              IsVisible="{Binding Promo}"
+              VerticalOptions="Center"
+              CustomFont="{x:Static resources:FontResources.SemiBoldFont}"/>
+
+            <!--<common:CustomLabel
+              TextColor="White"
+              FontSize="7"
+              InputTransparent="True"
+              Text=""
+              VerticalOptions="End"
+              IsVisible="{Binding Promo}"
+              CustomFont="{x:Static resources:FontResources.SemiBoldFont}" />-->
+          </StackLayout>
+          
+          
+        
+          
+				</Grid>
+
+				<common:CustomLabel Grid.Row="1" Grid.Column="2"
+					FontSize="18"
+					HorizontalOptions="StartAndExpand"
+					VerticalOptions="Center"
+					InputTransparent="True"
+					TextColor="White"
+					CustomFont="{x:Static resources:FontResources.LightFont}"
+					Text="{Binding ItemName}" />
+			</StackLayout>
+
+			<!-- Separator -->
+			<Grid Padding="-15, 0, -15, 0" HeightRequest="1" VerticalOptions="End">
+				<BoxView HorizontalOptions="FillAndExpand" 
+					HeightRequest="1" VerticalOptions="End" 
+					Color="{x:Static resources:ColorResources.LocatorSeparatorColorLight}" />
+			</Grid>
+		</Grid>
+
+	</ContentView.Content>
+</ContentView>

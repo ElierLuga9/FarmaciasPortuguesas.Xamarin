@@ -1,0 +1,680 @@
+<<<<<<< HEAD
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.UserArea.UserOrdersDetailPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0" HorizontalOptions="FillAndExpand" BindingContext="{Binding Detail}">
+		<Grid.RowDefinitions>
+			<!-- Application Bar-->
+			<RowDefinition Height="auto"/>
+			<!-- Tabs Bar -->
+			<RowDefinition Height="auto"/>
+			<!-- Main Content-->
+			<RowDefinition Height="*"/>
+			<!-- Button -->
+			<RowDefinition Height="auto"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<common:CustomListView
+			Grid.Row="2" Grid.Column="1"
+			HasUnevenRows="True"
+			VerticalOptions="FillAndExpand"
+			IsVisible="True"
+			Header="{Binding .}"
+			ItemsSource="{Binding ProductList}"
+			SeparatorColor="Transparent"
+			HorizontalOptions="FillAndExpand">
+
+			<common:CustomListView.HeaderTemplate>
+				<DataTemplate>
+					<Grid RowSpacing="0" ColumnSpacing="0" BackgroundColor="{x:Static resources:ColorResources.ANFPaleGrey}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+						<Grid.RowDefinitions>
+							<!-- Top Margin-->
+							<RowDefinition Height="5"/>
+							<!-- Content-->
+							<RowDefinition Height="*"/>
+
+							<!-- Bottom Margin-->
+							<RowDefinition Height="5"/>
+							<!-- Separator -->
+							<RowDefinition Height="auto"/>
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<!--Left Margin-->
+							<ColumnDefinition Width="15"/>
+							<!--Delivery Content-->
+							<ColumnDefinition Width="*"/>
+							<!-- Right Margin-->
+							<ColumnDefinition Width="15"/>
+						</Grid.ColumnDefinitions>
+
+						<!-- Delivery Content -->
+						<StackLayout Orientation="Vertical" Grid.Row="1" Grid.Column="1">
+							<!-- Farmacy Name-->
+							<common:CustomLabel
+								CustomFont="{x:Static resources:FontResources.BoldFont}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}"
+								FontSize="13"
+								VerticalOptions="Center"
+								HorizontalOptions="Start"
+								Text="{Binding FarmName}"/>
+							<!-- Date-->
+							<StackLayout Orientation="Horizontal">
+								<!-- Date Label-->
+								<common:CustomLabel
+									CustomFont="{x:Static resources:FontResources.BoldFont}"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									FontSize="10"
+									VerticalOptions="Center"
+									HorizontalOptions="Start"
+									Text="Data:"/>
+								<!--Date-->
+								<common:CustomLabel
+									CustomFont="{x:Static resources:FontResources.RegularFont}"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									FontSize="10"
+									VerticalOptions="Center"
+									HorizontalOptions="Start"
+									Text="{Binding DeliveryDate}"/>
+							</StackLayout>
+							<!-- Delivery Id-->
+							<StackLayout Orientation="Horizontal">
+								<!-- Delivery Label-->
+								<common:CustomLabel
+									CustomFont="{x:Static resources:FontResources.BoldFont}"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									FontSize="10"
+									VerticalOptions="Center"
+									HorizontalOptions="Start"
+									Text="Número de Encomenda:"/>
+								<!--Delivery Number-->
+								<common:CustomLabel
+									CustomFont="{x:Static resources:FontResources.RegularFont}"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									FontSize="10"
+									VerticalOptions="Center"
+									HorizontalOptions="Start"
+									Text="{Binding AnfId}"/>
+							</StackLayout>
+							<!-- Delivery State-->
+							<StackLayout Orientation="Horizontal">
+								<!-- Delivery State Label-->
+								<common:CustomLabel
+									CustomFont="{x:Static resources:FontResources.BoldFont}"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									FontSize="10"
+									VerticalOptions="Center"
+									HorizontalOptions="Start"
+									Text="Estado:"/>
+								<!--State-->
+								<common:CustomLabel
+									CustomFont="{x:Static resources:FontResources.RegularFont}"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									FontSize="10"
+									VerticalOptions="Center"
+									HorizontalOptions="Start"
+									Text="{Binding StatusDescription}"/>
+							</StackLayout>
+						</StackLayout>
+					</Grid>
+				</DataTemplate>
+			</common:CustomListView.HeaderTemplate>
+
+			<!-- Item Template -->
+			<common:CustomListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<Grid RowSpacing="0" ColumnSpacing="0" BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+							<Grid.RowDefinitions>
+								<!-- Top Margin-->
+								<RowDefinition Height="5"/>
+								<!-- Content-->
+								<RowDefinition Height="*"/>
+
+								<!-- Bottom Margin-->
+								<RowDefinition Height="5"/>
+								<!-- Separator -->
+								<RowDefinition Height="auto"/>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<!--Left Margin-->
+								<ColumnDefinition Width="15"/>
+								<!--Delivery Content-->
+								<ColumnDefinition Width="*"/>
+								<!-- Margin-->
+								<ColumnDefinition Width="10"/>
+								<!-- Delivery Value-->
+								<ColumnDefinition Width="*"/>
+								<!-- Right Margin-->
+								<ColumnDefinition Width="15"/>
+							</Grid.ColumnDefinitions>
+
+							<!-- Delivery Content -->
+							<StackLayout Orientation="Vertical" Grid.Row="1" Grid.Column="1">
+								<!-- Product Name-->
+								<common:CustomLabel
+									CustomFont="{x:Static resources:FontResources.BoldFont}"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									FontSize="13"
+									VerticalOptions="Center"
+									HorizontalOptions="Start"
+									Text="{Binding Name}"/>
+								<!-- Dosage-->
+								<common:CustomLabel
+									CustomFont="{x:Static resources:FontResources.RegularFont}"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									FontSize="10"
+									VerticalOptions="Center"
+									HorizontalOptions="Start"
+									Text="{Binding Dosage}"/>
+								<!--Unitary Price-->
+								<StackLayout Orientation="Horizontal"
+									IsVisible="{Binding ShowCNPEM, Converter={x:Static converters:ConverterResources.InverseBool}">
+									<!-- Price-->
+									<common:CustomLabel
+										CustomFont="{x:Static resources:FontResources.BoldFont}"
+										TextColor="{x:Static resources:ColorResources.TextColorDark}"
+										FontSize="10"
+										VerticalOptions="Center"
+										HorizontalOptions="Start"
+										Text="{Binding PriceDescription}"/>
+									<!--Un Label-->
+									<common:CustomLabel
+										CustomFont="{x:Static resources:FontResources.RegularFont}"
+										TextColor="{x:Static resources:ColorResources.TextColorDark}"
+										FontSize="10"
+										VerticalOptions="Center"
+										HorizontalOptions="Start"
+										Text="/un."/>
+								</StackLayout>
+								<!-- Product code CNP or CNPEM-->
+								<StackLayout Orientation="Horizontal">
+									<!-- CNPEM Label-->
+									<common:CustomLabel
+										CustomFont="{x:Static resources:FontResources.BoldFont}"
+										TextColor="{x:Static resources:ColorResources.TextColorDark}"
+										FontSize="10"
+										VerticalOptions="Center"
+										HorizontalOptions="Start"
+										Text="{Binding ShowCNPEM, Converter={x:Static converters:ConverterResources.CNPEMLabel}}"/>
+									<!--CNPEM Number-->
+									<common:CustomLabel
+										CustomFont="{x:Static resources:FontResources.RegularFont}"
+										TextColor="{x:Static resources:ColorResources.TextColorDark}"
+										FontSize="10"
+										VerticalOptions="Center"
+										HorizontalOptions="Start"
+										Text="{Binding ProductId}"/>
+								</StackLayout>
+							</StackLayout>
+
+							<!-- Delivery Value-->
+							<StackLayout Orientation="Vertical" Grid.Row="1" Grid.Column="3" Spacing="0">
+								<!-- Quantity-->
+								<Grid WidthRequest="27" HeightRequest="27" HorizontalOptions="End" VerticalOptions="Start">
+
+									<!-- Background -->
+									<common:CustomImage Source="ic_orange_circle.png" />
+
+									<!-- Label -->
+									<common:CustomLabel
+										FontSize="13"
+										HorizontalOptions="Center"
+										VerticalOptions="Center"
+										Text="{Binding Quantity, StringFormat='{0}x'}"
+										CustomFont="{x:Static resources:FontResources.RegularFont}"
+										TextColor="{x:Static resources:ColorResources.TextColorLight}" />
+								</Grid>
+
+								<!-- Value-->
+								<common:CustomLabel
+									  CustomFont="{x:Static resources:FontResources.BoldFont}"
+									  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									  FontSize="10"
+									  VerticalOptions="EndAndExpand"
+									  HorizontalOptions="End"
+									  IsVisible="{Binding ShowCNPEM, Converter={x:Static converters:ConverterResources.InverseBool}"
+									  Text="{Binding AquisitionValueDescription}"/>
+
+								<!--Taxes
+								<StackLayout Orientation="Horizontal" HorizontalOptions="End">
+									<common:CustomLabel
+										CustomFont="{x:Static resources:FontResources.RegularFont}"
+										TextColor="{x:Static resources:ColorResources.TextColorDark}"
+										FontSize="10"
+										VerticalOptions="Center"
+										HorizontalOptions="End"
+										Text="c/"/>
+									<common:CustomLabel
+										CustomFont="{x:Static resources:FontResources.RegularFont}"
+										TextColor="{x:Static resources:ColorResources.TextColorDark}"
+										FontSize="10"
+										VerticalOptions="Center"
+										HorizontalOptions="End"
+										Text="{Binding IVA}"/>
+									<common:CustomLabel
+										 CustomFont="{x:Static resources:FontResources.RegularFont}"
+										 TextColor="{x:Static resources:ColorResources.TextColorDark}"
+										 FontSize="10"
+										 VerticalOptions="Center"
+										 HorizontalOptions="End"
+										 Text="IVA"/>
+								</StackLayout>
+								-->
+							</StackLayout>
+
+
+							<!-- Separator -->
+							<BoxView Grid.Row="3"
+								HorizontalOptions="FillAndExpand"
+								HeightRequest="1"
+								Color="{x:Static resources:ColorResources.ANFPaleGrey}"
+								Grid.ColumnSpan="4" />
+						</Grid>
+					</ViewCell>
+				</DataTemplate>
+			</common:CustomListView.ItemTemplate>
+		</common:CustomListView>
+
+		<Grid Grid.Row="3" Grid.Column="1"
+			HorizontalOptions="FillAndExpand"
+			VerticalOptions="End"
+			Padding="15">
+
+			<common:CustomButton 
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="FillAndExpand"
+				FontSize="14"
+				BorderRadius="0"
+				TextAlignment="Center"
+				TextColor="White"
+				Clicked="OnAddToCartButtonClicked"
+				CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+				Text="{x:Static app:AppResources.OrderDetailAddToCartButton}"
+				BackgroundColor="{x:Static resources:ColorResources.ANFDarkOrange}" />
+
+		</Grid>
+
+		<!-- Tab Bar-->
+		<views:UserAreaTabbedBar x:Name="TabBar" 
+			Grid.Row="1" Grid.Column="1" 
+			HorizontalOptions="FillAndExpand"
+			SelectedTab="History" />
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" Grid.RowSpan="3" />
+
+		<!-- Application Bar -->
+    <!--<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />-->
+    <views:ApplicationBarUserCard x:Name="ApplicationBar" Grid.ColumnSpan="2"> </views:ApplicationBarUserCard>
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="4" Grid.ColumnSpan="2"
+			IsVisible="True"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</pages:ANFPage>
+=======
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.UserArea.UserOrdersDetailPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0" HorizontalOptions="FillAndExpand" BindingContext="{Binding Detail}">
+		<Grid.RowDefinitions>
+			<!-- Application Bar-->
+			<RowDefinition Height="auto"/>
+			<!-- Tabs Bar -->
+			<RowDefinition Height="auto"/>
+			<!-- Main Content-->
+			<RowDefinition Height="*"/>
+			<!-- Button -->
+			<RowDefinition Height="auto"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<common:CustomListView
+			Grid.Row="2" Grid.Column="1"
+			HasUnevenRows="True"
+			VerticalOptions="FillAndExpand"
+			IsVisible="True"
+			Header="{Binding .}"
+			ItemsSource="{Binding ProductList}"
+			SeparatorColor="Transparent"
+			HorizontalOptions="FillAndExpand">
+
+			<common:CustomListView.HeaderTemplate>
+				<DataTemplate>
+					<Grid RowSpacing="0" ColumnSpacing="0" BackgroundColor="{x:Static resources:ColorResources.ANFPaleGrey}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+						<Grid.RowDefinitions>
+							<!-- Top Margin-->
+							<RowDefinition Height="5"/>
+							<!-- Content-->
+							<RowDefinition Height="*"/>
+
+							<!-- Bottom Margin-->
+							<RowDefinition Height="5"/>
+							<!-- Separator -->
+							<RowDefinition Height="auto"/>
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<!--Left Margin-->
+							<ColumnDefinition Width="15"/>
+							<!--Delivery Content-->
+							<ColumnDefinition Width="*"/>
+							<!-- Right Margin-->
+							<ColumnDefinition Width="15"/>
+						</Grid.ColumnDefinitions>
+
+						<!-- Delivery Content -->
+						<StackLayout Orientation="Vertical" Grid.Row="1" Grid.Column="1">
+							<!-- Farmacy Name-->
+							<common:CustomLabel
+								CustomFont="{x:Static resources:FontResources.BoldFont}"
+								TextColor="{x:Static resources:ColorResources.TextColorDark}"
+								FontSize="13"
+								VerticalOptions="Center"
+								HorizontalOptions="Start"
+								Text="{Binding FarmName}"/>
+							<!-- Date-->
+							<StackLayout Orientation="Horizontal">
+								<!-- Date Label-->
+								<common:CustomLabel
+									CustomFont="{x:Static resources:FontResources.BoldFont}"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									FontSize="10"
+									VerticalOptions="Center"
+									HorizontalOptions="Start"
+									Text="Data:"/>
+								<!--Date-->
+								<common:CustomLabel
+									CustomFont="{x:Static resources:FontResources.RegularFont}"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									FontSize="10"
+									VerticalOptions="Center"
+									HorizontalOptions="Start"
+									Text="{Binding DeliveryDate}"/>
+							</StackLayout>
+							<!-- Delivery Id-->
+							<StackLayout Orientation="Horizontal">
+								<!-- Delivery Label-->
+								<common:CustomLabel
+									CustomFont="{x:Static resources:FontResources.BoldFont}"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									FontSize="10"
+									VerticalOptions="Center"
+									HorizontalOptions="Start"
+									Text="Número de Encomenda:"/>
+								<!--Delivery Number-->
+								<common:CustomLabel
+									CustomFont="{x:Static resources:FontResources.RegularFont}"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									FontSize="10"
+									VerticalOptions="Center"
+									HorizontalOptions="Start"
+									Text="{Binding AnfId}"/>
+							</StackLayout>
+							<!-- Delivery State-->
+							<StackLayout Orientation="Horizontal">
+								<!-- Delivery State Label-->
+								<common:CustomLabel
+									CustomFont="{x:Static resources:FontResources.BoldFont}"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									FontSize="10"
+									VerticalOptions="Center"
+									HorizontalOptions="Start"
+									Text="Estado:"/>
+								<!--State-->
+								<common:CustomLabel
+									CustomFont="{x:Static resources:FontResources.RegularFont}"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									FontSize="10"
+									VerticalOptions="Center"
+									HorizontalOptions="Start"
+									Text="{Binding StatusDescription}"/>
+							</StackLayout>
+						</StackLayout>
+					</Grid>
+				</DataTemplate>
+			</common:CustomListView.HeaderTemplate>
+
+			<!-- Item Template -->
+			<common:CustomListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<Grid RowSpacing="0" ColumnSpacing="0" BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+							<Grid.RowDefinitions>
+								<!-- Top Margin-->
+								<RowDefinition Height="5"/>
+								<!-- Content-->
+								<RowDefinition Height="*"/>
+
+								<!-- Bottom Margin-->
+								<RowDefinition Height="5"/>
+								<!-- Separator -->
+								<RowDefinition Height="auto"/>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<!--Left Margin-->
+								<ColumnDefinition Width="15"/>
+								<!--Delivery Content-->
+								<ColumnDefinition Width="*"/>
+								<!-- Margin-->
+								<ColumnDefinition Width="10"/>
+								<!-- Delivery Value-->
+								<ColumnDefinition Width="*"/>
+								<!-- Right Margin-->
+								<ColumnDefinition Width="15"/>
+							</Grid.ColumnDefinitions>
+
+							<!-- Delivery Content -->
+							<StackLayout Orientation="Vertical" Grid.Row="1" Grid.Column="1">
+								<!-- Product Name-->
+								<common:CustomLabel
+									CustomFont="{x:Static resources:FontResources.BoldFont}"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									FontSize="13"
+									VerticalOptions="Center"
+									HorizontalOptions="Start"
+									Text="{Binding Name}"/>
+								<!-- Dosage-->
+								<common:CustomLabel
+									CustomFont="{x:Static resources:FontResources.RegularFont}"
+									TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									FontSize="10"
+									VerticalOptions="Center"
+									HorizontalOptions="Start"
+									Text="{Binding Dosage}"/>
+								<!--Unitary Price-->
+								<StackLayout Orientation="Horizontal"
+									IsVisible="{Binding ShowCNPEM, Converter={x:Static converters:ConverterResources.InverseBool}">
+									<!-- Price-->
+									<common:CustomLabel
+										CustomFont="{x:Static resources:FontResources.BoldFont}"
+										TextColor="{x:Static resources:ColorResources.TextColorDark}"
+										FontSize="10"
+										VerticalOptions="Center"
+										HorizontalOptions="Start"
+										Text="{Binding PriceDescription}"/>
+									<!--Un Label-->
+									<common:CustomLabel
+										CustomFont="{x:Static resources:FontResources.RegularFont}"
+										TextColor="{x:Static resources:ColorResources.TextColorDark}"
+										FontSize="10"
+										VerticalOptions="Center"
+										HorizontalOptions="Start"
+										Text="/un."/>
+								</StackLayout>
+								<!-- Product code CNP or CNPEM-->
+								<StackLayout Orientation="Horizontal">
+									<!-- CNPEM Label-->
+									<common:CustomLabel
+										CustomFont="{x:Static resources:FontResources.BoldFont}"
+										TextColor="{x:Static resources:ColorResources.TextColorDark}"
+										FontSize="10"
+										VerticalOptions="Center"
+										HorizontalOptions="Start"
+										Text="{Binding ShowCNPEM, Converter={x:Static converters:ConverterResources.CNPEMLabel}}"/>
+									<!--CNPEM Number-->
+									<common:CustomLabel
+										CustomFont="{x:Static resources:FontResources.RegularFont}"
+										TextColor="{x:Static resources:ColorResources.TextColorDark}"
+										FontSize="10"
+										VerticalOptions="Center"
+										HorizontalOptions="Start"
+										Text="{Binding ProductId}"/>
+								</StackLayout>
+							</StackLayout>
+
+							<!-- Delivery Value-->
+							<StackLayout Orientation="Vertical" Grid.Row="1" Grid.Column="3" Spacing="0">
+								<!-- Quantity-->
+								<Grid WidthRequest="27" HeightRequest="27" HorizontalOptions="End" VerticalOptions="Start">
+
+									<!-- Background -->
+									<common:CustomImage Source="ic_orange_circle.png" />
+
+									<!-- Label -->
+									<common:CustomLabel
+										FontSize="13"
+										HorizontalOptions="Center"
+										VerticalOptions="Center"
+										Text="{Binding Quantity, StringFormat='{0}x'}"
+										CustomFont="{x:Static resources:FontResources.RegularFont}"
+										TextColor="{x:Static resources:ColorResources.TextColorLight}" />
+								</Grid>
+
+								<!-- Value-->
+								<common:CustomLabel
+									  CustomFont="{x:Static resources:FontResources.BoldFont}"
+									  TextColor="{x:Static resources:ColorResources.TextColorDark}"
+									  FontSize="10"
+									  VerticalOptions="EndAndExpand"
+									  HorizontalOptions="End"
+									  IsVisible="{Binding ShowCNPEM, Converter={x:Static converters:ConverterResources.InverseBool}"
+									  Text="{Binding AquisitionValueDescription}"/>
+
+								<!--Taxes
+								<StackLayout Orientation="Horizontal" HorizontalOptions="End">
+									<common:CustomLabel
+										CustomFont="{x:Static resources:FontResources.RegularFont}"
+										TextColor="{x:Static resources:ColorResources.TextColorDark}"
+										FontSize="10"
+										VerticalOptions="Center"
+										HorizontalOptions="End"
+										Text="c/"/>
+									<common:CustomLabel
+										CustomFont="{x:Static resources:FontResources.RegularFont}"
+										TextColor="{x:Static resources:ColorResources.TextColorDark}"
+										FontSize="10"
+										VerticalOptions="Center"
+										HorizontalOptions="End"
+										Text="{Binding IVA}"/>
+									<common:CustomLabel
+										 CustomFont="{x:Static resources:FontResources.RegularFont}"
+										 TextColor="{x:Static resources:ColorResources.TextColorDark}"
+										 FontSize="10"
+										 VerticalOptions="Center"
+										 HorizontalOptions="End"
+										 Text="IVA"/>
+								</StackLayout>
+								-->
+							</StackLayout>
+
+
+							<!-- Separator -->
+							<BoxView Grid.Row="3"
+								HorizontalOptions="FillAndExpand"
+								HeightRequest="1"
+								Color="{x:Static resources:ColorResources.ANFPaleGrey}"
+								Grid.ColumnSpan="4" />
+						</Grid>
+					</ViewCell>
+				</DataTemplate>
+			</common:CustomListView.ItemTemplate>
+		</common:CustomListView>
+
+		<Grid Grid.Row="3" Grid.Column="1"
+			HorizontalOptions="FillAndExpand"
+			VerticalOptions="End"
+			Padding="15">
+
+			<common:CustomButton 
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="FillAndExpand"
+				FontSize="14"
+				BorderRadius="0"
+				TextAlignment="Center"
+				TextColor="White"
+				Clicked="OnAddToCartButtonClicked"
+				CustomFont="{x:Static resources:FontResources.SemiBoldFont}"
+				Text="{x:Static app:AppResources.OrderDetailAddToCartButton}"
+				BackgroundColor="{x:Static resources:ColorResources.ANFDarkOrange}" />
+
+		</Grid>
+
+		<!-- Tab Bar-->
+		<views:UserAreaTabbedBar x:Name="TabBar" 
+			Grid.Row="1" Grid.Column="1" 
+			HorizontalOptions="FillAndExpand"
+			SelectedTab="History" />
+
+		<!-- MenuItem -->
+		<views:MenuView x:Name="MenuView" Grid.Row="1" Grid.RowSpan="3" />
+
+		<!-- Application Bar -->
+    <!--<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />-->
+    <views:ApplicationBarUserCard x:Name="ApplicationBar" Grid.ColumnSpan="2"> </views:ApplicationBarUserCard>
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="4" Grid.ColumnSpan="2"
+			IsVisible="True"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	</Grid>
+</ANFPage>
+>>>>>>> maintenance_phase5_azure_notification

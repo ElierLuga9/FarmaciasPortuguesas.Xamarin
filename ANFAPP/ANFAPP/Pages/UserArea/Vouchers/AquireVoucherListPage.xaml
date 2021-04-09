@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:ANFPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:pages="clr-namespace:ANFAPP.Pages;assembly=ANFAPP"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+	xmlns:common="clr-namespace:ANFAPP.Views.Common;assembly=ANFAPP"
+	xmlns:resources="clr-namespace:ANFAPP.Logic.Resources;assembly=ANFAPP.Logic"
+	xmlns:ig="clr-namespace:Infragistics.XF.Controls;assembly=InfragisticsXF.Controls.Barcodes"
+	xmlns:ix="clr-namespace:Infragistics.Framework;assembly=Infragistics.Framework.Mobile"
+	xmlns:converters="clr-namespace:ANFAPP.Resources;assembly=ANFAPP"
+	xmlns:app="clr-namespace:ANFAPP.Logic;assembly=ANFAPP.Logic"
+	xmlns:views="clr-namespace:ANFAPP.Views;assembly=ANFAPP"
+	x:Class="ANFAPP.Pages.UserArea.Vouchers.AquireVoucherListPage">
+
+	<Grid RowSpacing="0" ColumnSpacing="0" >
+		<Grid.RowDefinitions>
+			<!-- Application Bar -->
+			<RowDefinition Height="auto" />
+			<!-- Vouchers List -->
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		
+		<!-- Vouchers List -->
+	<ScrollView Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+	<Grid RowSpacing="0" ColumnSpacing="0">
+		<Grid.RowDefinitions>
+			
+			<RowDefinition Height="auto" />
+			<RowDefinition Height="auto" />
+			<RowDefinition Height="auto" />
+			<RowDefinition Height="auto" />
+
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+				
+	<StackLayout Padding="15,15,0,0" Grid.Row="0" Grid.Column="1"  >
+				
+				
+			<common:CustomImage x:Name="CartaoVale2"
+					
+					Source="cartao_vale_sauda_2"
+					ClassId="Vale2Euros" 
+					Grid.Column="0"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand">
+					<common:CustomImage.GestureRecognizers>
+							<TapGestureRecognizer
+			                Tapped="OnVoucherOffer_Clicked"
+			                NumberOfTapsRequired="1" />
+							
+					</common:CustomImage.GestureRecognizers>
+
+			></common:CustomImage>
+
+			<common:CustomImage x:Name="CartaoVale2Disable"
+					
+					Source="cartao_vale_sauda_2_disabled"
+
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand">
+			></common:CustomImage>
+			</StackLayout>
+
+				
+			<StackLayout Padding="15,15,0,0" Grid.Row="1" Grid.Column="1" >
+			<common:CustomImage
+					x:Name="CartaoVale5"
+
+					Source="cartao_vale_sauda_5"
+					ClassId="Vale5Euros"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand">
+
+					<common:CustomImage.GestureRecognizers>
+							<TapGestureRecognizer
+			                Tapped="OnVoucherOffer_Clicked"
+			                NumberOfTapsRequired="1" />
+							
+					</common:CustomImage.GestureRecognizers>
+			></common:CustomImage>
+
+
+			<common:CustomImage 
+					x:Name="CartaoVale5Disable"
+					Source="cartao_vale_sauda_5_disabled"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand">
+			></common:CustomImage>
+			</StackLayout>
+
+				
+			<StackLayout Padding="15,15,0,0" Grid.Row="2" Grid.Column="1"  >
+
+
+
+					<common:CustomImage 
+					x:Name="CartaoVale10"
+					ClassId="Vale10Euros"
+					Source="cartao_vale_sauda_10"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand">
+					>
+						<common:CustomImage.GestureRecognizers>
+							<TapGestureRecognizer
+			                Tapped="OnVoucherOffer_Clicked"
+			                NumberOfTapsRequired="1" />
+							
+						</common:CustomImage.GestureRecognizers>
+					</common:CustomImage>
+
+					<common:CustomImage 
+					x:Name="CartaoVale10Disable"
+					Source="cartao_vale_sauda_10_disabled"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand">
+					></common:CustomImage>
+					
+			</StackLayout>
+
+			<StackLayout Padding="15,15,0,0" Grid.Row="3" Grid.Column="1"  >
+					<common:CustomImage 
+					x:Name="CartaoVale20"	
+					Source="cartao_vale_sauda_20"
+					ClassId="Vale20Euros"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand">
+					>
+						<common:CustomImage.GestureRecognizers>
+							<TapGestureRecognizer
+			                Tapped="OnVoucherOffer_Clicked"
+			                NumberOfTapsRequired="1" />
+							
+						</common:CustomImage.GestureRecognizers>
+					</common:CustomImage>
+
+					<common:CustomImage 
+					x:Name="CartaoVale20Disable"
+					Source="cartao_vale_sauda_20_disabled"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand">
+					></common:CustomImage>
+		
+
+			</StackLayout>
+
+		<StackLayout Padding="120,0,0,0" Grid.Row="0" Grid.Column="0" Spacing="150" >
+		<common:CustomImage Source="double_arrow" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+				
+		</common:CustomImage>
+		</StackLayout>
+
+		<StackLayout Padding="120,0,0,0" Grid.Row="1" Grid.Column="0" Spacing="150" >
+		<common:CustomImage Source="double_arrow" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+		</common:CustomImage>
+		</StackLayout>
+
+		<StackLayout Padding="120,0,0,0" Grid.Row="2" Grid.Column="0" Spacing="150" >	
+		<common:CustomImage Source="double_arrow" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+		</common:CustomImage>
+				</StackLayout>
+		<StackLayout Padding="120,0,0,0" Grid.Row="3" Grid.Column="0" Spacing="150" >
+		<common:CustomImage Source="double_arrow" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+		</common:CustomImage>	
+		</StackLayout>
+
+
+				<!--Points-->
+		<StackLayout Padding="30,0,0,0" Grid.Row="0" Grid.Column="0" Spacing="150"  >
+				
+				<common:CustomLabel Text="50 Pontos" TextColor="#a6a6a6" 
+				HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
+				</common:CustomLabel>	
+
+		</StackLayout>
+
+		<StackLayout Padding="30,0,0,0" Grid.Row="1" Grid.Column="0" Spacing="150" >
+				<common:CustomLabel Text="120 Pontos" TextColor="#a6a6a6" 
+				HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
+				</common:CustomLabel>	
+
+		</StackLayout>
+
+		<StackLayout Padding="30,0,0,0" Grid.Row="2" Grid.Column="0" Spacing="150" >	
+				<common:CustomLabel Text="230 Pontos" TextColor="#a6a6a6" 
+				HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
+				</common:CustomLabel>	
+		</StackLayout>
+
+		<StackLayout Padding="30,0,0,0" Grid.Row="3" Grid.Column="0" Spacing="150" >
+		           <common:CustomLabel Text="440 Pontos" TextColor="#a6a6a6" 
+				HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
+				</common:CustomLabel>	
+		</StackLayout>
+
+							<!-- Buttons -->
+				<common:CustomButton x:Name="Button2" Grid.Row="0"  ClassId="Vale2Euros" Grid.Column="0" Clicked="OnVoucherOffer_Clicked"
+					BackgroundColor="Transparent" >
+					</common:CustomButton>
+				<common:CustomButton Grid.Row="1" x:Name="Button5" ClassId="Vale5Euros" Grid.Column="0" Clicked="OnVoucherOffer_Clicked"
+					 BackgroundColor="Transparent" >
+					</common:CustomButton>
+				<common:CustomButton Grid.Row="2" x:Name="Button10" ClassId="Vale10Euros" Grid.Column="0" Clicked="OnVoucherOffer_Clicked"
+					BackgroundColor="Transparent" >
+					</common:CustomButton>
+				<common:CustomButton Grid.Row="3" x:Name="Button20" ClassId="Vale20Euros" Grid.Column="0" Clicked="OnVoucherOffer_Clicked"
+					BackgroundColor="Transparent" >
+					</common:CustomButton>
+
+
+		</Grid>
+
+		</ScrollView>
+	
+
+	
+	<views:MenuView x:Name="MenuView" Grid.Row="1" />
+		<!-- Application Bar -->
+    <!--<views:ApplicationBar x:Name="ApplicationBar" Grid.ColumnSpan="2" />-->
+    <views:ApplicationBarUserCard x:Name="ApplicationBar" Grid.ColumnSpan="2"> </views:ApplicationBarUserCard>
+
+		<!-- Loading Container -->
+		<Grid x:Name="LoadingView" Grid.RowSpan="2" Grid.ColumnSpan="2"
+			IsVisible="False"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			BackgroundColor="#7FFFFFFF">
+
+			<!-- Loading Indicator -->
+			<common:CustomActivityIndicator
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				IsRunning="True"
+				Color="{x:Static resources:ColorResources.APPBackgroundDark}" />
+		</Grid>
+	
+	</Grid>
+</pages:ANFPage>
